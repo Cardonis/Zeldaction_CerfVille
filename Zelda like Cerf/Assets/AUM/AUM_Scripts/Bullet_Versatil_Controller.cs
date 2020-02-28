@@ -9,6 +9,8 @@ public class Bullet_Versatil_Controller : MonoBehaviour
     public Rigidbody2D rb;
     [HideInInspector] public float maxDistance;
 
+    Transform touchedTarget;
+
 
     // Update is called once per frame
     void Update()
@@ -16,9 +18,15 @@ public class Bullet_Versatil_Controller : MonoBehaviour
         lr.SetPosition(0, player.position);
         lr.SetPosition(1, transform.position);
 
-        if (Vector2.Distance(transform.position, player.position) > maxDistance)
+        if (touchedTarget != null)
         {
-            Destroy(gameObject);
+            transform.position = touchedTarget.position;
+        }
+
+        if (Vector2.Distance(transform.position, player.position) > maxDistance && touchedTarget == null)
+        {
+            player.GetComponent<Player_Main_Controller>().projected = false;
+            Destroy(gameObject);           
         }
     }
 
@@ -30,9 +38,11 @@ public class Bullet_Versatil_Controller : MonoBehaviour
         {
             rb.velocity = new Vector2(0, 0);
 
+            touchedTarget = collision.transform;
+
             transform.SetParent(ec.transform);
-            transform.position = collision.transform.position;
-            StartCoroutine(ec.TakeForce(player, player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack));
+            
+            ec.StartTakeForce(player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack);
             
         }
     }

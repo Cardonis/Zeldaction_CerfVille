@@ -18,7 +18,7 @@ public class BaseAttackCollision : MonoBehaviour
         if(ec != null)
         {
             if (ec.projected == false)
-                ec.TakeForce(player.direction, forceValue);
+                ec.TakeForce(player.direction.normalized, forceValue);
         }
 
     }

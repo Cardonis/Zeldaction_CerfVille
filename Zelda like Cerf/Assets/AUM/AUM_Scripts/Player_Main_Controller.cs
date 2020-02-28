@@ -30,9 +30,9 @@ public class Player_Main_Controller : MonoBehaviour
 
     Transform vBullets;
 
-    bool projected = false;
+    [HideInInspector] public bool projected = false;
 
-    Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
 
     Vector2 input;
     [HideInInspector] public Vector2 direction;
@@ -70,7 +70,7 @@ public class Player_Main_Controller : MonoBehaviour
         {
             if (input.magnitude > 0)
             {
-                direction = input.normalized;
+                direction = input;
                 directionAngle = Vector2.Angle(transform.right, direction);
 
                 if(direction.y < 0)
@@ -100,7 +100,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         if (timerCooldownVersatilAttack < 0)
         {
-            if (Input.GetButtonDown("X"))
+            if (Input.GetButtonDown("X") && ! projected)
             {
                 VersatilAttack();
             }
@@ -139,7 +139,7 @@ public class Player_Main_Controller : MonoBehaviour
         //Attack duration + knock back
         for(float i = durationBaseAttack; i > 0; i -= Time.fixedDeltaTime)
         {
-            rb.velocity = -direction * speedKnockBackBaseAttack * Time.fixedDeltaTime;
+            rb.velocity = -direction.normalized * speedKnockBackBaseAttack * Time.fixedDeltaTime;
 
             yield return null;
         }
@@ -167,11 +167,13 @@ public class Player_Main_Controller : MonoBehaviour
 
         bullet.transform.position = transform.position;
 
+        projected = true;
+        rb.velocity = new Vector2(0, 0);
 
         bullet.player = transform;
         bullet.maxDistance = rangeMaxVersatilAttack;
 
-        bullet.GetComponent<Rigidbody2D>().velocity = direction * speedBulletVersatil * Time.fixedDeltaTime;
+        bullet.GetComponent<Rigidbody2D>().velocity = direction.normalized * speedBulletVersatil * Time.fixedDeltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
     }
