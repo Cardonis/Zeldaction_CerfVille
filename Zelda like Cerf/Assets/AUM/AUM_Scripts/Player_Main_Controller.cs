@@ -167,8 +167,8 @@ public class Player_Main_Controller : MonoBehaviour
 
         bullet.transform.position = transform.position;
 
-        projected = true;
-        rb.velocity = new Vector2(0, 0);
+        //projected = true;
+        //rb.velocity = new Vector2(0, 0);
 
         bullet.player = transform;
         bullet.maxDistance = rangeMaxVersatilAttack;

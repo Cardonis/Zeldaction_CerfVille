@@ -44,9 +44,16 @@ public class Elements_Controller : MonoBehaviour
 
         Vector2 direction2 = direction;
 
+        Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
+
+
         while(direction.magnitude > 0.7f)
         {
-            Physics2D.IgnoreCollision(GetComponentInChildren<Collider2D>(), player.GetComponentInChildren<Collider2D>(), true);
+            for(int i = 0; i < ennemyColliders.Length - 1; i++)
+            {
+                Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), true);
+            }
+            
             direction = (player.transform.position - transform.position );
             rb.velocity = direction2.normalized * (forceValue / 2);
             yield return null;
@@ -65,7 +72,10 @@ public class Elements_Controller : MonoBehaviour
             yield return null;
         }
 
-        Physics2D.IgnoreCollision(GetComponentInChildren<Collider2D>(), player.GetComponentInChildren<Collider2D>(), false);
+        for (int i = 0; i < ennemyColliders.Length - 1; i++)
+        {
+            Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), false);
+        }
 
     }
 

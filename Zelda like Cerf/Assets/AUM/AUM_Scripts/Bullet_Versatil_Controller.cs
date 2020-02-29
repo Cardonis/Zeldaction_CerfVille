@@ -41,6 +41,8 @@ public class Bullet_Versatil_Controller : MonoBehaviour
             touchedTarget = collision.transform;
 
             transform.SetParent(ec.transform);
+
+            GetComponentInChildren<Collider2D>().enabled = false;
             
             ec.StartTakeForce(player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack);
             

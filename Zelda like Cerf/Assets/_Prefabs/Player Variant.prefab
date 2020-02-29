@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c68a6e220573e04a852cc12bf101cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceValue: 4
+  forceValue: 10
 --- !u!1001 &395338726643315145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -163,6 +163,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 829979663, guid: 603ec871160439742bb890b9e1d2ec16, type: 3}
+      propertyPath: forceValue
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1847402320, guid: 603ec871160439742bb890b9e1d2ec16, type: 3}
       propertyPath: forceValue
       value: 15
@@ -260,11 +264,6 @@ PrefabInstance:
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: durationBaseAttack
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
-        type: 3}
-      propertyPath: cooldownBaseAttack
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
@@ -290,12 +289,12 @@ PrefabInstance:
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: cooldownVersatilAttack
-      value: 0.5
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: forceValueVersatilAttack
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6214150372187065243, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}

@@ -8,16 +8,17 @@ public class Ennemy_Controller : Elements_Controller
 
     public float pv;
 
+    [HideInInspector] public Dictionary<float, float> velocityValues = new Dictionary<float, float>();
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-
-        if(collision.transform.tag == "Wall" && rb.velocity.magnitude > velocityToGetDamage)
+        if(velocityValues.Count > 10)
+        if(collision.transform.tag == "Wall" && velocityValues[velocityValues.Count - 10] - rb.velocity.magnitude > velocityToGetDamage)
         {
-
-            Debug.Log("Oui");
             StartCoroutine(TakeDamage(2));
         }
+
+
     }
 
     IEnumerator TakeDamage(float damageTaken)
@@ -34,6 +35,11 @@ public class Ennemy_Controller : Elements_Controller
         GetComponentInChildren<SpriteRenderer>().material.color = new Color(183, 183, 183);
 
         yield break;
+    }
+
+    public void RegisterVelocity()
+    {
+        velocityValues.Add(velocityValues.Count + 1, rb.velocity.magnitude);
     }
 
 }

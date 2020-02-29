@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemiOneBehavior : MonoBehaviour
+public class EnnemiOneBehavior : Ennemy_Controller
 {
     [HideInInspector]
-    public Transform player;
 
     public float ennemiSpeed;
     /*public float ennemiDamage;
@@ -22,27 +21,43 @@ public class EnnemiOneBehavior : MonoBehaviour
 
     private Vector3 targetPosition;
 
-
     public bool canMove=true;
     public bool canDash = true;
 
     public Color dashColor = Color.red;
     public Color normalColor = Color.white;
 
-    void Start()
+    override public void Start()
     {
-        player = GameObject.Find("Player").transform;
+        base.Start();
+
+        player = GameObject.Find("Player").GetComponent<Player_Main_Controller>();
     }
 
-    
-    void Update()
+
+    override public void Update()
     {
-        if (Vector2.Distance(transform.position, player.position) > distanceToDash && canMove == true)
+        base.Update();
+
+        if (projected)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, ennemiSpeed * Time.deltaTime);
+            
+
+            RegisterVelocity();
+            return;
+        }
+        else
+        {
+            velocityValues.Clear();
+        }
+            
+
+        if (Vector2.Distance(transform.position, player.transform.position) > distanceToDash && canMove == true)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, ennemiSpeed * Time.deltaTime);
         }
 
-        else if (Vector2.Distance(transform.position, player.position) <= distanceToDash && canMove == true)
+        else if (Vector2.Distance(transform.position, player.transform.position) <= distanceToDash && canMove == true)
         {
             canMove = false;
            
@@ -52,10 +67,10 @@ public class EnnemiOneBehavior : MonoBehaviour
 
     IEnumerator EnnemiDash()
     {
-        GetComponent<SpriteRenderer>().material.color = dashColor;
+        GetComponentInChildren<SpriteRenderer>().material.color = dashColor;
         yield return new WaitForSeconds(timeDashCharge);
-        GetComponent<SpriteRenderer>().material.color = normalColor;
-        targetPosition = new Vector2(player.position.x, player.position.y);
+        GetComponentInChildren<SpriteRenderer>().material.color = normalColor;
+        targetPosition = new Vector2(player.transform.position.x, player.transform.position.y);
 
         while (transform.position != targetPosition && canDash == true)
         {
