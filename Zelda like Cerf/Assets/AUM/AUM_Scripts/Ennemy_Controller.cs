@@ -34,7 +34,10 @@ public class Ennemy_Controller : Elements_Controller
 
         GetComponentInChildren<SpriteRenderer>().material.color = new Color(183, 183, 183);
 
-        yield break;
+        if(pv <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void RegisterVelocity()

@@ -13,8 +13,6 @@ public class Elements_Controller : MonoBehaviour
 
     public void TakeForce(Vector2 direction, float forceValue)
     {
-        
-
         projected = true;
 
         rb.velocity = new Vector2(0, 0);

@@ -95,7 +95,7 @@ public class Player_Main_Controller : MonoBehaviour
         }
         else
         {
-            timerCooldownBaseAttack -= Time.fixedDeltaTime;
+            timerCooldownBaseAttack -= Time.deltaTime;
         }
 
         if (timerCooldownVersatilAttack < 0)
@@ -107,7 +107,7 @@ public class Player_Main_Controller : MonoBehaviour
         }
         else
         {
-            timerCooldownVersatilAttack -= Time.fixedDeltaTime;
+            timerCooldownVersatilAttack -= Time.deltaTime;
         }
 
     }
@@ -137,9 +137,9 @@ public class Player_Main_Controller : MonoBehaviour
         }
 
         //Attack duration + knock back
-        for(float i = durationBaseAttack; i > 0; i -= Time.fixedDeltaTime)
+        for(float i = durationBaseAttack; i > 0; i -= Time.deltaTime)
         {
-            rb.velocity = -direction.normalized * speedKnockBackBaseAttack * Time.fixedDeltaTime;
+            rb.velocity = -direction.normalized * speedKnockBackBaseAttack * Time.deltaTime;
 
             yield return null;
         }
@@ -173,7 +173,7 @@ public class Player_Main_Controller : MonoBehaviour
         bullet.player = transform;
         bullet.maxDistance = rangeMaxVersatilAttack;
 
-        bullet.GetComponent<Rigidbody2D>().velocity = direction.normalized * speedBulletVersatil * Time.fixedDeltaTime;
+        bullet.GetComponent<Rigidbody2D>().velocity = direction.normalized * speedBulletVersatil * Time.deltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
     }

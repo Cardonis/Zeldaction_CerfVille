@@ -21,7 +21,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
     private Vector3 targetPosition;
 
-    public bool canMove=true;
+    [HideInInspector] public bool canMove=true;
     public bool canDash = true;
 
     public Color dashColor = Color.red;
@@ -81,6 +81,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
         yield return new WaitForSeconds(recoveryTime);
         canMove = true;
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
        
