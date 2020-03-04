@@ -20,29 +20,39 @@ public class EnnemiOneBehavior : Ennemy_Controller
     public float dashSpeed;
 
     private Vector3 targetPosition;
+    Vector2 target;
 
     [HideInInspector] public bool canMove=true;
-    public bool canDash = true;
+    [HideInInspector]public bool canDash = true;
 
-    public Color dashColor = Color.red;
-    public Color normalColor = Color.white;
+    [HideInInspector] public Color dashColor = Color.red;
+    [HideInInspector] public Color normalColor = Color.white;
+
+    [Header("Wandering")]
+    float cooldownWandering;
+    public float minWanderingDistance;
+    public float maxWanderingDistance;
+    bool canWander;
+
+
+
+
 
     override public void Start()
     {
         base.Start();
 
-        player = GameObject.Find("Player").GetComponent<Player_Main_Controller>();
+        playerDetected = false;
+        WanderingNewDirection();
     }
 
 
-    override public void Update()
+    override public void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
 
         if (projected)
         {
-            
-
             RegisterVelocity();
             return;
         }
@@ -50,19 +60,63 @@ public class EnnemiOneBehavior : Ennemy_Controller
         {
             velocityValues.Clear();
         }
+          
+        
+
+        if (playerDetected == false)
+        {
             
+            if (target != Vector2.zero)
+            {
+                direction = (target - (Vector2)transform.position).normalized;
+            }
+            Detection();
 
-        if (Vector2.Distance(transform.position, player.transform.position) > distanceToDash && canMove == true)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, ennemiSpeed * Time.deltaTime);
-        }
+            if (Vector2.Distance(target, transform.position) <= 0.1f)
+            {
+                if(canWander == false)
+                {
+                    cooldownWandering = Random.Range(1f, 2f);
+                    canWander = true;
+                }
+                else
+                {
+                    canMove = false;
 
-        else if (Vector2.Distance(transform.position, player.transform.position) <= distanceToDash && canMove == true)
-        {
-            canMove = false;
-           
-            StartCoroutine("EnnemiDash");
+                    cooldownWandering -= Time.deltaTime;
+
+                    if (cooldownWandering <= 0)
+                    {
+                        WanderingNewDirection();
+                    }
+                }
+            }
+
+
         }
+        else
+        {
+            if (Vector2.Distance(transform.position, player.transform.position) > distanceToDash && canMove == true)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, ennemiSpeed * Time.deltaTime);
+            }
+
+            else if (Vector2.Distance(transform.position, player.transform.position) <= distanceToDash && canMove == true)
+            {
+                canMove = false;
+
+                StartCoroutine("EnnemiDash");
+            }
+        }
+        if (canMove)
+        {
+            rb.velocity = direction * speed * Time.deltaTime;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
+            
     }
 
     IEnumerator EnnemiDash()
@@ -80,6 +134,13 @@ public class EnnemiOneBehavior : Ennemy_Controller
         canDash = true;
         yield return new WaitForSeconds(recoveryTime);
         canMove = true;
+    }
+
+    public void WanderingNewDirection()
+    {
+        target = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f,1f)).normalized *Random.Range(minWanderingDistance,maxWanderingDistance);
+        canMove = true;
+        canWander = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

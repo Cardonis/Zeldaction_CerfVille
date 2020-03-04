@@ -85,7 +85,7 @@ public class Elements_Controller : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player_Main_Controller>();
     }
 
-    public virtual void Update()
+    public virtual void FixedUpdate()
     {
         if(projected == true && rb.velocity.magnitude < recoveryValue)
         {
