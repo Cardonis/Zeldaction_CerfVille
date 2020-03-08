@@ -7,8 +7,14 @@ public class Ennemy_Controller : Elements_Controller
     public float velocityToGetDamage;
 
     public float pv;
-
+    public float speed;
+    public float detectionAngle;
+    [HideInInspector] public bool playerDetected;
+    [HideInInspector] public float playerAngle;
     [HideInInspector] public Dictionary<float, float> velocityValues = new Dictionary<float, float>();
+    [HideInInspector] public Vector2 direction;
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -16,6 +22,7 @@ public class Ennemy_Controller : Elements_Controller
         if(collision.transform.tag == "Wall" && velocityValues[velocityValues.Count - 10] - rb.velocity.magnitude > velocityToGetDamage)
         {
             StartCoroutine(TakeDamage(2));
+               
         }
 
 
@@ -36,13 +43,38 @@ public class Ennemy_Controller : Elements_Controller
 
         if(pv <= 0)
         {
-            Destroy(gameObject);
+            Death();
         }
     }
+
+    public void Death()
+    {
+        Destroy(gameObject);
+    }
+
 
     public void RegisterVelocity()
     {
         velocityValues.Add(velocityValues.Count + 1, rb.velocity.magnitude);
     }
 
+    public void Detection()
+    {
+        playerAngle = Vector2.Angle(direction, player.transform.position);
+
+        if (playerAngle <= detectionAngle)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position);
+
+            if(hit.collider != null)
+            {
+                if (hit.collider.attachedRigidbody.transform.tag == "Player")
+                {
+                    playerDetected = true;
+                }
+            }
+            
+        }
+
+    }
 }
