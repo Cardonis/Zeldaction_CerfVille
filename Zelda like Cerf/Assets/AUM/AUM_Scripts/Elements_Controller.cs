@@ -53,7 +53,7 @@ public class Elements_Controller : MonoBehaviour
             }
             
             direction = (player.transform.position - transform.position );
-            rb.velocity = direction2.normalized * (forceValue / 2);
+            rb.velocity = direction2.normalized * (forceValue / 3);
             yield return null;
         }
 

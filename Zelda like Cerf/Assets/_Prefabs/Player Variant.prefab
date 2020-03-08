@@ -156,6 +156,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceValue: 10
+--- !u!114 &5999250643829183852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5999250644072966502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa92ed1975e4def4b9e6cba3ad103bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 3784299384030127156, guid: 34074bf3ebd532546a0d484ecfff391e, type: 3}
 --- !u!1001 &395338726643315145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -264,7 +277,7 @@ PrefabInstance:
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: durationBaseAttack
-      value: 0.3
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
@@ -284,17 +297,22 @@ PrefabInstance:
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: speedBulletVersatil
-      value: 800
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: cooldownVersatilAttack
-      value: 1.2
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: forceValueVersatilAttack
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
+        type: 3}
+      propertyPath: cooldownBaseAttack
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6214150372187065243, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
@@ -311,6 +329,12 @@ PrefabInstance:
 --- !u!4 &5999250644357793442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6214150371883710315, guid: 603ec871160439742bb890b9e1d2ec16,
+    type: 3}
+  m_PrefabInstance: {fileID: 395338726643315145}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5999250644072966502 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6214150371615905967, guid: 603ec871160439742bb890b9e1d2ec16,
     type: 3}
   m_PrefabInstance: {fileID: 395338726643315145}
   m_PrefabAsset: {fileID: 0}

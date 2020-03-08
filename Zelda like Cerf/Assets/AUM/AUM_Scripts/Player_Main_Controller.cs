@@ -27,12 +27,15 @@ public class Player_Main_Controller : MonoBehaviour
     float timerCooldownVersatilAttack;
     public float forceValueVersatilAttack;
     public float rangeMaxVersatilAttack;
+    public float marquageDuration;
 
     Transform vBullets;
 
     [HideInInspector] public bool projected = false;
 
     [HideInInspector] public Rigidbody2D rb;
+
+    [HideInInspector] public MarquageManager marquageManager;
 
     Vector2 input;
     [HideInInspector] public Vector2 direction;
@@ -46,6 +49,8 @@ public class Player_Main_Controller : MonoBehaviour
         baseAttackCollidersParent = transform.Find("PColliders").Find("PAttackColliders").Find("PBaseAttackColliders");
 
         vBullets = GameObject.Find("VBullets").transform;
+
+        marquageManager = GameObject.Find("MarquageManager").GetComponent<MarquageManager>();
 
         rb = GetComponent<Rigidbody2D>();
 
@@ -102,7 +107,20 @@ public class Player_Main_Controller : MonoBehaviour
         {
             if (Input.GetButtonDown("X") && ! projected)
             {
+                if(marquageManager.marquageControllers.Count == 0)
                 VersatilAttack();
+                else
+                {
+                    for(int i = 0; i < marquageManager.marquageControllers.Count; i++)
+                    {
+                        VersatilAttack(marquageManager.marquageControllers[i].transform);
+                        Destroy(marquageManager.marquageControllers[i].gameObject);
+                    }
+
+
+                    marquageManager.marquageControllers.Clear();
+
+                }
             }
         }
         else
@@ -173,9 +191,22 @@ public class Player_Main_Controller : MonoBehaviour
         bullet.player = transform;
         bullet.maxDistance = rangeMaxVersatilAttack;
 
-        bullet.GetComponent<Rigidbody2D>().velocity = direction.normalized * speedBulletVersatil * Time.deltaTime;
+        bullet.rb.velocity = direction.normalized * speedBulletVersatil * Time.deltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
     }
 
+    void VersatilAttack(Transform target)
+    {
+        Bullet_Versatil_Controller bullet = Instantiate(bulletVersatilAttack, vBullets).GetComponent<Bullet_Versatil_Controller>();
+
+        bullet.transform.position = transform.position;
+
+        bullet.player = transform;
+        bullet.maxDistance = Mathf.Infinity;
+
+        bullet.rb.velocity = (target.position - transform.position).normalized * (speedBulletVersatil * 3) * Time.deltaTime;
+
+        timerCooldownVersatilAttack = cooldownVersatilAttack;
+    }
 }

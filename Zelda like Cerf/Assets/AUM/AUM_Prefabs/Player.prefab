@@ -249,6 +249,7 @@ MonoBehaviour:
   cooldownVersatilAttack: 1
   forceValueVersatilAttack: 15
   rangeMaxVersatilAttack: 5
+  marquageDuration: 0
   projected: 0
   rb: {fileID: 0}
   direction: {x: 0, y: 0}
@@ -484,6 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6214150371615905966}
   - component: {fileID: 6214150371615905965}
+  - component: {fileID: 8243754760721951184}
   - component: {fileID: 829979663}
   m_Layer: 0
   m_Name: SweetSpotCollider
@@ -536,6 +538,19 @@ PolygonCollider2D:
       - {x: 2.5, y: -1.3}
       - {x: 2.7, y: -1.35}
       - {x: 2.7, y: 1.35}
+--- !u!114 &8243754760721951184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6214150371615905967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa92ed1975e4def4b9e6cba3ad103bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 3784299384030127156, guid: 34074bf3ebd532546a0d484ecfff391e, type: 3}
 --- !u!114 &829979663
 MonoBehaviour:
   m_ObjectHideFlags: 0
