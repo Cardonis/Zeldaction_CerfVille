@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Ennemy_Controller : Elements_Controller
 {
+    [Header("BaseStats")]
     public float velocityToGetDamage;
-
     public float pv;
     public float speed;
     public float detectionAngle;
     [HideInInspector] public bool playerDetected;
+    [HideInInspector] public bool marqued;
     [HideInInspector] public float playerAngle;
     [HideInInspector] public Dictionary<float, float> velocityValues = new Dictionary<float, float>();
     [HideInInspector] public Vector2 direction;

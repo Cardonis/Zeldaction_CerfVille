@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Main_Controller : MonoBehaviour
 {
-    public float speed;
+    [Range(100.0f, 400.0f)] public float speed;
 
     [Header("Base Attack")]
 

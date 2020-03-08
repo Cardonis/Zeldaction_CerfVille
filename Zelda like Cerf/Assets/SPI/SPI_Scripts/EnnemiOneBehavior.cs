@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class EnnemiOneBehavior : Ennemy_Controller
 {
-    [HideInInspector]
+    float cooldownWandering;
 
-    public float ennemiSpeed;
-    /*public float ennemiDamage;
-    public int ennemiLife;
-    public int ennemiLifeLeft;*/
+    [Header("Wandering")]
+    public float minWanderingDistance;
+    public float maxWanderingDistance;
+    bool canWander;
 
+    [Header("Attack 1")]
     public float kockbackDistance;
-
     public float distanceToDash;
     public float timeDashCharge;
     public float recoveryTime;
-
     public float dashSpeed;
-
-    private Vector3 targetPosition;
-    Vector2 target;
 
     [HideInInspector] public bool canMove=true;
     [HideInInspector]public bool canDash = true;
@@ -28,14 +24,8 @@ public class EnnemiOneBehavior : Ennemy_Controller
     [HideInInspector] public Color dashColor = Color.red;
     [HideInInspector] public Color normalColor = Color.white;
 
-    [Header("Wandering")]
-    float cooldownWandering;
-    public float minWanderingDistance;
-    public float maxWanderingDistance;
-    bool canWander;
-
-
-
+    private Vector3 targetPosition;
+    Vector2 target;
 
 
     override public void Start()
@@ -98,7 +88,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
         {
             if (Vector2.Distance(transform.position, player.transform.position) > distanceToDash && canMove == true)
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, ennemiSpeed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
             }
 
             else if (Vector2.Distance(transform.position, player.transform.position) <= distanceToDash && canMove == true)
