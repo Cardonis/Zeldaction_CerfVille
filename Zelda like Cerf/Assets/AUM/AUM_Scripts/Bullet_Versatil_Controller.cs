@@ -9,6 +9,8 @@ public class Bullet_Versatil_Controller : MonoBehaviour
     public Rigidbody2D rb;
     [HideInInspector] public float maxDistance;
 
+    [HideInInspector] public float levelProjecting;
+
     Transform touchedTarget;
 
 
@@ -40,11 +42,13 @@ public class Bullet_Versatil_Controller : MonoBehaviour
 
             touchedTarget = collision.transform;
 
+            ec.stuned = false;
+
             transform.SetParent(ec.transform);
 
             GetComponentInChildren<Collider2D>().enabled = false;
-            
-            ec.StartTakeForce(player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack);
+
+            ec.StartTakeForce(player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack, levelProjecting);
             
         }
     }

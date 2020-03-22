@@ -19,14 +19,45 @@ public class Ennemy_Controller : Elements_Controller
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(velocityValues.Count > 10)
+        Elements_Controller ec = collision.transform.GetComponent<Elements_Controller>();
+
+        if (projected == true && levelProjected >= 1)
+        {
+
+            if (collision.transform.tag == "Wall")
+            {
+                StartCoroutine(TakeDamage((levelProjected / mass) * 2));
+            }
+
+            if (ec != null)
+            {
+                StartCoroutine(TakeDamage((levelProjected / mass) * ec.mass));
+                
+            }
+        }
+
+        if(ec != null)
+        {
+            if(ec.projected && ec.levelProjected >= 1)
+            {
+                StartCoroutine(TakeDamage((levelProjected / mass) * ec.mass));
+            }
+        }
+
+        /*
+        if (velocityValues.Count > 10)
         if(collision.transform.tag == "Wall" && velocityValues[velocityValues.Count - 10] - rb.velocity.magnitude > velocityToGetDamage)
         {
             StartCoroutine(TakeDamage(2));
                
         }
+        */
 
+    }
 
+    public void StartTakeDamage(float damageTaken)
+    {
+        StartCoroutine(TakeDamage(damageTaken));
     }
 
     IEnumerator TakeDamage(float damageTaken)
@@ -50,6 +81,15 @@ public class Ennemy_Controller : Elements_Controller
 
     public void Death()
     {
+        MarquageController mC = GetComponentInChildren<MarquageController>();
+
+        if (mC != null)
+        {
+            Destroy(mC.gameObject);
+
+            marquageManager.marquageControllers.Remove(mC);
+        }
+
         Destroy(gameObject);
     }
 
@@ -65,7 +105,7 @@ public class Ennemy_Controller : Elements_Controller
 
         if (playerAngle <= detectionAngle)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position, 5, 8);
 
             if(hit.collider != null)
             {

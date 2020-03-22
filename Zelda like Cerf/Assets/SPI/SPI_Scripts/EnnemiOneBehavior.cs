@@ -18,7 +18,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
     public float recoveryTime;
     public float dashSpeed;
 
-    [HideInInspector] public bool canMove=true;
+    [HideInInspector] public bool canMove = true;
     [HideInInspector]public bool canDash = true;
 
     [HideInInspector] public Color dashColor = Color.red;
@@ -41,6 +41,11 @@ public class EnnemiOneBehavior : Ennemy_Controller
     {
         base.FixedUpdate();
 
+        if(stuned == true)
+        {
+            return;
+        }
+
         if (projected)
         {
             RegisterVelocity();
@@ -60,6 +65,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
             {
                 direction = (target - (Vector2)transform.position).normalized;
             }
+
             Detection();
 
             if (Vector2.Distance(target, transform.position) <= 0.1f)

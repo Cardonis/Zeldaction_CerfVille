@@ -5,28 +5,36 @@ using UnityEngine;
 public class Elements_Controller : MonoBehaviour
 {
     [HideInInspector] public bool projected = false;
+    [HideInInspector] public bool stuned = false;
     [HideInInspector] public Rigidbody2D rb;
 
-    public Player_Main_Controller player;
+    [Range(0, 3)] public int mass;
+
+    [HideInInspector] public float levelProjected = 0;
+
+    [HideInInspector] public Player_Main_Controller player;
+    [HideInInspector] public MarquageManager marquageManager;
 
     public float recoveryValue;
 
-    public void TakeForce(Vector2 direction, float forceValue)
+    public void TakeForce(Vector2 direction, float forceValue, float levelMultiplicator)
     {
         projected = true;
 
         rb.velocity = new Vector2(0, 0);
 
-        rb.AddForce(direction * forceValue, ForceMode2D.Impulse);
+        levelProjected = levelMultiplicator;
+
+        rb.AddForce(direction * forceValue * levelMultiplicator, ForceMode2D.Impulse);
 
     }
 
-    public void StartTakeForce(float forceValue)
+    public void StartTakeForce(float forceValue, float levelMultiplicator)
     {
-        StartCoroutine(TakeForce(forceValue));
+        StartCoroutine(TakeForce(forceValue, levelMultiplicator));
     }
 
-    public IEnumerator TakeForce(float forceValue)
+    public IEnumerator TakeForce(float forceValue, float levelMultiplicator)
     {
         projected = true;
 
@@ -35,8 +43,8 @@ public class Elements_Controller : MonoBehaviour
         player.rb.velocity = new Vector2(0, 0);
 
         rb.velocity = new Vector2(0, 0);
-        
-        
+
+        levelProjected = levelMultiplicator;
 
         Vector2 direction = player.transform.position - transform.position;
 
@@ -53,7 +61,7 @@ public class Elements_Controller : MonoBehaviour
             }
             
             direction = (player.transform.position - transform.position );
-            rb.velocity = direction2.normalized * (forceValue / 3);
+            rb.velocity = direction2.normalized * (forceValue * Mathf.Sqrt(levelMultiplicator) / 2);
             yield return null;
         }
 
@@ -63,7 +71,7 @@ public class Elements_Controller : MonoBehaviour
 
         rb.velocity = new Vector2(0, 0);
 
-        rb.AddForce(direction2.normalized * forceValue, ForceMode2D.Impulse);
+        rb.AddForce(direction2.normalized * forceValue * levelMultiplicator, ForceMode2D.Impulse);
 
         for(float i = 2.5f; i > 0; i -= Time.fixedDeltaTime)
         {
@@ -83,15 +91,34 @@ public class Elements_Controller : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         player = GameObject.Find("Player").GetComponent<Player_Main_Controller>();
+
+        marquageManager = GameObject.Find("MarquageManager").GetComponent<MarquageManager>();
     }
 
     public virtual void FixedUpdate()
     {
+        if(stuned == true)
+        {
+            rb.velocity = new Vector2(0,0);
+        }
+
         if(projected == true && rb.velocity.magnitude < recoveryValue)
         {
             projected = false;
             rb.velocity = new Vector2(0, 0);
+            levelProjected = 0;
         }
+    }
+
+    public IEnumerator StunedForSeconds(float time)
+    {
+        stuned = true;
+        while(time > 0)
+        {
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        stuned = false;
     }
 
 }

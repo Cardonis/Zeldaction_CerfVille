@@ -4,6 +4,7 @@ public class BaseAttackCollision : MonoBehaviour
 {
     Player_Main_Controller player;
     public float forceValue;
+    public float levelMultiplicator;
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class BaseAttackCollision : MonoBehaviour
         if(ec != null)
         {
             if (ec.projected == false)
-                ec.TakeForce(player.direction.normalized, forceValue);
+                ec.TakeForce(player.direction.normalized, forceValue, levelMultiplicator);
         }
 
     }

@@ -25,11 +25,23 @@ public class Player_Main_Controller : MonoBehaviour
     public float speedBulletVersatil;
     public float cooldownVersatilAttack;
     float timerCooldownVersatilAttack;
+    public float chargeTime;
+    float chargeTimer;
+    bool multipleAttack = false;
+    float chargeSpeedMultiplicator;
     public float forceValueVersatilAttack;
     public float rangeMaxVersatilAttack;
     public float marquageDuration;
 
+    public List<float> levelMultiplicator = new List<float>();
+
+    //PlaceHolder pour le  moment, avec l'animation il y en aura pas besoin
+    GameObject barsCharge;
+    Transform barCharge;
+
     Transform vBullets;
+
+    Transform arrowDirection;
 
     [HideInInspector] public bool projected = false;
 
@@ -41,12 +53,15 @@ public class Player_Main_Controller : MonoBehaviour
     [HideInInspector] public Vector2 direction;
     float directionAngle;
 
-
-
-
     void Start()
     {
         baseAttackCollidersParent = transform.Find("PColliders").Find("PAttackColliders").Find("PBaseAttackColliders");
+
+        arrowDirection = transform.Find("Arrow");
+
+        barsCharge = transform.Find("BarsCharge").gameObject;
+
+        barCharge = barsCharge.transform.Find("BarCharge");
 
         vBullets = GameObject.Find("VBullets").transform;
 
@@ -63,6 +78,8 @@ public class Player_Main_Controller : MonoBehaviour
         {
             baseAttackColliders[i].enabled = false;
         }
+
+        barsCharge.SetActive(false);
     }
 
 
@@ -83,15 +100,18 @@ public class Player_Main_Controller : MonoBehaviour
                     directionAngle = -directionAngle;
                 }
 
-                rb.velocity = direction * speed * Time.fixedDeltaTime;
+                rb.velocity = direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime;
             }
             else
             {
                 rb.velocity = new Vector2(0, 0);
             }
         }
-        
-        if(timerCooldownBaseAttack < 0)
+
+        arrowDirection.rotation = Quaternion.Euler(0, 0, directionAngle);
+
+
+        if (timerCooldownBaseAttack < 0)
         {
             if (Input.GetButtonDown("A") && !projected)
             {
@@ -105,28 +125,84 @@ public class Player_Main_Controller : MonoBehaviour
 
         if (timerCooldownVersatilAttack < 0)
         {
-            if (Input.GetButtonDown("X") && ! projected)
+            if(!projected)
             {
-                if(marquageManager.marquageControllers.Count == 0)
-                VersatilAttack();
-                else
+                if(Input.GetButtonDown("X"))
                 {
-                    for(int i = 0; i < marquageManager.marquageControllers.Count; i++)
+                    if(marquageManager.marquageControllers.Count == 0)
                     {
-                        VersatilAttack(marquageManager.marquageControllers[i].transform);
-                        Destroy(marquageManager.marquageControllers[i].gameObject);
+                        multipleAttack = false;
+                    }
+                    else
+                    {
+                        multipleAttack = true;
                     }
 
+                    barsCharge.SetActive(true);
+                }
 
-                    marquageManager.marquageControllers.Clear();
+                if (Input.GetButton("X"))
+                {
+                    if(multipleAttack == false)
+                    {
+                        if (chargeTimer < chargeTime)
+                        {
+                            chargeTimer += Time.deltaTime;
+                            barsCharge.SetActive(true);
+                        }
+                    }
+                    else if (multipleAttack == true)
+                    {
+                        StartCoroutine(MultiplesVersatilAttack());
+                    }
+                    
+                }
+
+                if(Input.GetButtonUp("X"))
+                {
+                    if(multipleAttack == false)
+                    {
+                        if (chargeTimer >= chargeTime)
+                        {
+                            VersatilAttack(levelMultiplicator[2]);
+                        }
+                        else if (chargeTimer >= (chargeTime * (1f / 4f)) )
+                        {
+                            VersatilAttack(levelMultiplicator[1]);
+                        }
+                        else if (chargeTimer < chargeTime * (1f / 4f))
+                        {
+                            VersatilAttack(levelMultiplicator[0]);
+                        }
+                    }
+                    else if(multipleAttack == true)
+                    {
+                        StartCoroutine(MultiplesVersatilAttack());
+                    }
+
+                    chargeTimer = 0;
+
+                    barsCharge.SetActive(false);
 
                 }
+
             }
+            else
+            {
+                chargeTimer = 0;
+
+                barsCharge.SetActive(false);
+            }
+
         }
         else
         {
             timerCooldownVersatilAttack -= Time.deltaTime;
         }
+
+        chargeSpeedMultiplicator = 1 - ((chargeTimer) / (chargeTime + 0.6f));
+
+        barCharge.localScale = new Vector2((chargeTimer) / (chargeTime), barCharge.localScale.y);
 
     }
 
@@ -179,7 +255,53 @@ public class Player_Main_Controller : MonoBehaviour
         }
     }
 
-    void VersatilAttack()
+    IEnumerator MultiplesVersatilAttack()
+    {
+        List<Elements_Controller> copyMarquageControllers = new List<Elements_Controller>();
+
+        for (int i = 0; i <  marquageManager.marquageControllers.Count; i++)
+        {
+            copyMarquageControllers.Add(marquageManager.marquageControllers[i].GetComponentInParent<Elements_Controller>());
+        }
+
+        for (int i = 0; i < copyMarquageControllers.Count; i++)
+        {
+            StartCoroutine(copyMarquageControllers[i].StunedForSeconds(5f));
+        }
+
+        for (int i = 0; i < copyMarquageControllers.Count; i++)
+        {
+            VersatilAttack(copyMarquageControllers[i].transform, levelMultiplicator[1]);
+
+            MarquageController mC = copyMarquageControllers[i].GetComponentInChildren<MarquageController>();
+
+            if (mC != null)
+            {
+                Destroy(mC.gameObject);
+
+                marquageManager.marquageControllers.Remove(mC);
+            }
+
+
+            projected = true;
+
+            while (projected == true)
+            {
+                yield return null;
+            }
+
+            projected = true;
+
+            yield return new WaitForSeconds(0.2f);
+
+        }
+
+        projected = false;
+
+        marquageManager.marquageControllers.Clear();
+    }
+
+    void VersatilAttack(float levelProjecting)
     {
         Bullet_Versatil_Controller bullet = Instantiate(bulletVersatilAttack, vBullets).GetComponent<Bullet_Versatil_Controller>();
 
@@ -190,22 +312,24 @@ public class Player_Main_Controller : MonoBehaviour
 
         bullet.player = transform;
         bullet.maxDistance = rangeMaxVersatilAttack;
+        bullet.levelProjecting = levelProjecting;
 
-        bullet.rb.velocity = direction.normalized * speedBulletVersatil * Time.deltaTime;
+        bullet.rb.velocity = direction.normalized * speedBulletVersatil * levelProjecting * Time.deltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
     }
 
-    void VersatilAttack(Transform target)
+    void VersatilAttack(Transform target, float levelProjecting)
     {
         Bullet_Versatil_Controller bullet = Instantiate(bulletVersatilAttack, vBullets).GetComponent<Bullet_Versatil_Controller>();
 
         bullet.transform.position = transform.position;
 
         bullet.player = transform;
-        bullet.maxDistance = Mathf.Infinity;
+        bullet.maxDistance = 20;
+        bullet.levelProjecting = levelProjecting;
 
-        bullet.rb.velocity = (target.position - transform.position).normalized * (speedBulletVersatil * 3) * Time.deltaTime;
+        bullet.rb.velocity = (target.position - transform.position).normalized * (speedBulletVersatil * levelProjecting * 1.5f) * Time.deltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
     }
