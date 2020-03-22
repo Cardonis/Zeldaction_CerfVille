@@ -17,6 +17,9 @@ public class Elements_Controller : MonoBehaviour
 
     public float recoveryValue;
 
+    [HideInInspector] public Coroutine lastTakeForce;
+
+
     public void TakeForce(Vector2 direction, float forceValue, float levelMultiplicator)
     {
         projected = true;
@@ -31,7 +34,12 @@ public class Elements_Controller : MonoBehaviour
 
     public void StartTakeForce(float forceValue, float levelMultiplicator)
     {
-        StartCoroutine(TakeForce(forceValue, levelMultiplicator));
+         lastTakeForce = StartCoroutine(TakeForce(forceValue, levelMultiplicator));
+    }
+
+    public void StopTakeForce()
+    {
+        StopCoroutine(lastTakeForce);
     }
 
     public IEnumerator TakeForce(float forceValue, float levelMultiplicator)
@@ -39,6 +47,8 @@ public class Elements_Controller : MonoBehaviour
         projected = true;
 
         player.projected = true;
+
+        player.StartCanSpringAttack(player.canSpringAttack, 1f);
 
         player.rb.velocity = new Vector2(0, 0);
 
@@ -49,6 +59,8 @@ public class Elements_Controller : MonoBehaviour
         Vector2 direction = player.transform.position - transform.position;
 
         Vector2 direction2 = direction;
+
+        player.direction = -direction;
 
         Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
 

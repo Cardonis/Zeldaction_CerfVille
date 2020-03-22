@@ -33,6 +33,8 @@ public class Player_Main_Controller : MonoBehaviour
     public float rangeMaxVersatilAttack;
     public float marquageDuration;
 
+    [HideInInspector] public bool canSpringAttack;
+
     public List<float> levelMultiplicator = new List<float>();
 
     //PlaceHolder pour le  moment, avec l'animation il y en aura pas besoin
@@ -88,17 +90,12 @@ public class Player_Main_Controller : MonoBehaviour
 
         input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        if(!projected)
+        if (!projected)
         {
             if (input.magnitude > 0)
             {
                 direction = input;
-                directionAngle = Vector2.Angle(transform.right, direction);
 
-                if(direction.y < 0)
-                {
-                    directionAngle = -directionAngle;
-                }
 
                 rb.velocity = direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime;
             }
@@ -106,14 +103,13 @@ public class Player_Main_Controller : MonoBehaviour
             {
                 rb.velocity = new Vector2(0, 0);
             }
+        
         }
-
-        arrowDirection.rotation = Quaternion.Euler(0, 0, directionAngle);
-
 
         if (timerCooldownBaseAttack < 0)
         {
-            if (Input.GetButtonDown("A") && !projected)
+            Debug.Log(canSpringAttack);
+            if ( Input.GetButtonDown("A") && (!projected || canSpringAttack) )
             {
                 StartCoroutine(BaseAttack());
             }
@@ -204,6 +200,14 @@ public class Player_Main_Controller : MonoBehaviour
 
         barCharge.localScale = new Vector2((chargeTimer) / (chargeTime), barCharge.localScale.y);
 
+        directionAngle = Vector2.Angle(transform.right, direction);
+
+        if (direction.y < 0)
+        {
+            directionAngle = -directionAngle;
+        }
+
+        arrowDirection.rotation = Quaternion.Euler(0, 0, directionAngle);
     }
 
     IEnumerator BaseAttack()
@@ -314,7 +318,7 @@ public class Player_Main_Controller : MonoBehaviour
         bullet.maxDistance = rangeMaxVersatilAttack;
         bullet.levelProjecting = levelProjecting;
 
-        bullet.rb.velocity = direction.normalized * speedBulletVersatil * levelProjecting * Time.deltaTime;
+        bullet.rb.velocity = direction.normalized * speedBulletVersatil * Mathf.Min(3f, levelProjecting) * Time.deltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
     }
@@ -332,5 +336,21 @@ public class Player_Main_Controller : MonoBehaviour
         bullet.rb.velocity = (target.position - transform.position).normalized * (speedBulletVersatil * levelProjecting * 1.5f) * Time.deltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
+    }
+
+    public void StartCanSpringAttack(bool specialAbility, float time)
+    {
+        StartCoroutine(CanSpringAttackFor(time));
+    }
+
+    IEnumerator CanSpringAttackFor(float time)
+    {
+        canSpringAttack = true;
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        canSpringAttack = false;
     }
 }

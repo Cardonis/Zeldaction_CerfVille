@@ -19,7 +19,7 @@ public class MarquePlaceur : MonoBehaviour
 
         if (ec != null)
         {
-            
+
             if (ec.projected == false && ec.GetComponentInChildren<MarquageController>() == null)
             {
                 MarquageController newMark = Instantiate(mark, ec.transform).GetComponent<MarquageController>();

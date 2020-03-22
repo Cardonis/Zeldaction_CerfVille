@@ -5,6 +5,7 @@ public class BaseAttackCollision : MonoBehaviour
     Player_Main_Controller player;
     public float forceValue;
     public float levelMultiplicator;
+    float bulletLevel;
 
     void Start()
     {
@@ -18,9 +19,26 @@ public class BaseAttackCollision : MonoBehaviour
 
         if(ec != null)
         {
+            Bullet_Versatil_Controller bC = ec.GetComponentInChildren<Bullet_Versatil_Controller>();
+
+            if (bC != null)
+            {
+                ec.StopTakeForce();
+                ec.projected = false;
+                if(GetComponent<MarquePlaceur>() != null)
+                {
+                    bulletLevel = bC.levelProjecting;
+                }
+                
+                Destroy(bC.gameObject);
+            }
+
             if (ec.projected == false)
-                ec.TakeForce(player.direction.normalized, forceValue, levelMultiplicator);
+                ec.TakeForce(player.direction.normalized, forceValue, levelMultiplicator * bulletLevel);
+
+            bulletLevel = 1;
         }
+
 
     }
 }
