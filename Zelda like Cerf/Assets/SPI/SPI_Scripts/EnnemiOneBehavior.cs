@@ -159,6 +159,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
         if (other.CompareTag("Player"))
         {
             canDash = true;
+            
         }
     }
 
