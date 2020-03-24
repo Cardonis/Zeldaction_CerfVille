@@ -14,6 +14,7 @@ public class Ennemy_Controller : Elements_Controller
     [HideInInspector] public float playerAngle;
     [HideInInspector] public Dictionary<float, float> velocityValues = new Dictionary<float, float>();
     [HideInInspector] public Vector2 direction;
+    public List<Ennemy_Controller> ennemyControllersList; 
 
 
 
@@ -120,4 +121,5 @@ public class Ennemy_Controller : Elements_Controller
         }
 
     }
+
 }

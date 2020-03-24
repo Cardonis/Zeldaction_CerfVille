@@ -7,16 +7,16 @@ public class EnnemiOneBehavior : Ennemy_Controller
     float cooldownWandering;
 
     [Header("Wandering")]
-    public float minWanderingDistance;
-    public float maxWanderingDistance;
+    [Range(0.5f,3f)]public float minWanderingDistance;
+    [Range(2f, 6f)]public float maxWanderingDistance;
     bool canWander;
 
     [Header("Attack 1")]
-    public float kockbackDistance;
-    public float distanceToDash;
-    public float timeDashCharge;
-    public float recoveryTime;
-    public float dashSpeed;
+    [Range(0.5f, 5f)] public float kockbackDistance;
+    [Range(0.5f, 5f)] public float distanceToDash;
+    [Range(0f, 10f)] public float timeDashCharge;
+    [Range(0f, 10f)] public float recoveryTime;
+    [Range(1f, 12f)] public float dashSpeed;
 
     [HideInInspector] public bool canMove = true;
     [HideInInspector]public bool canDash = true;
@@ -92,7 +92,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
         }
         else
         {
-            if (Vector2.Distance(transform.position, player.transform.position) > distanceToDash && canMove == true)
+            /*if (Vector2.Distance(transform.position, player.transform.position) > distanceToDash && canMove == true)
             {
                 transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
             }
@@ -102,7 +102,18 @@ public class EnnemiOneBehavior : Ennemy_Controller
                 canMove = false;
 
                 StartCoroutine("EnnemiDash");
+            }*/
+
+            for(int i = 0; i < ennemyControllersList.Count; i++)
+            {
+                if (ennemyControllersList[i].GetComponent <EnnemiOneBehavior>())
+                {
+
+                }
             }
+
+
+            direction = (target - (Vector2)transform.position).normalized;
         }
         if (canMove)
         {
@@ -139,9 +150,8 @@ public class EnnemiOneBehavior : Ennemy_Controller
         canWander = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-       
 
         if (other.CompareTag("Player"))
         {
@@ -155,6 +165,12 @@ public class EnnemiOneBehavior : Ennemy_Controller
         if (other.CompareTag("Player"))
         {
             canDash = true;
+            
         }
+    }
+
+    public void BehaviorWithEnnemi1()
+    {
+        //direction = (target - (Vector2)transform.position +).normalized;
     }
 }
