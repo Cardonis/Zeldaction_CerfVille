@@ -2,10 +2,11 @@
 
 public class BaseAttackCollision : MonoBehaviour
 {
-    Player_Main_Controller player;
+    [HideInInspector] public Player_Main_Controller player;
+    [HideInInspector] public Bullet_Versatil_Controller bulletController;
     public float forceValue;
     public float levelMultiplicator;
-    float bulletLevel;
+    float bulletLevel = 1;
 
     void Start()
     {
@@ -19,18 +20,18 @@ public class BaseAttackCollision : MonoBehaviour
 
         if(ec != null)
         {
-            Bullet_Versatil_Controller bC = ec.GetComponentInChildren<Bullet_Versatil_Controller>();
+            bulletController = ec.GetComponentInChildren<Bullet_Versatil_Controller>();
 
-            if (bC != null)
+            if (bulletController != null)
             {
                 ec.StopTakeForce();
                 ec.projected = false;
                 if(GetComponent<MarquePlaceur>() != null)
                 {
-                    bulletLevel = bC.levelProjecting;
+                    bulletLevel = bulletController.levelProjecting;
                 }
                 
-                Destroy(bC.gameObject);
+                Destroy(bulletController.gameObject);
             }
 
             if (ec.projected == false)

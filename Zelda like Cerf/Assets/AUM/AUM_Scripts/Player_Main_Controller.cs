@@ -34,6 +34,7 @@ public class Player_Main_Controller : MonoBehaviour
     public float marquageDuration;
 
     [HideInInspector] public bool canSpringAttack;
+    [HideInInspector] public bool canAccelerate;
 
     public List<float> levelMultiplicator = new List<float>();
 
@@ -108,7 +109,6 @@ public class Player_Main_Controller : MonoBehaviour
 
         if (timerCooldownBaseAttack < 0)
         {
-            Debug.Log(canSpringAttack);
             if ( Input.GetButtonDown("A") && (!projected || canSpringAttack) )
             {
                 StartCoroutine(BaseAttack());
@@ -263,6 +263,8 @@ public class Player_Main_Controller : MonoBehaviour
     {
         List<Elements_Controller> copyMarquageControllers = new List<Elements_Controller>();
 
+        
+
         for (int i = 0; i <  marquageManager.marquageControllers.Count; i++)
         {
             copyMarquageControllers.Add(marquageManager.marquageControllers[i].GetComponentInParent<Elements_Controller>());
@@ -275,6 +277,8 @@ public class Player_Main_Controller : MonoBehaviour
 
         for (int i = 0; i < copyMarquageControllers.Count; i++)
         {
+            canAccelerate = true;
+
             VersatilAttack(copyMarquageControllers[i].transform, levelMultiplicator[1]);
 
             MarquageController mC = copyMarquageControllers[i].GetComponentInChildren<MarquageController>();
@@ -286,11 +290,11 @@ public class Player_Main_Controller : MonoBehaviour
                 marquageManager.marquageControllers.Remove(mC);
             }
 
-
             projected = true;
 
             while (projected == true)
             {
+                canSpringAttack = false;
                 yield return null;
             }
 
@@ -300,9 +304,9 @@ public class Player_Main_Controller : MonoBehaviour
 
         }
 
-        projected = false;
+        canAccelerate = false;
 
-        marquageManager.marquageControllers.Clear();
+        projected = false;
     }
 
     void VersatilAttack(float levelProjecting)
@@ -318,7 +322,7 @@ public class Player_Main_Controller : MonoBehaviour
         bullet.maxDistance = rangeMaxVersatilAttack;
         bullet.levelProjecting = levelProjecting;
 
-        bullet.rb.velocity = direction.normalized * speedBulletVersatil * Mathf.Min(3f, levelProjecting) * Time.deltaTime;
+        bullet.rb.velocity = direction.normalized * speedBulletVersatil * Mathf.Min(3f, levelProjecting) * Time.fixedDeltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
     }
@@ -333,12 +337,12 @@ public class Player_Main_Controller : MonoBehaviour
         bullet.maxDistance = 20;
         bullet.levelProjecting = levelProjecting;
 
-        bullet.rb.velocity = (target.position - transform.position).normalized * (speedBulletVersatil * levelProjecting * 1.5f) * Time.deltaTime;
+        bullet.rb.velocity = (target.position - transform.position).normalized * (speedBulletVersatil * levelProjecting * 1.5f) * Time.fixedDeltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
     }
 
-    public void StartCanSpringAttack(bool specialAbility, float time)
+    public void StartCanSpringAttack(float time)
     {
         StartCoroutine(CanSpringAttackFor(time));
     }

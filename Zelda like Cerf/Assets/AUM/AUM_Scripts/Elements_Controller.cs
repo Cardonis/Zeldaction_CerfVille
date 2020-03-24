@@ -48,7 +48,7 @@ public class Elements_Controller : MonoBehaviour
 
         player.projected = true;
 
-        player.StartCanSpringAttack(player.canSpringAttack, 1f);
+        player.StartCanSpringAttack(1f);
 
         player.rb.velocity = new Vector2(0, 0);
 
@@ -64,6 +64,7 @@ public class Elements_Controller : MonoBehaviour
 
         Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
 
+        StartCoroutine(DontCollideWithPlayerFor(1.5f));
 
         while(direction.magnitude > 0.7f)
         {
@@ -73,7 +74,7 @@ public class Elements_Controller : MonoBehaviour
             }
             
             direction = (player.transform.position - transform.position );
-            rb.velocity = direction2.normalized * (forceValue * Mathf.Sqrt(levelMultiplicator) / 2);
+            rb.velocity = direction2.normalized * (forceValue * Mathf.Sqrt(levelProjected) / 2);
             yield return null;
         }
 
@@ -83,7 +84,7 @@ public class Elements_Controller : MonoBehaviour
 
         rb.velocity = new Vector2(0, 0);
 
-        rb.AddForce(direction2.normalized * forceValue * levelMultiplicator, ForceMode2D.Impulse);
+        rb.AddForce(direction2.normalized * forceValue * levelProjected, ForceMode2D.Impulse);
 
         for(float i = 2.5f; i > 0; i -= Time.fixedDeltaTime)
         {
@@ -122,6 +123,26 @@ public class Elements_Controller : MonoBehaviour
         }
     }
 
+    public IEnumerator DontCollideWithPlayerFor(float time)
+    {
+        Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
+
+        for (int i = 0; i < ennemyColliders.Length - 1; i++)
+        {
+            Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), true);
+        }
+
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        for (int i = 0; i < ennemyColliders.Length - 1; i++)
+        {
+            Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), false);
+        }
+    }
+
     public IEnumerator StunedForSeconds(float time)
     {
         stuned = true;
@@ -133,4 +154,26 @@ public class Elements_Controller : MonoBehaviour
         stuned = false;
     }
 
+    public virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        Elements_Controller ec = collision.transform.GetComponentInParent<Elements_Controller>();
+
+        if (ec != null)
+        {
+            MarquageController mc = GetComponentInChildren<MarquageController>();
+
+            if(mc != null)
+            if (mc.venom == true)
+            {
+                MarquageController newMark = Instantiate(mc.gameObject, ec.transform).GetComponent<MarquageController>();
+                newMark.player = player;
+
+                newMark.venom = true;
+
+                player.marquageManager.ResetTimer(player.marquageDuration);
+            }
+        }
+    }
+
+    
 }

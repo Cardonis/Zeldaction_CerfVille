@@ -12,6 +12,8 @@ public class MarquageController : MonoBehaviour
     Color originalColor;
     float originalTimer;
 
+    [HideInInspector] public bool venom = false;
+
     // Start is called before the first frame update
     void Start()
     {

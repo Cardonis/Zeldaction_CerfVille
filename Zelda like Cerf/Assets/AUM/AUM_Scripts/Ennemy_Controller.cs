@@ -17,8 +17,10 @@ public class Ennemy_Controller : Elements_Controller
 
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public override void OnCollisionEnter2D(Collision2D collision)
     {
+        base.OnCollisionEnter2D(collision);
+
         Elements_Controller ec = collision.transform.GetComponent<Elements_Controller>();
 
         if (projected == true && levelProjected >= 1)
