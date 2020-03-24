@@ -4,27 +4,30 @@ using UnityEngine;
 
 public class MAG_BoutonMural : MAG_Bouton
 {
-    // Start is called before the first frame update
     public int scoreNeeded;
     public Vector2 buttonSize;
     int detectedObjectMass;
     float detectedObjectProjectionLevel;
+    List<Collider2D> pierreColliders = new List<Collider2D>();
     ContactFilter2D pierreFilter = new ContactFilter2D();
-    public LayerMask pierreLayerMask;
+
     void Start()
     {
         isPressed = false;
-        pierreFilter.SetLayerMask(LayerMask.GetMask("Pierre"));
         pierreFilter.useTriggers = true;
     }
 
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-      Collider2D detectedObject = Physics2D.OverlapBox(transform.position, buttonSize, 0, pierreLayerMask);
-      detectedObjectMass = detectedObject.GetComponentInParent<Caisse_Controller>().mass;
-      detectedObjectProjectionLevel = detectedObject.GetComponentInParent<Caisse_Controller>().levelProjected;
+        Elements_Controller element = collision.collider.GetComponentInParent<Elements_Controller>();
 
-    if(detectedObjectMass*detectedObjectProjectionLevel > scoreNeeded )
+        if(element != null)
+        {
+            detectedObjectMass = element.mass;
+            detectedObjectProjectionLevel = element.levelProjected;
+        }
+
+        if (detectedObjectMass * detectedObjectProjectionLevel > scoreNeeded)
         {
             isPressed = true;
             Debug.Log("isPressed");

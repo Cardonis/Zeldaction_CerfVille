@@ -11,7 +11,6 @@ public class MAG_BoutonSol : MAG_Bouton
     int currentPressionMass;
     void Start()
     {
-        pierreFilter.SetLayerMask(LayerMask.GetMask("Pierre"));
         pierreFilter.useTriggers = true;
         isPressed = false;
     }
@@ -22,7 +21,12 @@ public class MAG_BoutonSol : MAG_Bouton
         currentPressionMass = 0;
         for(int i=0; i<pierreColliders.Count; i++)
         {
-            currentPressionMass += pierreColliders[i].GetComponentInParent<Caisse_Controller>().mass; 
+            Elements_Controller element = pierreColliders[i].GetComponentInParent<Elements_Controller>();
+            if(element != null)
+            {
+                currentPressionMass += pierreColliders[i].GetComponentInParent<Caisse_Controller>().mass;
+            }
+           
         }
         if (currentPressionMass >= totalMass)
         {
