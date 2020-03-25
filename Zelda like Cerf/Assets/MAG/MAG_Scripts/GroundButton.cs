@@ -31,7 +31,10 @@ public class GroundButton : Buttonmanager
         if (currentPressionMass >= totalMass)
         {
             isPressed = true;
-            Debug.Log(isPressed);
+        }
+        else
+        {
+            isPressed = false;
         }
     }
 }
