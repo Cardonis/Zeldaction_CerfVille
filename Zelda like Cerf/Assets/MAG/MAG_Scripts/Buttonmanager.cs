@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MAG_Bouton : MonoBehaviour
+public class Buttonmanager : MonoBehaviour
 {
     [HideInInspector] public bool isPressed;
 }

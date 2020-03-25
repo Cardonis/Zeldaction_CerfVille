@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MAG_BoutonSol : MAG_Bouton
+public class GroundButton : Buttonmanager
 {
     public int totalMass;
     public Vector2 buttonSize;

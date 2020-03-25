@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MAG_Porte : MonoBehaviour
+public class Door : MonoBehaviour
 {
-    public List<MAG_Bouton> connectedButtons = new List<MAG_Bouton>();
+    public List<Buttonmanager> connectedButtons = new List<Buttonmanager>();
     bool isOpen;
     Collider2D colliderPorte;
     void Start()
@@ -15,7 +15,7 @@ public class MAG_Porte : MonoBehaviour
     void Update()
     {
         isOpen = true;
-        foreach(MAG_Bouton button in connectedButtons )
+        foreach(Buttonmanager button in connectedButtons )
         {
             if( button.isPressed == false)
             {

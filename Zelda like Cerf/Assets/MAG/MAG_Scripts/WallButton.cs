@@ -2,19 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MAG_BoutonMural : MAG_Bouton
+public class WallButton : Buttonmanager
 {
     public int scoreNeeded;
     public Vector2 buttonSize;
     int detectedObjectMass;
     float detectedObjectProjectionLevel;
-    List<Collider2D> pierreColliders = new List<Collider2D>();
-    ContactFilter2D pierreFilter = new ContactFilter2D();
 
     void Start()
     {
         isPressed = false;
-        pierreFilter.useTriggers = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
