@@ -71,6 +71,9 @@ public class Player_Main_Controller : MonoBehaviour
     [HideInInspector] public Vector2 direction;
     float directionAngle;
 
+    //Variable Animator
+    public Animator animator;
+
     void Start()
     {
         baseAttackCollidersParent = transform.Find("PColliders").Find("PAttackColliders").Find("PBaseAttackColliders");
@@ -234,6 +237,22 @@ public class Player_Main_Controller : MonoBehaviour
         }
 
         arrowDirection.rotation = Quaternion.Euler(0, 0, directionAngle);
+
+        //Animator pour les déplacements
+        #region Animator
+        if (input.magnitude > 0)
+        { 
+            animator.SetBool("IsMoving", true);
+        }
+        else 
+        {
+            animator.SetBool("IsMoving", false);
+        }
+
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+
+        #endregion Animator
     }
 
     IEnumerator BaseAttack()
