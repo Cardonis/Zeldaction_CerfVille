@@ -12,11 +12,14 @@ public class EnnemiOneBehavior : Ennemy_Controller
     bool canWander;
 
     [Header("Attack 1")]
-    [Range(0.5f, 5f)] public float kockbackDistance;
-    [Range(0.5f, 5f)] public float distanceToDash;
-    [Range(0f, 10f)] public float timeDashCharge;
-    [Range(0f, 10f)] public float recoveryTime;
-    [Range(1f, 12f)] public float dashSpeed;
+    public float attackSpeed;
+    public float attackCooldown;
+    float attackCooldownTimer = 0;
+    public Collider2D attackCollider;
+    public Collider2D physicCollider;
+    public float attackForce;
+    [HideInInspector] public bool hasAttacked = false;
+    bool nobodyHasAttacked;
 
     [HideInInspector] public bool canMove = true;
     [HideInInspector]public bool canDash = true;
@@ -27,10 +30,17 @@ public class EnnemiOneBehavior : Ennemy_Controller
     private Vector3 targetPosition;
     Vector2 target;
 
+    [HideInInspector] public Vector2 attackDirection;
+
+    Vector2 directionForAttack;
+
+    public List<EnnemiOneBehavior> limierControllers;
 
     override public void Start()
     {
         base.Start();
+
+        attackCollider.enabled = false;
 
         playerDetected = false;
         WanderingNewDirection();
@@ -41,26 +51,20 @@ public class EnnemiOneBehavior : Ennemy_Controller
     {
         base.FixedUpdate();
 
-        if(stuned == true)
-        {
-            return;
-        }
-
         if (projected)
         {
-            RegisterVelocity();
+            playerDetected = true;
+        }
+
+        if (stuned == true || projected == true)
+        {
             return;
         }
-        else
-        {
-            velocityValues.Clear();
-        }
-          
-        
 
         if (playerDetected == false)
         {
             
+
             if (target != Vector2.zero)
             {
                 direction = (target - (Vector2)transform.position).normalized;
@@ -92,55 +96,64 @@ public class EnnemiOneBehavior : Ennemy_Controller
         }
         else
         {
-            /*if (Vector2.Distance(transform.position, player.transform.position) > distanceToDash && canMove == true)
+            for (int i = 0; i < ennemyControllersList.Count; i++)
             {
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                ennemyControllersList[i].playerDetected = true;
             }
 
-            else if (Vector2.Distance(transform.position, player.transform.position) <= distanceToDash && canMove == true)
+            if (!attacking)
             {
-                canMove = false;
+                speed = attackSpeed;
 
-                StartCoroutine("EnnemiDash");
-            }*/
-
-            for(int i = 0; i < ennemyControllersList.Count; i++)
-            {
-                if (ennemyControllersList[i].GetComponent <EnnemiOneBehavior>())
+                if(Vector2.Distance(transform.position, player.transform.position) <= 3f)
                 {
-
+                    directionForAttack = transform.position - player.transform.position;
                 }
+                else if(Vector2.Distance(transform.position, player.transform.position) >= 4.5f)
+                {
+                    directionForAttack = (player.transform.position - transform.position) * 1.5f;
+                }
+                else
+                {
+                    if(attackCooldownTimer < attackCooldown)
+                    {
+                        attackCooldownTimer += Time.deltaTime;
+                    }
+                    
+                    directionForAttack = Vector2.zero;
+                }
+
+                nobodyHasAttacked = true;
+
+                for (int i = 0; i < ennemyControllersList.Count; i++)
+                {
+                    directionForAttack = directionForAttack + ((Vector2)transform.position - (Vector2)ennemyControllersList[i].transform.position);
+                }
+
+                direction = directionForAttack.normalized;
+
+                for (int i = 0; i < limierControllers.Count; i++)
+                {
+                    if (limierControllers[i].hasAttacked == true)
+                    {
+                        nobodyHasAttacked = false;
+                    }
+                }
+
+                if(attackCooldownTimer >= attackCooldown && nobodyHasAttacked)
+                {
+                    lastAttack = StartCoroutine(Attack1());
+                }
+
             }
 
+        }
 
-            direction = (target - (Vector2)transform.position).normalized;
-        }
-        if (canMove)
+        if (canMove && attacking == false)
         {
-            rb.velocity = direction * speed * Time.deltaTime;
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
+            rb.velocity = direction * speed * Time.fixedDeltaTime;
         }
             
-    }
-
-    IEnumerator EnnemiDash()
-    {
-        GetComponentInChildren<SpriteRenderer>().material.color = dashColor;
-        yield return new WaitForSeconds(timeDashCharge);
-        GetComponentInChildren<SpriteRenderer>().material.color = normalColor;
-        targetPosition = new Vector2(player.transform.position.x, player.transform.position.y);
-
-        while (transform.position != targetPosition && canDash == true)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, dashSpeed * Time.deltaTime);
-            yield return new WaitForSeconds(0.005f);
-        }
-        canDash = true;
-        yield return new WaitForSeconds(recoveryTime);
-        canMove = true;
     }
 
     public void WanderingNewDirection()
@@ -150,27 +163,67 @@ public class EnnemiOneBehavior : Ennemy_Controller
         canWander = false;
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    public override IEnumerator Attack1()
     {
+        StartCoroutine(HasAttackedFor(1.2f));
+        attackCooldownTimer = 0;
 
-        if (other.CompareTag("Player"))
+        attacking = true;
+
+        attackDirection = player.transform.position - transform.position;
+
+        rb.velocity = new Vector2(0, 0);
+
+        for (float i = 0.5f; i > 0; i -= Time.deltaTime)
         {
-            canDash = true;
+            rb.velocity = -attackDirection.normalized * 50f * Time.fixedDeltaTime;
+            yield return null;
         }
 
-    }
+        StartCoroutine(HitboxAttackActivatedFor(1.5f));
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        rb.velocity = new Vector2(0, 0);
+
+        rb.AddForce( (attackDirection).normalized * attackForce, ForceMode2D.Impulse );
+        projected = true;
+
+        while (projected == true)
         {
-            canDash = true;
-            
+            yield return null;
         }
+
+        attackCooldownTimer = 0;
+        attacking = false;
+
+        Physics2D.IgnoreCollision(physicCollider, player.physicCollider, false);
+        attackCollider.enabled = false;
+
+        yield break;
     }
 
-    public void BehaviorWithEnnemi1()
+    public IEnumerator HitboxAttackActivatedFor(float time)
     {
-        //direction = (target - (Vector2)transform.position +).normalized;
+        Physics2D.IgnoreCollision(physicCollider, player.physicCollider, true);
+        attackCollider.enabled = true;
+
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        Physics2D.IgnoreCollision(physicCollider, player.physicCollider, false);
+        attackCollider.enabled = false;
     }
+
+    public IEnumerator HasAttackedFor(float time)
+    {
+        hasAttacked = true;
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        hasAttacked = false;
+    }
+
 }

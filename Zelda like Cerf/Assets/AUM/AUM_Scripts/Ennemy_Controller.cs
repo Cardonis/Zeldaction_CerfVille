@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ennemy_Controller : Elements_Controller
+public abstract class Ennemy_Controller : Elements_Controller
 {
     [Header("BaseStats")]
     public float velocityToGetDamage;
     public float pv;
     public float speed;
     public float detectionAngle;
-    [HideInInspector] public bool playerDetected;
+    public bool playerDetected;
     [HideInInspector] public bool marqued;
     [HideInInspector] public float playerAngle;
-    [HideInInspector] public Dictionary<float, float> velocityValues = new Dictionary<float, float>();
     [HideInInspector] public Vector2 direction;
-    public List<Ennemy_Controller> ennemyControllersList; 
+    [HideInInspector] public bool attacking = false;
+    [HideInInspector] public Coroutine lastAttack;
 
+    public LayerMask detection;
 
+    public List<Ennemy_Controller> ennemyControllersList;
 
     public override void OnCollisionEnter2D(Collision2D collision)
     {
@@ -43,18 +45,9 @@ public class Ennemy_Controller : Elements_Controller
         {
             if(ec.projected && ec.levelProjected >= 1)
             {
-                StartCoroutine(TakeDamage((levelProjected / mass) * ec.mass));
+                StartCoroutine(TakeDamage((ec.levelProjected / mass) * ec.mass));
             }
-        }
-
-        /*
-        if (velocityValues.Count > 10)
-        if(collision.transform.tag == "Wall" && velocityValues[velocityValues.Count - 10] - rb.velocity.magnitude > velocityToGetDamage)
-        {
-            StartCoroutine(TakeDamage(2));
-               
-        }
-        */
+        }        
 
     }
 
@@ -69,7 +62,7 @@ public class Ennemy_Controller : Elements_Controller
 
         GetComponentInChildren<SpriteRenderer>().material.color = new Color(255, 0, 0);
 
-        for(float i = 1; i > 0; i -= Time.fixedDeltaTime)
+        for(float i = 1; i > 0; i -= Time.deltaTime)
         {
             yield return null;
         }
@@ -96,11 +89,7 @@ public class Ennemy_Controller : Elements_Controller
         Destroy(gameObject);
     }
 
-
-    public void RegisterVelocity()
-    {
-        velocityValues.Add(velocityValues.Count + 1, rb.velocity.magnitude);
-    }
+    public abstract IEnumerator Attack1();
 
     public void Detection()
     {
@@ -108,7 +97,7 @@ public class Ennemy_Controller : Elements_Controller
 
         if (playerAngle <= detectionAngle)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position, 5, 8);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, 5f, detection);
 
             if(hit.collider != null)
             {

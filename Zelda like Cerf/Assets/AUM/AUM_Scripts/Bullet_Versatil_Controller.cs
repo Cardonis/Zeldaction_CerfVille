@@ -27,7 +27,7 @@ public class Bullet_Versatil_Controller : MonoBehaviour
 
         if (Vector2.Distance(transform.position, player.position) > maxDistance && touchedTarget == null)
         {
-            player.GetComponent<Player_Main_Controller>().projected = false;
+            player.GetComponent<Player_Main_Controller>().stunned = false;
             Destroy(gameObject);           
         }
     }
@@ -47,6 +47,25 @@ public class Bullet_Versatil_Controller : MonoBehaviour
             transform.SetParent(ec.transform);
 
             GetComponentInChildren<Collider2D>().enabled = false;
+
+            Ennemy_Controller enC = ec.GetComponent<Ennemy_Controller>();
+
+            if (enC != null)
+            {
+                if (enC.attacking == true)
+                {
+                    enC.StopCoroutine(enC.lastAttack);
+                    enC.attacking = false;
+
+                    EnnemiOneBehavior eob = enC.GetComponent<EnnemiOneBehavior>();
+
+                    if (eob != null)
+                    {
+                        eob.attackCollider.enabled = false;
+                    }
+                }
+
+            }
 
             ec.StartTakeForce(player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack, levelProjecting);
             

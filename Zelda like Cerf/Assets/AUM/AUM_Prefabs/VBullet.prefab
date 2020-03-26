@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1181953696615065947}
   - component: {fileID: 3030041647425817023}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderVBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,9 +59,9 @@ GameObject:
   - component: {fileID: 9044299475838335327}
   - component: {fileID: 6936066893127684897}
   - component: {fileID: -140718783297011331}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VBullet
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,3 +215,4 @@ MonoBehaviour:
   player: {fileID: 6214150370898231134, guid: 603ec871160439742bb890b9e1d2ec16, type: 3}
   rb: {fileID: 6936066893127684897}
   maxDistance: 0
+  levelProjecting: 0

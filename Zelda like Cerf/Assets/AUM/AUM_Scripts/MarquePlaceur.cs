@@ -18,6 +18,13 @@ public class MarquePlaceur : MonoBehaviour
     {
         Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
 
+        Ennemy_Controller enC = ec.GetComponent<Ennemy_Controller>();
+
+        if(enC != null)
+            if (enC.attacking == true)
+            {
+                enC.projected = false;
+            }
 
         if (ec != null)
         {

@@ -34,8 +34,28 @@ public class BaseAttackCollision : MonoBehaviour
                 Destroy(bulletController.gameObject);
             }
 
+            Ennemy_Controller enC = ec.GetComponent<Ennemy_Controller>();
+
+            if(enC != null)
+            {
+                if(enC.attacking == true)
+                {
+                    enC.StopCoroutine(enC.lastAttack);
+                    enC.attacking = false;
+                    
+
+                    EnnemiOneBehavior eob = enC.GetComponent<EnnemiOneBehavior>();
+
+                    if(eob != null)
+                    {
+                        eob.attackCollider.enabled = false;
+                        eob.projected = false;
+                    }
+                }
+            }
+
             if (ec.projected == false)
-                ec.TakeForce(player.direction.normalized, forceValue, levelMultiplicator * bulletLevel);
+            ec.TakeForce(player.direction.normalized, forceValue, levelMultiplicator * bulletLevel);
 
             bulletLevel = 1;
         }

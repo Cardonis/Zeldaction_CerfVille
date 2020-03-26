@@ -16,8 +16,6 @@ public class Caisse_Controller : Elements_Controller
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-
-
     }
 
     public override void OnCollisionEnter2D(Collision2D collision)
