@@ -8,10 +8,12 @@ public class WallButton : Buttonmanager
     public Vector2 buttonSize;
     int detectedObjectMass;
     float detectedObjectProjectionLevel;
+    SpriteRenderer buttonSprite;
 
     void Start()
     {
         isPressed = false;
+        buttonSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,7 +29,7 @@ public class WallButton : Buttonmanager
         if (detectedObjectMass * detectedObjectProjectionLevel > scoreNeeded)
         {
             isPressed = true;
-            Debug.Log("isPressed");
+            buttonSprite.color = Color.green;
         }
     }
 }
