@@ -72,10 +72,12 @@ public class Player_Main_Controller : MonoBehaviour
     float directionAngle;
 
     //Variable Animator
-    public Animator animator;
+    [HideInInspector] public Animator animator;
 
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
+
         baseAttackCollidersParent = transform.Find("PColliders").Find("PAttackColliders").Find("PBaseAttackColliders");
         physicCollider = transform.Find("PColliders").Find("PPhysicsCollider").GetComponent<Collider2D>();
 
