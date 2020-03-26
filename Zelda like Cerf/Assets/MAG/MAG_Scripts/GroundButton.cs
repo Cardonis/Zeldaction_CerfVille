@@ -9,10 +9,12 @@ public class GroundButton : Buttonmanager
     List<Collider2D> pierreColliders = new List<Collider2D>();
     ContactFilter2D pierreFilter = new ContactFilter2D();
     int currentPressionMass;
+    SpriteRenderer buttonsprite;
     void Start()
     {
         pierreFilter.useTriggers = true;
         isPressed = false;
+        buttonsprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update()
@@ -31,10 +33,12 @@ public class GroundButton : Buttonmanager
         if (currentPressionMass >= totalMass)
         {
             isPressed = true;
+            buttonsprite.color = Color.blue;
         }
         else
         {
             isPressed = false;
+            buttonsprite.color = Color.black;
         }
     }
 }

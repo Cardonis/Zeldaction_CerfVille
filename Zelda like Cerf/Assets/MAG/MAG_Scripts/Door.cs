@@ -6,10 +6,12 @@ public class Door : MonoBehaviour
 {
     public List<Buttonmanager> connectedButtons = new List<Buttonmanager>();
     bool isOpen;
-    Collider2D colliderPorte;
+    Collider2D doorCollider;
+    SpriteRenderer doorSprite;
     void Start()
     {
-        colliderPorte = GetComponentInChildren<Collider2D>();
+        doorCollider = GetComponentInChildren<Collider2D>();
+        doorSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update()
@@ -23,6 +25,7 @@ public class Door : MonoBehaviour
             }
         }
 
-        colliderPorte.enabled = !isOpen;
+        doorCollider.enabled = !isOpen;
+        doorSprite.enabled = !isOpen;
     }
 }
