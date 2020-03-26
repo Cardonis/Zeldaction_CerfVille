@@ -65,6 +65,7 @@ public class Player_Main_Controller : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
 
     [HideInInspector] public MarquageManager marquageManager;
+    [HideInInspector] public RoomTransitionController confiner;
 
     Vector2 input;
     [HideInInspector] public Vector2 direction;
@@ -73,17 +74,16 @@ public class Player_Main_Controller : MonoBehaviour
     void Start()
     {
         baseAttackCollidersParent = transform.Find("PColliders").Find("PAttackColliders").Find("PBaseAttackColliders");
-
         physicCollider = transform.Find("PColliders").Find("PPhysicsCollider").GetComponent<Collider2D>();
 
         arrowDirection = transform.Find("Arrow");
 
         barsCharge = transform.Find("BarsCharge").gameObject;
-
         barCharge = barsCharge.transform.Find("BarCharge");
 
         vBullets = GameObject.Find("VBullets").transform;
 
+        confiner = GameObject.Find("CameraConfiner").GetComponent<RoomTransitionController>();
         marquageManager = GameObject.Find("MarquageManager").GetComponent<MarquageManager>();
 
         rb = GetComponent<Rigidbody2D>();
