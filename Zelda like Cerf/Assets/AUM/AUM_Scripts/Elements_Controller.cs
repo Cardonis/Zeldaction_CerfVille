@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Elements_Controller : MonoBehaviour
 {
-    [HideInInspector] public bool projected = false;
+    public bool projected = false;
     [HideInInspector] public bool stuned = false;
     [HideInInspector] public Rigidbody2D rb;
 
@@ -46,7 +46,7 @@ public class Elements_Controller : MonoBehaviour
     {
         projected = true;
 
-        player.projected = true;
+        player.StartCoroutine(player.StunnedFor(2f));
 
         player.StartCanSpringAttack(1f);
 
@@ -78,7 +78,7 @@ public class Elements_Controller : MonoBehaviour
             yield return null;
         }
 
-        player.projected = false;
+        player.stunned = false;
 
         Destroy(GetComponentInChildren<Bullet_Versatil_Controller>().gameObject);
 

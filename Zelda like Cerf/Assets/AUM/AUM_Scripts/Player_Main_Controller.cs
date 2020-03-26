@@ -1,10 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player_Main_Controller : MonoBehaviour
 {
     [Range(100.0f, 400.0f)] public float speed;
+
+    public int life;
+
+    public Text lifeText;
+
+    [HideInInspector] public Collider2D physicCollider;
 
     [Header("Base Attack")]
 
@@ -42,11 +50,17 @@ public class Player_Main_Controller : MonoBehaviour
     GameObject barsCharge;
     Transform barCharge;
 
-    Transform vBullets;
+    [HideInInspector] public Transform vBullets;
 
     Transform arrowDirection;
 
     [HideInInspector] public bool projected = false;
+    [HideInInspector] public bool stunned = false;
+
+    [HideInInspector] public bool baseAttacking = false;
+    [HideInInspector] public Coroutine lastBaseAttack;
+
+    Coroutine lastStunnedFor;
 
     [HideInInspector] public Rigidbody2D rb;
 
@@ -59,6 +73,8 @@ public class Player_Main_Controller : MonoBehaviour
     void Start()
     {
         baseAttackCollidersParent = transform.Find("PColliders").Find("PAttackColliders").Find("PBaseAttackColliders");
+
+        physicCollider = transform.Find("PColliders").Find("PPhysicsCollider").GetComponent<Collider2D>();
 
         arrowDirection = transform.Find("Arrow");
 
@@ -88,10 +104,20 @@ public class Player_Main_Controller : MonoBehaviour
 
     void Update()
     {
+        lifeText.text = "Life : " + life;
+
+        if(projected)
+        {
+            if (rb.velocity.magnitude <= 5)
+            {
+                rb.velocity = Vector2.zero;
+                projected = false;
+            }
+        }
 
         input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        if (!projected)
+        if (!projected && !stunned)
         {
             if (input.magnitude > 0)
             {
@@ -109,9 +135,9 @@ public class Player_Main_Controller : MonoBehaviour
 
         if (timerCooldownBaseAttack < 0)
         {
-            if ( Input.GetButtonDown("A") && (!projected || canSpringAttack) )
+            if ( Input.GetButtonDown("A") && ((!projected && !stunned) || canSpringAttack) )
             {
-                StartCoroutine(BaseAttack());
+                lastBaseAttack = StartCoroutine(BaseAttack());
             }
         }
         else
@@ -121,7 +147,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         if (timerCooldownVersatilAttack < 0)
         {
-            if(!projected)
+            if(!projected && !stunned)
             {
                 if(Input.GetButtonDown("X"))
                 {
@@ -160,7 +186,7 @@ public class Player_Main_Controller : MonoBehaviour
                     {
                         if (chargeTimer >= chargeTime)
                         {
-                            VersatilAttack(levelMultiplicator[2]);
+                             VersatilAttack(levelMultiplicator[2]);
                         }
                         else if (chargeTimer >= (chargeTime * (1f / 4f)) )
                         {
@@ -212,8 +238,11 @@ public class Player_Main_Controller : MonoBehaviour
 
     IEnumerator BaseAttack()
     {
+        baseAttacking = true;
 
-        projected = true;
+        if (lastStunnedFor != null)
+            StopCoroutine(lastStunnedFor);
+        lastStunnedFor = StartCoroutine(StunnedFor(durationBaseAttack + 0.05f));
 
         baseAttackCollidersParent.rotation = Quaternion.Euler(0, 0, directionAngle);
 
@@ -249,7 +278,7 @@ public class Player_Main_Controller : MonoBehaviour
             baseAttackSRs[i].enabled = false;
         }
 
-        projected = false;
+        stunned = false;
 
         baseAttackCollidersParent.rotation = Quaternion.identity;
 
@@ -257,6 +286,8 @@ public class Player_Main_Controller : MonoBehaviour
         {
             baseAttackColliders[i].enabled = false;
         }
+
+        baseAttacking = false;
     }
 
     IEnumerator MultiplesVersatilAttack()
@@ -290,15 +321,19 @@ public class Player_Main_Controller : MonoBehaviour
                 marquageManager.marquageControllers.Remove(mC);
             }
 
-            projected = true;
+            if (lastStunnedFor != null)
+                StopCoroutine(lastStunnedFor);
+            lastStunnedFor = StartCoroutine(StunnedFor(2f));
 
-            while (projected == true)
+            while (stunned == true)
             {
                 canSpringAttack = false;
                 yield return null;
             }
 
-            projected = true;
+            if (lastStunnedFor != null)
+            StopCoroutine(lastStunnedFor);
+            lastStunnedFor = StartCoroutine(StunnedFor(2f));
 
             yield return new WaitForSeconds(0.2f);
 
@@ -306,7 +341,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         canAccelerate = false;
 
-        projected = false;
+        stunned = false;
     }
 
     void VersatilAttack(float levelProjecting)
@@ -356,5 +391,64 @@ public class Player_Main_Controller : MonoBehaviour
             yield return null;
         }
         canSpringAttack = false;
+    }
+
+    public IEnumerator StunnedFor(float time)
+    {
+        stunned = true;
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        stunned = false;
+    }
+
+    public IEnumerator TakeDamage(int damageTaken)
+    {
+        life -= damageTaken;
+
+        GetComponentInChildren<SpriteRenderer>().material.color = new Color(255, 0, 0);
+
+        for (float i = 1; i > 0; i -= Time.deltaTime)
+        {
+            yield return null;
+        }
+
+        GetComponentInChildren<SpriteRenderer>().material.color = new Color(183, 183, 183);
+
+        if (life <= 0)
+        {
+            StartCoroutine( Die() );
+        }
+    }
+
+    IEnumerator Die()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        yield break;
+    }
+
+    public void TakeForce(Vector2 direction, float forceValue)
+    {
+        projected = true;
+
+        rb.velocity = new Vector2(0, 0);
+
+        rb.AddForce(direction * forceValue, ForceMode2D.Impulse);
+
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Elements_Controller ec = collision.transform.GetComponentInParent<Elements_Controller>();
+
+        if ((collision.transform.tag == "Wall" || ec != null) && projected == true)
+        {
+            StartCoroutine( TakeDamage(1) );
+        }
     }
 }

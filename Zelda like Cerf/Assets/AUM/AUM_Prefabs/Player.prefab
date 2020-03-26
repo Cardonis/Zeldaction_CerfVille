@@ -110,7 +110,7 @@ Transform:
   m_Children:
   - {fileID: 6214150371883710315}
   m_Father: {fileID: 6214150371380344698}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6214150370766257134
 GameObject:
@@ -186,7 +186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c68a6e220573e04a852cc12bf101cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  bulletController: {fileID: 0}
   forceValue: 4
+  levelMultiplicator: 0
 --- !u!1 &6214150370898231128
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 175
+  physicCollider: {fileID: 0}
   durationBaseAttack: 0.5
   cooldownBaseAttack: 0.7
   speedKnockBackBaseAttack: 50
@@ -248,9 +252,13 @@ MonoBehaviour:
     type: 3}
   speedBulletVersatil: 400
   cooldownVersatilAttack: 1
+  chargeTime: 0
   forceValueVersatilAttack: 15
   rangeMaxVersatilAttack: 5
   marquageDuration: 2
+  canSpringAttack: 0
+  canAccelerate: 0
+  levelMultiplicator: []
   projected: 0
   rb: {fileID: 0}
   marquageManager: {fileID: 0}
@@ -386,7 +394,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6214150371380344698}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1412803255
 BoxCollider2D:
@@ -441,9 +449,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6214150371549248257}
   - {fileID: 6214150371133804053}
   - {fileID: 6214150370616301856}
+  - {fileID: 6214150371549248257}
   m_Father: {fileID: 6214150370898231134}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -475,7 +483,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6214150371380344698}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6214150371615905967
 GameObject:
@@ -565,7 +573,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c68a6e220573e04a852cc12bf101cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  bulletController: {fileID: 0}
   forceValue: 9
+  levelMultiplicator: 0
 --- !u!1 &6214150371883710308
 GameObject:
   m_ObjectHideFlags: 0
