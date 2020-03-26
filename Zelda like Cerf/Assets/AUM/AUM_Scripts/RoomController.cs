@@ -6,9 +6,9 @@ public class RoomController : MonoBehaviour
 {
     public List<SpriteRenderer> limitSRs;
     public List<Collider2D> limitColliders;
-    [HideInInspector] public List<Ennemy_Controller> ennemies;
+    public List<Ennemy_Controller> ennemies;
 
-    [HideInInspector] public bool active = false;
+    public bool active = false;
 
     // Start is called before the first frame update
     void Start()
@@ -67,16 +67,6 @@ public class RoomController : MonoBehaviour
             {
                 pmc.confiner.StartCoroutine(pmc.confiner.Transition(this, pmc));
             }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Ennemy_Controller ec = collision.GetComponentInParent<Ennemy_Controller>();
-
-        if (ec != null)
-        {
-            ennemies.Remove(ec);
         }
     }
 }
