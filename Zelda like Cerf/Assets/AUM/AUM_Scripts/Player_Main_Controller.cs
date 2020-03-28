@@ -331,7 +331,7 @@ public class Player_Main_Controller : MonoBehaviour
         {
             canAccelerate = true;
 
-            VersatilAttack(copyMarquageControllers[i].transform, levelMultiplicator[1]);
+            VersatilAttack(copyMarquageControllers[i].transform, levelMultiplicator[0]);
 
             MarquageController mC = copyMarquageControllers[i].GetComponentInChildren<MarquageController>();
 

@@ -104,7 +104,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 5.6930637
 --- !u!114 &8618860047082342109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f323340d958337f4aac5a463f0cbfc70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ennemyController: {fileID: 0}
+  ennemyController: {fileID: 6033661623695874983}
 --- !u!1 &3828426169176430270
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 8625057618838257537}
   - component: {fileID: 6033661623695874983}
   m_Layer: 0
-  m_Name: Ennemy1 (3) 1
+  m_Name: Ennemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,7 +314,7 @@ Transform:
   m_GameObject: {fileID: 8625057618838257538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.05, y: -3.2498739, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 8625057618277112688}
   - {fileID: 8625057617497965112}
@@ -335,7 +335,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1.4
   m_LinearDrag: 8
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -363,11 +363,10 @@ MonoBehaviour:
   levelProjected: 0
   player: {fileID: 0}
   marquageManager: {fileID: 0}
-  recoveryValue: 0
-  velocityToGetDamage: 0
-  pv: 0
-  speed: 0
-  detectionAngle: 0
+  recoveryValue: 2
+  pv: 8
+  speed: 25
+  detectionAngle: 50
   playerDetected: 0
   marqued: 0
   playerAngle: 0
@@ -375,10 +374,20 @@ MonoBehaviour:
   attacking: 0
   detection:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   ennemyControllersList: []
-  minWanderingDistance: 0
-  maxWanderingDistance: 0
+  minWanderingDistance: 1
+  maxWanderingDistance: 2
   canMove: 1
-  attackSpeed: 0
-  ennemyToProtect: {fileID: 0}
+  attackSpeedEnnemyTarget: 200
+  attackSpeedPlayerTarget: 70
+  attackCooldownCarrying: 5
+  attackCooldownNotCarrying: 2
+  carrying: 0
+  distanceToEnnemy: 2
+  distanceToPlayer: 5
+  forcePierreLaunch: 50
+  pierrePrefab: {fileID: 1812700482024183144, guid: 0cbeb0b8f91386d4f8c33ec92a3fc4e3,
+    type: 3}
+  pierresParent: {fileID: 0}
+  physicCollider: {fileID: 6823094215960403234}

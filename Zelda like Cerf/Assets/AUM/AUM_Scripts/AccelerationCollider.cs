@@ -22,9 +22,7 @@ public class AccelerationCollider : MonoBehaviour
     {
         if(player.canAccelerate)
         {
-            
-
-            if(Input.GetButton("X"))
+            if(Input.GetButtonDown("X"))
             {
                 Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
                 if (ec != null)
@@ -32,20 +30,22 @@ public class AccelerationCollider : MonoBehaviour
                     switch (ec.levelProjected)
                     {
                         case 0:
-                            return;
+                            break;
 
                         case 1:
                             ec.levelProjected = 2;
-                            return;
+                            break;
 
                         case 2:
                             ec.levelProjected = 4;
-                            return;
+                            break;
 
                         case 4:
                             ec.levelProjected = 4;
-                            return;
+                            break;
                     }
+
+                    Debug.Log(ec.levelProjected);
 
                     player.canAccelerate = false;
                 }
