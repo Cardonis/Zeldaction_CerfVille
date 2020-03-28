@@ -11,6 +11,14 @@ public class MarquageManager : MonoBehaviour
 
     public void Update()
     {
+        for (int i = 0; i < marquageControllers.Count; i++)
+        {
+            if (marquageControllers[i] == null)
+            {
+                marquageControllers.RemoveAt(i);
+            }
+        }
+
         marquageControllers = marquageControllers.OrderBy(
         x => Vector2.Distance(player.transform.position, x.transform.position)
         ).ToList();

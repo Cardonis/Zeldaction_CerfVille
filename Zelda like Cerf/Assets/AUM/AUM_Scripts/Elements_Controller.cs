@@ -80,6 +80,7 @@ public class Elements_Controller : MonoBehaviour
 
         player.stunned = false;
 
+        if(GetComponentInChildren<Bullet_Versatil_Controller>().gameObject != null)
         Destroy(GetComponentInChildren<Bullet_Versatil_Controller>().gameObject);
 
         rb.velocity = new Vector2(0, 0);

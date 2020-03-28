@@ -429,14 +429,16 @@ public class Player_Main_Controller : MonoBehaviour
     {
         life -= damageTaken;
 
+        Color baseColor = GetComponentInChildren<SpriteRenderer>().material.color;
+
         GetComponentInChildren<SpriteRenderer>().material.color = new Color(255, 0, 0);
 
-        for (float i = 1; i > 0; i -= Time.deltaTime)
+        for (float i = 0.1f; i > 0; i -= Time.deltaTime)
         {
             yield return null;
         }
 
-        GetComponentInChildren<SpriteRenderer>().material.color = new Color(183, 183, 183);
+        GetComponentInChildren<SpriteRenderer>().material.color = baseColor;
 
         if (life <= 0)
         {
@@ -471,5 +473,15 @@ public class Player_Main_Controller : MonoBehaviour
         {
             StartCoroutine( TakeDamage(1) );
         }
+
+        if(ec != null)
+        {
+            if(ec.projected == true)
+            {
+                StartCoroutine( TakeDamage(1) );
+            }
+        }
     }
+
+    
 }

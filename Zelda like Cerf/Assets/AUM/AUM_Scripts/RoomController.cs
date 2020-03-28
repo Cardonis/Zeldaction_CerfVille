@@ -45,6 +45,7 @@ public class RoomController : MonoBehaviour
         {
             for (int i = 0; i < ennemies.Count; i++)
             {
+                if(ennemies[i] != null)
                 ennemies[i].enabled = true;
             }
         }

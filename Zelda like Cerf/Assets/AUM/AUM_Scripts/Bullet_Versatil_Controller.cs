@@ -36,6 +36,12 @@ public class Bullet_Versatil_Controller : MonoBehaviour
     {
         Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
 
+        if(collision.tag == "Wall")
+        {
+            player.GetComponent<Player_Main_Controller>().stunned = false;
+            Destroy(gameObject);
+        }
+
         if (ec != null && ec.GetComponentInChildren<Bullet_Versatil_Controller>() == null)
         {
             rb.velocity = new Vector2(0, 0);

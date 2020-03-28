@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class EnnemiOneBehavior : Ennemy_Controller
 {
-    float cooldownWandering;
-
-    [Header("Wandering")]
-    [Range(0.5f,3f)]public float minWanderingDistance;
-    [Range(2f, 6f)]public float maxWanderingDistance;
-    bool canWander;
-
     [Header("Attack 1")]
     public float attackSpeed;
     public float attackCooldown;
@@ -20,15 +13,6 @@ public class EnnemiOneBehavior : Ennemy_Controller
     public float attackForce;
     [HideInInspector] public bool hasAttacked = false;
     bool nobodyHasAttacked;
-
-    [HideInInspector] public bool canMove = true;
-    [HideInInspector]public bool canDash = true;
-
-    [HideInInspector] public Color dashColor = Color.red;
-    [HideInInspector] public Color normalColor = Color.white;
-
-    private Vector3 targetPosition;
-    Vector2 target;
 
     [HideInInspector] public Vector2 attackDirection;
 
@@ -41,8 +25,6 @@ public class EnnemiOneBehavior : Ennemy_Controller
         base.Start();
 
         attackCollider.enabled = false;
-
-        playerDetected = false;
         WanderingNewDirection();
     }
 
@@ -63,36 +45,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         if (playerDetected == false)
         {
-            
-
-            if (target != Vector2.zero)
-            {
-                direction = (target - (Vector2)transform.position).normalized;
-            }
-
-            Detection();
-
-            if (Vector2.Distance(target, transform.position) <= 0.1f)
-            {
-                if(canWander == false)
-                {
-                    cooldownWandering = Random.Range(1f, 2f);
-                    canWander = true;
-                }
-                else
-                {
-                    canMove = false;
-
-                    cooldownWandering -= Time.deltaTime;
-
-                    if (cooldownWandering <= 0)
-                    {
-                        WanderingNewDirection();
-                    }
-                }
-            }
-
-
+            Wandering();
         }
         else
         {
@@ -154,13 +107,6 @@ public class EnnemiOneBehavior : Ennemy_Controller
             rb.velocity = direction * speed * Time.fixedDeltaTime;
         }
             
-    }
-
-    public void WanderingNewDirection()
-    {
-        target = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f,1f)).normalized *Random.Range(minWanderingDistance,maxWanderingDistance);
-        canMove = true;
-        canWander = false;
     }
 
     public override IEnumerator Attack1()
