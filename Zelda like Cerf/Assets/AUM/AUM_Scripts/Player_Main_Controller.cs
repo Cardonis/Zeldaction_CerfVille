@@ -393,7 +393,7 @@ public class Player_Main_Controller : MonoBehaviour
         bullet.maxDistance = 20;
         bullet.levelProjecting = levelProjecting;
 
-        bullet.rb.velocity = (target.position - transform.position).normalized * (speedBulletVersatil * levelProjecting * 1.5f) * Time.fixedDeltaTime;
+        bullet.rb.velocity = (target.position - transform.position).normalized * (speedBulletVersatil * levelProjecting * 2.5f) * Time.fixedDeltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
     }
@@ -476,7 +476,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         if(ec != null)
         {
-            if(ec.projected == true)
+            if (ec.projected == true && ec.playerProjected == false)
             {
                 StartCoroutine( TakeDamage(1) );
             }

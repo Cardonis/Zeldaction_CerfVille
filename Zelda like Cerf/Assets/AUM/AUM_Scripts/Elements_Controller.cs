@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Elements_Controller : MonoBehaviour
 {
-    public bool projected = false;
+    [HideInInspector] public bool projected = false;
+    [HideInInspector] public bool playerProjected = false;
     [HideInInspector] public bool stuned = false;
     [HideInInspector] public Rigidbody2D rb;
 
@@ -23,6 +24,8 @@ public class Elements_Controller : MonoBehaviour
     public void TakeForce(Vector2 direction, float forceValue, float levelMultiplicator)
     {
         projected = true;
+
+        playerProjected = true;
 
         rb.velocity = new Vector2(0, 0);
 
@@ -45,6 +48,8 @@ public class Elements_Controller : MonoBehaviour
     public IEnumerator TakeForce(float forceValue, float levelMultiplicator)
     {
         projected = true;
+
+        playerProjected = true;
 
         player.StartCoroutine(player.StunnedFor(2f));
 
@@ -119,6 +124,7 @@ public class Elements_Controller : MonoBehaviour
         if(projected == true && rb.velocity.magnitude < recoveryValue)
         {
             projected = false;
+            playerProjected = false;
             rb.velocity = new Vector2(0, 0);
             levelProjected = 0;
         }
