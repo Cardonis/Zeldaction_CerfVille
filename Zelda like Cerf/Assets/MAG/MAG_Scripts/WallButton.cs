@@ -26,7 +26,7 @@ public class WallButton : Buttonmanager
             detectedObjectProjectionLevel = element.levelProjected;
         }
 
-        if (detectedObjectMass * detectedObjectProjectionLevel > scoreNeeded)
+        if (detectedObjectMass * detectedObjectProjectionLevel >= scoreNeeded)
         {
             isPressed = true;
             buttonSprite.color = Color.green;
