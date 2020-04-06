@@ -51,11 +51,11 @@ public class Elements_Controller : MonoBehaviour
 
         playerProjected = true;
 
-        player.StartCoroutine(player.StunnedFor(2f));
+        //player.StartCoroutine(player.StunnedFor(1f));
 
         player.StartCanSpringAttack(1f);
 
-        player.rb.velocity = new Vector2(0, 0);
+        //player.rb.velocity = new Vector2(0, 0);
 
         rb.velocity = new Vector2(0, 0);
 
@@ -63,13 +63,11 @@ public class Elements_Controller : MonoBehaviour
 
         Vector2 direction = player.transform.position - transform.position;
 
-        Vector2 direction2 = direction;
-
-        player.direction = -direction;
+        //player.direction = -direction;
 
         Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
 
-        StartCoroutine(DontCollideWithPlayerFor(1.5f));
+        StartCoroutine(DontCollideWithPlayerFor(1f));
 
         while(direction.magnitude > 0.7f)
         {
@@ -79,18 +77,18 @@ public class Elements_Controller : MonoBehaviour
             }
             
             direction = (player.transform.position - transform.position );
-            rb.velocity = direction2.normalized * (forceValue * Mathf.Sqrt(levelProjected) / 2);
+            rb.velocity = direction.normalized * (forceValue * Mathf.Sqrt(levelProjected) / 2);
             yield return null;
         }
 
         player.stunned = false;
 
-        if(GetComponentInChildren<Bullet_Versatil_Controller>().gameObject != null)
+        if(GetComponentInChildren<Bullet_Versatil_Controller>() != null)
         Destroy(GetComponentInChildren<Bullet_Versatil_Controller>().gameObject);
 
         rb.velocity = new Vector2(0, 0);
 
-        rb.AddForce(direction2.normalized * forceValue * levelProjected, ForceMode2D.Impulse);
+        rb.AddForce(direction.normalized * forceValue * levelProjected, ForceMode2D.Impulse);
 
         for(float i = 2.5f; i > 0; i -= Time.fixedDeltaTime)
         {

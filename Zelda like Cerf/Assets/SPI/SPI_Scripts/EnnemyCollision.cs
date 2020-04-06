@@ -14,7 +14,12 @@ public class EnnemyCollision : MonoBehaviour
         if (ec != null)
         {
             ennemyController.ennemyControllersList.Add(ec);
+        }
 
+        Caisse_Controller cc = collision.GetComponentInParent<Caisse_Controller>();
+        if (cc != null)
+        {
+            ennemyController.caisseControllersList.Add(cc);
         }
     }
     public void OnTriggerExit2D(Collider2D collision)
@@ -23,6 +28,12 @@ public class EnnemyCollision : MonoBehaviour
         if (ec != null)
         {
             ennemyController.ennemyControllersList.Remove(ec);
+        }
+
+        Caisse_Controller cc = collision.GetComponentInParent<Caisse_Controller>();
+        if (cc != null)
+        {
+            ennemyController.caisseControllersList.Remove(cc);
         }
     }
 

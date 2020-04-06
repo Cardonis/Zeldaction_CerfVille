@@ -18,6 +18,7 @@ public abstract class Ennemy_Controller : Elements_Controller
     public LayerMask detection;
 
     public List<Ennemy_Controller> ennemyControllersList;
+    public List<Caisse_Controller> caisseControllersList;
 
     float cooldownWandering;
 

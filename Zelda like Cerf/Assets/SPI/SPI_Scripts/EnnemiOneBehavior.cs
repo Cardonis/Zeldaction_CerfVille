@@ -26,6 +26,18 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         attackCollider.enabled = false;
         WanderingNewDirection();
+
+        limierControllers.Clear();
+
+        for(int i = 0; i < transform.parent.childCount; i++)
+        {
+            EnnemiOneBehavior eob = transform.parent.GetChild(i).GetComponent<EnnemiOneBehavior>();
+            if (eob != null)
+            {
+                limierControllers.Add(eob);
+            }
+        }
+
     }
 
 
@@ -80,6 +92,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
                 for (int i = 0; i < ennemyControllersList.Count; i++)
                 {
+                    if(ennemyControllersList[i].GetComponent<EnnemiOneBehavior>() != null)
                     directionForAttack = directionForAttack + ((Vector2)transform.position - (Vector2)ennemyControllersList[i].transform.position);
                 }
 

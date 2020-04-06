@@ -10,7 +10,7 @@ public class Player_Main_Controller : MonoBehaviour
 
     public int life;
 
-    public Text lifeText;
+    Text lifeText;
 
     [HideInInspector] public Collider2D physicCollider;
 
@@ -71,6 +71,10 @@ public class Player_Main_Controller : MonoBehaviour
     [HideInInspector] public Vector2 direction;
     float directionAngle;
 
+    Vector2 inputAim;
+    [HideInInspector] public Vector2 directionAim;
+    float directionAimAngle;
+
     //Variable Animator
     [HideInInspector] public Animator animator;
 
@@ -87,6 +91,8 @@ public class Player_Main_Controller : MonoBehaviour
         barCharge = barsCharge.transform.Find("BarCharge");
 
         vBullets = GameObject.Find("VBullets").transform;
+
+        lifeText = GameObject.Find("LifeText").GetComponent<Text>();
 
         confiner = GameObject.Find("CameraConfiner").GetComponent<RoomTransitionController>();
         marquageManager = GameObject.Find("MarquageManager").GetComponent<MarquageManager>();
@@ -121,9 +127,15 @@ public class Player_Main_Controller : MonoBehaviour
         }
 
         input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        inputAim = new Vector2(Input.GetAxis("RightHorizontal"), -Input.GetAxis("RightVertical"));
 
         if (!projected && !stunned)
         {
+            if(inputAim.magnitude > 0)
+            {
+                directionAim = inputAim;
+            }
+
             if (input.magnitude > 0)
             {
                 direction = input;
@@ -140,7 +152,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         if (timerCooldownBaseAttack < 0)
         {
-            if ( Input.GetButtonDown("A") && ((!projected && !stunned) || canSpringAttack) )
+            if ( Input.GetButtonDown("LB") && ((!projected && !stunned) || canSpringAttack) )
             {
                 lastBaseAttack = StartCoroutine(BaseAttack());
             }
@@ -154,7 +166,7 @@ public class Player_Main_Controller : MonoBehaviour
         {
             if(!projected && !stunned)
             {
-                if(Input.GetButtonDown("X"))
+                if(Input.GetButtonDown("RB"))
                 {
                     if(marquageManager.marquageControllers.Count == 0)
                     {
@@ -168,7 +180,7 @@ public class Player_Main_Controller : MonoBehaviour
                     barsCharge.SetActive(true);
                 }
 
-                if (Input.GetButton("X"))
+                if (Input.GetButton("RB"))
                 {
                     if(multipleAttack == false)
                     {
@@ -185,7 +197,7 @@ public class Player_Main_Controller : MonoBehaviour
                     
                 }
 
-                if(Input.GetButtonUp("X"))
+                if(Input.GetButtonUp("RB"))
                 {
                     if(multipleAttack == false)
                     {
@@ -193,11 +205,11 @@ public class Player_Main_Controller : MonoBehaviour
                         {
                              VersatilAttack(levelMultiplicator[2]);
                         }
-                        else if (chargeTimer >= (chargeTime * (1f / 4f)) )
+                        else if (chargeTimer >= (chargeTime * (1f / 3f)) )
                         {
                             VersatilAttack(levelMultiplicator[1]);
                         }
-                        else if (chargeTimer < chargeTime * (1f / 4f))
+                        else if (chargeTimer < chargeTime * (1f / 3f))
                         {
                             VersatilAttack(levelMultiplicator[0]);
                         }
@@ -238,7 +250,14 @@ public class Player_Main_Controller : MonoBehaviour
             directionAngle = -directionAngle;
         }
 
-        arrowDirection.rotation = Quaternion.Euler(0, 0, directionAngle);
+        directionAimAngle = Vector2.Angle(transform.right, directionAim);
+
+        if(directionAim.y < 0)
+        {
+            directionAimAngle = -directionAimAngle;
+        }
+
+        arrowDirection.rotation = Quaternion.Euler(0, 0, directionAimAngle);
 
         //Animator pour les déplacements
         #region Animator
@@ -265,7 +284,7 @@ public class Player_Main_Controller : MonoBehaviour
             StopCoroutine(lastStunnedFor);
         lastStunnedFor = StartCoroutine(StunnedFor(durationBaseAttack + 0.05f));
 
-        baseAttackCollidersParent.rotation = Quaternion.Euler(0, 0, directionAngle);
+        baseAttackCollidersParent.rotation = Quaternion.Euler(0, 0, directionAimAngle);
 
         //Activation des Sprite Renderes
         for (int i = 0; i < baseAttackSRs.Length; i++)
@@ -287,7 +306,7 @@ public class Player_Main_Controller : MonoBehaviour
         //Attack duration + knock back
         for(float i = durationBaseAttack; i > 0; i -= Time.deltaTime)
         {
-            rb.velocity = -direction.normalized * speedKnockBackBaseAttack * Time.deltaTime;
+            rb.velocity = -directionAim.normalized * speedKnockBackBaseAttack * Time.deltaTime;
 
             yield return null;
         }
@@ -342,21 +361,7 @@ public class Player_Main_Controller : MonoBehaviour
                 marquageManager.marquageControllers.Remove(mC);
             }
 
-            if (lastStunnedFor != null)
-                StopCoroutine(lastStunnedFor);
-            lastStunnedFor = StartCoroutine(StunnedFor(2f));
-
-            while (stunned == true)
-            {
-                canSpringAttack = false;
-                yield return null;
-            }
-
-            if (lastStunnedFor != null)
-            StopCoroutine(lastStunnedFor);
-            lastStunnedFor = StartCoroutine(StunnedFor(2f));
-
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.4f);
 
         }
 
@@ -375,10 +380,10 @@ public class Player_Main_Controller : MonoBehaviour
         //rb.velocity = new Vector2(0, 0);
 
         bullet.player = transform;
-        bullet.maxDistance = rangeMaxVersatilAttack;
+        bullet.maxDistance = (rangeMaxVersatilAttack / 4f) + (rangeMaxVersatilAttack * 3f / 4f) / levelProjecting;
         bullet.levelProjecting = levelProjecting;
 
-        bullet.rb.velocity = direction.normalized * speedBulletVersatil * Mathf.Min(3f, levelProjecting) * Time.fixedDeltaTime;
+        bullet.rb.velocity = directionAim.normalized * speedBulletVersatil / Mathf.Min(3f, levelProjecting) * Time.fixedDeltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
     }

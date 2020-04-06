@@ -55,7 +55,7 @@ public class BaseAttackCollision : MonoBehaviour
             }
 
             if (ec.projected == false)
-            ec.TakeForce(player.direction.normalized, forceValue, levelMultiplicator * bulletLevel);
+            ec.TakeForce(player.directionAim.normalized, forceValue, levelMultiplicator * bulletLevel);
 
             bulletLevel = 1;
         }

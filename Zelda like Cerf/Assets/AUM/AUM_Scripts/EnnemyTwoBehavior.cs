@@ -19,10 +19,12 @@ public class EnnemyTwoBehavior : Ennemy_Controller
     float distanceToTarget;
     public float forcePierreLaunch;
     public GameObject pierrePrefab;
-    public Transform pierresParent;
+    Transform pierresParent;
 
     Elements_Controller currentPierre;
     Collider2D currentPierreCol;
+    Bullet_Versatil_Controller currentPierreBullet;
+    bool launched = false;
 
     public Collider2D physicCollider;
 
@@ -34,6 +36,8 @@ public class EnnemyTwoBehavior : Ennemy_Controller
         base.Start();
 
         WanderingNewDirection();
+
+        pierresParent = transform.parent.parent.Find("Autres");
     }
 
     // Update is called once per frame
@@ -44,6 +48,39 @@ public class EnnemyTwoBehavior : Ennemy_Controller
         if (projected)
         {
             playerDetected = true;
+        }
+
+        if (currentPierre != null)
+        {
+            currentPierre.transform.position = transform.position + (player.transform.position - transform.position).normalized * 1.5f;
+
+            currentPierreBullet = currentPierre.GetComponentInChildren<Bullet_Versatil_Controller>();
+
+            if (currentPierreBullet != null)
+            {
+                if (currentPierreBullet.levelProjecting >= 2)
+                {
+                    launched = false;
+                    carrying = false;
+                    currentPierre = null;
+                    Physics2D.IgnoreCollision(currentPierreCol, physicCollider, false);
+                    attackCooldownTimer = 0;
+                }
+                else
+                {
+                    player.GetComponent<Player_Main_Controller>().stunned = false;
+                    currentPierre.StopCoroutine(currentPierre.lastTakeForce);
+                    Destroy(currentPierreBullet.gameObject);
+                }
+            }
+            else if (launched)
+            {
+                launched = false;
+                carrying = false;
+                currentPierre = null;
+                Physics2D.IgnoreCollision(currentPierreCol, physicCollider, false);
+                attackCooldownTimer = 0;
+            }
         }
 
         if (stuned == true || projected == true)
@@ -67,6 +104,10 @@ public class EnnemyTwoBehavior : Ennemy_Controller
                     ennemyControllersList.RemoveAt(i);
                 }
             }
+
+            caisseControllersList = caisseControllersList.OrderBy(
+            x => Vector2.Distance(player.transform.position, x.transform.position)
+            ).ToList();
 
             ennemyControllersList = ennemyControllersList.OrderBy(
             x => Vector2.Distance(player.transform.position, x.transform.position)
@@ -122,21 +163,7 @@ public class EnnemyTwoBehavior : Ennemy_Controller
                     lastAttack = StartCoroutine(Attack1());
                 }
 
-            }            
-
-            if (currentPierre != null)
-            {
-                currentPierre.transform.position = transform.position + (player.transform.position - transform.position).normalized * 1.5f;
-
-                if (currentPierre.projected == true)
-                {
-                    carrying = false;
-                    currentPierre = null;
-                    Physics2D.IgnoreCollision(currentPierreCol, physicCollider, false);
-                    attackCooldownTimer = 0;
-                }
-            }
-            
+            }                        
 
         }
 
@@ -150,10 +177,24 @@ public class EnnemyTwoBehavior : Ennemy_Controller
     {
         if(!carrying)
         {
-            currentPierre = Instantiate(pierrePrefab, pierresParent).GetComponent<Elements_Controller>();
+            if(caisseControllersList[0] != null)
+            {
+                if (Vector2.Distance(caisseControllersList[0].transform.position, transform.position) > 4.5f)
+                {
+                    currentPierre = Instantiate(pierrePrefab, pierresParent).GetComponent<Elements_Controller>();
+                }
+                else
+                {
+                    currentPierre = caisseControllersList[0];
+                }
+            }
+            else
+            {
+                currentPierre = Instantiate(pierrePrefab, pierresParent).GetComponent<Elements_Controller>();
+            }
+            
             currentPierreCol = currentPierre.GetComponentInChildren<Collider2D>();
             carrying = true;
-
         }
         else
         {
@@ -172,6 +213,8 @@ public class EnnemyTwoBehavior : Ennemy_Controller
             currentPierre.rb.AddForce(directionAttack * forcePierreLaunch, ForceMode2D.Impulse);
 
             attacking = false;
+
+            launched = true;
         }
 
         attackCooldownTimer = 0;
