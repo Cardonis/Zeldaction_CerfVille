@@ -38,7 +38,8 @@ public class BaseAttackCollision : MonoBehaviour
 
             if(enC != null)
             {
-                if(enC.attacking == true)
+                FindObjectOfType<AudioManager>().Play("Coup_de_vent_sweetSpot");
+                if (enC.attacking == true)
                 {
                     enC.StopCoroutine(enC.lastAttack);
                     enC.attacking = false;
