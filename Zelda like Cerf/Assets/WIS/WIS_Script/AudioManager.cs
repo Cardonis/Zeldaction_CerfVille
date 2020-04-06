@@ -120,94 +120,30 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    public void Stop(string name)
+    {
+
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+
+            Debug.LogWarning("Sound : " + name + " not found !");
+            return;
+
+        }
+
+        s.source.Stop();
+
+    }
+
 
     // Update is called once per frame
     void Update()
     {
 
-        if (player.baseAttacking == true)
-        {
-
-            Play("Coup_de_vent");
 
 
-        }
 
-        if (player.life != playerlife)
-        {
-
-            Play("Player_take_damage");
-
-        }
-
-        if (Input.GetButton("X"))
-        {
-            if (buttonXcharge > 0 && buttonXcharge < 1)
-            {
-
-                Play("Capa_charge_niv1");
-                AlreadyPlay("Capa_charge_niv1");
-                buttonXcharge += Time.deltaTime;
-                nivCharge = 1;
-
-            } else if (buttonXcharge > 1 && buttonXcharge < 2)
-            {
-
-                Play("Capa_charge_niv2");
-                AlreadyPlay("Capa_charge_niv2");
-                buttonXcharge += Time.deltaTime;
-                nivCharge = 2;
-
-            } else if (buttonXcharge > 2 && buttonXcharge < 3)
-            {
-
-                Play("Capa_charge_niv3");
-                AlreadyPlay("Capa_charge_niv3");
-                buttonXcharge += Time.deltaTime;
-                nivCharge = 3;
-
-            } else
-            {
-
-                buttonXcharge += Time.deltaTime;
-
-            }
-
-        }
-
-        if(Input.GetButtonUp("X"))
-        {
-
-            RePlay("Capa_charge_niv1");
-            RePlay("Capa_charge_niv2");
-            RePlay("Capa_charge_niv3");
-
-            switch (nivCharge)
-            {
-
-                case 1:
-                    Play("Capa_simple_niv1");
-                    nivCharge = 0;
-                    break;
-
-                case 2:
-                    Play("Capa_simple_niv2");
-                    nivCharge = 0;
-                    break;
-
-                case 3:
-                    Play("Capa_simple_niv3");
-                    nivCharge = 0;
-                    break;
-
-                default:
-                    break;
-            }
-
-
-        }
-        
-        playerlife = player.life;
 
     }
 }
