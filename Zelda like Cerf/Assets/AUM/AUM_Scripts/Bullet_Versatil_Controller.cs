@@ -13,6 +13,8 @@ public class Bullet_Versatil_Controller : MonoBehaviour
 
     Transform touchedTarget;
 
+    
+
 
     // Update is called once per frame
     void Update()
@@ -73,7 +75,27 @@ public class Bullet_Versatil_Controller : MonoBehaviour
 
             }
 
-            ec.StartTakeForce(player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack, levelProjecting);
+            bool isTractable = true;
+
+            Ronces ronce = ec.GetComponent<Ronces>();
+            if(ronce != null)
+            {
+                if(levelProjecting < 2)
+                {
+                    isTractable = false;
+                    Destroy(gameObject);
+                }
+                else
+                {
+                   
+                    ronce.StartDestruction();
+                }
+            }
+
+            if (isTractable)
+            {
+                ec.StartTakeForce(player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack, levelProjecting);
+            }
             
         }
     }
