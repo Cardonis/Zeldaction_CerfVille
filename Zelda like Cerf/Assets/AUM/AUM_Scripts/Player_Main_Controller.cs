@@ -192,7 +192,11 @@ public class Player_Main_Controller : MonoBehaviour
                     }
                     else if (multipleAttack == true)
                     {
-                        StartCoroutine(MultiplesVersatilAttack());
+                        if (chargeTimer < chargeTime)
+                        {
+                            chargeTimer += Time.deltaTime;
+                            barsCharge.SetActive(true);
+                        }
                     }
                     
                 }
@@ -216,7 +220,18 @@ public class Player_Main_Controller : MonoBehaviour
                     }
                     else if(multipleAttack == true)
                     {
-                        StartCoroutine(MultiplesVersatilAttack());
+                        if (chargeTimer >= chargeTime)
+                        {
+                            StartCoroutine(MultiplesVersatilAttack(levelMultiplicator[2]));
+                        }
+                        else if (chargeTimer >= (chargeTime * (1f / 3f)))
+                        {
+                            StartCoroutine(MultiplesVersatilAttack(levelMultiplicator[1]));
+                        }
+                        else if (chargeTimer < chargeTime * (1f / 3f))
+                        {
+                            StartCoroutine(MultiplesVersatilAttack(levelMultiplicator[0]));
+                        }
                     }
 
                     chargeTimer = 0;
@@ -330,7 +345,7 @@ public class Player_Main_Controller : MonoBehaviour
         baseAttacking = false;
     }
 
-    IEnumerator MultiplesVersatilAttack()
+    IEnumerator MultiplesVersatilAttack(float levelProjecting)
     {
         List<Elements_Controller> copyMarquageControllers = new List<Elements_Controller>();
 
@@ -350,7 +365,7 @@ public class Player_Main_Controller : MonoBehaviour
         {
             canAccelerate = true;
 
-            VersatilAttack(copyMarquageControllers[i].transform, levelMultiplicator[0]);
+            VersatilAttack(copyMarquageControllers[i].transform, levelProjecting);
 
             MarquageController mC = copyMarquageControllers[i].GetComponentInChildren<MarquageController>();
 
@@ -398,7 +413,7 @@ public class Player_Main_Controller : MonoBehaviour
         bullet.maxDistance = 20;
         bullet.levelProjecting = levelProjecting;
 
-        bullet.rb.velocity = (target.position - transform.position).normalized * (speedBulletVersatil * levelProjecting * 2.5f) * Time.fixedDeltaTime;
+        bullet.rb.velocity = (target.position - transform.position).normalized * speedBulletVersatil / Mathf.Min(3f, levelProjecting) * Time.fixedDeltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
     }
