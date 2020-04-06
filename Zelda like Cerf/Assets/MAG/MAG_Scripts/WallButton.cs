@@ -5,7 +5,6 @@ using UnityEngine;
 public class WallButton : Buttonmanager
 {
     public int scoreNeeded;
-    public Vector2 buttonSize;
     int detectedObjectMass;
     float detectedObjectProjectionLevel;
     SpriteRenderer buttonSprite;

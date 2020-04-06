@@ -20,6 +20,8 @@ public class Elements_Controller : MonoBehaviour
 
     [HideInInspector] public Coroutine lastTakeForce;
 
+    
+
 
     public void TakeForce(Vector2 direction, float forceValue, float levelMultiplicator)
     {
