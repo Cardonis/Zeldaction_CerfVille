@@ -255,7 +255,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -357,6 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projected: 0
+  playerProjected: 0
   stuned: 0
   rb: {fileID: 0}
   mass: 3
@@ -376,6 +377,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   ennemyControllersList: []
+  caisseControllersList: []
   minWanderingDistance: 1
   maxWanderingDistance: 2
   canMove: 1
@@ -389,5 +391,4 @@ MonoBehaviour:
   forcePierreLaunch: 50
   pierrePrefab: {fileID: 1812700482024183144, guid: 0cbeb0b8f91386d4f8c33ec92a3fc4e3,
     type: 3}
-  pierresParent: {fileID: 0}
   physicCollider: {fileID: 6823094215960403234}

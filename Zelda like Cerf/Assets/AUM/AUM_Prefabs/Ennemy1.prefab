@@ -106,7 +106,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 4516195183503993703}
   - component: {fileID: 6640396003243505801}
   m_Layer: 0
-  m_Name: Caisse (6)
+  m_Name: Ennemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,18 +206,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projected: 0
+  playerProjected: 0
+  stuned: 0
   rb: {fileID: 0}
+  mass: 0
+  levelProjected: 0
   player: {fileID: 0}
+  marquageManager: {fileID: 0}
   recoveryValue: 1
-  velocityToGetDamage: 10
   pv: 5
-  ennemiSpeed: 1
-  kockbackDistance: 0
-  distanceToDash: 2
-  timeDashCharge: 1
-  recoveryTime: 1
-  dashSpeed: 5
+  speed: 0
+  detectionAngle: 0
+  playerDetected: 0
+  marqued: 0
+  playerAngle: 0
+  direction: {x: 0, y: 0}
+  attacking: 0
+  detection:
+    serializedVersion: 2
+    m_Bits: 0
+  ennemyControllersList: []
+  caisseControllersList: []
+  minWanderingDistance: 0
+  maxWanderingDistance: 0
   canMove: 1
-  canDash: 1
-  dashColor: {r: 0.93350255, g: 1, b: 0, a: 1}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  attackSpeed: 0
+  attackCooldown: 0
+  attackCollider: {fileID: 0}
+  physicCollider: {fileID: 0}
+  attackForce: 0
+  hasAttacked: 0
+  attackDirection: {x: 0, y: 0}
+  limierControllers: []

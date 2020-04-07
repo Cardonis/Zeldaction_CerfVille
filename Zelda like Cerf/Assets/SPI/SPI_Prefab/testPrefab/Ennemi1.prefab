@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6484802860327956042}
   - component: {fileID: 6484802860327956043}
   m_Layer: 0
-  m_Name: item-chicken-nuggets
+  m_Name: Ennemi1
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,10 +94,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7ff158b3903e9499efa7cfedc793eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projected: 0
+  playerProjected: 0
+  stuned: 0
+  rb: {fileID: 0}
+  mass: 0
+  levelProjected: 0
   player: {fileID: 0}
-  ennemiSpeed: 1
-  distanceToDash: 2
-  timeDashCharge: 1
-  recoveryTime: 1
-  dashSpeed: 5
+  marquageManager: {fileID: 0}
+  recoveryValue: 0
+  pv: 0
+  speed: 0
+  detectionAngle: 0
+  playerDetected: 0
+  marqued: 0
+  playerAngle: 0
+  direction: {x: 0, y: 0}
+  attacking: 0
+  detection:
+    serializedVersion: 2
+    m_Bits: 0
+  ennemyControllersList: []
+  caisseControllersList: []
+  minWanderingDistance: 0
+  maxWanderingDistance: 0
   canMove: 1
+  attackSpeed: 0
+  attackCooldown: 0
+  attackCollider: {fileID: 0}
+  physicCollider: {fileID: 0}
+  attackForce: 0
+  hasAttacked: 0
+  attackDirection: {x: 0, y: 0}
+  limierControllers: []

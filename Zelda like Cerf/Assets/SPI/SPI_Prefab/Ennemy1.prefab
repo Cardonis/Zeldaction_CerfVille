@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projected: 0
+  playerProjected: 0
   stuned: 0
   rb: {fileID: 0}
   mass: 1
@@ -139,7 +140,6 @@ MonoBehaviour:
   player: {fileID: 0}
   marquageManager: {fileID: 0}
   recoveryValue: 1
-  velocityToGetDamage: 10
   pv: 5
   speed: 50
   detectionAngle: 40
@@ -152,18 +152,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   ennemyControllersList: []
+  caisseControllersList: []
   minWanderingDistance: 1.08
   maxWanderingDistance: 3.39
+  canMove: 1
   attackSpeed: 100
   attackCooldown: 2
   attackCollider: {fileID: 663556553}
   physicCollider: {fileID: 3326387116788173215}
   attackForce: 30
   hasAttacked: 0
-  canMove: 1
-  canDash: 1
-  dashColor: {r: 0.93350255, g: 1, b: 0, a: 1}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
   attackDirection: {x: 0, y: 0}
   limierControllers:
   - {fileID: 0}
@@ -218,7 +216,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
