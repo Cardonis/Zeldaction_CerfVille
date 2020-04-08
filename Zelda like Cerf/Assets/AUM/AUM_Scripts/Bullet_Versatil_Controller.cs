@@ -75,24 +75,20 @@ public class Bullet_Versatil_Controller : MonoBehaviour
 
             }
 
-            bool isTractable = true;
 
             Ronces ronce = ec.GetComponent<Ronces>();
             if(ronce != null)
             {
-                if(levelProjecting < 2)
+                if(levelProjecting < (ronce.isARonceEpaisse ? 3 : 2))
                 {
-                    isTractable = false;
-                    Destroy(gameObject);
+                    ronce.StartCantDestroy(gameObject);
                 }
                 else
                 {
-                   
-                    ronce.StartDestruction();
+                    ronce.StartDestruction(levelProjecting, player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack);
                 }
             }
-
-            if (isTractable)
+            else
             {
                 ec.StartTakeForce(player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack, levelProjecting);
             }
