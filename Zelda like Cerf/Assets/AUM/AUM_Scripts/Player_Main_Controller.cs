@@ -354,6 +354,15 @@ public class Player_Main_Controller : MonoBehaviour
             animator.SetBool("IsMoving", false);
         }
 
+        if (0.8 < input.magnitude)
+        {
+            animator.SetBool("IsRunning", true);
+        }
+        else 
+        {
+            animator.SetBool("IsRunning", false);
+        }
+
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
 
