@@ -8,23 +8,28 @@ public class Door : MonoBehaviour
     bool isOpen;
     Collider2D doorCollider;
     SpriteRenderer doorSprite;
+    public TimeConnectors timeConnectors;
     void Start()
     {
         doorCollider = GetComponentInChildren<Collider2D>();
         doorSprite = GetComponentInChildren<SpriteRenderer>();
+        
     }
 
     void Update()
     {
-        isOpen = true;
+        isOpen = false;
         foreach(Buttonmanager button in connectedButtons )
         {
             if( button.isPressed == false)
             {
-                isOpen = false;
+                isOpen = true;
             }
         }
-
+        
+        if(timeConnectors.openDoor == true) {
+            isOpen = true;
+        }
         doorCollider.enabled = !isOpen;
         doorSprite.enabled = !isOpen;
     }

@@ -15,6 +15,13 @@ public class WallButton : Buttonmanager
         buttonSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
+    void Update()
+    {
+        if(isPressed == false)
+        {
+            buttonSprite.color = Color.black;
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Elements_Controller element = collision.collider.GetComponentInParent<Elements_Controller>();
