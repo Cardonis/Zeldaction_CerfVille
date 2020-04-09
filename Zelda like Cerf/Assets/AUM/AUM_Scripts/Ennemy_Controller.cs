@@ -8,6 +8,7 @@ public abstract class Ennemy_Controller : Elements_Controller
     public float pv;
     public float speed;
     public float detectionAngle;
+    public float detectionDistance;
     public bool playerDetected;
     [HideInInspector] public bool marqued;
     [HideInInspector] public float playerAngle;
@@ -26,8 +27,11 @@ public abstract class Ennemy_Controller : Elements_Controller
     [Range(0.5f, 3f)] public float minWanderingDistance;
     [Range(2f, 6f)] public float maxWanderingDistance;
     bool canWander;
-    Vector2 target;
-    [HideInInspector] public bool canMove = true;
+    public Vector2 target;
+    public bool canMove = true;
+    float wanderingTime;
+
+    public Collider2D col;
 
     public override void OnCollisionEnter2D(Collision2D collision)
     {
@@ -104,29 +108,39 @@ public abstract class Ennemy_Controller : Elements_Controller
 
     public void Wandering()
     {
-        if (target != Vector2.zero)
+        if (canMove == true)
         {
             direction = (target - (Vector2)transform.position).normalized;
+        }
+        else
+        {
+            direction = Vector2.zero;
+        }
+
+        if (wanderingTime >= 0)
+        {
+            wanderingTime -= Time.deltaTime;
         }
 
         Detection();
 
-        if (Vector2.Distance(target, transform.position) <= 0.1f)
+        if (Vector2.Distance(target, transform.position) <= 0.1f || wanderingTime < 0)
         {
             if (canWander == false)
             {
                 cooldownWandering = Random.Range(1f, 2f);
                 canWander = true;
+                canMove = false;
             }
             else
             {
-                canMove = false;
 
                 cooldownWandering -= Time.deltaTime;
 
                 if (cooldownWandering <= 0)
                 {
                     WanderingNewDirection();
+                    wanderingTime = Random.Range(1f, 2f);
                 }
             }
         }
@@ -134,25 +148,29 @@ public abstract class Ennemy_Controller : Elements_Controller
 
     public void WanderingNewDirection()
     {
-        target = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(minWanderingDistance, maxWanderingDistance);
-        canMove = true;
+        target = (new Vector2(Random.Range(-1, 1f), Random.Range(-1, 1f)).normalized * Random.Range(minWanderingDistance, maxWanderingDistance)) + (Vector2)transform.position;
         canWander = false;
+        canMove = true;
     }
 
     public void Detection()
     {
-        playerAngle = Vector2.Angle(direction, player.transform.position);
+        playerAngle = Vector2.Angle(direction, player.transform.position - transform.position);
+
 
         if (playerAngle <= detectionAngle)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, Mathf.Min( 5f, Vector2.Distance(transform.position, player.transform.position) ), detection);
+            col.enabled = false;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position,Mathf.Infinity , detection);
+            col.enabled = true;
 
-
-            if(hit.collider != null)
+            if(hit.collider.attachedRigidbody != null)
             {
+                if(hit.distance <= detectionDistance)
                 if (hit.collider.attachedRigidbody.transform.tag == "Player")
                 {
                     playerDetected = true;
+                    canMove = true;
                 }
             }
             
