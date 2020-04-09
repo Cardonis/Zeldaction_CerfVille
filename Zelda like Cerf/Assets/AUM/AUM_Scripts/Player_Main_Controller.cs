@@ -12,6 +12,8 @@ public class Player_Main_Controller : MonoBehaviour
 
     Text lifeText;
 
+    public int part;
+
     [HideInInspector] public Collider2D physicCollider;
 
     [Header("Base Attack")]
@@ -35,6 +37,8 @@ public class Player_Main_Controller : MonoBehaviour
     float timerCooldownVersatilAttack;
     public float chargeTime;
     float chargeTimer;
+    float chargeTimeLevel2;
+    float chargeTimeLevel3;
     bool multipleAttack = false;
     float chargeSpeedMultiplicator;
     public float forceValueVersatilAttack;
@@ -47,8 +51,9 @@ public class Player_Main_Controller : MonoBehaviour
     public List<float> levelMultiplicator = new List<float>();
 
     //PlaceHolder pour le  moment, avec l'animation il y en aura pas besoin
-    GameObject barsCharge;
-    Transform barCharge;
+    public GameObject barsCharge2;
+    public GameObject barsCharge3;
+    public Transform barCharge;
 
     [HideInInspector] public Transform vBullets;
 
@@ -87,9 +92,6 @@ public class Player_Main_Controller : MonoBehaviour
 
         arrowDirection = transform.Find("Arrow");
 
-        barsCharge = transform.Find("BarsCharge").gameObject;
-        barCharge = barsCharge.transform.Find("BarCharge");
-
         vBullets = GameObject.Find("VBullets").transform;
 
         lifeText = GameObject.Find("LifeText").GetComponent<Text>();
@@ -98,6 +100,9 @@ public class Player_Main_Controller : MonoBehaviour
         marquageManager = GameObject.Find("MarquageManager").GetComponent<MarquageManager>();
 
         rb = GetComponent<Rigidbody2D>();
+
+        chargeTimeLevel2 = chargeTime / 3f;
+        chargeTimeLevel3 = chargeTime;
 
         for (int i = 0; i < baseAttackColliders.Length; i++)
         {
@@ -109,7 +114,9 @@ public class Player_Main_Controller : MonoBehaviour
             baseAttackColliders[i].enabled = false;
         }
 
-        barsCharge.SetActive(false);
+        barsCharge2.SetActive(false);
+        barsCharge3.SetActive(false);
+        barCharge.gameObject.SetActive(false);
     }
 
 
@@ -165,12 +172,23 @@ public class Player_Main_Controller : MonoBehaviour
             timerCooldownBaseAttack -= Time.deltaTime;
         }
 
-        if (timerCooldownVersatilAttack < 0)
+        if (timerCooldownVersatilAttack < 0 && part >= 2)
         {
             if(!projected && !stunned)
             {
                 if(Input.GetButtonDown("RB"))
                 {
+                    if(part == 3)
+                    {
+                        chargeTime = chargeTimeLevel3;
+                        barsCharge3.SetActive(true);
+                    }
+                    else
+                    {
+                        chargeTime = chargeTimeLevel2;
+                        barsCharge2.SetActive(true);
+                    }
+
                     if(marquageManager.marquageControllers.Count == 0)
                     {
                         multipleAttack = false;
@@ -180,7 +198,7 @@ public class Player_Main_Controller : MonoBehaviour
                         multipleAttack = true;
                     }
                     FindObjectOfType<AudioManager>().Play("Capa_charge");
-                    barsCharge.SetActive(true);
+                    barCharge.gameObject.SetActive(true);
                 }
 
                 if (Input.GetButton("RB"))
@@ -190,7 +208,6 @@ public class Player_Main_Controller : MonoBehaviour
                         if (chargeTimer < chargeTime)
                         {
                             chargeTimer += Time.deltaTime;
-                            barsCharge.SetActive(true);
                         }
                     }
                     else if (multipleAttack == true)
@@ -198,10 +215,19 @@ public class Player_Main_Controller : MonoBehaviour
                         if (chargeTimer < chargeTime)
                         {
                             chargeTimer += Time.deltaTime;
-                            barsCharge.SetActive(true);
                         }
                     }
-                    
+
+                    if (part == 3)
+                    {
+                        barsCharge3.SetActive(true);
+                    }
+                    else
+                    {
+                        barsCharge2.SetActive(true);
+                    }
+
+                    barCharge.gameObject.SetActive(true);
                 }
 
                 if(Input.GetButtonUp("RB"))
@@ -210,41 +236,74 @@ public class Player_Main_Controller : MonoBehaviour
 
                     if (multipleAttack == false)
                     {
-                        if (chargeTimer >= chargeTime)
+                        if(part == 3)
                         {
-                             VersatilAttack(levelMultiplicator[2]);
-                             FindObjectOfType<AudioManager>().Play("Capa_simple_niv3");
+                            if (chargeTimer >= chargeTime)
+                            {
+                                VersatilAttack(levelMultiplicator[2]);
+                                FindObjectOfType<AudioManager>().Play("Capa_simple_niv3");
+                            }
+                            else if (chargeTimer >= (chargeTime * (1f / 3f)))
+                            {
+                                VersatilAttack(levelMultiplicator[1]);
+                                FindObjectOfType<AudioManager>().Play("Capa_simple_niv2");
+                            }
+                            else if (chargeTimer < chargeTime * (1f / 3f))
+                            {
+                                VersatilAttack(levelMultiplicator[0]);
+                                FindObjectOfType<AudioManager>().Play("Capa_simple_niv1");
+                            }
                         }
-                        else if (chargeTimer >= (chargeTime * (1f / 3f)) )
+                        else if(part == 2)
                         {
-                            VersatilAttack(levelMultiplicator[1]);
-                            FindObjectOfType<AudioManager>().Play("Capa_simple_niv2");
+                            if (chargeTimer >= chargeTime)
+                            {
+                                VersatilAttack(levelMultiplicator[1]);
+                                FindObjectOfType<AudioManager>().Play("Capa_simple_niv2");
+                            }
+                            else
+                            {
+                                VersatilAttack(levelMultiplicator[0]);
+                                FindObjectOfType<AudioManager>().Play("Capa_simple_niv1");
+                            }
                         }
-                        else if (chargeTimer < chargeTime * (1f / 3f))
-                        {
-                            VersatilAttack(levelMultiplicator[0]);
-                            FindObjectOfType<AudioManager>().Play("Capa_simple_niv1");
-                        }
+                        
                     }
                     else if(multipleAttack == true)
                     {
-                        if (chargeTimer >= chargeTime)
+                        if (part == 3)
                         {
-                            StartCoroutine(MultiplesVersatilAttack(levelMultiplicator[2]));
+                            if (chargeTimer >= chargeTime)
+                            {
+                                StartCoroutine(MultiplesVersatilAttack(levelMultiplicator[2]));
+                            }
+                            else if (chargeTimer >= (chargeTime * (1f / 3f)))
+                            {
+                                StartCoroutine(MultiplesVersatilAttack(levelMultiplicator[1]));
+                            }
+                            else if (chargeTimer < chargeTime * (1f / 3f))
+                            {
+                                StartCoroutine(MultiplesVersatilAttack(levelMultiplicator[0]));
+                            }
                         }
-                        else if (chargeTimer >= (chargeTime * (1f / 3f)))
+                        else if (part == 2)
                         {
-                            StartCoroutine(MultiplesVersatilAttack(levelMultiplicator[1]));
-                        }
-                        else if (chargeTimer < chargeTime * (1f / 3f))
-                        {
-                            StartCoroutine(MultiplesVersatilAttack(levelMultiplicator[0]));
+                            if (chargeTimer >= chargeTime)
+                            {
+                                StartCoroutine(MultiplesVersatilAttack(levelMultiplicator[1]));
+                            }
+                            else
+                            {
+                                StartCoroutine(MultiplesVersatilAttack(levelMultiplicator[0]));
+                            }
                         }
                     }
 
                     chargeTimer = 0;
 
-                    barsCharge.SetActive(false);
+                    barsCharge2.SetActive(false);
+                    barsCharge3.SetActive(false);
+                    barCharge.gameObject.SetActive(false);
 
                 }
 
@@ -253,7 +312,9 @@ public class Player_Main_Controller : MonoBehaviour
             {
                 chargeTimer = 0;
 
-                barsCharge.SetActive(false);
+                barsCharge2.SetActive(false);
+                barsCharge3.SetActive(false);
+                barCharge.gameObject.SetActive(false);
             }
 
         }
@@ -264,7 +325,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         chargeSpeedMultiplicator = 1 - ((chargeTimer) / (chargeTime + 0.6f));
 
-        barCharge.localScale = new Vector2((chargeTimer) / (chargeTime), barCharge.localScale.y);
+        barCharge.localScale = new Vector2(((chargeTimer) / (chargeTime)) * 1.5f, barCharge.localScale.y );
 
         directionAngle = Vector2.Angle(transform.right, direction);
 
@@ -313,10 +374,19 @@ public class Player_Main_Controller : MonoBehaviour
         //Activation des Sprite Renderes
         for (int i = 0; i < baseAttackSRs.Length; i++)
         {
+            if(i != 0)
             baseAttackSRs[i].enabled = true;
+            else
+            {
+                if(part >= 2)
+                {
+                    baseAttackSRs[i].enabled = true;
+                }
+            }
         }
 
         //Activation de l'hitbox du sweetspot
+        if(part >= 2)
         baseAttackColliders[0].enabled = true;
 
         yield return new WaitForSeconds(0.05f);
@@ -324,7 +394,15 @@ public class Player_Main_Controller : MonoBehaviour
         //Activation de toutes les hitboxs
         for (int i = 0; i < baseAttackColliders.Length; i++)
         {
-            baseAttackColliders[i].enabled = true;
+            if (i != 0)
+                baseAttackColliders[i].enabled = true;
+            else
+            {
+                if (part >= 2)
+                {
+                    baseAttackColliders[i].enabled = true;
+                }
+            }
         }
 
         //Attack duration + knock back
@@ -339,7 +417,15 @@ public class Player_Main_Controller : MonoBehaviour
 
         for (int i = 0; i < baseAttackSRs.Length; i++)
         {
-            baseAttackSRs[i].enabled = false;
+            if (i != 0)
+                baseAttackSRs[i].enabled = false;
+            else
+            {
+                if (part >= 2)
+                {
+                    baseAttackSRs[i].enabled = false;
+                }
+            }
         }
 
         stunned = false;
@@ -348,7 +434,15 @@ public class Player_Main_Controller : MonoBehaviour
 
         for (int i = 0; i < baseAttackColliders.Length; i++)
         {
-            baseAttackColliders[i].enabled = false;
+            if (i != 0)
+                baseAttackColliders[i].enabled = false;
+            else
+            {
+                if (part >= 2)
+                {
+                    baseAttackColliders[i].enabled = false;
+                }
+            }
         }
 
         baseAttacking = false;
@@ -460,7 +554,7 @@ public class Player_Main_Controller : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("Player_take_damage");
         Color baseColor = GetComponentInChildren<SpriteRenderer>().material.color;
 
-        GetComponentInChildren<SpriteRenderer>().material.color = new Color(255, 0, 0);
+        GetComponentInChildren<SpriteRenderer>().material.SetColor("_BaseColor", Color.red);
 
         for (float i = 0.1f; i > 0; i -= Time.deltaTime)
         {
