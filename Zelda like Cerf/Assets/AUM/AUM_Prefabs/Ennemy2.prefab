@@ -368,6 +368,7 @@ MonoBehaviour:
   pv: 8
   speed: 25
   detectionAngle: 50
+  detectionDistance: 0
   playerDetected: 0
   marqued: 0
   playerAngle: 0
@@ -380,10 +381,12 @@ MonoBehaviour:
   caisseControllersList: []
   minWanderingDistance: 1
   maxWanderingDistance: 2
+  target: {x: 0, y: 0}
   canMove: 1
+  col: {fileID: 6823094215960403234}
   attackSpeedEnnemyTarget: 200
   attackSpeedPlayerTarget: 70
-  attackCooldownCarrying: 5
+  attackCooldownCarrying: 3
   attackCooldownNotCarrying: 2
   carrying: 0
   distanceToEnnemy: 2
