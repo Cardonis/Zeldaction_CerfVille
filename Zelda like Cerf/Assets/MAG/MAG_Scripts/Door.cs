@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public List<Buttonmanager> connectedButtons = new List<Buttonmanager>();
+    public List<Buttonmanager> normalyConnectedButtons = new List<Buttonmanager>();
     bool isOpen;
     Collider2D doorCollider;
     SpriteRenderer doorSprite;
     public TimeConnectors timeConnectors;
+    public OrderConnectors orderConnectors;
     void Start()
     {
         doorCollider = GetComponentInChildren<Collider2D>();
@@ -19,7 +20,7 @@ public class Door : MonoBehaviour
     void Update()
     {
         isOpen = false;
-        foreach(Buttonmanager button in connectedButtons )
+        foreach(Buttonmanager button in normalyConnectedButtons )
         {
             if( button.isPressed == false)
             {
@@ -28,6 +29,10 @@ public class Door : MonoBehaviour
         }
         
         if(timeConnectors.openDoor == true) {
+            isOpen = true;
+        }
+        if (orderConnectors.openDoor == true)
+        {
             isOpen = true;
         }
         doorCollider.enabled = !isOpen;
