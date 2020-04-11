@@ -13,8 +13,13 @@ public class Bullet_Versatil_Controller : MonoBehaviour
 
     Transform touchedTarget;
 
-    
+    AudioManager audiomanager;
 
+
+    void Start()
+    {
+        audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -30,6 +35,7 @@ public class Bullet_Versatil_Controller : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) > maxDistance && touchedTarget == null)
         {
             player.GetComponent<Player_Main_Controller>().stunned = false;
+            audiomanager.Stop("Capa_Liane");
             Destroy(gameObject);           
         }
     }
@@ -41,13 +47,14 @@ public class Bullet_Versatil_Controller : MonoBehaviour
         if(collision.tag == "Wall")
         {
             player.GetComponent<Player_Main_Controller>().stunned = false;
+            audiomanager.Stop("Capa_Liane");
             Destroy(gameObject);
         }
 
         if (ec != null && ec.GetComponentInChildren<Bullet_Versatil_Controller>() == null)
         {
             rb.velocity = new Vector2(0, 0);
-
+            audiomanager.Play("Capa_Grab");
             touchedTarget = collision.transform;
 
             ec.stuned = false;

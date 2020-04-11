@@ -20,7 +20,7 @@ public class Elements_Controller : MonoBehaviour
 
     [HideInInspector] public Coroutine lastTakeForce;
 
-    
+    AudioManager audiomanager;
 
 
     public void TakeForce(Vector2 direction, float forceValue, float levelMultiplicator)
@@ -50,7 +50,7 @@ public class Elements_Controller : MonoBehaviour
     public IEnumerator TakeForce(float forceValue, float levelMultiplicator)
     {
         projected = true;
-
+        audiomanager.Play("Capa_Liane");
         playerProjected = true;
 
         //player.StartCoroutine(player.StunnedFor(1f));
@@ -82,7 +82,8 @@ public class Elements_Controller : MonoBehaviour
             rb.velocity = direction.normalized * (forceValue * Mathf.Sqrt(levelProjected) / 2);
             yield return null;
         }
-
+        audiomanager.Stop("Capa_Liane");
+        audiomanager.Play("Capa_Lance");
         player.stunned = false;
 
         if(GetComponentInChildren<Bullet_Versatil_Controller>() != null)
@@ -112,6 +113,8 @@ public class Elements_Controller : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player_Main_Controller>();
 
         marquageManager = GameObject.Find("MarquageManager").GetComponent<MarquageManager>();
+
+        audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     public virtual void FixedUpdate()
