@@ -19,25 +19,25 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        isOpen = false;
+        isOpen = true;
         foreach(Buttonmanager button in normalyConnectedButtons )
         {
             if( button.isPressed == false)
             {
-                isOpen = true;
+                isOpen = false;
             }
         }
         
         if(timeConnectors != null)
-            if(timeConnectors.openDoor == true)
+            if(timeConnectors.openDoor == false)
             {
-                isOpen = true;
+                isOpen = false;
             }
 
         if (orderConnectors != null)
-            if (orderConnectors.openDoor == true)
+            if (orderConnectors.openDoor == false)
             {
-                isOpen = true;
+                isOpen = false;
             }
 
         doorCollider.enabled = !isOpen;
