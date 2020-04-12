@@ -9,8 +9,10 @@ public class EnnemyThreeBehavior : Ennemy_Controller
     public float attackSpeed;
     public float attackCooldown;
     float attackCooldownTimer = 0;
+    public float attackRange;
     public Collider2D physicCollider;
     public float attackForce;
+    public float attackBulletForce;
 
     Vector2 directionForAttack;
 
@@ -56,12 +58,13 @@ public class EnnemyThreeBehavior : Ennemy_Controller
                 }
                 else
                 {
-                    if (attackCooldownTimer < attackCooldown)
-                    {
-                        attackCooldownTimer += Time.deltaTime;
-                    }
 
                     directionForAttack = Vector2.zero;
+                }
+
+                if (attackCooldownTimer < attackCooldown)
+                {
+                    attackCooldownTimer += Time.deltaTime;
                 }
 
                 direction = directionForAttack;
@@ -81,28 +84,39 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
     public override IEnumerator Attack1()
     {
+        stuned = true;
 
+        BulletAttack1 bullet = Instantiate(bulletAttack1, player.vBullets).GetComponent<BulletAttack1>();
+
+        Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
+
+        for (int i = 0; i < ennemyColliders.Length - 1; i++)
+        {
+            Physics2D.IgnoreCollision(ennemyColliders[i], bullet.GetComponentInChildren<Collider2D>(), true);
+        }
+
+        bullet.transform.position = transform.position;
+
+        //projected = true;
+        //rb.velocity = new Vector2(0, 0);
+
+        bullet.ennemyController = transform;
+        bullet.maxDistance = attackRange;
+
+        bullet.rb.velocity = (player.transform.position - transform.position).normalized * attackBulletForce * Time.fixedDeltaTime;
+
+        attackCooldownTimer = 0;
 
         yield break;
     }
 
-    public IEnumerator ApplyForce(Player_Main_Controller player ,float forceValue, float levelMultiplicator)
+    public IEnumerator ApplyForce(Player_Main_Controller player)
     {
         stuned = true;
 
         player.projected = true;
 
-        //player.StartCoroutine(player.StunnedFor(1f));
-
-        //player.rb.velocity = new Vector2(0, 0);
-
-        player.rb.velocity = new Vector2(0, 0);
-
-        levelProjected = levelMultiplicator;
-
-        Vector2 direction = player.transform.position - transform.position;
-
-        //player.direction = -direction;
+        Vector2 direction = transform.position - player.transform.position;
 
         Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
 
@@ -110,24 +124,24 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         while (direction.magnitude > 0.7f)
         {
-            for (int i = 0; i < ennemyColliders.Length - 1; i++)
+            for (int i = 0; i < ennemyColliders.Length; i++)
             {
                 Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), true);
             }
 
-            direction = (player.transform.position - transform.position);
-            rb.velocity = direction.normalized * (forceValue * Mathf.Sqrt(levelProjected) / 2);
+            direction = (transform.position - player.transform.position);
+            player.rb.velocity = direction.normalized * attackForce;
             yield return null;
         }
 
-        player.stunned = false;
+        stuned = false;
 
-        if (GetComponentInChildren<Bullet_Versatil_Controller>() != null)
-            Destroy(GetComponentInChildren<Bullet_Versatil_Controller>().gameObject);
+        if (player.GetComponentInChildren<BulletAttack1>() != null)
+            Destroy(player.GetComponentInChildren<BulletAttack1>().gameObject);
 
-        rb.velocity = new Vector2(0, 0);
+        player.rb.velocity = new Vector2(0, 0);
 
-        rb.AddForce(direction.normalized * forceValue * levelProjected, ForceMode2D.Impulse);
+        player.rb.AddForce(direction.normalized * attackForce * 3, ForceMode2D.Impulse);
 
         for (float i = 2.5f; i > 0; i -= Time.fixedDeltaTime)
         {
@@ -137,6 +151,53 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         for (int i = 0; i < ennemyColliders.Length - 1; i++)
         {
             Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), false);
+        }
+
+    }
+
+    public IEnumerator ApplyForce(Elements_Controller elementsController)
+    {
+        stuned = true;
+
+        elementsController.projected = true;
+
+        Vector2 direction = transform.position - elementsController.transform.position;
+
+        Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
+
+        Collider2D[] elementColliders = elementsController.GetComponentsInChildren<Collider2D>();
+
+        while (direction.magnitude > 0.7f)
+        {
+            for (int i = 0; i < ennemyColliders.Length; i++)
+            {
+                for (int x = 0; x < elementColliders.Length; x++)
+                    Physics2D.IgnoreCollision(ennemyColliders[i], elementColliders[x], true);
+            }
+
+            direction = (transform.position - elementsController.transform.position);
+            elementsController.rb.velocity = direction.normalized * attackForce;
+            yield return null;
+        }
+
+        stuned = false;
+
+        if (elementsController.GetComponentInChildren<BulletAttack1>() != null)
+            Destroy(elementsController.GetComponentInChildren<BulletAttack1>().gameObject);
+
+        elementsController.rb.velocity = new Vector2(0, 0);
+
+        elementsController.rb.AddForce(direction.normalized * attackForce * 3, ForceMode2D.Impulse);
+
+        for (float i = 2.5f; i > 0; i -= Time.fixedDeltaTime)
+        {
+            yield return null;
+        }
+
+        for (int i = 0; i < ennemyColliders.Length; i++)
+        {
+            for (int x = 0; x < elementColliders.Length; x++)
+                Physics2D.IgnoreCollision(ennemyColliders[i], elementColliders[x], false);
         }
 
     }

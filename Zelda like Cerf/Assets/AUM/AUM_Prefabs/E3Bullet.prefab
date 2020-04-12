@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 8955226821806060534}
   - component: {fileID: 4056904140410033863}
   m_Layer: 8
-  m_Name: E3Bullet 1
+  m_Name: E3Bullet
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,3 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1890209bd306fcd4c9a05dd86b2fc40d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lr: {fileID: 7027103313488091528}
+  ennemyController: {fileID: 0}
+  rb: {fileID: 8955226821806060534}
+  maxDistance: 0
+  levelProjecting: 0

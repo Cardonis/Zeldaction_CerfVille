@@ -28,13 +28,18 @@ public class Door : MonoBehaviour
             }
         }
         
-        if(timeConnectors.openDoor == true) {
-            isOpen = true;
-        }
-        if (orderConnectors.openDoor == true)
-        {
-            isOpen = true;
-        }
+        if(timeConnectors != null)
+            if(timeConnectors.openDoor == true)
+            {
+                isOpen = true;
+            }
+
+        if (orderConnectors != null)
+            if (orderConnectors.openDoor == true)
+            {
+                isOpen = true;
+            }
+
         doorCollider.enabled = !isOpen;
         doorSprite.enabled = !isOpen;
     }

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class EnnemyTwoBehavior : Ennemy_Controller
+public class 
+    EnnemyTwoBehavior : Ennemy_Controller
 {
     [Header("Attack 1")]
     public float attackSpeedEnnemyTarget;

@@ -49,15 +49,66 @@ public class BulletAttack1 : MonoBehaviour
 
             touchedTarget = collision.transform;
 
+            transform.SetParent(collision.transform);
+
+            GetComponentInChildren<Collider2D>().enabled = false;
+
+
+            if(pmc != null)
+            {
+                ennemyController.GetComponent<EnnemyThreeBehavior>().StartCoroutine( ennemyController.GetComponent<EnnemyThreeBehavior>().ApplyForce(pmc) );
+            }
+            else if (ec != null)
+            {
+                Ennemy_Controller enC = ec.GetComponent<Ennemy_Controller>();
+
+                if (enC != null)
+                {
+                    if (enC.attacking == true)
+                    {
+                        enC.StopCoroutine(enC.lastAttack);
+                        enC.attacking = false;
+
+                        EnnemiOneBehavior eob = enC.GetComponent<EnnemiOneBehavior>();
+
+                        if (eob != null)
+                        {
+                            eob.attackCollider.enabled = false;
+                        }
+                    }
+                }
+
+                Ronces ronce = ec.GetComponent<Ronces>();
+                if (ronce != null)
+                {
+                    ennemyController.GetComponent<EnnemyThreeBehavior>().stuned = false;
+                    Destroy(gameObject);
+                }
+
+                ennemyController.GetComponent<EnnemyThreeBehavior>().lastAttack = ennemyController.GetComponent<EnnemyThreeBehavior>().StartCoroutine( ennemyController.GetComponent<EnnemyThreeBehavior>().ApplyForce(ec) );
+            }
+        }
+
+        /*
+        Player_Main_Controller pmc = collision.attachedRigidbody.GetComponent<Player_Main_Controller>();
+        Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
+
+        if (collision.tag == "Wall")
+        {
+            ennemyController.GetComponent<EnnemyThreeBehavior>().stuned = false;
+            Destroy(gameObject);
+        }
+
+        if (ec != null || pmc != null)
+        {
+            rb.velocity = new Vector2(0, 0);
+
+            touchedTarget = collision.transform;
+
             ec.stuned = false;
 
             transform.SetParent(ec.transform);
 
-            if(pmc != null)
-            {
-                pmc.physicCollider.enabled = false;
-            }
-            else
             GetComponentInChildren<Collider2D>().enabled = false;
 
             Ennemy_Controller enC = ec.GetComponent<Ennemy_Controller>();
@@ -96,5 +147,6 @@ public class BulletAttack1 : MonoBehaviour
         {
 
         }
+        */
     }
 }

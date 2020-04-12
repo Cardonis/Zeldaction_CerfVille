@@ -3880,18 +3880,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2066983255 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5320262608857607869, guid: c04606783ffb1ba43a74b2b14916e578,
-    type: 3}
-  m_PrefabInstance: {fileID: 5320262609876966608}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f83e186a67a1604f9027c28132ec5b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2139099500
 GameObject:
   m_ObjectHideFlags: 0
@@ -4475,7 +4463,7 @@ PrefabInstance:
         type: 3}
       propertyPath: allButtons.Array.data[1]
       value: 
-      objectReference: {fileID: 2066983255}
+      objectReference: {fileID: 1484781826}
     - target: {fileID: 3398874250296155475, guid: 4649401e55cbaaa45a53ac7d7d7729aa,
         type: 3}
       propertyPath: allButtons.Array.data[2]
@@ -4688,6 +4676,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Porte
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974117041932920679, guid: d5622a434d615cd4ab78549a0ca9f41e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974117041932920679, guid: d5622a434d615cd4ab78549a0ca9f41e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5622a434d615cd4ab78549a0ca9f41e, type: 3}
