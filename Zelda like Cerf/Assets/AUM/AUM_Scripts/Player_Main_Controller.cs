@@ -83,9 +83,13 @@ public class Player_Main_Controller : MonoBehaviour
     //Variable Animator
     [HideInInspector] public Animator animator;
 
+    AudioManager audiomanager;
+
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+
+        audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         baseAttackCollidersParent = transform.Find("PColliders").Find("PAttackColliders").Find("PBaseAttackColliders");
         physicCollider = transform.Find("PColliders").Find("PPhysicsCollider").GetComponent<Collider2D>();
@@ -146,15 +150,15 @@ public class Player_Main_Controller : MonoBehaviour
             if (input.magnitude > 0)
             {
                 direction = input;
-                FindObjectOfType<AudioManager>().Play("Deplacement");
-                FindObjectOfType<AudioManager>().AlreadyPlay("Deplacement");
+                audiomanager.Play("Deplacement");
+                audiomanager.AlreadyPlay("Deplacement");
                 rb.velocity = direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime;
             }
             else
             {
                 rb.velocity = new Vector2(0, 0);
-                FindObjectOfType<AudioManager>().Stop("Deplacement");
-                FindObjectOfType<AudioManager>().RePlay("Deplacement");
+                audiomanager.Stop("Deplacement");
+                audiomanager.RePlay("Deplacement");
             }
         
         }
@@ -164,7 +168,7 @@ public class Player_Main_Controller : MonoBehaviour
             if ( Input.GetButtonDown("LB") && ((!projected && !stunned) || canSpringAttack) )
             {
                 lastBaseAttack = StartCoroutine(BaseAttack());
-                FindObjectOfType<AudioManager>().Play("Coup_de_vent");
+                audiomanager.Play("Coup_de_vent");
             }
         }
         else
@@ -197,7 +201,7 @@ public class Player_Main_Controller : MonoBehaviour
                     {
                         multipleAttack = true;
                     }
-                    FindObjectOfType<AudioManager>().Play("Capa_charge");
+                    audiomanager.Play("Capa_charge");
                     barCharge.gameObject.SetActive(true);
                 }
 
@@ -232,7 +236,7 @@ public class Player_Main_Controller : MonoBehaviour
 
                 if(Input.GetButtonUp("RB"))
                 {
-                    FindObjectOfType<AudioManager>().Stop("Capa_charge");
+                    audiomanager.Stop("Capa_charge");
 
                     if (multipleAttack == false)
                     {
@@ -241,17 +245,14 @@ public class Player_Main_Controller : MonoBehaviour
                             if (chargeTimer >= chargeTime)
                             {
                                 VersatilAttack(levelMultiplicator[2]);
-                                FindObjectOfType<AudioManager>().Play("Capa_simple_niv3");
                             }
                             else if (chargeTimer >= (chargeTime * (1f / 3f)))
                             {
                                 VersatilAttack(levelMultiplicator[1]);
-                                FindObjectOfType<AudioManager>().Play("Capa_simple_niv2");
                             }
                             else if (chargeTimer < chargeTime * (1f / 3f))
                             {
                                 VersatilAttack(levelMultiplicator[0]);
-                                FindObjectOfType<AudioManager>().Play("Capa_simple_niv1");
                             }
                         }
                         else if(part == 2)
@@ -259,12 +260,10 @@ public class Player_Main_Controller : MonoBehaviour
                             if (chargeTimer >= chargeTime)
                             {
                                 VersatilAttack(levelMultiplicator[1]);
-                                FindObjectOfType<AudioManager>().Play("Capa_simple_niv2");
                             }
                             else
                             {
                                 VersatilAttack(levelMultiplicator[0]);
-                                FindObjectOfType<AudioManager>().Play("Capa_simple_niv1");
                             }
                         }
                         
@@ -479,6 +478,7 @@ public class Player_Main_Controller : MonoBehaviour
 
             VersatilAttack(copyMarquageControllers[i].transform, levelProjecting);
 
+            
             MarquageController mC = copyMarquageControllers[i].GetComponentInChildren<MarquageController>();
 
             if (mC != null)
@@ -500,6 +500,7 @@ public class Player_Main_Controller : MonoBehaviour
     void VersatilAttack(float levelProjecting)
     {
         Bullet_Versatil_Controller bullet = Instantiate(bulletVersatilAttack, vBullets).GetComponent<Bullet_Versatil_Controller>();
+        audiomanager.Play("Capa_Liane");
 
         bullet.transform.position = transform.position;
 
@@ -518,7 +519,7 @@ public class Player_Main_Controller : MonoBehaviour
     void VersatilAttack(Transform target, float levelProjecting)
     {
         Bullet_Versatil_Controller bullet = Instantiate(bulletVersatilAttack, vBullets).GetComponent<Bullet_Versatil_Controller>();
-
+        audiomanager.Play("Capa_Liane");
         bullet.transform.position = transform.position;
 
         bullet.player = transform;
@@ -560,7 +561,7 @@ public class Player_Main_Controller : MonoBehaviour
     public IEnumerator TakeDamage(int damageTaken)
     {
         life -= damageTaken;
-        FindObjectOfType<AudioManager>().Play("Player_take_damage");
+        audiomanager.Play("Player_take_damage");
         Color baseColor = GetComponentInChildren<SpriteRenderer>().material.color;
 
         GetComponentInChildren<SpriteRenderer>().material.SetColor("_BaseColor", Color.red);
