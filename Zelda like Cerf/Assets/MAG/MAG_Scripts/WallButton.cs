@@ -20,6 +20,8 @@ public class WallButton : Buttonmanager
         if(isPressed == false)
         {
             buttonSprite.color = Color.black;
+            detectedObjectMass = 0;
+            detectedObjectProjectionLevel = 0;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
