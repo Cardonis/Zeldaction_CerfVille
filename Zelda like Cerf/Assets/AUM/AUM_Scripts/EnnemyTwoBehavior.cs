@@ -202,7 +202,7 @@ public class EnnemyTwoBehavior : Ennemy_Controller
 
             Vector2 directionAttack = (player.transform.position - transform.position).normalized;
 
-            for(float i = 1.5f; i > 0.75f; i -= Time.deltaTime * 0.75f)
+            for(float i = 1.5f; i > 0.75f; i -= Time.deltaTime * 1f)
             {
                 currentPierre.transform.position = (Vector2)transform.position + directionAttack * i;
                 yield return null;
