@@ -7,6 +7,7 @@ public class Bullet_Versatil_Controller : MonoBehaviour
     public LineRenderer lr;
     [HideInInspector] public Transform player;
     public Rigidbody2D rb;
+    
     [HideInInspector] public float maxDistance;
 
     [HideInInspector] public float levelProjecting;
@@ -81,7 +82,13 @@ public class Bullet_Versatil_Controller : MonoBehaviour
                 }
 
             }
-
+            
+            HealthFlower healthFlower = ec.GetComponent<HealthFlower>();
+            if(healthFlower != null)
+            {
+                
+                StartCoroutine (healthFlower.FlowerGrabed(player.GetComponent<Player_Main_Controller>(), player.position));
+            }
 
             Ronces ronce = ec.GetComponent<Ronces>();
             if(ronce != null)

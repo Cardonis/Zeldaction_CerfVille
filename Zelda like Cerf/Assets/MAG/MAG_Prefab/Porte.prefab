@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6fd4e794e47f44eb29afdce95e9612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedButtons:
-  - {fileID: 0}
-  - {fileID: 0}
+  normalyConnectedButtons: []
+  timeConnectors: {fileID: 0}
+  orderConnectors: {fileID: 0}
 --- !u!1 &4974117041890405720
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,9 +139,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4974117041932920696}
   - component: {fileID: 4974117041932920697}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
