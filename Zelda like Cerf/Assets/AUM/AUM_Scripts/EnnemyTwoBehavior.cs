@@ -31,11 +31,13 @@ public class
 
     Vector2 directionForAttack;
 
+    AudioManager audiomanager;
+
     // Start is called before the first frame update
     override public void Start()
     {
         base.Start();
-
+        audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         WanderingNewDirection();
 
         pierresParent = transform.parent.parent.Find("Autres");
@@ -176,22 +178,28 @@ public class
 
     public override IEnumerator Attack1()
     {
-        if(!carrying)
+        Destroy(GetComponent<AudioSource>());
+        Destroy(GetComponent<AudioSource>());
+        Destroy(GetComponent<AudioSource>());
+        if (!carrying)
         {
             if(caisseControllersList[0] != null)
             {
                 if (Vector2.Distance(caisseControllersList[0].transform.position, transform.position) > 4.5f)
                 {
                     currentPierre = Instantiate(pierrePrefab, pierresParent).GetComponent<Elements_Controller>();
+                    audiomanager.PlayHere("Enemy2_GrabRock", gameObject);
                 }
                 else
                 {
                     currentPierre = caisseControllersList[0];
+                    
                 }
             }
             else
             {
                 currentPierre = Instantiate(pierrePrefab, pierresParent).GetComponent<Elements_Controller>();
+                audiomanager.PlayHere("Enemy2_GrabRock", gameObject);
             }
             
             currentPierreCol = currentPierre.GetComponentInChildren<Collider2D>();
@@ -200,16 +208,17 @@ public class
         else
         {
             attacking = true;
-
+            
             Vector2 directionAttack = (player.transform.position - transform.position).normalized;
-
-            for(float i = 1.5f; i > 0.75f; i -= Time.deltaTime * 1f)
+            audiomanager.PlayHere("Enemy2_Rock", gameObject);
+            for (float i = 1.5f; i > 0.75f; i -= Time.deltaTime * 1f)
             {
                 currentPierre.transform.position = (Vector2)transform.position + directionAttack * i;
                 yield return null;
             }
-            
 
+            audiomanager.PlayHere("Enemy2_Attack", gameObject);
+            
             currentPierre.projected = true;
             currentPierre.rb.AddForce(directionAttack * forcePierreLaunch, ForceMode2D.Impulse);
 

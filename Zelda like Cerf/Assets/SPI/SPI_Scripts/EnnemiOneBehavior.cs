@@ -20,10 +20,12 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
     public List<EnnemiOneBehavior> limierControllers;
 
+    AudioManager audiomanager;
+
     override public void Start()
     {
         base.Start();
-
+        audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         attackCollider.enabled = false;
         WanderingNewDirection();
 
@@ -69,8 +71,8 @@ public class EnnemiOneBehavior : Ennemy_Controller
             if (!attacking)
             {
                 speed = attackSpeed;
-
-                if(Vector2.Distance(transform.position, player.transform.position) <= 3f)
+                
+                if (Vector2.Distance(transform.position, player.transform.position) <= 3f)
                 {
                     directionForAttack = transform.position - player.transform.position;
                 }
@@ -132,14 +134,18 @@ public class EnnemiOneBehavior : Ennemy_Controller
         attackDirection = player.transform.position - transform.position;
 
         rb.velocity = new Vector2(0, 0);
-
+        audiomanager.PlayHere("Enemy1_grognement", gameObject);
         for (float i = 0.5f; i > 0; i -= Time.deltaTime)
         {
             rb.velocity = -attackDirection.normalized * 50f * Time.fixedDeltaTime;
+            
             yield return null;
         }
-
+        
         StartCoroutine(HitboxAttackActivatedFor(1.5f));
+
+        Destroy(GetComponent<AudioSource>());
+        audiomanager.PlayHere("Enemy1_Attack", gameObject);
 
         rb.velocity = new Vector2(0, 0);
 

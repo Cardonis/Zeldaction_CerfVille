@@ -12,17 +12,13 @@ public class AudioManager : MonoBehaviour
     // Liste des variables nésséssaire pour jouer les son et les stocker.
     public Sound[] sounds;
 
+    private AudioSource[] Audiosources;
+
     public static AudioManager instance;
 
     private Player_Main_Controller player;
 
-    //Liste des variables pour les différentes valeurs que l'audiomanager doit garder a jour pour savoir
-    //quand jouer les sons
 
-    private int playerlife; //Les points de vie actuels du joueur
-    private float buttonXcharge; //Le temps que le joueur reste appuyé sur le bouton
-
-    private int nivCharge;
     
     
     void Awake()
@@ -36,7 +32,7 @@ public class AudioManager : MonoBehaviour
 
 
         DontDestroyOnLoad(gameObject);
-
+        //On instancie les différents audiospurces pour chaque sons
         foreach (Sound s in sounds)
         {
 
@@ -55,14 +51,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-
-        playerlife = player.life;
-
-        buttonXcharge = 0;
-
-
-
-
+        
     }
 
     public void Play (string name)
@@ -87,6 +76,35 @@ public class AudioManager : MonoBehaviour
         }
 
     }
+
+    public void PlayHere(string name, GameObject here)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+
+            Debug.LogWarning("Sound : " + name + " not found !");
+            return;
+
+        }
+
+        s.source = here.AddComponent<AudioSource>();
+        s.source.clip = s.Clip;
+
+        s.source.volume = s.volume;
+
+        s.source.loop = s.loop;
+
+        s.source.Play();
+
+
+    }
+
+    public void StopPlay()
+    {
+        Destroy(GetComponent<AudioSource>());
+    }
+
 
     public void RePlay (string name)
     {

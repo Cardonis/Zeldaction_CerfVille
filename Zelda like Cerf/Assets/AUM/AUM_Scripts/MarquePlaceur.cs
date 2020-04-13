@@ -36,12 +36,14 @@ public class MarquePlaceur : MonoBehaviour
                     MarquageController newMark = Instantiate(mark, ec.transform).GetComponent<MarquageController>();
                     newMark.player = player;
 
-                    if (baseAttack.player.canSpringAttack)
-                    {
-                        newMark.venom = true;
-                    }
-
-                    player.marquageManager.ResetTimer(player.marquageDuration);
+            if ((ec.projected == false || baseAttack.player.canSpringAttack) && ec.GetComponentInChildren<MarquageController>() == null)
+            {
+                MarquageController newMark = Instantiate(mark, ec.transform).GetComponent<MarquageController>();
+                newMark.player = player;
+                FindObjectOfType<AudioManager>().Play("Coup_de_vent_sweetSpot");
+                if (baseAttack.player.canSpringAttack)
+                {
+                    newMark.venom = true;
                 }
 
             }
