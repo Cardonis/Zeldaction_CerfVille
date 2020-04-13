@@ -365,6 +365,11 @@ public class Player_Main_Controller : MonoBehaviour
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
 
+        animator.SetFloat("HorizontalAim", directionAim.x);
+        animator.SetFloat("VerticalAim", directionAim.y);
+
+        AnimatorAttaqueB();
+
         #endregion Animator
     }
 
@@ -456,7 +461,21 @@ public class Player_Main_Controller : MonoBehaviour
         baseAttacking = false;
     }
 
-    IEnumerator MultiplesVersatilAttack(float levelProjecting)
+    //Animator l'attaque de base
+    #region Animator AttaqueB
+    void AnimatorAttaqueB()
+    {
+
+        if (baseAttacking == true)
+        {
+            animator.SetTrigger("IsBaseAttacking");
+        }
+    }
+    
+
+#endregion Animator AttaqueB
+
+IEnumerator MultiplesVersatilAttack(float levelProjecting)
     {
         List<Elements_Controller> copyMarquageControllers = new List<Elements_Controller>();
 
