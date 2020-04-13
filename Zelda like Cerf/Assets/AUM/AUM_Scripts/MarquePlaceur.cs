@@ -16,7 +16,7 @@ public class MarquePlaceur : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(player.part != 1)
+        if (player.part != 1)
         {
             Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
 
@@ -35,17 +35,14 @@ public class MarquePlaceur : MonoBehaviour
                 {
                     MarquageController newMark = Instantiate(mark, ec.transform).GetComponent<MarquageController>();
                     newMark.player = player;
+                    FindObjectOfType<AudioManager>().Play("Coup_de_vent_sweetSpot");
 
-            if ((ec.projected == false || baseAttack.player.canSpringAttack) && ec.GetComponentInChildren<MarquageController>() == null)
-            {
-                MarquageController newMark = Instantiate(mark, ec.transform).GetComponent<MarquageController>();
-                newMark.player = player;
-                FindObjectOfType<AudioManager>().Play("Coup_de_vent_sweetSpot");
-                if (baseAttack.player.canSpringAttack)
-                {
-                    newMark.venom = true;
+                    if (baseAttack.player.canSpringAttack)
+                    {
+                        newMark.venom = true;
+                    }
+
                 }
-
             }
         }
     }
