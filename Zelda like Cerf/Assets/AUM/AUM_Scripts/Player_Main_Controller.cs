@@ -25,6 +25,8 @@ public class Player_Main_Controller : MonoBehaviour
 
     Transform baseAttackCollidersParent;
 
+    MarquePlaceur marquePlaceur;
+
     public Collider2D[] baseAttackColliders;
     //PlaceHolder pour le  moment, avec l'animation il y en aura pas besoin
     public SpriteRenderer[] baseAttackSRs;
@@ -93,6 +95,8 @@ public class Player_Main_Controller : MonoBehaviour
 
         baseAttackCollidersParent = transform.Find("PColliders").Find("PAttackColliders").Find("PBaseAttackColliders");
         physicCollider = transform.Find("PColliders").Find("PPhysicsCollider").GetComponent<Collider2D>();
+
+        marquePlaceur = baseAttackCollidersParent.GetComponentInChildren<MarquePlaceur>();
 
         arrowDirection = transform.Find("Arrow");
 
@@ -382,19 +386,11 @@ public class Player_Main_Controller : MonoBehaviour
         //Activation des Sprite Renderes
         for (int i = 0; i < baseAttackSRs.Length; i++)
         {
-            if(i != 0)
             baseAttackSRs[i].enabled = true;
-            else
-            {
-                if(part >= 2)
-                {
-                    baseAttackSRs[i].enabled = true;
-                }
-            }
+           
         }
 
         //Activation de l'hitbox du sweetspot
-        if(part >= 2)
         baseAttackColliders[0].enabled = true;
 
         yield return new WaitForSeconds(0.05f);
@@ -402,15 +398,7 @@ public class Player_Main_Controller : MonoBehaviour
         //Activation de toutes les hitboxs
         for (int i = 0; i < baseAttackColliders.Length; i++)
         {
-            if (i != 0)
-                baseAttackColliders[i].enabled = true;
-            else
-            {
-                if (part >= 2)
-                {
-                    baseAttackColliders[i].enabled = true;
-                }
-            }
+            baseAttackColliders[i].enabled = true;
         }
 
         //Attack duration + knock back
@@ -425,15 +413,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         for (int i = 0; i < baseAttackSRs.Length; i++)
         {
-            if (i != 0)
-                baseAttackSRs[i].enabled = false;
-            else
-            {
-                if (part >= 2)
-                {
-                    baseAttackSRs[i].enabled = false;
-                }
-            }
+            baseAttackSRs[i].enabled = false;
         }
 
         stunned = false;
@@ -442,15 +422,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         for (int i = 0; i < baseAttackColliders.Length; i++)
         {
-            if (i != 0)
-                baseAttackColliders[i].enabled = false;
-            else
-            {
-                if (part >= 2)
-                {
-                    baseAttackColliders[i].enabled = false;
-                }
-            }
+            baseAttackColliders[i].enabled = false;
         }
 
         baseAttacking = false;

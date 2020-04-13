@@ -39,7 +39,7 @@ public abstract class Ennemy_Controller : Elements_Controller
 
         Elements_Controller ec = collision.transform.GetComponent<Elements_Controller>();
 
-        if (projected == true && levelProjected >= 1)
+        if (projected == true && levelProjected >= 0.5f)
         {
 
             if (collision.transform.tag == "Wall" || collision.transform.tag == "Ronce")
@@ -56,7 +56,7 @@ public abstract class Ennemy_Controller : Elements_Controller
 
         if(ec != null)
         {
-            if(ec.projected && ec.levelProjected >= 1)
+            if(ec.projected && ec.levelProjected >= 0.5f)
             {
                 StartCoroutine(TakeDamage((ec.levelProjected / mass) * ec.mass));
             }

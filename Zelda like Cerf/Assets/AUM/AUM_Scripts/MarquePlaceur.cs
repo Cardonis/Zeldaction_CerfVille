@@ -16,32 +16,35 @@ public class MarquePlaceur : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
-
-        Ennemy_Controller enC = collision.GetComponent<Ennemy_Controller>();
-
-        if(enC != null)
-            if (enC.attacking == true)
-            {
-                enC.projected = false;
-            }
-
-        if (ec != null)
+        if(player.part != 1)
         {
+            Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
 
-            if ((ec.projected == false || baseAttack.player.canSpringAttack) && ec.GetComponentInChildren<MarquageController>() == null)
-            {
-                MarquageController newMark = Instantiate(mark, ec.transform).GetComponent<MarquageController>();
-                newMark.player = player;
+            Ennemy_Controller enC = collision.GetComponent<Ennemy_Controller>();
 
-                if(baseAttack.player.canSpringAttack)
+            if (enC != null)
+                if (enC.attacking == true)
                 {
-                    newMark.venom = true;
+                    enC.projected = false;
                 }
 
-                player.marquageManager.ResetTimer(player.marquageDuration);
-            }
+            if (ec != null)
+            {
 
+                if ((ec.projected == false || baseAttack.player.canSpringAttack) && ec.GetComponentInChildren<MarquageController>() == null)
+                {
+                    MarquageController newMark = Instantiate(mark, ec.transform).GetComponent<MarquageController>();
+                    newMark.player = player;
+
+                    if (baseAttack.player.canSpringAttack)
+                    {
+                        newMark.venom = true;
+                    }
+
+                    player.marquageManager.ResetTimer(player.marquageDuration);
+                }
+
+            }
         }
     }
 }
