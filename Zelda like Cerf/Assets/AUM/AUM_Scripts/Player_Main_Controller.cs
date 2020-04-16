@@ -346,7 +346,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         arrowDirection.rotation = Quaternion.Euler(0, 0, directionAimAngle);
 
-        //Animator pour les déplacements
+        //Animator Main Region
         #region Animator
         if (input.magnitude > 0)
         { 
@@ -373,6 +373,7 @@ public class Player_Main_Controller : MonoBehaviour
         animator.SetFloat("VerticalAim", directionAim.y);
 
         AnimatorAttaqueB();
+
 
         #endregion Animator
     }
@@ -438,12 +439,11 @@ public class Player_Main_Controller : MonoBehaviour
     void AnimatorAttaqueB()
     {
 
-        if (baseAttacking == true)
+        if (baseAttacking)
         {
             animator.SetTrigger("IsBaseAttacking");
         }
     }
-    
 
 #endregion Animator AttaqueB
 
@@ -520,6 +520,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         bullet.rb.velocity = (target.position - transform.position).normalized * speedBulletVersatil / Mathf.Min(3f, levelProjecting) * Time.fixedDeltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
+
     }
 
     public void StartCanSpringAttack(float time)
@@ -553,6 +554,10 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
     {
         life -= damageTaken;
         audiomanager.Play("Player_take_damage");
+
+        //Animator
+        animator.SetTrigger("IsHurt");
+
         Color baseColor = GetComponentInChildren<SpriteRenderer>().material.color;
 
         GetComponentInChildren<SpriteRenderer>().material.SetColor("_BaseColor", Color.red);
