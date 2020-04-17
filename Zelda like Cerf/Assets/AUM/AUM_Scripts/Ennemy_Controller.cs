@@ -6,6 +6,7 @@ public abstract class Ennemy_Controller : Elements_Controller
 {
     [Header("BaseStats")]
     public float pv;
+    [HideInInspector] public float initialLife;
     public float speed;
     public float detectionAngle;
     public float detectionDistance;
@@ -15,6 +16,8 @@ public abstract class Ennemy_Controller : Elements_Controller
     [HideInInspector] public Vector2 direction;
     [HideInInspector] public bool attacking = false;
     [HideInInspector] public Coroutine lastAttack;
+
+    [HideInInspector] public bool dead = false;
 
     public LayerMask detection;
 
@@ -101,7 +104,9 @@ public abstract class Ennemy_Controller : Elements_Controller
             marquageManager.marquageControllers.Remove(mC);
         }
 
-        Destroy(gameObject);
+        dead = true;
+
+        gameObject.SetActive(false);
     }
 
     public abstract IEnumerator Attack1();

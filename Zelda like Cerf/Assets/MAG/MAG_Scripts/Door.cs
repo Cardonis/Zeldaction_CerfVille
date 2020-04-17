@@ -5,7 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public List<Buttonmanager> normalyConnectedButtons = new List<Buttonmanager>();
-    bool isOpen;
+    [HideInInspector] public bool isOpen;
     Collider2D doorCollider;
     SpriteRenderer doorSprite;
     public TimeConnectors timeConnectors;

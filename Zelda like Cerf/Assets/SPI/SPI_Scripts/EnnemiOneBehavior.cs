@@ -29,6 +29,8 @@ public class EnnemiOneBehavior : Ennemy_Controller
         attackCollider.enabled = false;
         WanderingNewDirection();
 
+        initialLife = pv;
+
         limierControllers.Clear();
 
         for(int i = 0; i < transform.parent.childCount; i++)

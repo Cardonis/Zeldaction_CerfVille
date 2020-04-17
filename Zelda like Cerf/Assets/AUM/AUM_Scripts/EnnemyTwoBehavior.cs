@@ -40,6 +40,8 @@ public class
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         WanderingNewDirection();
 
+        initialLife = pv;
+
         pierresParent = transform.parent.parent.Find("Autres");
     }
 
@@ -188,6 +190,7 @@ public class
                 if (Vector2.Distance(caisseControllersList[0].transform.position, transform.position) > 4.5f)
                 {
                     currentPierre = Instantiate(pierrePrefab, pierresParent).GetComponent<Elements_Controller>();
+                    currentPierre.spawned = true;
                     audiomanager.PlayHere("Enemy2_GrabRock", gameObject);
                 }
                 else
@@ -199,6 +202,7 @@ public class
             else
             {
                 currentPierre = Instantiate(pierrePrefab, pierresParent).GetComponent<Elements_Controller>();
+                currentPierre.spawned = true;
                 audiomanager.PlayHere("Enemy2_GrabRock", gameObject);
             }
             

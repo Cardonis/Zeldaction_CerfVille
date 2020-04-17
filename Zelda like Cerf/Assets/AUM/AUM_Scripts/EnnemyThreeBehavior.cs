@@ -22,6 +22,8 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         base.Start();
 
         WanderingNewDirection();
+
+        initialLife = pv;
     }
 
     override public void FixedUpdate()

@@ -20,6 +20,10 @@ public class Elements_Controller : MonoBehaviour
 
     [HideInInspector] public Coroutine lastTakeForce;
 
+    [HideInInspector] public Vector2 initialPosition;
+
+    [HideInInspector] public bool spawned = false;
+
     AudioManager audiomanager;
 
 
@@ -115,6 +119,8 @@ public class Elements_Controller : MonoBehaviour
         marquageManager = GameObject.Find("MarquageManager").GetComponent<MarquageManager>();
 
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
+        initialPosition = transform.position;
     }
 
     public virtual void FixedUpdate()
