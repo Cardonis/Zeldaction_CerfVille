@@ -211,6 +211,8 @@ public class Player_Main_Controller : MonoBehaviour
 
                 if (Input.GetButton("RB"))
                 {
+                    animator.SetBool("IsChargingCV", true);
+
                     if(multipleAttack == false)
                     {
                         if (chargeTimer < chargeTime)
@@ -240,6 +242,7 @@ public class Player_Main_Controller : MonoBehaviour
 
                 if(Input.GetButtonUp("RB"))
                 {
+                    animator.SetBool("IsChargingCV", false);
                     audiomanager.Stop("Capa_charge");
 
                     if (multipleAttack == false)
@@ -505,6 +508,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         bullet.rb.velocity = directionAim.normalized * speedBulletVersatil / Mathf.Min(3f, levelProjecting) * Time.fixedDeltaTime;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
+        animator.SetTrigger("UsesCapaV");
     }
 
     void VersatilAttack(Transform target, float levelProjecting)
