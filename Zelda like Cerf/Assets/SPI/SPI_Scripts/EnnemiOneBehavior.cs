@@ -22,6 +22,8 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
     AudioManager audiomanager;
 
+    [HideInInspector] public Animator animator;
+
     override public void Start()
     {
         base.Start();
@@ -42,6 +44,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
             }
         }
 
+        animator = GetComponentInChildren<Animator>();
     }
 
 
@@ -123,7 +126,14 @@ public class EnnemiOneBehavior : Ennemy_Controller
         {
             rb.velocity = direction * speed * Time.fixedDeltaTime;
         }
-            
+
+        #region Animator
+
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+
+
+        #endregion Animator
     }
 
     public override IEnumerator Attack1()
