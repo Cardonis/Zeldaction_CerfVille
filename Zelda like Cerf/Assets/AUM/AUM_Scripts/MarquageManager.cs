@@ -7,7 +7,12 @@ public class MarquageManager : MonoBehaviour
 {
     public List<MarquageController> marquageControllers;
 
-    public Player_Main_Controller player;
+    Player_Main_Controller player;
+
+    public void Start()
+    {
+        player = GameObject.Find("Player").GetComponent<Player_Main_Controller>();
+    }
 
     public void Update()
     {

@@ -19,15 +19,18 @@ public class MonsterDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool readyToOpen = true;
+
         for(int i = 0; i < ennemyToOpen.Count; i++)
         {
-            if(ennemyToOpen[i] == null)
+            if(ennemyToOpen[i].gameObject.activeSelf == true)
             {
-                ennemyToOpen.RemoveAt(i);
+                readyToOpen = false;
+                break;
             }
         }
 
-        if(ennemyToOpen.Count == 0)
+        if(readyToOpen == true)
         {
             sr.enabled = false;
             col.enabled = false;
