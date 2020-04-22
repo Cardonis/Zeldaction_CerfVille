@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomTransitionController : MonoBehaviour
 {
-    RoomController activeRoom;
+    [HideInInspector] public RoomController activeRoom;
 
     // Start is called before the first frame update
     void Start()

@@ -97,6 +97,9 @@ public class Elements_Controller : MonoBehaviour
 
         rb.AddForce(direction.normalized * forceValue * levelProjected, ForceMode2D.Impulse);
 
+        player.timerCooldownVersatilAttack = 0;
+        player.lastAttackVersatilTimer = 0;
+
         for(float i = 2.5f; i > 0; i -= Time.fixedDeltaTime)
         {
             yield return null;

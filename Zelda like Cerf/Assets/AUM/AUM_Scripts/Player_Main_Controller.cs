@@ -36,7 +36,7 @@ public class Player_Main_Controller : MonoBehaviour
     public GameObject bulletVersatilAttack;
     public float speedBulletVersatil;
     public float cooldownVersatilAttack;
-    float timerCooldownVersatilAttack;
+    [HideInInspector] public float timerCooldownVersatilAttack;
     public float chargeTime;
     float chargeTimer;
     float chargeTimeLevel2;
@@ -46,6 +46,8 @@ public class Player_Main_Controller : MonoBehaviour
     public float forceValueVersatilAttack;
     public float rangeMaxVersatilAttack;
     public float marquageDuration;
+    [HideInInspector] public float lastAttackVersatilTimer = 1f;
+    float lastAttackForce = 1;
 
     [HideInInspector] public bool canSpringAttack;
     [HideInInspector] public bool canAccelerate;
@@ -86,6 +88,9 @@ public class Player_Main_Controller : MonoBehaviour
     [HideInInspector] public Animator animator;
 
     AudioManager audiomanager;
+
+    bool carrying;
+    Caisse_Controller currentPierre;
 
     void Start()
     {
@@ -139,6 +144,13 @@ public class Player_Main_Controller : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 projected = false;
             }
+
+            Physics2D.IgnoreLayerCollision(13, 14, false);
+
+        }
+        else
+        {
+            Physics2D.IgnoreLayerCollision(13, 14, true);
         }
 
         input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -156,7 +168,15 @@ public class Player_Main_Controller : MonoBehaviour
                 direction = input;
                 audiomanager.Play("Deplacement");
                 audiomanager.AlreadyPlay("Deplacement");
-                rb.velocity = direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime;
+                if(currentPierre != null)
+                {
+                    rb.velocity = (direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime) * ( 6 - currentPierre.mass) / 6;
+                }
+                else
+                {
+                    rb.velocity = direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime;
+                }
+
             }
             else
             {
@@ -165,6 +185,24 @@ public class Player_Main_Controller : MonoBehaviour
                 audiomanager.RePlay("Deplacement");
             }
         
+        }
+
+        if (currentPierre != null)
+        {
+            if (currentPierre.projected == true || projected == true || stunned == true)
+            {
+                Physics2D.IgnoreCollision(physicCollider, currentPierre.GetComponentInChildren<Collider2D>(), false);
+                currentPierre = null;
+            }
+        }
+
+        if (currentPierre != null)
+        {
+            directionAim = (currentPierre.transform.position - transform.position).normalized;
+
+            currentPierre.transform.position = (Vector2)transform.position + directionAim * 0.8f;
+
+            Physics2D.IgnoreCollision(physicCollider, currentPierre.GetComponentInChildren<Collider2D>(), true);
         }
 
         if (timerCooldownBaseAttack < 0)
@@ -178,6 +216,11 @@ public class Player_Main_Controller : MonoBehaviour
         else
         {
             timerCooldownBaseAttack -= Time.deltaTime;
+        }
+
+        if(lastAttackVersatilTimer < 0.5f)
+        {
+            lastAttackVersatilTimer += Time.deltaTime;
         }
 
         if (timerCooldownVersatilAttack < 0 && part >= 2)
@@ -329,6 +372,40 @@ public class Player_Main_Controller : MonoBehaviour
             timerCooldownVersatilAttack -= Time.deltaTime;
         }
 
+        if (Input.GetButtonDown("X"))
+        {
+            if(currentPierre == null)
+            {
+                for (int i = 0; i < confiner.activeRoom.objectsToReset.Count; i++)
+                {
+                    if (Vector2.Distance(transform.position, confiner.activeRoom.objectsToReset[i].transform.position) < 2f)
+                    {
+                        if (currentPierre != null)
+                        {
+                            if (Vector2.Distance(transform.position, currentPierre.transform.position) > Vector2.Distance(transform.position, confiner.activeRoom.objectsToReset[i].transform.position))
+                            {
+                                currentPierre = confiner.activeRoom.objectsToReset[i];
+                            }
+
+                        }
+                        else
+                        {
+                            currentPierre = confiner.activeRoom.objectsToReset[i];
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                Physics2D.IgnoreCollision(physicCollider, currentPierre.GetComponentInChildren<Collider2D>(), false);
+                currentPierre = null;
+            }
+
+            
+
+        }
+
         chargeSpeedMultiplicator = 1 - ((chargeTimer) / (chargeTime + 0.6f));
 
         barCharge.localScale = new Vector2(((chargeTimer) / (chargeTime)) * 1.5f, barCharge.localScale.y );
@@ -463,6 +540,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         for (int i = 0; i < copyMarquageControllers.Count; i++)
         {
+            if (copyMarquageControllers[i].gameObject.activeSelf == true) 
             StartCoroutine(copyMarquageControllers[i].StunedForSeconds(5f));
         }
 
@@ -506,6 +584,17 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         bullet.levelProjecting = levelProjecting;
 
         bullet.rb.velocity = directionAim.normalized * speedBulletVersatil / Mathf.Min(3f, levelProjecting) * Time.fixedDeltaTime;
+
+        if(lastAttackVersatilTimer <= 0.5f)
+        {
+            bullet.bonusLevelProjecting = ( Mathf.Min((lastAttackForce * 2), 4f) - 1);
+        }
+        else
+        {
+            bullet.bonusLevelProjecting = 0;
+        }
+
+        lastAttackForce = levelProjecting + bullet.bonusLevelProjecting;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
         animator.SetTrigger("UsesCapaV");
