@@ -40,7 +40,6 @@ public class BearTrap : MonoBehaviour
                 elementplayer.StartCoroutine(elementplayer.StunnedFor(stunTimeForPlayer));
                 elementplayer.rb.velocity = Vector2.zero;
                 isActive = false;
-                trapSprite.color = Color.black;
             }
 
             Ennemy_Controller elementennemi = collider.GetComponentInParent<Ennemy_Controller>();
@@ -50,14 +49,12 @@ public class BearTrap : MonoBehaviour
                 elementennemi.StartTakeDamage(trapDamageForEnnemi);
                 StartCoroutine(elementennemi.StunedForSeconds(stunTimeForEnnemi));
                 isActive = false;
-                trapSprite.color = Color.black;
             }
         }
     }
     private void SetTrapActive()
     {
         isActive = true;
-        trapSprite.color = Color.red;
         inCooldown = false;
     }
 }
