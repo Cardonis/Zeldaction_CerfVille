@@ -217,6 +217,13 @@ public class
             audiomanager.PlayHere("Enemy2_Rock", gameObject);
             for (float i = 1.5f; i > 0.75f; i -= Time.deltaTime * 1f)
             {
+                if(currentPierre == null)
+                {
+                    attacking = false;
+
+                    StopCoroutine(lastAttack);
+                }
+
                 currentPierre.transform.position = (Vector2)transform.position + directionAttack * i;
                 yield return null;
             }

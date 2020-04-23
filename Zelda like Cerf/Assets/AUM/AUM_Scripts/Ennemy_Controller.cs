@@ -47,7 +47,7 @@ public abstract class Ennemy_Controller : Elements_Controller
 
             if (collision.transform.tag == "Wall" || collision.transform.tag == "Ronce")
             {
-                StartCoroutine(TakeDamage((levelProjected / mass) * 2));
+                StartCoroutine(TakeDamage((levelProjected / mass) * 1.5f));
             }
 
             if (ec != null)
