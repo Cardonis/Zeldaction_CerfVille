@@ -14,6 +14,8 @@ public class EnnemyThreeBehavior : Ennemy_Controller
     public float attackForce;
     public float attackBulletForce;
 
+    [HideInInspector] public Animator animator;
+
     Vector2 directionForAttack;
 
     // Start is called before the first frame update
@@ -24,6 +26,8 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         WanderingNewDirection();
 
         initialLife = pv;
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     override public void FixedUpdate()
@@ -81,7 +85,22 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         if (canMove && attacking == false)
         {
             rb.velocity = direction * speed * Time.fixedDeltaTime;
+
+            animator.SetBool("IsMoving", true);
         }
+
+        else 
+
+        {
+            animator.SetBool("IsMoving", false);
+        }
+
+        #region Animator
+
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+
+        #endregion
     }
 
     public override IEnumerator Attack1()
@@ -91,6 +110,8 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         BulletAttack1 bullet = Instantiate(bulletAttack1, player.vBullets).GetComponent<BulletAttack1>();
 
         Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
+
+        animator.SetTrigger("Attacks");
 
         for (int i = 0; i < ennemyColliders.Length - 1; i++)
         {

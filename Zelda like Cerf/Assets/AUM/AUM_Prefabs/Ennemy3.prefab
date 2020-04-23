@@ -227,7 +227,10 @@ MonoBehaviour:
   player: {fileID: 0}
   marquageManager: {fileID: 0}
   recoveryValue: 1
+  initialPosition: {x: 0, y: 0}
+  spawned: 0
   pv: 6
+  initialLife: 0
   speed: 200
   detectionAngle: 30
   detectionDistance: 9
@@ -236,6 +239,7 @@ MonoBehaviour:
   playerAngle: 0
   direction: {x: 0, y: 0}
   attacking: 0
+  dead: 0
   detection:
     serializedVersion: 2
     m_Bits: 26624
@@ -254,6 +258,7 @@ MonoBehaviour:
   physicCollider: {fileID: 5433854479219786175}
   attackForce: 50
   attackBulletForce: 1000
+  animator: {fileID: 0}
 --- !u!1 &7091535423821252591
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,8 +269,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7091535423821252589}
   - component: {fileID: 7091535423821252586}
+  - component: {fileID: 2030173747}
   m_Layer: 0
-  m_Name: CGraph
+  m_Name: TourelleGraph
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,6 +341,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2030173747
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7091535423821252591}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 86effdca5a2b34345a670867ca35c71d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7091535424113761956
 GameObject:
   m_ObjectHideFlags: 0
