@@ -76,10 +76,15 @@ public class Bullet_Versatil_Controller : MonoBehaviour
                     enC.attacking = false;
 
                     EnnemiOneBehavior eob = enC.GetComponent<EnnemiOneBehavior>();
+                    BossBehavior bb = enC.GetComponent<BossBehavior>();
 
                     if (eob != null)
                     {
                         eob.attackCollider.enabled = false;
+                    }
+                    else if (bb != null)
+                    {
+                        bb.dashAttackCollider.enabled = false;
                     }
                 }
 

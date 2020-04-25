@@ -57,40 +57,44 @@ public class RoomController : MonoBehaviour
             }
         }
 
-        if(monsterRoom == true)
+        if(clear == false)
         {
-            bool cleared = true;
-            for(int i = 0; i < ennemies.Count; i++)
+            if (monsterRoom == true)
             {
-                if(ennemies[i].dead == false)
+                bool cleared = true;
+                for (int i = 0; i < ennemies.Count; i++)
                 {
-                    cleared = false;
-                    break;
+                    if (ennemies[i].dead == false)
+                    {
+                        cleared = false;
+                        break;
+                    }
+                }
+
+                if (cleared == true)
+                {
+                    clear = true;
                 }
             }
-
-            if(cleared == true)
+            else
             {
-                clear = true;
-            }
-        }
-        else
-        {
-            bool cleared = true;
-            for (int i = 0; i < doorsToClear.Count; i++)
-            {
-                if (doorsToClear[i].isOpen == false)
+                bool cleared = true;
+                for (int i = 0; i < doorsToClear.Count; i++)
                 {
-                    cleared = false;
-                    break;
+                    if (doorsToClear[i].isOpen == false)
+                    {
+                        cleared = false;
+                        break;
+                    }
+                }
+
+                if (cleared == true)
+                {
+                    clear = true;
                 }
             }
-
-            if (cleared == true)
-            {
-                clear = true;
-            }
         }
+        
         
     }
 

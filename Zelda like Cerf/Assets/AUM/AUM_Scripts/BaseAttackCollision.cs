@@ -45,16 +45,23 @@ public class BaseAttackCollision : MonoBehaviour
                     
 
                     EnnemiOneBehavior eob = enC.GetComponent<EnnemiOneBehavior>();
+                    BossBehavior bb = enC.GetComponent<BossBehavior>();
 
                     if(eob != null)
                     {
                         eob.attackCollider.enabled = false;
                         eob.projected = false;
                     }
+
+                    if(bb != null)
+                    {
+                        bb.dashAttackCollider.enabled = false;
+                        bb.projected = false;
+                    }
                 }
             }
 
-            if (ec.projected == false)
+            if (ec.playerProjected == false)
             ec.TakeForce(player.directionAim.normalized, forceValue, levelMultiplicator * bulletLevel);
 
             bulletLevel = 1;

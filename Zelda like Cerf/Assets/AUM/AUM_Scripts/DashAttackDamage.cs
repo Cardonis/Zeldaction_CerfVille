@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class DashAttackDamage : MonoBehaviour
 {
-    EnnemiOneBehavior ennemiOneBehavior;
+    Ennemy_Controller ennemyBehavior;
     public float forceProjecting;
 
     // Start is called before the first frame update
     void Start()
     {
-        ennemiOneBehavior = GetComponentInParent<EnnemiOneBehavior>();
+        ennemyBehavior = GetComponentInParent<Ennemy_Controller>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.attachedRigidbody != null)
-            if (collision.attachedRigidbody.transform.tag == "Player" && ennemiOneBehavior.player.projected == false)
+            if (collision.attachedRigidbody.transform.tag == "Player" && ennemyBehavior.player.projected == false)
             {
                 GameObject[] bvcs = GameObject.FindGameObjectsWithTag("PlayerBullet");
 
@@ -31,25 +31,31 @@ public class DashAttackDamage : MonoBehaviour
                     Destroy(bvc.gameObject);
                 }
 
-                if(ennemiOneBehavior.player.baseAttacking)
+                if(ennemyBehavior.player.baseAttacking)
                 {
-                    ennemiOneBehavior.player.StopCoroutine(ennemiOneBehavior.player.lastBaseAttack);
-                    ennemiOneBehavior.player.baseAttacking = false;
+                    ennemyBehavior.player.StopCoroutine(ennemyBehavior.player.lastBaseAttack);
+                    ennemyBehavior.player.baseAttacking = false;
 
-                    for (int i = 0; i < ennemiOneBehavior.player.baseAttackSRs.Length; i++)
+                    for (int i = 0; i < ennemyBehavior.player.baseAttackSRs.Length; i++)
                     {
-                        ennemiOneBehavior.player.baseAttackSRs[i].enabled = false;
+                        ennemyBehavior.player.baseAttackSRs[i].enabled = false;
                     }
 
-                    for (int i = 0; i < ennemiOneBehavior.player.baseAttackColliders.Length; i++)
+                    for (int i = 0; i < ennemyBehavior.player.baseAttackColliders.Length; i++)
                     {
-                        ennemiOneBehavior.player.baseAttackColliders[i].enabled = false;
+                        ennemyBehavior.player.baseAttackColliders[i].enabled = false;
                     }
                 }
 
-                ennemiOneBehavior.player.TakeForce(ennemiOneBehavior.attackDirection, forceProjecting);
+                EnnemiOneBehavior eob = ennemyBehavior.GetComponent<EnnemiOneBehavior>();
+                if (eob != null)
+                    ennemyBehavior.player.TakeForce(eob.attackDirection, forceProjecting);
+                else
+                {
+                    ennemyBehavior.player.TakeForce(ennemyBehavior.direction, forceProjecting);
+                }
 
-                ennemiOneBehavior.player.StartCoroutine(ennemiOneBehavior.player.TakeDamage(1));
+                ennemyBehavior.player.StartCoroutine(ennemyBehavior.player.TakeDamage(1));
             }
     }
 }

@@ -191,6 +191,8 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         elementsController.rb.AddForce(direction.normalized * attackForce * 3, ForceMode2D.Impulse);
 
+        elementsController.levelProjected = 2;
+
         for (float i = 2.5f; i > 0; i -= Time.fixedDeltaTime)
         {
             yield return null;

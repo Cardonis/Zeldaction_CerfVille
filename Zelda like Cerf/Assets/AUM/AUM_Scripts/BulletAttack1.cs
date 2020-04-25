@@ -27,7 +27,7 @@ public class BulletAttack1 : MonoBehaviour
 
         if (Vector2.Distance(transform.position, ennemyController.position) > maxDistance && touchedTarget == null)
         {
-            ennemyController.GetComponent<EnnemyThreeBehavior>().stuned = false;
+            ennemyController.GetComponent<Ennemy_Controller>().stuned = false;
             Destroy(gameObject);
         }
     }
@@ -39,7 +39,7 @@ public class BulletAttack1 : MonoBehaviour
 
         if (collision.tag == "Wall")
         {
-            ennemyController.GetComponent<EnnemyThreeBehavior>().stuned = false;
+            ennemyController.GetComponent<Ennemy_Controller>().stuned = false;
             Destroy(gameObject);
         }
 
@@ -53,10 +53,15 @@ public class BulletAttack1 : MonoBehaviour
 
             GetComponentInChildren<Collider2D>().enabled = false;
 
+            BossBehavior bb = ennemyController.GetComponent<BossBehavior>();
+            EnnemyThreeBehavior etb = ennemyController.GetComponent<EnnemyThreeBehavior>();
 
-            if(pmc != null)
+            if (pmc != null)
             {
-                ennemyController.GetComponent<EnnemyThreeBehavior>().StartCoroutine( ennemyController.GetComponent<EnnemyThreeBehavior>().ApplyForce(pmc) );
+                if (etb != null)
+                    etb.StartCoroutine(etb.ApplyForce(pmc));
+                else if (bb != null)
+                    bb.StartCoroutine(bb.ApplyForce(pmc));
             }
             else if (ec != null)
             {
@@ -81,72 +86,15 @@ public class BulletAttack1 : MonoBehaviour
                 Ronces ronce = ec.GetComponent<Ronces>();
                 if (ronce != null)
                 {
-                    ennemyController.GetComponent<EnnemyThreeBehavior>().stuned = false;
+                    ennemyController.GetComponent<Ennemy_Controller>().stuned = false;
                     Destroy(gameObject);
                 }
 
-                ennemyController.GetComponent<EnnemyThreeBehavior>().lastAttack = ennemyController.GetComponent<EnnemyThreeBehavior>().StartCoroutine( ennemyController.GetComponent<EnnemyThreeBehavior>().ApplyForce(ec) );
+                if (etb != null)
+                    etb.lastAttack = etb.StartCoroutine( etb.ApplyForce(ec) );
+                else if (bb != null)
+                    bb.StartCoroutine(bb.ApplyForce(ec));
             }
         }
-
-        /*
-        Player_Main_Controller pmc = collision.attachedRigidbody.GetComponent<Player_Main_Controller>();
-        Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
-
-        if (collision.tag == "Wall")
-        {
-            ennemyController.GetComponent<EnnemyThreeBehavior>().stuned = false;
-            Destroy(gameObject);
-        }
-
-        if (ec != null || pmc != null)
-        {
-            rb.velocity = new Vector2(0, 0);
-
-            touchedTarget = collision.transform;
-
-            ec.stuned = false;
-
-            transform.SetParent(ec.transform);
-
-            GetComponentInChildren<Collider2D>().enabled = false;
-
-            Ennemy_Controller enC = ec.GetComponent<Ennemy_Controller>();
-
-            if (enC != null)
-            {
-                if (enC.attacking == true)
-                {
-                    enC.StopCoroutine(enC.lastAttack);
-                    enC.attacking = false;
-
-                    EnnemiOneBehavior eob = enC.GetComponent<EnnemiOneBehavior>();
-
-                    if (eob != null)
-                    {
-                        eob.attackCollider.enabled = false;
-                    }
-                }
-
-            }
-
-
-            Ronces ronce = ec.GetComponent<Ronces>();
-            if (ronce != null)
-            {
-                ennemyController.GetComponent<EnnemyThreeBehavior>().stuned = false;
-                Destroy(gameObject);
-            }
-            else
-            {
-                ec.StartTakeForce(ennemyController.GetComponent<Player_Main_Controller>().forceValueVersatilAttack, levelProjecting);
-            }
-
-        }
-        else if(pmc != null)
-        {
-
-        }
-        */
     }
 }

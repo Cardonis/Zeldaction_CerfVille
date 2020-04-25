@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnnemyCollision : MonoBehaviour
 {
-
     public Ennemy_Controller ennemyController;
 
     private void Update()
