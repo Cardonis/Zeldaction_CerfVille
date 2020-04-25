@@ -22,6 +22,7 @@ public class Player_Main_Controller : MonoBehaviour
     public float cooldownBaseAttack;
     float timerCooldownBaseAttack;
     public float speedKnockBackBaseAttack;
+    public bool canTrack;
 
     Transform baseAttackCollidersParent;
 
@@ -113,6 +114,8 @@ public class Player_Main_Controller : MonoBehaviour
         marquageManager = GameObject.Find("MarquageManager").GetComponent<MarquageManager>();
 
         rb = GetComponent<Rigidbody2D>();
+
+        canTrack = true;
 
         chargeTimeLevel2 = chargeTime / 3f;
         chargeTimeLevel3 = chargeTime;
@@ -372,7 +375,7 @@ public class Player_Main_Controller : MonoBehaviour
             timerCooldownVersatilAttack -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("X"))
+        if (Input.GetButtonDown("X") && canTrack == true)
         {
             if(currentPierre == null)
             {

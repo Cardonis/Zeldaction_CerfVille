@@ -68,6 +68,9 @@ public class Bullet_Versatil_Controller : MonoBehaviour
 
             Ennemy_Controller enC = ec.GetComponent<Ennemy_Controller>();
 
+            ec.rb.constraints = RigidbodyConstraints2D.None;
+            ec.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
             if (enC != null)
             {
                 if (enC.attacking == true)

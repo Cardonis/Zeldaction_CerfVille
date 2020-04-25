@@ -140,6 +140,7 @@ public class Elements_Controller : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
             levelProjected = 0;
         }
+
     }
 
     public IEnumerator DontCollideWithPlayerFor(float time)

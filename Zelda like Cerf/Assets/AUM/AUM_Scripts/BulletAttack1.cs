@@ -36,7 +36,7 @@ public class BulletAttack1 : MonoBehaviour
     {
         Player_Main_Controller pmc = collision.attachedRigidbody.GetComponent<Player_Main_Controller>();
         Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
-
+        Debug.LogError("byu");
         if (collision.tag == "Wall")
         {
             ennemyController.GetComponent<EnnemyThreeBehavior>().stuned = false;
@@ -52,9 +52,11 @@ public class BulletAttack1 : MonoBehaviour
             transform.SetParent(collision.transform);
 
             GetComponentInChildren<Collider2D>().enabled = false;
+            Debug.Log("ezha");
+            ec.rb.constraints = RigidbodyConstraints2D.None;
+            ec.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-
-            if(pmc != null)
+            if (pmc != null)
             {
                 ennemyController.GetComponent<EnnemyThreeBehavior>().StartCoroutine( ennemyController.GetComponent<EnnemyThreeBehavior>().ApplyForce(pmc) );
             }
