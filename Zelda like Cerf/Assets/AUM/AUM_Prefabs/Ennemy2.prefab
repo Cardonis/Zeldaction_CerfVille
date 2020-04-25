@@ -216,8 +216,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8625057618277112688}
   - component: {fileID: 8625057618277112695}
+  - component: {fileID: 107896360}
   m_Layer: 0
-  m_Name: CGraph
+  m_Name: GolemGraph
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +277,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 62586036f65f9fd4396c38e0fb2fbf49, type: 3}
+  m_Sprite: {fileID: -8409368227686200765, guid: b2d961817dd1873478abfd216a1a5c21,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -287,6 +289,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &107896360
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625057618277112690}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 39aa13207863d0744a55ba8bd8673824, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8625057618838257538
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +386,10 @@ MonoBehaviour:
   player: {fileID: 0}
   marquageManager: {fileID: 0}
   recoveryValue: 2
+  initialPosition: {x: 0, y: 0}
+  spawned: 0
   pv: 8
+  initialLife: 0
   speed: 25
   detectionAngle: 50
   detectionDistance: 0
@@ -374,6 +398,7 @@ MonoBehaviour:
   playerAngle: 0
   direction: {x: 0, y: 0}
   attacking: 0
+  dead: 0
   detection:
     serializedVersion: 2
     m_Bits: 8192
