@@ -171,6 +171,8 @@ public class EnnemyThreeBehavior : Ennemy_Controller
             yield return null;
         }
 
+        ennemyColliders = GetComponentsInChildren<Collider2D>();
+
         for (int i = 0; i < ennemyColliders.Length - 1; i++)
         {
             Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), false);
@@ -218,6 +220,10 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         {
             yield return null;
         }
+
+        ennemyColliders = GetComponentsInChildren<Collider2D>();
+
+        elementColliders = elementsController.GetComponentsInChildren<Collider2D>();
 
         for (int i = 0; i < ennemyColliders.Length; i++)
         {

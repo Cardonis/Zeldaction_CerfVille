@@ -107,7 +107,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
                 for (int i = 0; i < limierControllers.Count; i++)
                 {
-                    if (limierControllers[i].hasAttacked == true)
+                    if (limierControllers[i].hasAttacked == true && limierControllers[i].gameObject.activeSelf == true)
                     {
                         nobodyHasAttacked = false;
                     }

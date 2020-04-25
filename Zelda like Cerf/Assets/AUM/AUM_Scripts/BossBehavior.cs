@@ -9,6 +9,7 @@ public class BossBehavior : Ennemy_Controller
     public int phase = 1;
     float timerCooldownPattern;
     public RoomController bossRoom;
+    float missingLife;
 
     float[] cooldownsPatterns = { 1.5f, 1f, 0.5f, 1f };
 
@@ -30,12 +31,14 @@ public class BossBehavior : Ennemy_Controller
     [Header("Spectral Liane")]
 
     public GameObject bulletAttack1;
-    float forceSpectralLiane;
+    float forceSpectralLiane = 40f;
 
     [Header("Minions")]
 
     public List<GameObject> ennemiesToSpawn;
     public Transform parentEnnemies;
+    int[] ennemiesNumber = { 3, 1, 3, 3 };
+
 
     // Start is called before the first frame update
     public override void Start()
@@ -51,13 +54,24 @@ public class BossBehavior : Ennemy_Controller
 
     override public void FixedUpdate()
     {
+        missingLife = pv / initialLife;
+
+        if (missingLife < 1f / 4f)
+            phase = 4;
+        else if (missingLife < 2f / 4f)
+            phase = 3;
+        else if (missingLife < 3f / 4f)
+            phase = 2;
+        else if (missingLife < 4f / 4f)
+            phase = 1;
+
         if (playerProjected)
         {
             direction = Vector2.zero;
 
             attacking = false;
 
-            timerCooldownPattern = 0;
+            timerCooldownPattern = cooldownsPatterns[phase - 1];
         }
 
         base.FixedUpdate();
@@ -123,43 +137,104 @@ public class BossBehavior : Ennemy_Controller
         {
 
 
-            if(timerCooldownPattern > cooldownsPatterns[phase])
+            if(timerCooldownPattern > cooldownsPatterns[phase - 1])
             {
                 attacking = true;
 
                 switch (phase)
                 {
                     case 1:
-                        int rand = Random.Range(4, 5);
+                        int rand = Random.Range(1, 3);
                         switch (rand)
                         {
                             case 1:
-                                lastAttack = StartCoroutine(DashAttack(2, 100f, 5f, 50f));
+                                lastAttack = StartCoroutine(RockThrow(1, 500f, 2f, 45f, 1));
                                 break;
 
                             case 2:
-                                lastAttack = StartCoroutine(RockThrow(2, 50f, 2f, 75f, 1));
-                                break;
-
-                            case 3:
-                                lastAttack = StartCoroutine(SpectralLiane(2, 150f, 10f, 800f));
-                                break;
-
-                            case 4:
-                                lastAttack = StartCoroutine(Minions(3, 5, 1f));
+                                if(ennemyControllersList.Count < ennemiesNumber[phase - 1])
+                                    lastAttack = StartCoroutine(Minions(2, 2, 1.5f, 1));
+                                else
+                                {
+                                    attacking = false;
+                                }
                                 break;
                         }
                         break;
 
                     case 2:
+                        int rand2 = Random.Range(1, 4);
+                        switch (rand2)
+                        {
+                            case 1:
+                                lastAttack = StartCoroutine(DashAttack(2, 250f, 5f, 50f));
+                                break;
+
+                            case 2:
+                                lastAttack = StartCoroutine(SpectralLiane(2, 150f, 10f, 800f));
+                                break;
+
+                            case 3:
+                                if (ennemyControllersList.Count < ennemiesNumber[phase - 1])
+                                    lastAttack = StartCoroutine(Minions(2, 1, 1f, 1));
+                                else
+                                {
+                                    attacking = false;
+                                }
+                                break;
+                        }
 
                         break;
 
                     case 3:
+                        int rand3 = Random.Range(1, 4);
+                        switch (rand3)
+                        {
+                            case 1:
+                                lastAttack = StartCoroutine(DashAttack(2, 500f, 5f, 50f));
+                                break;
+
+                            case 2:
+                                lastAttack = StartCoroutine(RockThrow(1, 500f, 2f, 45f, 1));
+                                break;
+
+                            case 3:
+                                lastAttack = StartCoroutine(SpectralLiane(2, 300f, 10f, 800f));
+                                break;
+
+                            case 4:
+                                if (ennemyControllersList.Count < ennemiesNumber[phase - 1])
+                                    lastAttack = StartCoroutine(Minions(1, 2, 0.2f, 1));
+                                else
+                                {
+                                    attacking = false;
+                                }
+                                break;
+                        }
 
                         break;
 
                     case 4:
+                        int rand4 = Random.Range(1, 4);
+                        switch (rand4)
+                        {
+                            case 1:
+                                lastAttack = StartCoroutine(DashAttack(2, 500f, 5f, 50f));
+                                break;
+
+                            case 2:
+                                lastAttack = StartCoroutine(RockThrow(1, 500f, 2f, 45f, 1));
+                                break;
+
+                            case 3:
+                                if (ennemyControllersList.Count < ennemiesNumber[phase - 1])
+                                    lastAttack = StartCoroutine(Minions(2, 1, 0.5f, 1));
+                                else
+                                {
+                                    attacking = false;
+                                }
+                                break;
+                        }
 
                         break;
                 }
@@ -191,11 +266,11 @@ public class BossBehavior : Ennemy_Controller
             {
                 if (Vector2.Distance(transform.position, player.transform.position) <= range - 1)
                 {
-                    direction = transform.position - player.transform.position;
+                    direction = (transform.position - player.transform.position).normalized;
                 }
                 else if (Vector2.Distance(transform.position, player.transform.position) >= range + 1)
                 {
-                    direction = player.transform.position - transform.position;
+                    direction = (player.transform.position - transform.position).normalized;
                 }
                 else
                 {
@@ -289,11 +364,11 @@ public class BossBehavior : Ennemy_Controller
                     
                     if (Vector2.Distance(transform.position, elementsControllers[0].transform.position) <= range - 1)
                     {
-                        direction = transform.position - elementsControllers[0].transform.position;
+                        direction = (transform.position - elementsControllers[0].transform.position).normalized;
                     }
                     else if (Vector2.Distance(transform.position, elementsControllers[0].transform.position) >= range + 1)
                     {
-                        direction = elementsControllers[0].transform.position - transform.position;
+                        direction = (elementsControllers[0].transform.position - transform.position).normalized;
                     }
                     else
                     {
@@ -301,7 +376,7 @@ public class BossBehavior : Ennemy_Controller
 
                         movingToAttack = false;
 
-                        direction = player.transform.position - transform.position;
+                        direction = (player.transform.position - transform.position).normalized;
                     }
                 }
                 else
@@ -311,6 +386,7 @@ public class BossBehavior : Ennemy_Controller
                     movingToAttack = false;
 
                     direction = player.transform.position - transform.position;
+                    break;
                 }
 
                 yield return null;
@@ -319,12 +395,26 @@ public class BossBehavior : Ennemy_Controller
 
             canMove = false;
 
-            StartCoroutine(CollisionIgnoreWithElement(1.5f));
+            //StartCoroutine(CollisionIgnoreWithElement(1.5f));
 
-            for(float x = 0.4f; x > 0; x -= Time.deltaTime)
+            Collider2D[] ennemyColliders = currentElement.GetComponentsInChildren<Collider2D>();
+
+            for (int x = 0; x < ennemyColliders.Length; x++)
+            {
+                Physics2D.IgnoreCollision(ennemyColliders[x], col, true);
+            }
+
+            for (float x = 0.4f; x > 0; x -= Time.deltaTime)
             {
                 if (currentElement == null)
                 {
+                    ennemyColliders = currentElement.GetComponentsInChildren<Collider2D>();
+
+                    for (int z = 0; z < ennemyColliders.Length; z++)
+                    {
+                        Physics2D.IgnoreCollision(ennemyColliders[z], col, false);
+                    }
+
                     attacking = false;
 
                     direction = Vector2.zero;
@@ -349,6 +439,7 @@ public class BossBehavior : Ennemy_Controller
             {
                 if (currentElement == null)
                 {
+
                     attacking = false;
 
                     direction = Vector2.zero;
@@ -371,9 +462,9 @@ public class BossBehavior : Ennemy_Controller
 
             currentElement.levelProjected = 2f;
 
-            Collider2D[] ennemyColliders = currentElement.GetComponentsInChildren<Collider2D>();
+            ennemyColliders = currentElement.GetComponentsInChildren<Collider2D>();
 
-            for (int x = 0; x < ennemyColliders.Length - 1; x++)
+            for (int x = 0; x < ennemyColliders.Length; x++)
             {
                 Physics2D.IgnoreCollision(ennemyColliders[x], col, false);
             }
@@ -415,7 +506,6 @@ public class BossBehavior : Ennemy_Controller
 
     IEnumerator SpectralLiane(int numbPattern, float movementSpeed, float range, float forceValue)
     {
-        forceSpectralLiane = forceValue;
 
         for (int i = 0; i < numbPattern; i++)
         {
@@ -427,17 +517,17 @@ public class BossBehavior : Ennemy_Controller
             {
                 if (Vector2.Distance(transform.position, player.transform.position) <= range - 1)
                 {
-                    direction = transform.position - player.transform.position;
+                    direction = (transform.position - player.transform.position).normalized;
                 }
                 else if (Vector2.Distance(transform.position, player.transform.position) >= range + 1)
                 {
-                    direction = player.transform.position - transform.position;
+                    direction = (player.transform.position - transform.position).normalized;
                 }
                 else
                 {
                     movingToAttack = false;
 
-                    direction = player.transform.position - transform.position;
+                    direction = (player.transform.position - transform.position).normalized;
                 }
 
                 yield return null;
@@ -539,6 +629,13 @@ public class BossBehavior : Ennemy_Controller
 
         while (direction.magnitude > 0.7f)
         {
+            if(elementsController == null)
+            {
+                StopCoroutine(lastAttack);
+                stuned = false;
+                break;
+            }
+
             for (int i = 0; i < ennemyColliders.Length; i++)
             {
                 for (int x = 0; x < elementColliders.Length; x++)
@@ -564,6 +661,10 @@ public class BossBehavior : Ennemy_Controller
             yield return null;
         }
 
+        ennemyColliders = GetComponentsInChildren<Collider2D>();
+
+        elementColliders = elementsController.GetComponentsInChildren<Collider2D>();
+
         for (int i = 0; i < ennemyColliders.Length; i++)
         {
             for (int x = 0; x < elementColliders.Length; x++)
@@ -572,19 +673,28 @@ public class BossBehavior : Ennemy_Controller
 
     }
 
-    IEnumerator Minions(int numbPattern, int spawnNumb, float spawnSpeed)
+    IEnumerator Minions(int numbPattern, int spawnNumb, float spawnSpeed, int ennemyType)
     {
         for(int i = 0; i < numbPattern; i++)
         {
             transform.position = (Vector2)bossRoom.transform.position + new Vector2(Random.Range(-10, +10), Random.Range(-10, +10));
 
+            Debug.Log("oui");
+
             yield return new WaitForSeconds(spawnSpeed);
 
-            Ennemy_Controller currentEnnemy = Instantiate(ennemiesToSpawn[Random.Range(0, 3)], parentEnnemies).GetComponent<Ennemy_Controller>();
+            for(int x = 0; x < spawnNumb; x++)
+            {
+                Debug.Log("oui");
 
-            currentEnnemy.transform.position = (Vector2)bossRoom.transform.position + new Vector2(Random.Range(-10, +10), Random.Range(-10, +10));
+                Ennemy_Controller currentEnnemy = Instantiate(ennemiesToSpawn[ennemyType - 1], parentEnnemies).GetComponent<Ennemy_Controller>();
 
-            currentEnnemy.playerDetected = true;
+                currentEnnemy.transform.position = (Vector2)bossRoom.transform.position + new Vector2(Random.Range(-10, +10), Random.Range(-10, +10));
+
+                currentEnnemy.playerDetected = true;
+            }
+
+            yield return new WaitForSeconds(0.3f);
         }
 
         direction = Vector2.zero;

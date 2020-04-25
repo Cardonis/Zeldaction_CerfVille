@@ -43,6 +43,12 @@ public class BulletAttack1 : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if(ec != null)
+        {
+            ennemyController.GetComponent<Ennemy_Controller>().stuned = false;
+            Destroy(gameObject);
+        }
+
         if (ec != null || pmc != null)
         {
             rb.velocity = new Vector2(0, 0);

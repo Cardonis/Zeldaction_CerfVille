@@ -5,6 +5,7 @@ using UnityEngine;
 public class RoomTransitionController : MonoBehaviour
 {
     [HideInInspector] public RoomController activeRoom;
+    public Cinemachine.CinemachineVirtualCamera cmVcam;
 
     // Start is called before the first frame update
     void Start()
@@ -22,16 +23,27 @@ public class RoomTransitionController : MonoBehaviour
     {
         player.stunned = true;
 
+        float activeRoomSize = 1f;
+
         if (activeRoom != null)
         {
+            activeRoomSize = activeRoom.transform.localScale.x;
+
             activeRoom.active = false;
         }
+
+        float sizeMultiplicator = target.transform.localScale.x / activeRoomSize;
+
+        float endSize = cmVcam.m_Lens.OrthographicSize * sizeMultiplicator;
 
         while (!Mathf.Approximately(transform.position.x, target.transform.position.x) || !Mathf.Approximately(transform.position.y, target.transform.position.y))
         {
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 0.15f);
             player.rb.velocity = (target.transform.position - transform.position).normalized * 40f * Time.fixedDeltaTime;
 
+            transform.localScale = Vector3.Lerp(transform.localScale, target.transform.localScale, 3f * Time.fixedDeltaTime);
+
+            cmVcam.m_Lens.OrthographicSize = Mathf.SmoothStep(cmVcam.m_Lens.OrthographicSize, endSize, 5f * Time.fixedDeltaTime);
 
             yield return null;
         }
