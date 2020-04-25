@@ -22,15 +22,17 @@ public class MarquePlaceur : MonoBehaviour
 
             Ennemy_Controller enC = collision.GetComponent<Ennemy_Controller>();
 
-            if (enC != null)
+           HealthFlower efC = collision.GetComponentInParent<HealthFlower>();
+
+            if (enC != null )
                 if (enC.attacking == true)
                 {
                     enC.projected = false;
                 }
 
-            if (ec != null)
+            if ( efC == null &&  ec != null )
             {
-
+                
                 if ((ec.projected == false || baseAttack.player.canSpringAttack) && ec.GetComponentInChildren<MarquageController>() == null)
                 {
                     MarquageController newMark = Instantiate(mark, ec.transform).GetComponent<MarquageController>();
@@ -44,6 +46,12 @@ public class MarquePlaceur : MonoBehaviour
 
                 }
             }
+            if(efC != null)
+            {
+                
+                StartCoroutine(efC.FlowerGrabedBaseAttack(player, transform.parent.parent.parent.parent.position));
+            }
+            
         }
     }
 }
