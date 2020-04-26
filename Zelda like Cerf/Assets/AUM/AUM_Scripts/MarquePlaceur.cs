@@ -18,7 +18,12 @@ public class MarquePlaceur : MonoBehaviour
     {
         if (player.part != 1)
         {
+
+
             Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
+
+            ec.rb.constraints = RigidbodyConstraints2D.None;
+            ec.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
             Ennemy_Controller enC = collision.GetComponent<Ennemy_Controller>();
 

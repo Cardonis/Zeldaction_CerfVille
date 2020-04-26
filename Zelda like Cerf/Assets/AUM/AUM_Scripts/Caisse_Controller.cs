@@ -5,7 +5,6 @@ using UnityEngine;
 public class Caisse_Controller : Elements_Controller
 {
 
-
     // Start is called before the first frame update
     public override void Start()
     {
