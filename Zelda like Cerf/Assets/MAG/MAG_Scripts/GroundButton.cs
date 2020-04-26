@@ -38,7 +38,7 @@ public class GroundButton : Buttonmanager
         else
         {
             isPressed = false;
-            buttonsprite.color = Color.black;
+            buttonsprite.color = Color.white;
         }
     }
 }
