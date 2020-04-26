@@ -679,14 +679,10 @@ public class BossBehavior : Ennemy_Controller
         {
             transform.position = (Vector2)bossRoom.transform.position + new Vector2(Random.Range(-10, +10), Random.Range(-10, +10));
 
-            Debug.Log("oui");
-
             yield return new WaitForSeconds(spawnSpeed);
 
             for(int x = 0; x < spawnNumb; x++)
             {
-                Debug.Log("oui");
-
                 Ennemy_Controller currentEnnemy = Instantiate(ennemiesToSpawn[ennemyType - 1], parentEnnemies).GetComponent<Ennemy_Controller>();
 
                 currentEnnemy.transform.position = (Vector2)bossRoom.transform.position + new Vector2(Random.Range(-10, +10), Random.Range(-10, +10));
