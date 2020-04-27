@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 9088433855240632499}
   - component: {fileID: 9088433855240632508}
   - component: {fileID: 9088433855240632497}
+  - component: {fileID: 5634819917836972009}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -321,6 +322,37 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5634819917836972009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9088433855240632509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_CameraOutput: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &9088433855865740102
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,3 +426,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1d80c234a97524192a188303bddd5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeRoom: {fileID: 0}
+  cmVcam: {fileID: 9088433854412253898}
