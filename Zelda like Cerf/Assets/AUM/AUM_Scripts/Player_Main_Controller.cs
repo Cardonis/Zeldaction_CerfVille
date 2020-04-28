@@ -168,7 +168,11 @@ public class Player_Main_Controller : MonoBehaviour
 
             if (input.magnitude > 0)
             {
-                direction = input;
+                if (input.magnitude > 1)
+                    direction = input.normalized;
+                else
+                    direction = input;
+
                 audiomanager.Play("Deplacement");
                 audiomanager.AlreadyPlay("Deplacement");
                 if(currentPierre != null)
