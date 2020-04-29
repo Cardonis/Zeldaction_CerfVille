@@ -8,7 +8,8 @@ public class Player_Main_Controller : MonoBehaviour
 {
     [Range(100.0f, 400.0f)] public float speed;
 
-    public int life;
+    [HideInInspector] public int currentLife;
+    public int maxLife;
 
     Text lifeText;
 
@@ -120,6 +121,8 @@ public class Player_Main_Controller : MonoBehaviour
         chargeTimeLevel2 = chargeTime / 3f;
         chargeTimeLevel3 = chargeTime;
 
+        currentLife = maxLife;
+
         for (int i = 0; i < baseAttackColliders.Length; i++)
         {
             baseAttackSRs[i].enabled = false;
@@ -138,7 +141,7 @@ public class Player_Main_Controller : MonoBehaviour
 
     void Update()
     {
-        lifeText.text = "Life : " + life;
+        lifeText.text = "Life : " + currentLife;
 
         if(projected)
         {
@@ -648,7 +651,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
     public IEnumerator TakeDamage(int damageTaken)
     {
-        life -= damageTaken;
+        currentLife -= damageTaken;
         audiomanager.Play("Player_take_damage");
 
         //Animator
@@ -665,7 +668,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         GetComponentInChildren<SpriteRenderer>().material.color = baseColor;
 
-        if (life <= 0)
+        if (currentLife <= 0)
         {
             StartCoroutine( Die() );
         }

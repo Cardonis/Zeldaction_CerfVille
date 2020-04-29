@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsFirstButton, optionClosedButton;
     public void PlayGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(1);
     }
     public void QuitGame()
