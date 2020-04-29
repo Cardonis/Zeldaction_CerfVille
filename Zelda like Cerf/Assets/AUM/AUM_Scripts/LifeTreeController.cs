@@ -8,18 +8,17 @@ public class LifeTreeController : MonoBehaviour
     public GameObject pressX;
     Player_Main_Controller player;
 
-    RoomController[] rooms;
+    [HideInInspector] public List<RoomController> rooms;
 
     private void Start()
     {
         playerIsNear = false;
 
-
         GameObject[] rs = GameObject.FindGameObjectsWithTag("Room");
 
         foreach(GameObject r in rs)
         {
-            rooms[rooms.Length] = r.GetComponent<RoomController>();
+            rooms.Add(r.GetComponent<RoomController>());
         }
     }
     private void OnTriggerEnter2D(Collider2D collider)
@@ -47,10 +46,10 @@ public class LifeTreeController : MonoBehaviour
         if (Input.GetButtonDown("X") && playerIsNear == true)
         {
             pressX.SetActive(false);
-            //player.life = player.maxLife;
+            player.currentLife = player.maxLife;
             //Save
 
-            for(int i = 0; i < rooms.Length; i++)
+            for(int i = 0; i < rooms.Count; i++)
             {
                 rooms[i].FullReset();
             }
