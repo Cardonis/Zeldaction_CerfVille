@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueTrigger : MonoBehaviour
+public class TiersDecoeur : MonoBehaviour
 {
-    public Dialogue dialogue;
-    public DialogueManager dialogueManager;
-    bool playerIsNear;
-    Player_Main_Controller player;
+
     public GameObject pressX;
+    private Player_Main_Controller player;
+    public InventoryBook inventoryBook;
+    bool playerIsNear;
 
     private void Start()
     {
@@ -17,13 +17,13 @@ public class DialogueTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
-        if(player != null)
+        if (player != null)
         {
-            playerIsNear = true;
             pressX.SetActive(true);
+            playerIsNear = true;
         }
-        
     }
+
     private void OnTriggerExit2D(Collider2D collider)
     {
         player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
@@ -32,15 +32,15 @@ public class DialogueTrigger : MonoBehaviour
             pressX.SetActive(false);
             playerIsNear = false;
         }
-
     }
-    private void Update()
-    {
-        if (Input.GetButtonDown("X") && dialogueManager.dialogueStarted == false && playerIsNear == true)
-        {
-            pressX.SetActive(false);
-            dialogueManager.StartDialogue(dialogue);
 
+    void Update()
+    {
+        if(playerIsNear == true && Input.GetButtonDown("X"))
+        {
+            inventoryBook.currentNumberOfHearthThird++;
+            pressX.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }
