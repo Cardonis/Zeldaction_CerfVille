@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 62586036f65f9fd4396c38e0fb2fbf49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e9e385a1fa92324b9d6720fc0d07e41, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -313,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 895295155}
-  - component: {fileID: 4554400957079425195}
+  - component: {fileID: 1934623107339507200}
   m_Layer: 8
   m_Name: PBaseAttackGraph
   m_TagString: Untagged
@@ -335,7 +335,7 @@ Transform:
   m_Father: {fileID: 1335502249}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4554400957079425195
+--- !u!212 &1934623107339507200
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1240,12 +1240,12 @@ PrefabInstance:
     - target: {fileID: 6214150370898231134, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -160.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231134, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 34.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231134, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
@@ -1326,7 +1326,7 @@ PrefabInstance:
         type: 3}
       propertyPath: baseAttackSRs.Array.data[2]
       value: 
-      objectReference: {fileID: 4554400957079425195}
+      objectReference: {fileID: 1934623107339507200}
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: speedBulletVersatil

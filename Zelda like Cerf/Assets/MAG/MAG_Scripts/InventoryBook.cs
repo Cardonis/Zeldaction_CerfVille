@@ -54,9 +54,8 @@ public class InventoryBook : MonoBehaviour
                     OpenMapMenu();
                 }
             }
-
+            
         }
-
     }
 
     public void OpenPauseMenu()
