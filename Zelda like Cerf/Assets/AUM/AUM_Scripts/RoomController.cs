@@ -147,66 +147,74 @@ public class RoomController : MonoBehaviour
             {
                 pmc.confiner.StartCoroutine(pmc.confiner.Transition(this, pmc));
 
-                if(monsterRoom == true)
-                {
-                    if(clear == false)
-                    {
-                        for(int i = 0; i < ennemies.Count; i++)
-                        {                           
-                            ennemies[i].gameObject.SetActive(true);
-
-                            ennemies[i].dead = false;
-
-                            ennemies[i].playerDetected = false;
-
-                            ennemies[i].pv = ennemies[i].initialLife;
-                            ennemies[i].transform.position = ennemies[i].initialPosition;
-                            ennemies[i].rb.velocity = Vector2.zero;
-                        }
-
-                        for(int i = 0; i < objectsToReset.Count; i++)
-                        {
-                            objectsToReset[i].transform.position = objectsToReset[i].initialPosition;
-                            if (objectsToReset[i].spawned == true)
-                            {
-                                objectsToReset.Remove(objectsToReset[i]);
-                                Destroy(objectsToReset[i].gameObject);
-                            }
-                                
-                        }
-                    }
-                }
-                else
-                {
-                    if (clear == false)
-                    {
-                        
-
-                        for (int i = 0; i < objectsToReset.Count; i++)
-                        {
-                            objectsToReset[i].transform.position = objectsToReset[i].initialPosition;
-                            if (objectsToReset[i].spawned == true)
-                            {
-                                objectsToReset.Remove(objectsToReset[i]);
-                                Destroy(objectsToReset[i].gameObject);
-                            }
-
-                        }
-                    }
-
-                    for (int i = 0; i < ennemies.Count; i++)
-                    {
-                        if (ennemies[i].dead == false)
-                            ennemies[i].transform.position = ennemies[i].initialPosition;
-
-                        ennemies[i].playerDetected = false;
-
-                        ennemies[i].pv = ennemies[i].initialLife;
-                    }
-                }
+                ResetRoom();
             }
         }
     }
 
+    public void ResetRoom()
+    {
+        if (monsterRoom == true)
+        {
+            if (clear == false)
+            {
+                FullReset();
+            }
+        }
+        else
+        {
+            if (clear == false)
+            {
 
+
+                for (int i = 0; i < objectsToReset.Count; i++)
+                {
+                    objectsToReset[i].transform.position = objectsToReset[i].initialPosition;
+                    if (objectsToReset[i].spawned == true)
+                    {
+                        objectsToReset.Remove(objectsToReset[i]);
+                        Destroy(objectsToReset[i].gameObject);
+                    }
+
+                }
+            }
+
+            for (int i = 0; i < ennemies.Count; i++)
+            {
+                if (ennemies[i].dead == false)
+                    ennemies[i].transform.position = ennemies[i].initialPosition;
+
+                ennemies[i].playerDetected = false;
+
+                ennemies[i].pv = ennemies[i].initialLife;
+            }
+        }
+    }
+
+    public void FullReset()
+    {
+        for (int i = 0; i < ennemies.Count; i++)
+        {
+            ennemies[i].gameObject.SetActive(true);
+
+            ennemies[i].dead = false;
+
+            ennemies[i].playerDetected = false;
+
+            ennemies[i].pv = ennemies[i].initialLife;
+            ennemies[i].transform.position = ennemies[i].initialPosition;
+            ennemies[i].rb.velocity = Vector2.zero;
+        }
+
+        for (int i = 0; i < objectsToReset.Count; i++)
+        {
+            objectsToReset[i].transform.position = objectsToReset[i].initialPosition;
+            if (objectsToReset[i].spawned == true)
+            {
+                objectsToReset.Remove(objectsToReset[i]);
+                Destroy(objectsToReset[i].gameObject);
+            }
+
+        }
+    }
 }

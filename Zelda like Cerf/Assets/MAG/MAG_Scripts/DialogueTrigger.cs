@@ -16,11 +16,11 @@ public class DialogueTrigger : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        pressX.SetActive(true);
         player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
         if(player != null)
         {
             playerIsNear = true;
+            pressX.SetActive(true);
         }
         
     }
