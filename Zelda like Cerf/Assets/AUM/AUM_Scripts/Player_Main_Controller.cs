@@ -96,6 +96,8 @@ public class Player_Main_Controller : MonoBehaviour
     bool carrying;
     Caisse_Controller currentPierre;
 
+    bool dying;
+
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -674,7 +676,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         GetComponentInChildren<SpriteRenderer>().material.color = baseColor;
 
-        if (currentLife <= 0)
+        if (currentLife <= 0 && !dying)
         {
             StartCoroutine( Die() );
         }
@@ -682,11 +684,30 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
     IEnumerator Die()
     {
+        stunned = true;
+        dying = true;
+
         fadeAnimator.SetTrigger("FadeIn");
+
+        yield return new WaitForSeconds(1.5f);
+
+        LoadPlayer();
+
+        GameObject[] rs = GameObject.FindGameObjectsWithTag("Room");
+
+        foreach (GameObject r in rs)
+        {
+            r.GetComponent<RoomController>().FullReset();
+        }
+
+        currentLife = maxLife;
+
+        fadeAnimator.SetTrigger("FadeOut");
 
         yield return new WaitForSeconds(1f);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        stunned = false;
+        dying = false;
 
         yield break;
     }
@@ -701,6 +722,24 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
     }
 
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        part = data.part;
+        maxLife = data.maxHealth;
+
+        Vector2 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+
+        transform.position = position;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

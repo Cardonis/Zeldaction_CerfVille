@@ -54,7 +54,7 @@ public class LifeTreeController : MonoBehaviour
                 rooms[i].FullReset();
             }
 
-            //Save
+            player.SavePlayer();
         }
     }
 }
