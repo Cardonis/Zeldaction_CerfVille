@@ -54,9 +54,12 @@ public class InventoryBook : MonoBehaviour
                     OpenMapMenu();
                 }
             }
-
+            
         }
-
+        if(Input.GetButtonDown("Start") && iventoryIsOpen == true)
+        {
+            CloseInventory();
+        }
     }
 
     public void OpenPauseMenu()
