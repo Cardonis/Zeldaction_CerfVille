@@ -45,14 +45,16 @@ public class LifeTreeController : MonoBehaviour
     {
         if (Input.GetButtonDown("X") && playerIsNear == true)
         {
+
             pressX.SetActive(false);
             player.currentLife = player.maxLife;
-            //Save
 
             for(int i = 0; i < rooms.Count; i++)
             {
                 rooms[i].FullReset();
             }
+
+            //Save
         }
     }
 }

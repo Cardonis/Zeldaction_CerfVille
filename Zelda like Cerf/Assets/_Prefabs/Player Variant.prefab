@@ -313,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 895295155}
-  - component: {fileID: 3102652748761104831}
+  - component: {fileID: 4554400957079425195}
   m_Layer: 8
   m_Name: PBaseAttackGraph
   m_TagString: Untagged
@@ -335,7 +335,7 @@ Transform:
   m_Father: {fileID: 1335502249}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3102652748761104831
+--- !u!212 &4554400957079425195
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   bulletController: {fileID: 0}
-  forceValue: 10
+  forceValue: 30
   levelMultiplicator: 0.25
 --- !u!1 &2112648585
 GameObject:
@@ -1142,7 +1142,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 829979663, guid: 603ec871160439742bb890b9e1d2ec16, type: 3}
       propertyPath: forceValue
-      value: 25
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 829979663, guid: 603ec871160439742bb890b9e1d2ec16, type: 3}
       propertyPath: levelMultiplicator
@@ -1150,7 +1150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1847402320, guid: 603ec871160439742bb890b9e1d2ec16, type: 3}
       propertyPath: forceValue
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1847402320, guid: 603ec871160439742bb890b9e1d2ec16, type: 3}
       propertyPath: levelMultiplicator
@@ -1172,6 +1172,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 6a237b1f6cd879941a3ce57ddc86ee45,
         type: 3}
+    - target: {fileID: 6214150370525333126, guid: 603ec871160439742bb890b9e1d2ec16,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6214150370616301857, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: m_Layer
@@ -1235,12 +1240,12 @@ PrefabInstance:
     - target: {fileID: 6214150370898231134, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -160.3
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231134, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 34.1
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231134, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
@@ -1321,7 +1326,7 @@ PrefabInstance:
         type: 3}
       propertyPath: baseAttackSRs.Array.data[2]
       value: 
-      objectReference: {fileID: 3102652748761104831}
+      objectReference: {fileID: 4554400957079425195}
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: speedBulletVersatil
@@ -1355,7 +1360,7 @@ PrefabInstance:
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: marquageDuration
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
@@ -1415,7 +1420,7 @@ PrefabInstance:
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: maxLife
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6214150371057395948, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
@@ -1506,6 +1511,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212786648903886042, guid: 603ec871160439742bb890b9e1d2ec16,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 603ec871160439742bb890b9e1d2ec16, type: 3}

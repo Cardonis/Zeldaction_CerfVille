@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Player_Main_Controller : MonoBehaviour
 {
+    public Animator fadeAnimator;
+
     [Range(100.0f, 400.0f)] public float speed;
 
     [HideInInspector] public int currentLife;
@@ -680,6 +682,9 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
     IEnumerator Die()
     {
+        fadeAnimator.SetTrigger("FadeIn");
+
+        yield return new WaitForSeconds(1f);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
