@@ -13,7 +13,7 @@ public class TeleporterInitiator : MonoBehaviour
 
     private void Start()
     {
-        teleporterManager = GameObject.Find("TeleporterManager").GetComponent<TeleporterManager>();
+        teleporterManager = GameObject.Find("DontDestroyOnLoadData").GetComponent<TeleporterManager>();
 
         if(teleporterManager.canTeleport == true)
         {

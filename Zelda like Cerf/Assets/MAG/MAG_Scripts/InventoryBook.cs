@@ -56,10 +56,10 @@ public class InventoryBook : MonoBehaviour
             }
             
         }
-        if(Input.GetButtonDown("Start") && iventoryIsOpen == true)
+        /*if(Input.GetButtonDown("Start") && iventoryIsOpen == true)
         {
             CloseInventory();
-        }
+        }*/
     }
 
     public void OpenPauseMenu()
