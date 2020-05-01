@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7581247578789968821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7581247578789968820}
+  - component: {fileID: 7581247578789968819}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7581247578789968820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7581247578789968821}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -34.450115, y: -14.612281, z: -166975.94}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7581247578789968819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7581247578789968821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f5c00183e7a01468a2aef0d7cb7afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Musics:
+  - name: Battle01
+    Clip: {fileID: 8300000, guid: b2d93c720ed6e4f4c892d38e53908b70, type: 3}
+    volume: 1
+    loop: 1
+    IsPlaying: 0
+    source: {fileID: 0}
+  - name: Battle02
+    Clip: {fileID: 8300000, guid: 000099b3257e061478c04096282e3ce8, type: 3}
+    volume: 1
+    loop: 1
+    IsPlaying: 0
+    source: {fileID: 0}
+  - name: BossBattle
+    Clip: {fileID: 8300000, guid: 488f3664d8da5ab4b8f12e48078dadb2, type: 3}
+    volume: 1
+    loop: 1
+    IsPlaying: 0
+    source: {fileID: 0}
+  - name: Forest01
+    Clip: {fileID: 8300000, guid: cdce34a0a496c6041974edcde0cce797, type: 3}
+    volume: 1
+    loop: 1
+    IsPlaying: 0
+    source: {fileID: 0}
+  - name: Forest02
+    Clip: {fileID: 8300000, guid: acffff5db4587cb42b5bf26c584ae318, type: 3}
+    volume: 1
+    loop: 1
+    IsPlaying: 0
+    source: {fileID: 0}
+  - name: Graveyard
+    Clip: {fileID: 8300000, guid: 64799edfe74ffc743bf15e565c89813c, type: 3}
+    volume: 1
+    loop: 1
+    IsPlaying: 0
+    source: {fileID: 0}
+  - name: ThemeV1
+    Clip: {fileID: 8300000, guid: b54638459f902fd43a5644cbf7893bf4, type: 3}
+    volume: 1
+    loop: 1
+    IsPlaying: 0
+    source: {fileID: 0}
+  - name: ThemeV2
+    Clip: {fileID: 8300000, guid: 4a999873efeed9447af9b5199396a4e6, type: 3}
+    volume: 1
+    loop: 1
+    IsPlaying: 0
+    source: {fileID: 0}
+  - name: Village
+    Clip: {fileID: 8300000, guid: d5ef288d01f06b34f8be8ecca066193b, type: 3}
+    volume: 1
+    loop: 1
+    IsPlaying: 0
+    source: {fileID: 0}
+  - name: Donjon01
+    Clip: {fileID: 8300000, guid: ae32b2db9b9b56243bb3e823a5cdfac5, type: 3}
+    volume: 1
+    loop: 1
+    IsPlaying: 0
+    source: {fileID: 0}
+  Ambiances: []
+  CurrentMusic:
+    name: 
+    Clip: {fileID: 0}
+    volume: 0
+    loop: 0
+    IsPlaying: 0
+    source: {fileID: 0}
+  CurrentAmbiance:
+    name: 
+    Clip: {fileID: 0}
+    volume: 0
+    loop: 0
+    IsPlaying: 0
+    source: {fileID: 0}
+  InBattle: 0
+  PlayerCurrentPos: 0
