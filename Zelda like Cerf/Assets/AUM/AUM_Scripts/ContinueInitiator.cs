@@ -10,13 +10,18 @@ public class ContinueInitiator : MonoBehaviour
 
     private void Start()
     {
-        continueManager = GameObject.Find("DontDestroyOnLoadData").GetComponent<Continue>();
+        GameObject ddol = GameObject.Find("DontDestroyOnLoadData");
 
-        if (continueManager.continuying == true)
+        if(ddol != null)
         {
-            player.LoadPlayer();
-        }
+            continueManager = ddol.GetComponent<Continue>();
 
+            if (continueManager.continuying == true)
+            {
+                player.LoadPlayer();
+            }
+        }
+        
         Destroy(gameObject);
 
     }

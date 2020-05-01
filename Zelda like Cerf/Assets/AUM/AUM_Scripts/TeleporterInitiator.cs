@@ -13,13 +13,17 @@ public class TeleporterInitiator : MonoBehaviour
 
     private void Start()
     {
-        teleporterManager = GameObject.Find("DontDestroyOnLoadData").GetComponent<TeleporterManager>();
+        GameObject ddol = GameObject.Find("DontDestroyOnLoadData");
 
-        if(teleporterManager.canTeleport == true)
+        if (ddol != null)
         {
-            player.transform.position = teleportTransforms[teleporterManager.teleporterNumber].transform.position;
-            player.confiner.transform.position = teleportTransforms[teleporterManager.teleporterNumber].position;
-            player.part = teleporterManager.teleportPart;
+            teleporterManager = ddol.GetComponent<TeleporterManager>();
+            if (teleporterManager.canTeleport == true)
+            {
+                player.transform.position = teleportTransforms[teleporterManager.teleporterNumber].transform.position;
+                player.confiner.transform.position = teleportTransforms[teleporterManager.teleporterNumber].position;
+                player.part = teleporterManager.teleportPart;
+            }
         }
 
         Destroy(gameObject);

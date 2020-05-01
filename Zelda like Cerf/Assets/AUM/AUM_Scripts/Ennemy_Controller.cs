@@ -76,16 +76,15 @@ public abstract class Ennemy_Controller : Elements_Controller
     {
         pv -= damageTaken;
 
-        Color baseColor = GetComponentInChildren<SpriteRenderer>().material.color;
-
-        GetComponentInChildren<SpriteRenderer>().material.color = new Color(255, 0, 0);
+        GetComponentInChildren<SpriteRenderer>().color = new Color(1, 0, 0);
 
         for (float i = 0.1f * damageTaken; i > 0; i -= Time.deltaTime)
         {
+
             yield return null;
         }
 
-        GetComponentInChildren<SpriteRenderer>().material.color = baseColor;
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
 
         if (pv <= 0)
         {

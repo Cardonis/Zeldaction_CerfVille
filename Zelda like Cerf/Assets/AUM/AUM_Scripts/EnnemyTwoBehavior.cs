@@ -31,8 +31,6 @@ public class
 
     Vector2 directionForAttack;
 
-    AudioManager audiomanager;
-
     // Start is called before the first frame update
     override public void Start()
     {

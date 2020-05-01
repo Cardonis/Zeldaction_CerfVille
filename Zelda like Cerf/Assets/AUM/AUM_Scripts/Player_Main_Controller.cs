@@ -96,10 +96,14 @@ public class Player_Main_Controller : MonoBehaviour
     bool carrying;
     Caisse_Controller currentPierre;
 
-    bool dying;
+    bool takingDamage = false;
+
+    bool dying = false;
 
     void Start()
     {
+        direction = Vector2.down;
+
         animator = GetComponentInChildren<Animator>();
 
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
@@ -168,11 +172,6 @@ public class Player_Main_Controller : MonoBehaviour
 
         if (!projected && !stunned)
         {
-            if(inputAim.magnitude > 0)
-            {
-                directionAim = inputAim;
-            }
-
             if (input.magnitude > 0)
             {
                 if (input.magnitude > 1)
@@ -198,7 +197,15 @@ public class Player_Main_Controller : MonoBehaviour
                 audiomanager.Stop("Deplacement");
                 audiomanager.RePlay("Deplacement");
             }
-        
+
+            if (inputAim.magnitude > 0)
+            {
+                directionAim = inputAim;
+            }
+            else
+            {
+                directionAim = direction;
+            }
         }
 
         if (currentPierre != null)
@@ -431,11 +438,23 @@ public class Player_Main_Controller : MonoBehaviour
             directionAngle = -directionAngle;
         }
 
-        directionAimAngle = Vector2.Angle(transform.right, directionAim);
-
-        if(directionAim.y < 0)
+        if (currentPierre == null)
         {
-            directionAimAngle = -directionAimAngle;
+            directionAimAngle = Vector2.Angle(transform.right, directionAim);
+
+            if (directionAim.y < 0)
+            {
+                directionAimAngle = -directionAimAngle;
+            }
+        }
+        else
+        {
+            directionAimAngle = Vector2.Angle(transform.right, -directionAim);
+
+            if (directionAim.y > 0)
+            {
+                directionAimAngle = -directionAimAngle;
+            }
         }
 
         arrowDirection.rotation = Quaternion.Euler(0, 0, directionAimAngle);
@@ -659,27 +678,31 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
     public IEnumerator TakeDamage(int damageTaken)
     {
+        takingDamage = true;
+
         currentLife -= damageTaken;
         audiomanager.Play("Player_take_damage");
 
         //Animator
         animator.SetTrigger("IsHurt");
 
-        Color baseColor = GetComponentInChildren<SpriteRenderer>().material.color;
+       Color baseColor = GetComponentInChildren<SpriteRenderer>().color;
 
-        GetComponentInChildren<SpriteRenderer>().material.SetColor("_BaseColor", Color.red);
+        GetComponentInChildren<SpriteRenderer>().color = Color.red;
 
-        for (float i = 0.1f; i > 0; i -= Time.deltaTime)
+        for (float i = 0.5f; i > 0; i -= Time.deltaTime)
         {
             yield return null;
         }
 
-        GetComponentInChildren<SpriteRenderer>().material.color = baseColor;
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
 
         if (currentLife <= 0 && !dying)
         {
             StartCoroutine( Die() );
         }
+
+        takingDamage = false;
     }
 
     IEnumerator Die()
@@ -747,6 +770,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         if ((collision.transform.tag == "Wall" || ec != null) && projected == true)
         {
+            if(takingDamage == false)
             StartCoroutine( TakeDamage(1) );
         }
 
@@ -754,6 +778,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         {
             if (ec.projected == true && ec.playerProjected == false)
             {
+                if(takingDamage == false)
                 StartCoroutine( TakeDamage(1) );
             }
         }

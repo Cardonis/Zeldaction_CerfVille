@@ -20,8 +20,6 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
     public List<EnnemiOneBehavior> limierControllers;
 
-    AudioManager audiomanager;
-
     [HideInInspector] public Animator animator;
 
     override public void Start()

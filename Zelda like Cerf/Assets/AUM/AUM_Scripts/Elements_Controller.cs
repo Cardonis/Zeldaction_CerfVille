@@ -24,7 +24,7 @@ public class Elements_Controller : MonoBehaviour
 
     [HideInInspector] public bool spawned = false;
 
-    AudioManager audiomanager;
+    [HideInInspector] public AudioManager audiomanager;
 
 
     public void TakeForce(Vector2 direction, float forceValue, float levelMultiplicator)
