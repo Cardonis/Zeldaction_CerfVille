@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &1612582040930609397
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3063996972082716210}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e4cf4e88f9a7c4647b49a83e3f451e79, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &711378504546063456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10,23 +29,43 @@ PrefabInstance:
     - target: {fileID: 2547581602168162899, guid: 8ddaafe6267d84b4698a973fab258094,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2547581602168162899, guid: 8ddaafe6267d84b4698a973fab258094,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.67
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2547581602168162900, guid: 8ddaafe6267d84b4698a973fab258094,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 8019587767768425701, guid: b24f7ac91f529214093be6b56ba7d62f,
+      objectReference: {fileID: 7132003841746076614, guid: 3d97572a8288b2e42a9935fcddc15e75,
         type: 3}
+    - target: {fileID: 2547581602210891455, guid: 8ddaafe6267d84b4698a973fab258094,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.17014173
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547581602210891455, guid: 8ddaafe6267d84b4698a973fab258094,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.3297457
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547581602210891455, guid: 8ddaafe6267d84b4698a973fab258094,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.09280443
+      objectReference: {fileID: 0}
+    - target: {fileID: 2547581602210891455, guid: 8ddaafe6267d84b4698a973fab258094,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.1856089
+      objectReference: {fileID: 0}
     - target: {fileID: 2547581602257968457, guid: 8ddaafe6267d84b4698a973fab258094,
         type: 3}
       propertyPath: m_Name
-      value: Boutonmural Variant Vertical
+      value: "Boutonmural cot\xE9 gauche Clair"
       objectReference: {fileID: 0}
     - target: {fileID: 2547581602257968457, guid: 8ddaafe6267d84b4698a973fab258094,
         type: 3}
@@ -36,12 +75,12 @@ PrefabInstance:
     - target: {fileID: 2547581602257968460, guid: 8ddaafe6267d84b4698a973fab258094,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2547581602257968460, guid: 8ddaafe6267d84b4698a973fab258094,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.771942
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2547581602257968460, guid: 8ddaafe6267d84b4698a973fab258094,
         type: 3}
@@ -91,12 +130,18 @@ PrefabInstance:
     - target: {fileID: 2547581602257968460, guid: 8ddaafe6267d84b4698a973fab258094,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2547581602257968460, guid: 8ddaafe6267d84b4698a973fab258094,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ddaafe6267d84b4698a973fab258094, type: 3}
+--- !u!1 &3063996972082716210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2547581602168162898, guid: 8ddaafe6267d84b4698a973fab258094,
+    type: 3}
+  m_PrefabInstance: {fileID: 711378504546063456}
+  m_PrefabAsset: {fileID: 0}

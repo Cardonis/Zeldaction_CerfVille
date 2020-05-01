@@ -10,8 +10,10 @@ public class GroundButton : Buttonmanager
     ContactFilter2D pierreFilter = new ContactFilter2D();
     int currentPressionMass;
     SpriteRenderer buttonsprite;
+    Animator animator;
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         pierreFilter.useTriggers = true;
         isPressed = false;
         buttonsprite = GetComponentInChildren<SpriteRenderer>();
@@ -19,6 +21,7 @@ public class GroundButton : Buttonmanager
 
     void Update()
     {
+        animator.SetBool("isPressed", isPressed);
         Physics2D.OverlapBox(transform.position, buttonSize, 0, pierreFilter, pierreColliders);
         currentPressionMass = 0;
         for(int i=0; i<pierreColliders.Count; i++)
@@ -33,12 +36,10 @@ public class GroundButton : Buttonmanager
         if (currentPressionMass >= totalMass)
         {
             isPressed = true;
-            buttonsprite.color = Color.blue;
         }
         else
         {
             isPressed = false;
-            buttonsprite.color = Color.white;
         }
     }
 }

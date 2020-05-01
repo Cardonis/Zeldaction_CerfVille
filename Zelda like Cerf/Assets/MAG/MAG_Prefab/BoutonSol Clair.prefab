@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5320262608857607867}
   - component: {fileID: 5320262608857607869}
   m_Layer: 0
-  m_Name: BoutonSol
+  m_Name: BoutonSol Clair
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,6 +79,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5320262610347675064}
   - component: {fileID: 5320262610347675065}
+  - component: {fileID: 6131147991455836319}
   m_Layer: 0
   m_Name: CGraph
   m_TagString: Ennemy
@@ -139,7 +140,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fa594924272485643a2bd565baf2e9eb, type: 3}
+  m_Sprite: {fileID: -7624389895396661393, guid: 4b3d4fea50450fd40a0247132e6ecce7,
+    type: 3}
   m_Color: {r: 0.9960785, g: 0.9960785, b: 0.9960785, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,3 +152,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6131147991455836319
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5320262610347675063}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f54f3c6813456ec478bb6a4e6abb5a0e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
