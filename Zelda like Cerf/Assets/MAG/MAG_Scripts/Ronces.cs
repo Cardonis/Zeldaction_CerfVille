@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Ronces : Elements_Controller
 {
-    public float timeBeforeDestruction;
     Rigidbody2D ronceRb;
     public bool isARonceEpaisse;
     public float shakeMagnitude;
+    Animator animator;
+    bool isDestroy;
+    public AnimationClip ronceDestructionClip;
     public override void Start()
     {
         base.Start();
         ronceRb = GetComponent<Rigidbody2D>();
         ronceRb.bodyType = RigidbodyType2D.Static;
-        
+        animator = GetComponentInChildren<Animator>();
     }
 
     public override void FixedUpdate()
@@ -21,6 +23,10 @@ public class Ronces : Elements_Controller
         base.FixedUpdate();
     }
 
+    void Update()
+    {
+        animator.SetBool("isDestroy", isDestroy);
+    }
     public override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
@@ -33,10 +39,10 @@ public class Ronces : Elements_Controller
 
     public IEnumerator Destruction(float levelProjecting, float forceValueVersatilAttack)
     {
-        yield return new WaitForSeconds(0.5f);
+        isDestroy = true;
         ronceRb.bodyType = RigidbodyType2D.Dynamic;
         StartTakeForce(forceValueVersatilAttack, levelProjecting);
-        yield return new WaitForSeconds(timeBeforeDestruction);
+        yield return new WaitForSeconds(ronceDestructionClip.length);
         Destroy(gameObject);
     }
     

@@ -15,14 +15,19 @@ public class BearTrap : MonoBehaviour
 
     public SpriteRenderer trapSprite;
     bool inCooldown;
-   
+
+    Animator animator;
 
     void Start()
     {
         isActive = true;
+        animator = GetComponentInChildren<Animator>();
     }
     void Update()
     {
+        animator.SetBool("isActive", isActive);
+        animator.SetBool("inCooldown", inCooldown);
+
         if ( isActive == false && inCooldown == false)
         {
             Invoke("SetTrapActive", desactivationTime);
