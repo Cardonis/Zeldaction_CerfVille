@@ -74,6 +74,7 @@ public class RoomController : MonoBehaviour
                 if (cleared == true)
                 {
                     clear = true;
+                    MusicManager.InBattle = false;
                 }
             }
             else

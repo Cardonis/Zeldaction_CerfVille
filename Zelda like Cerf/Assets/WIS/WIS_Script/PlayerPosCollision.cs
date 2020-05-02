@@ -6,6 +6,10 @@ using UnityEngine;
 public class PlayerPosCollision : MonoBehaviour
 {
 
+    //Le Script qui gère la position du joueur pour savoir quelle musiques et ambiances doivent être jouées.
+    //Quand le joueur entre en collision avec cet objet, cela update sa position. 
+    //Pour créer les différent position manager, il suffit de changer la position de ce script dans l'inspecteur.
+
     public enum PlayerPos { Village, Graveyard, Donjon01, Forest01, Forest02, Boss };
 
     public PlayerPos Position;
