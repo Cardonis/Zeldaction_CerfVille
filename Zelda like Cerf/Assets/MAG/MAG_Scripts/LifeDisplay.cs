@@ -11,6 +11,7 @@ public class LifeDisplay : MonoBehaviour
     public Image[] hearths;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+    public Sprite halfHeart;
     void Start()
     {
         
@@ -18,31 +19,37 @@ public class LifeDisplay : MonoBehaviour
 
     void Update()
     {
-        
-        if(currentHealth> numberOfHearts)
-        {
-            currentHealth = numberOfHearts;
-        }
+        UpdateHealthDisplay();
+    }
 
-        for (int i = 0; i < numberOfHearts; i++)
+    private void UpdateHealthDisplay()
+    {
+        int life = currentHealth;
+        int i = 0;
+        while(i < hearths.Length)
         {
-            if (i < currentHealth)
+            if(life - 2 >= 0)
             {
                 hearths[i].sprite = fullHeart;
+                life -= 2;
             }
-            else
+            else if(life == 1)
+            {
+                hearths[i].sprite = halfHeart;
+                life--;
+            }
+            else if(life == 0)
             {
                 hearths[i].sprite = emptyHeart;
             }
 
-            if (i < numberOfHearts)
+
+            if(i >= numberOfHearts)
             {
-                hearths[i].enabled = true;
+                hearths[i].gameObject.SetActive(false);
             }
-            else
-            {
-                hearths[i].enabled = false;
-            }
+
+            i++;
         }
     }
 }
