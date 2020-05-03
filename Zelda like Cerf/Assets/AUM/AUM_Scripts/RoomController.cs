@@ -74,6 +74,7 @@ public class RoomController : MonoBehaviour
                 if (cleared == true)
                 {
                     clear = true;
+                    MusicManager.InBattle = false;
                 }
             }
             else
@@ -167,15 +168,14 @@ public class RoomController : MonoBehaviour
             {
 
 
-                for (int i = 0; i < objectsToReset.Count; i++)
+                foreach (Caisse_Controller objectToReset in objectsToReset)
                 {
-                    objectsToReset[i].transform.position = objectsToReset[i].initialPosition;
-                    if (objectsToReset[i].spawned == true)
+                    objectToReset.transform.position = objectToReset.initialPosition;
+                    if (objectToReset.spawned == true)
                     {
-                        objectsToReset.Remove(objectsToReset[i]);
-                        Destroy(objectsToReset[i].gameObject);
+                        objectsToReset.Remove(objectToReset);
+                        Destroy(objectToReset.gameObject);
                     }
-
                 }
             }
 
@@ -206,15 +206,16 @@ public class RoomController : MonoBehaviour
             ennemies[i].rb.velocity = Vector2.zero;
         }
 
-        for (int i = 0; i < objectsToReset.Count; i++)
+        foreach(Caisse_Controller objectToReset in objectsToReset)
         {
-            objectsToReset[i].transform.position = objectsToReset[i].initialPosition;
-            if (objectsToReset[i].spawned == true)
+            objectToReset.transform.position = objectToReset.initialPosition;
+            if (objectToReset.spawned == true)
             {
-                objectsToReset.Remove(objectsToReset[i]);
-                Destroy(objectsToReset[i].gameObject);
+                objectsToReset.Remove(objectToReset);
+                Destroy(objectToReset.gameObject);
             }
-
         }
+
+        
     }
 }
