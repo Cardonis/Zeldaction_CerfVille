@@ -10,11 +10,17 @@ public class Door : MonoBehaviour
     SpriteRenderer doorSprite;
     public TimeConnectors timeConnectors;
     public OrderConnectors orderConnectors;
+
+    bool wasClosed;
+    bool isClosed;
+
+    AudioManager audiomanager;
+
     void Start()
     {
         doorCollider = GetComponentInChildren<Collider2D>();
         doorSprite = GetComponentInChildren<SpriteRenderer>();
-        
+        audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -40,7 +46,23 @@ public class Door : MonoBehaviour
                 isOpen = false;
             }
 
+        wasClosed = isClosed;
+
         doorCollider.enabled = !isOpen;
         doorSprite.enabled = !isOpen;
+
+        isClosed = doorCollider.enabled;
+
+        if (wasClosed == true && isClosed == false)
+        {
+            StartCoroutine(audiomanager.PlayOne("DoorOpen", gameObject));
+        }
+
+
+
     }
+
+
+
+
 }

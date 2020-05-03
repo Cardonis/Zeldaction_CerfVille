@@ -7,10 +7,13 @@ public class OrderConnectors : MonoBehaviour
     public Buttonmanager[] allButtons;
     int numberOfPressedButtons;
     [HideInInspector] public bool openDoor;
+
+    AudioManager audiomanager;
     void Start()
     {
         
         openDoor = false;
+        audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
 
@@ -31,6 +34,7 @@ public class OrderConnectors : MonoBehaviour
                     for (int b = 0; b < allButtons.Length; b++)
                     {
                         allButtons[b].isPressed = false;
+                        StartCoroutine(audiomanager.PlayOne("ButtonOff", gameObject));
                     }
                 }
             }
