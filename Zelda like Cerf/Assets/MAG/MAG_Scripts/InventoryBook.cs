@@ -13,6 +13,7 @@ public class InventoryBook : MonoBehaviour
     public GameObject pauseMenuUi, mapUi, playerAndTipsUi;
     [HideInInspector] public bool iventoryIsOpen;
     public GameObject pauseFirstButton, playerAndTipsUIFirstButton, mapUIFirstButton;
+    public GameObject emptyHeart, notSoEmptyHeart, notNotSoEmptyHeart;
     void Start()
     {
       currentNumberOfHearthThird = 0;
@@ -23,9 +24,21 @@ public class InventoryBook : MonoBehaviour
     {
         if (currentNumberOfHearthThird == 3)
         {
-            player.maxLife ++;
+            player.maxLife += 2;
             player.currentLife += 2;
             currentNumberOfHearthThird = 0;
+            notNotSoEmptyHeart.SetActive(false);
+            emptyHeart.SetActive(true);
+        }
+        if (currentNumberOfHearthThird == 1)
+        {
+            emptyHeart.SetActive(false);
+            notSoEmptyHeart.SetActive(true);
+        }
+        if (currentNumberOfHearthThird == 2)
+        {
+            notNotSoEmptyHeart.SetActive(true);
+            notSoEmptyHeart.SetActive(false);
         }
 
         if (Input.GetButtonDown("Start") || Input.GetButtonDown("Y") || Input.GetButtonDown("B"))

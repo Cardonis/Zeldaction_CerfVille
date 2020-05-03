@@ -7,15 +7,15 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    Resolution[] resolutions;
-    public Dropdown resolutioDropdown;
+    //Resolution[] resolutions;
+    //public Dropdown resolutioDropdown;
     void Start()
     {
-        resolutions = Screen.resolutions;
+        //resolutions = Screen.resolutions;
 
-        resolutioDropdown.ClearOptions();
+        //resolutioDropdown.ClearOptions();
 
-        List<string> options = new List<string>();
+        /*List<string> options = new List<string>();
 
         int currenResolutioIndex = 0;
 
@@ -29,16 +29,16 @@ public class PauseMenu : MonoBehaviour
                 currenResolutioIndex = i;
             }
         }
-        resolutioDropdown.AddOptions(options);
+        /*resolutioDropdown.AddOptions(options);
         resolutioDropdown.value = currenResolutioIndex;
-        resolutioDropdown.RefreshShownValue();
+        resolutioDropdown.RefreshShownValue();*/
     }
 
-    public void SetResolution (int resolutionIndex)
+    /*public void SetResolution (int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height,Screen.fullScreen);
-    }
+    }*/
     public void QuitGame()
     {
         Application.Quit();
