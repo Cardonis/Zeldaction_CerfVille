@@ -23,11 +23,12 @@ public class LifeTreeController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Player_Main_Controller player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
-        if (player != null)
+        Player_Main_Controller p = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
+        if (p != null)
         {
             pressX.SetActive(true);
             playerIsNear = true;
+            player = p;
         }
 
     }
