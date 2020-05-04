@@ -52,7 +52,11 @@ public class HealthFlower : Elements_Controller
             rb.velocity = direction * 2f;
             if (Vector2.Distance((Vector2)transform.position, playerTransform) < DestroyDistance)
             {
-                player.currentLife += healValue;
+                if (player.currentLife <= player.maxLife)
+                {
+                    player.currentLife += healValue;
+                }
+
                 Destroy(gameObject);
                 isFinished = true;
 

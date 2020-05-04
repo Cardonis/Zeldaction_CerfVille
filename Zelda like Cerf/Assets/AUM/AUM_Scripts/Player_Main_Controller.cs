@@ -757,6 +757,12 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         position.y = data.position[1];
 
         transform.position = position;
+
+        Vector2 confinerPosition;
+        confinerPosition.x = data.confinerPosition[0];
+        confinerPosition.y = data.confinerPosition[1];
+
+        confiner.transform.position = confinerPosition;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
