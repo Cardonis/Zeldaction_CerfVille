@@ -13,8 +13,6 @@ public class Player_Main_Controller : MonoBehaviour
     [HideInInspector] public int currentLife;
     public int maxLife;
 
-    Text lifeText;
-
     public int part;
 
     [HideInInspector] public Collider2D physicCollider;
@@ -117,8 +115,6 @@ public class Player_Main_Controller : MonoBehaviour
 
         vBullets = GameObject.Find("VBullets").transform;
 
-        lifeText = GameObject.Find("LifeText").GetComponent<Text>();
-
         confiner = GameObject.Find("CameraConfiner").GetComponent<RoomTransitionController>();
         marquageManager = GameObject.Find("MarquageManager").GetComponent<MarquageManager>();
 
@@ -149,7 +145,6 @@ public class Player_Main_Controller : MonoBehaviour
 
     void Update()
     {
-        lifeText.text = "Life : " + currentLife;
 
         if(projected)
         {

@@ -5,20 +5,24 @@ using UnityEngine.UI;
 
 public class LifeDisplay : MonoBehaviour
 {
-    public int currentHealth;
-    public int numberOfHearts;
+    int currentHealth;
+    int numberOfHearts;
 
     public Image[] hearths;
     public Sprite fullHeart;
     public Sprite emptyHeart;
     public Sprite halfHeart;
+    public Player_Main_Controller player;
     void Start()
     {
-        
+        currentHealth = player.currentLife;
+        numberOfHearts = player.maxLife / 2;
     }
 
     void Update()
     {
+        currentHealth = player.currentLife;
+        numberOfHearts = player.maxLife / 2;
         UpdateHealthDisplay();
     }
 
@@ -47,6 +51,10 @@ public class LifeDisplay : MonoBehaviour
             if(i >= numberOfHearts)
             {
                 hearths[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                hearths[i].gameObject.SetActive(true);
             }
 
             i++;
