@@ -54,4 +54,5 @@ public class PauseMenu : MonoBehaviour
         Screen.fullScreen = isFullScreen;
     }
 
+
 }
