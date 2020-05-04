@@ -15,14 +15,21 @@ public class BearTrap : MonoBehaviour
 
     public SpriteRenderer trapSprite;
     bool inCooldown;
-   
+
+    Animator animator;
+    AudioManager audiomanager;
 
     void Start()
     {
         isActive = true;
+        animator = GetComponentInChildren<Animator>();
+        audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
     void Update()
     {
+        animator.SetBool("isActive", isActive);
+        animator.SetBool("inCooldown", inCooldown);
+
         if ( isActive == false && inCooldown == false)
         {
             Invoke("SetTrapActive", desactivationTime);
@@ -40,6 +47,7 @@ public class BearTrap : MonoBehaviour
                 elementplayer.StartCoroutine(elementplayer.StunnedFor(stunTimeForPlayer));
                 elementplayer.rb.velocity = Vector2.zero;
                 isActive = false;
+                StartCoroutine(audiomanager.PlayOne("Piege_Loup", gameObject));
             }
 
             Ennemy_Controller elementennemi = collider.GetComponentInParent<Ennemy_Controller>();
@@ -49,6 +57,7 @@ public class BearTrap : MonoBehaviour
                 elementennemi.StartTakeDamage(trapDamageForEnnemi);
                 StartCoroutine(elementennemi.StunedForSeconds(stunTimeForEnnemi));
                 isActive = false;
+                StartCoroutine(audiomanager.PlayOne("Piege_Loup", gameObject));
             }
         }
     }

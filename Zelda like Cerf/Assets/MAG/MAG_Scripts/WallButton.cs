@@ -8,16 +8,22 @@ public class WallButton : Buttonmanager
     int detectedObjectMass;
     float detectedObjectProjectionLevel;
     SpriteRenderer buttonSprite;
+    Animator animator;
+
+    AudioManager audiomanager;
 
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         isPressed = false;
         buttonSprite = GetComponentInChildren<SpriteRenderer>();
+        audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
     {
-        if(isPressed == false)
+        animator.SetBool("isPressed", isPressed);
+        if (isPressed == false)
         {
             detectedObjectMass = 0;
             detectedObjectProjectionLevel = 0;
@@ -36,7 +42,7 @@ public class WallButton : Buttonmanager
         if (detectedObjectMass * detectedObjectProjectionLevel >= scoreNeeded)
         {
             isPressed = true;
-            buttonSprite.color = Color.green;
+            StartCoroutine(audiomanager.PlayOne("ButtonOn", gameObject));
         }
     }
 }

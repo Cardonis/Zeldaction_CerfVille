@@ -21,6 +21,9 @@ public class MusicManager : MonoBehaviour
 
     public static bool InBattle;
 
+    [Range(0f, 1f)]
+    public float MusicVolume;
+
     public enum PlayerPos { Village, Graveyard, Donjon01, Forest01, Forest02, Boss };
 
     public static PlayerPos PlayerCurrentPos;
@@ -77,7 +80,7 @@ public class MusicManager : MonoBehaviour
 
     public IEnumerator FadeOut (AudioSource audioSource, float FadeTime)
     {
-        float startVolume = audioSource.volume;
+        float startVolume = MusicVolume;
         while (audioSource.volume > 0)
         {
             audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
@@ -94,6 +97,7 @@ public class MusicManager : MonoBehaviour
     {
         audioSource.volume = 0;
         audioSource.Play();
+        FinalVolume = MusicVolume;
 
         while (audioSource.volume < FinalVolume)
         {
@@ -193,4 +197,13 @@ public class MusicManager : MonoBehaviour
 
 
     }
+
+    public void PlayAmbiance()
+    {
+
+
+    }
+
+
+
 }

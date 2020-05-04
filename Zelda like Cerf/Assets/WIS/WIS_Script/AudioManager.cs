@@ -103,6 +103,29 @@ public class AudioManager : MonoBehaviour
         Destroy(GetComponent<AudioSource>());
     }
 
+    public IEnumerator PlayOne(string name, GameObject here)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        s.source = here.AddComponent<AudioSource>();
+        s.source.clip = s.Clip;
+
+        s.source.volume = s.volume;
+
+        s.source.loop = s.loop;
+
+        s.source.Play();
+
+        yield return new WaitForSecondsRealtime(s.source.clip.length);
+
+        s.source.Stop();
+        Destroy(s.source);
+    }
+
+    private void WaitForSeconds()
+    {
+        throw new NotImplementedException();
+    }
 
     public void RePlay (string name)
     {
