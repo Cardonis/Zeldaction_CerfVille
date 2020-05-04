@@ -23,6 +23,8 @@ public class TeleporterInitiator : MonoBehaviour
                 player.transform.position = teleportTransforms[teleporterManager.teleporterNumber].transform.position;
                 player.confiner.transform.position = teleportTransforms[teleporterManager.teleporterNumber].position;
                 player.part = teleporterManager.teleportPart;
+
+                teleporterManager.canTeleport = false;
             }
         }
 

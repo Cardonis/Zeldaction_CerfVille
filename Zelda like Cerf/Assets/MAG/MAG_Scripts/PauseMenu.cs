@@ -47,6 +47,8 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
+
+        Destroy(GameObject.Find("DontDestroyOnLoadData"));
     }
 
     public void SetFullScreen(bool isFullScreen)

@@ -20,6 +20,12 @@ public class ContinueInitiator : MonoBehaviour
             {
                 player.LoadPlayer();
             }
+            else if(continueManager.continuying == false)
+            {
+                player.SavePlayer();
+            }
+
+            continueManager.continuying = false;
         }
         
         Destroy(gameObject);

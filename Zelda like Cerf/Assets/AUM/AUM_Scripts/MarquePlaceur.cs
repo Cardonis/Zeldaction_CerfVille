@@ -16,21 +16,25 @@ public class MarquePlaceur : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
+
+        if(ec != null)
+        {
+            ec.rb.constraints = RigidbodyConstraints2D.None;
+            ec.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+
+        HealthFlower efC = collision.GetComponentInParent<HealthFlower>();
+
+        if (efC != null)
+        {
+            StartCoroutine(efC.FlowerGrabedBaseAttack(player, transform.parent.parent.parent.parent.position));
+        }
+
         if (player.part != 1)
         {
 
-
-            Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
-
-            if(ec != null)
-            {
-                ec.rb.constraints = RigidbodyConstraints2D.None;
-                ec.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            }
-
             Ennemy_Controller enC = collision.GetComponent<Ennemy_Controller>();
-
-           HealthFlower efC = collision.GetComponentInParent<HealthFlower>();
 
             if (enC != null )
                 if (enC.attacking == true)
@@ -53,11 +57,6 @@ public class MarquePlaceur : MonoBehaviour
                     }
 
                 }
-            }
-            if(efC != null)
-            {
-                
-                StartCoroutine(efC.FlowerGrabedBaseAttack(player, transform.parent.parent.parent.parent.position));
             }
             
         }
