@@ -26,6 +26,7 @@ public class MusicManager : MonoBehaviour
 
     public enum PlayerPos { Village, Graveyard, Donjon01, Forest01, Forest02, Boss };
 
+    
     public static PlayerPos PlayerCurrentPos;
     void Awake()
     {
@@ -65,6 +66,11 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (CurrentMusic == null)
+        {
+            CurrentMusic = Array.Find(Musics, s => s.name == "Village");
+        }
+
         if (!InBattle)
         {
             PlayMusic();

@@ -14,11 +14,11 @@ public class PlayerPosCollision : MonoBehaviour
 
     public PlayerPos Position;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.attachedRigidbody.gameObject.tag == "Player")
         {
-
+            
             switch (Position)
             {
                 case PlayerPos.Village:
@@ -44,6 +44,8 @@ public class PlayerPosCollision : MonoBehaviour
             }
         }
     }
+
+
 
 
 
