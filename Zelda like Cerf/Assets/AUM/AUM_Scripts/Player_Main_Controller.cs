@@ -551,6 +551,7 @@ public class Player_Main_Controller : MonoBehaviour
         {
             animator.SetTrigger("IsBaseAttacking");
         }
+       
     }
 
 #endregion Animator AttaqueB
