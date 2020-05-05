@@ -129,7 +129,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         currentLife = maxLife;
 
-        for (int i = 0; i < baseAttackColliders.Length; i++)
+        for (int i = 0; i < baseAttackSRs.Length; i++)
         {
             baseAttackSRs[i].enabled = false;
         }
