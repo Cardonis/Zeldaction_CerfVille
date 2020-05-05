@@ -12,10 +12,11 @@ public class SolBoueux : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-      
-        player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
-        if( player != null)
+        Player_Main_Controller playerTest = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
+        if(playerTest != null)
         {
+            player = playerTest;
+            Debug.Log("1 " + player);
             player.canTrack = false;
         }
 
@@ -25,17 +26,28 @@ public class SolBoueux : MonoBehaviour
         {
             pierre.rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
+        Debug.Log("2 " + player);
+        if (pierre != null && player!= null)
+        {
+            if (player.currentPierre != null)
+            {
+            player.canTrack = false;
+            Physics2D.IgnoreCollision(player.physicCollider, player.currentPierre.GetComponentInChildren<Collider2D>(), false);
+            player.currentPierre = null;
+            }
+
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
+        Player_Main_Controller playerTest = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
 
         pierre = collider.transform.parent.GetComponent<Caisse_Controller>();
 
-        if (player != null)
+        if (playerTest != null)
         {
-            player.canTrack = true;
+            playerTest.canTrack = true;
         }
         if (pierre != null)
         {

@@ -92,7 +92,7 @@ public class Player_Main_Controller : MonoBehaviour
     AudioManager audiomanager;
 
     bool carrying;
-    Caisse_Controller currentPierre;
+    [HideInInspector] public Caisse_Controller currentPierre;
 
     bool takingDamage = false;
 
