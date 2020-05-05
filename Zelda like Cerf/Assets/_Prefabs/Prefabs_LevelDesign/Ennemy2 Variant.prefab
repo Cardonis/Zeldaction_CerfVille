@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 6033661623695874983, guid: 54637fe6b8bb44b458a624b46c6c27dc,
         type: 3}
       propertyPath: collider2Ds.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6033661623695874983, guid: 54637fe6b8bb44b458a624b46c6c27dc,
         type: 3}
@@ -20,12 +20,12 @@ PrefabInstance:
     - target: {fileID: 6033661623695874983, guid: 54637fe6b8bb44b458a624b46c6c27dc,
         type: 3}
       propertyPath: attackCooldownCarrying
-      value: 2.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6033661623695874983, guid: 54637fe6b8bb44b458a624b46c6c27dc,
         type: 3}
       propertyPath: attackCooldownNotCarrying
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6033661623695874983, guid: 54637fe6b8bb44b458a624b46c6c27dc,
         type: 3}
@@ -66,7 +66,22 @@ PrefabInstance:
         type: 3}
       propertyPath: collider2Ds.Array.data[1]
       value: 
-      objectReference: {fileID: 4135952209482674608}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823094215960403234, guid: 54637fe6b8bb44b458a624b46c6c27dc,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.27483726
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823094215960403234, guid: 54637fe6b8bb44b458a624b46c6c27dc,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823094215960403234, guid: 54637fe6b8bb44b458a624b46c6c27dc,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8625057618838257536, guid: 54637fe6b8bb44b458a624b46c6c27dc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -139,12 +154,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54637fe6b8bb44b458a624b46c6c27dc, type: 3}
---- !u!61 &4135952209482674608 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 8625057617497965119, guid: 54637fe6b8bb44b458a624b46c6c27dc,
-    type: 3}
-  m_PrefabInstance: {fileID: 5681157526835082127}
-  m_PrefabAsset: {fileID: 0}
 --- !u!61 &1181920718709665453 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 6823094215960403234, guid: 54637fe6b8bb44b458a624b46c6c27dc,

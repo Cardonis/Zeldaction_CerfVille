@@ -36,6 +36,7 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         if (projected)
         {
+            canMove = true;
             playerDetected = true;
         }
 
@@ -141,16 +142,14 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         Vector2 direction = transform.position - player.transform.position;
 
-        Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
+        int originalPlayerLayer = player.physicCollider.gameObject.layer;
 
-        StartCoroutine(DontCollideWithPlayerFor(1f));
+        player.physicCollider.gameObject.layer = 15;
+
+        //StartCoroutine(DontCollideWithPlayerFor(1f));
 
         while (direction.magnitude > 0.7f)
         {
-            for (int i = 0; i < ennemyColliders.Length; i++)
-            {
-                Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), true);
-            }
 
             direction = (transform.position - player.transform.position);
             player.rb.velocity = direction.normalized * attackForce;
@@ -166,18 +165,9 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         player.rb.AddForce(direction.normalized * attackForce * 3, ForceMode2D.Impulse);
 
-        for (float i = 2.5f; i > 0; i -= Time.fixedDeltaTime)
-        {
-            yield return null;
-        }
+        player.physicCollider.gameObject.layer = originalPlayerLayer;
 
-        ennemyColliders = GetComponentsInChildren<Collider2D>();
-
-        for (int i = 0; i < ennemyColliders.Length - 1; i++)
-        {
-            Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), false);
-        }
-
+        StartCoroutine(DontCollideWithPlayerFor(0.1f));
     }
 
     public IEnumerator ApplyForce(Elements_Controller elementsController)
@@ -188,18 +178,13 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         Vector2 direction = transform.position - elementsController.transform.position;
 
-        Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
-
-        Collider2D[] elementColliders = elementsController.GetComponentsInChildren<Collider2D>();
+        for (int i = 0; i < elementsController.collider2Ds.Count; i++)
+        {
+            elementsController.collider2Ds[i].gameObject.layer = 15;
+        }
 
         while (direction.magnitude > 0.7f)
         {
-            for (int i = 0; i < ennemyColliders.Length; i++)
-            {
-                for (int x = 0; x < elementColliders.Length; x++)
-                    Physics2D.IgnoreCollision(ennemyColliders[i], elementColliders[x], true);
-            }
-
             direction = (transform.position - elementsController.transform.position);
             elementsController.rb.velocity = direction.normalized * attackForce;
             yield return null;
@@ -216,20 +201,23 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         elementsController.levelProjected = 2;
 
-        for (float i = 2.5f; i > 0; i -= Time.fixedDeltaTime)
+        for (int i = 0; i < elementsController.collider2Ds.Count; i++)
         {
-            yield return null;
+            elementsController.collider2Ds[i].gameObject.layer = elementsController.ennemyCollidersLayers[i];
         }
 
-        ennemyColliders = GetComponentsInChildren<Collider2D>();
-
-        elementColliders = elementsController.GetComponentsInChildren<Collider2D>();
-
-        for (int i = 0; i < ennemyColliders.Length; i++)
+        for (int i = 0; i < collider2Ds.Count; i++)
         {
-            for (int x = 0; x < elementColliders.Length; x++)
-                Physics2D.IgnoreCollision(ennemyColliders[i], elementColliders[x], false);
+            for (int x = 0; x < elementsController.collider2Ds.Count; x++)
+                Physics2D.IgnoreCollision(collider2Ds[i], elementsController.collider2Ds[x], true);
         }
 
+        yield return new WaitForSeconds(0.1f);
+
+        for (int i = 0; i < collider2Ds.Count; i++)
+        {
+            for (int x = 0; x < elementsController.collider2Ds.Count; x++)
+                Physics2D.IgnoreCollision(collider2Ds[i], elementsController.collider2Ds[x], false);
+        }
     }
 }

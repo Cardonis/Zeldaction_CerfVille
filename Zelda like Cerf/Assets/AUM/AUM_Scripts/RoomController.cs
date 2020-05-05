@@ -11,6 +11,8 @@ public class RoomController : MonoBehaviour
     public List<Door> doorsToClear;
     [HideInInspector] public List<Caisse_Controller> objectsToReset;
 
+    [HideInInspector] public List<Elements_Controller> objectsToDestroy;
+
     public bool active = false;
 
     public bool clear = false;
@@ -111,8 +113,11 @@ public class RoomController : MonoBehaviour
 
             for(int i = 0; i < ennemies.Count; i++)
             {
-                if(ec == ennemies[i])
+                if(ec == ennemies[i] || ec.spawned == true)
                 {
+                    if (ec.spawned == true)
+                        objectsToDestroy.Add(ec);
+
                     canAdd = false;
                     break;
                 }
@@ -129,8 +134,11 @@ public class RoomController : MonoBehaviour
 
             for (int i = 0; i < objectsToReset.Count; i++)
             {
-                if (elc == objectsToReset[i])
+                if (elc == objectsToReset[i] || elc.spawned == true)
                 {
+                    if (elc.spawned == true)
+                        objectsToDestroy.Add(elc);
+
                     canAdd = false;
                     break;
                 }
@@ -209,13 +217,13 @@ public class RoomController : MonoBehaviour
         foreach(Caisse_Controller objectToReset in objectsToReset)
         {
             objectToReset.transform.position = objectToReset.initialPosition;
-            if (objectToReset.spawned == true)
-            {
-                objectsToReset.Remove(objectToReset);
-                Destroy(objectToReset.gameObject);
-            }
         }
 
-        
+        foreach(Elements_Controller objectToDestroy in objectsToDestroy)
+        {
+            Destroy(objectToDestroy.gameObject);
+        }
+
+        objectsToDestroy.Clear();
     }
 }

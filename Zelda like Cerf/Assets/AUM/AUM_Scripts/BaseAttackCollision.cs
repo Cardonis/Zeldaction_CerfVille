@@ -7,6 +7,7 @@ public class BaseAttackCollision : MonoBehaviour
     public float forceValue;
     public float levelMultiplicator;
     float bulletLevel = 1;
+    float forceBulletLevel = 1;
 
     void Start()
     {
@@ -29,12 +30,14 @@ public class BaseAttackCollision : MonoBehaviour
                 if(GetComponent<MarquePlaceur>() != null)
                 {
                     bulletLevel = bulletController.levelProjecting * 4;
+
+                    forceBulletLevel = 2;
                 }
                 
                 Destroy(bulletController.gameObject);
             }
 
-            for (int i = 0; i < ec.collider2Ds.Count - 1; i++)
+            for (int i = 0; i < ec.collider2Ds.Count; i++)
             {
                 ec.collider2Ds[i].gameObject.layer = ec.ennemyCollidersLayers[i];
             }
@@ -69,10 +72,11 @@ public class BaseAttackCollision : MonoBehaviour
             if (ec.playerProjected == false || player.canSpringAttack == true)
             {
                 player.canSpringAttack = false;
-                ec.TakeForce(player.directionAim.normalized, forceValue, levelMultiplicator * (bulletLevel));
+                ec.TakeForce(player.directionAim.normalized, forceValue / forceBulletLevel, levelMultiplicator * (bulletLevel));
             }
 
             bulletLevel = 1;
+            forceBulletLevel = 1;
         }
 
 

@@ -13,7 +13,6 @@ public class
     public float attackCooldownNotCarrying;
     float attackCooldown;
     float attackCooldownTimer = 0;
-    public bool carrying;
     Transform attackMovementTarget;
     public float distanceToEnnemy;
     public float distanceToPlayer;
@@ -50,6 +49,7 @@ public class
 
         if (projected)
         {
+            canMove = true;
             playerDetected = true;
         }
 
@@ -64,7 +64,6 @@ public class
                 if (currentPierreBullet.levelProjecting >= 2)
                 {
                     launched = false;
-                    carrying = false;
                     currentPierre = null;
                     Physics2D.IgnoreCollision(currentPierreCol, physicCollider, false);
                     attackCooldownTimer = 0;
@@ -79,7 +78,6 @@ public class
             else if (launched)
             {
                 launched = false;
-                carrying = false;
                 currentPierre = null;
                 Physics2D.IgnoreCollision(currentPierreCol, physicCollider, false);
                 attackCooldownTimer = 0;
@@ -151,7 +149,7 @@ public class
 
                 direction = directionForAttack.normalized;
 
-                if (carrying)
+                if (currentPierre != null)
                 {
                     Physics2D.IgnoreCollision(currentPierreCol, physicCollider, true);
                     attackCooldown = attackCooldownCarrying;
@@ -181,9 +179,9 @@ public class
         Destroy(GetComponent<AudioSource>());
         Destroy(GetComponent<AudioSource>());
         Destroy(GetComponent<AudioSource>());
-        if (!carrying)
+        if (currentPierre == null)
         {
-            if(caisseControllersList[0] != null)
+            if(caisseControllersList.Count != 0)
             {
                 if (Vector2.Distance(caisseControllersList[0].transform.position, transform.position) > 4.5f)
                 {
@@ -205,7 +203,7 @@ public class
             }
             
             currentPierreCol = currentPierre.GetComponentInChildren<Collider2D>();
-            carrying = true;
+
         }
         else
         {
@@ -219,7 +217,10 @@ public class
                 {
                     attacking = false;
 
+                    attackCooldownTimer = 0;
+
                     StopCoroutine(lastAttack);
+                    yield break;
                 }
 
                 currentPierre.transform.position = (Vector2)transform.position + directionAttack * i;

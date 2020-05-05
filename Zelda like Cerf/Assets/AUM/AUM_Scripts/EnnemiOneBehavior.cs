@@ -52,6 +52,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         if (projected)
         {
+            canMove = true;
             playerDetected = true;
         }
 

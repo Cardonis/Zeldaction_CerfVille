@@ -77,9 +77,9 @@ public class Elements_Controller : MonoBehaviour
 
         Vector2 direction = player.transform.position - transform.position;
 
-        StartCoroutine(DontCollideWithPlayerFor(1f));
+        //StartCoroutine(DontCollideWithPlayerFor(1f));
 
-        while(direction.magnitude > 0.7f)
+        while (direction.magnitude > 0.7f)
         {
             direction = (player.transform.position - transform.position );
             rb.velocity = direction.normalized * (forceValue * Mathf.Sqrt(levelProjected) / 2);
@@ -104,6 +104,8 @@ public class Elements_Controller : MonoBehaviour
         {
             collider2Ds[i].gameObject.layer = ennemyCollidersLayers[i];
         }
+
+         StartCoroutine(DontCollideWithPlayerFor(0.1f));
 
     }
 
@@ -145,11 +147,9 @@ public class Elements_Controller : MonoBehaviour
 
     public IEnumerator DontCollideWithPlayerFor(float time)
     {
-        Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
-
-        for (int i = 0; i < ennemyColliders.Length - 1; i++)
+        for (int i = 0; i < collider2Ds.Count; i++)
         {
-            Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), true);
+            Physics2D.IgnoreCollision(collider2Ds[i], player.physicCollider, true);
         }
 
         while (time > 0)
@@ -157,9 +157,10 @@ public class Elements_Controller : MonoBehaviour
             time -= Time.deltaTime;
             yield return null;
         }
-        for (int i = 0; i < ennemyColliders.Length - 1; i++)
+
+        for (int i = 0; i < collider2Ds.Count; i++)
         {
-            Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), false);
+            Physics2D.IgnoreCollision(collider2Ds[i], player.GetComponentInChildren<Collider2D>(), false);
         }
     }
 

@@ -495,7 +495,7 @@ PrefabInstance:
     - target: {fileID: 3044399709157644311, guid: ceb95a92cd460174baa51cf20cdfdfaa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceb95a92cd460174baa51cf20cdfdfaa, type: 3}
@@ -1593,6 +1593,12 @@ Transform:
   m_Father: {fileID: 136067527}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &470985602 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8169547990248904527, guid: cc92fb72eb6b2684aad22969e271e2c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6880173371088276772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &478690521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2557,7 +2563,7 @@ PrefabInstance:
     - target: {fileID: 5999250643188420246, guid: a8113691204afc54ea20e3c1733cd5a8,
         type: 3}
       propertyPath: part
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5999250643188420247, guid: a8113691204afc54ea20e3c1733cd5a8,
         type: 3}
@@ -3302,6 +3308,18 @@ Transform:
   m_Father: {fileID: 1696850712}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &847216641 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5883215007163271936, guid: cc92fb72eb6b2684aad22969e271e2c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6880173371088276772}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7ff158b3903e9499efa7cfedc793eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!213 &871668999
 Sprite:
   m_ObjectHideFlags: 0
@@ -4983,6 +5001,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2595178872830949229, guid: f67f581a89c635541a4265b8b09d7d3a,
     type: 3}
   m_PrefabInstance: {fileID: 1328348479}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1336069920 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6866199331119009561, guid: cc92fb72eb6b2684aad22969e271e2c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6880173371088276772}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1349805467
 PrefabInstance:
@@ -9182,23 +9206,23 @@ PrefabInstance:
     - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
         type: 3}
       propertyPath: limierControllers.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
         type: 3}
       propertyPath: attackCollider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 470985602}
     - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
         type: 3}
       propertyPath: physicCollider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1336069920}
     - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
         type: 3}
       propertyPath: col
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1336069920}
     - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
         type: 3}
       propertyPath: mass
@@ -9263,12 +9287,12 @@ PrefabInstance:
         type: 3}
       propertyPath: limierControllers.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 847216641}
     - target: {fileID: 3675139831599767986, guid: cc92fb72eb6b2684aad22969e271e2c6,
         type: 3}
       propertyPath: ennemyController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 847216641}
     - target: {fileID: 3904764694775640096, guid: cc92fb72eb6b2684aad22969e271e2c6,
         type: 3}
       propertyPath: m_Controller
