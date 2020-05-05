@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class PauseMenu : MonoBehaviour
 {
     //Resolution[] resolutions;
     //public Dropdown resolutioDropdown;
+    public AudioMixer audioMixer;
     void Start()
     {
         //resolutions = Screen.resolutions;
@@ -56,5 +58,8 @@ public class PauseMenu : MonoBehaviour
         Screen.fullScreen = isFullScreen;
     }
 
-
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
+    }
 }

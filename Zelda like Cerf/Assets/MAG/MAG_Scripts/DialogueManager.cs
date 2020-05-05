@@ -25,7 +25,7 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if(dialogueStarted == true)
+        if (dialogueStarted == true)
         {
             cmVcam.m_Lens.OrthographicSize = Mathf.SmoothStep(cmVcam.m_Lens.OrthographicSize, 2.5f, 3.5f * Time.fixedDeltaTime);
             if(sentenceFullyDisplay == true)
@@ -55,13 +55,16 @@ public class DialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
+        string currentsentence = sentences.Dequeue();
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(currentsentence));
     }
 
     public void DisplayNextSentence()
     {
         if (sentences.Count == 0)
         {
-            EndDialogue();
+            Invoke("EndDialogue", 0.1f);
             return;
         }
         string sentence = sentences.Dequeue();
@@ -73,6 +76,7 @@ public class DialogueManager : MonoBehaviour
     {
         playerscript.stunned = false;
         dialogueStarted = false;
+        sentences.Clear();
         animator.SetBool("IsOpen", false);
     }
 

@@ -41,33 +41,30 @@ public class InventoryBook : MonoBehaviour
             notSoEmptyHeart.SetActive(false);
         }
 
-        if (Input.GetButtonDown("Start") || Input.GetButtonDown("Y") || Input.GetButtonDown("B"))
+        if (Input.GetButtonDown("Start") && iventoryIsOpen == true)
         {
-            if (iventoryIsOpen == false)
+            StartCoroutine(CloseInventoryIn());
+        }
+
+        if (Input.GetButtonDown("Start") || Input.GetButtonDown("Y") || Input.GetButtonDown("B") && iventoryIsOpen == false)
+        {
+            Time.timeScale = 0f;
+            inventoryBookBackgroundUI.SetActive(true);
+            marquePageUI.SetActive(true);
+            iventoryIsOpen = true;
+
+
+            if (Input.GetButtonDown("Start"))
             {
-                Time.timeScale = 0f;
-                inventoryBookBackgroundUI.SetActive(true);
-                marquePageUI.SetActive(true);
-                iventoryIsOpen = true;
+                pauseMenuUi.SetActive(true);
+                OpenPauseMenu();
 
-                if (Input.GetButtonDown("Start"))
-                {
-                    pauseMenuUi.SetActive(true);
-                    OpenPauseMenu();
-
-                }
-                if (Input.GetButtonDown("Y"))
-                {
-                    playerAndTipsUi.SetActive(true);
-                    OpenPlayerAndTipsMenu();
-                }
-                if (Input.GetButtonDown("B"))
-                {
-                    mapUi.SetActive(true);
-                    OpenMapMenu();
-                }
             }
-            
+            if (Input.GetButtonDown("Y"))
+            {
+                playerAndTipsUi.SetActive(true);
+                OpenPlayerAndTipsMenu();
+            }
         }
     }
 
@@ -95,7 +92,12 @@ public class InventoryBook : MonoBehaviour
         marquePageUI.SetActive(false);
         Time.timeScale = 1f;
     }
-
+    IEnumerator CloseInventoryIn()
+    {
+        yield return new WaitForSecondsRealtime(0.01f);
+        CloseCurrent();
+        CloseInventory();
+    }
     public void CloseCurrent()
     {
         mapUi.SetActive(false);

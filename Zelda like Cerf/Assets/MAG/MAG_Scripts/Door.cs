@@ -15,12 +15,14 @@ public class Door : MonoBehaviour
     bool isClosed;
 
     AudioManager audiomanager;
+    Animator animator;
 
     void Start()
     {
         doorCollider = GetComponentInChildren<Collider2D>();
         doorSprite = GetComponentInChildren<SpriteRenderer>();
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -48,8 +50,8 @@ public class Door : MonoBehaviour
 
         wasClosed = isClosed;
 
+        animator.SetBool("isOpen", isOpen);
         doorCollider.enabled = !isOpen;
-        doorSprite.enabled = !isOpen;
 
         isClosed = doorCollider.enabled;
 
