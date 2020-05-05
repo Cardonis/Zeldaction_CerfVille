@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Elements_Controller : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class Elements_Controller : MonoBehaviour
     [HideInInspector] public bool spawned = false;
 
     [HideInInspector] public AudioManager audiomanager;
+
+    public List<Collider2D> collider2Ds;
+
+   [HideInInspector] public List<int> ennemyCollidersLayers = new List<int>();
 
 
     public void TakeForce(Vector2 direction, float forceValue, float levelMultiplicator)
@@ -57,11 +62,14 @@ public class Elements_Controller : MonoBehaviour
         audiomanager.Play("Capa_Liane");
         playerProjected = true;
 
-        //player.StartCoroutine(player.StunnedFor(1f));
+        for (int i = 0; i < collider2Ds.Count; i++)
+        {
+            collider2Ds[i].gameObject.layer = 15;
+        }
 
-        player.StartCanSpringAttack(1f);
+        player.canSpringAttack = true;
 
-        //player.rb.velocity = new Vector2(0, 0);
+        //player.StartCanSpringAttack(1f);
 
         rb.velocity = new Vector2(0, 0);
 
@@ -69,23 +77,15 @@ public class Elements_Controller : MonoBehaviour
 
         Vector2 direction = player.transform.position - transform.position;
 
-        //player.direction = -direction;
-
-        Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
-
         StartCoroutine(DontCollideWithPlayerFor(1f));
 
         while(direction.magnitude > 0.7f)
         {
-            for(int i = 0; i < ennemyColliders.Length - 1; i++)
-            {
-                Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), true);
-            }
-            
             direction = (player.transform.position - transform.position );
             rb.velocity = direction.normalized * (forceValue * Mathf.Sqrt(levelProjected) / 2);
             yield return null;
         }
+
         audiomanager.Stop("Capa_Liane");
         audiomanager.Play("Capa_Lance");
         player.stunned = false;
@@ -100,14 +100,9 @@ public class Elements_Controller : MonoBehaviour
         player.timerCooldownVersatilAttack = 0;
         player.lastAttackVersatilTimer = 0;
 
-        for(float i = 2.5f; i > 0; i -= Time.fixedDeltaTime)
+        for (int i = 0; i < collider2Ds.Count; i++)
         {
-            yield return null;
-        }
-
-        for (int i = 0; i < ennemyColliders.Length - 1; i++)
-        {
-            Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), false);
+            collider2Ds[i].gameObject.layer = ennemyCollidersLayers[i];
         }
 
     }
@@ -115,6 +110,11 @@ public class Elements_Controller : MonoBehaviour
 
     public virtual void Start()
     {
+        for (int i = 0; i < collider2Ds.Count; i++)
+        {
+            ennemyCollidersLayers.Add(collider2Ds[i].gameObject.layer);
+        }
+
         rb = GetComponent<Rigidbody2D>();
 
         player = GameObject.Find("Player").GetComponent<Player_Main_Controller>();

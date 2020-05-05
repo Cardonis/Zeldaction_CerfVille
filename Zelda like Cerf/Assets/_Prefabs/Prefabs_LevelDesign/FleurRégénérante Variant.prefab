@@ -193,6 +193,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8274855421977279597, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
         type: 3}
+      propertyPath: collider2Ds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274855421977279597, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
+        type: 3}
       propertyPath: healValue
       value: 2
       objectReference: {fileID: 0}
@@ -201,11 +206,22 @@ PrefabInstance:
       propertyPath: DestroyDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8274855421977279597, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
+        type: 3}
+      propertyPath: collider2Ds.Array.data[0]
+      value: 
+      objectReference: {fileID: 3464942913036623030}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f2406e15f48ac04fb40b7d4e4adcedc, type: 3}
 --- !u!4 &1356672301805877206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4988169951233417543, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6334968602097850001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &3464942913036623030 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7493892308040256039, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
     type: 3}
   m_PrefabInstance: {fileID: 6334968602097850001}
   m_PrefabAsset: {fileID: 0}
