@@ -28,10 +28,15 @@ public class BaseAttackCollision : MonoBehaviour
                 ec.projected = false;
                 if(GetComponent<MarquePlaceur>() != null)
                 {
-                    bulletLevel = bulletController.levelProjecting;
+                    bulletLevel = bulletController.levelProjecting * 4;
                 }
                 
                 Destroy(bulletController.gameObject);
+            }
+
+            for (int i = 0; i < ec.collider2Ds.Count - 1; i++)
+            {
+                ec.collider2Ds[i].gameObject.layer = ec.ennemyCollidersLayers[i];
             }
 
             Ennemy_Controller enC = ec.GetComponent<Ennemy_Controller>();
@@ -61,8 +66,11 @@ public class BaseAttackCollision : MonoBehaviour
                 }
             }
 
-            if (ec.playerProjected == false)
-            ec.TakeForce(player.directionAim.normalized, forceValue, levelMultiplicator * bulletLevel);
+            if (ec.playerProjected == false || player.canSpringAttack == true)
+            {
+                player.canSpringAttack = false;
+                ec.TakeForce(player.directionAim.normalized, forceValue, levelMultiplicator * (bulletLevel));
+            }
 
             bulletLevel = 1;
         }

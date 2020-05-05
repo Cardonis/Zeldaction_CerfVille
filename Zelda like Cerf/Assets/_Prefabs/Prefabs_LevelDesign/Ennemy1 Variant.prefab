@@ -94,7 +94,7 @@ PrefabInstance:
     - target: {fileID: 516628952340409151, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
         type: 3}
       propertyPath: m_Name
-      value: Ennemy1
+      value: Ennemy1 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 516628952340409151, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
         type: 3}
@@ -116,6 +116,11 @@ PrefabInstance:
         type: 3}
       propertyPath: limierControllers.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323059871886866642, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
+        type: 3}
+      propertyPath: collider2Ds.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7323059871886866642, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
         type: 3}
@@ -172,6 +177,21 @@ PrefabInstance:
       propertyPath: col
       value: 
       objectReference: {fileID: 7600142287938912780}
+    - target: {fileID: 7323059871886866642, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
+        type: 3}
+      propertyPath: collider2Ds.Array.data[0]
+      value: 
+      objectReference: {fileID: 4646585730325273873}
+    - target: {fileID: 7323059871886866642, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
+        type: 3}
+      propertyPath: collider2Ds.Array.data[1]
+      value: 
+      objectReference: {fileID: 7600142287938912780}
+    - target: {fileID: 7323059871886866642, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
+        type: 3}
+      propertyPath: collider2Ds.Array.data[2]
+      value: 
+      objectReference: {fileID: 5138768053920815706}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55e0c43e5a991f24f8aed0f7e457eda4, type: 3}
 --- !u!114 &2517563279499703105 stripped
@@ -192,9 +212,21 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5138768054416460691}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &4646585730325273873 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 516628953682777730, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5138768054416460691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!61 &7600142287938912780 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 3326387116788173215, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5138768054416460691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &5138768053920815706 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 663556553, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
     type: 3}
   m_PrefabInstance: {fileID: 5138768054416460691}
   m_PrefabAsset: {fileID: 0}

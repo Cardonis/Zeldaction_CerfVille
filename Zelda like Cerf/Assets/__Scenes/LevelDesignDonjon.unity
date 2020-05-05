@@ -652,6 +652,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room 5 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3044399709157644311, guid: ceb95a92cd460174baa51cf20cdfdfaa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceb95a92cd460174baa51cf20cdfdfaa, type: 3}
 --- !u!4 &155720613 stripped
@@ -1370,7 +1375,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5372576263798614515}
   - {fileID: 1780666336524924566}
   - {fileID: 8640669549307718969}
   - {fileID: 6724788260901321059}
@@ -1378,6 +1382,7 @@ Transform:
   - {fileID: 6575723872869801819}
   - {fileID: 6649936627008127847}
   - {fileID: 4601395079222628029}
+  - {fileID: 5372576263798614515}
   - {fileID: 4344177752353607291}
   - {fileID: 5018982245639222694}
   - {fileID: 6880173371088276773}
@@ -3324,6 +3329,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999250644072966502, guid: a8113691204afc54ea20e3c1733cd5a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8113691204afc54ea20e3c1733cd5a8, type: 3}
@@ -9666,6 +9676,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1994882664}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &1999560014 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6866199331119009561, guid: cc92fb72eb6b2684aad22969e271e2c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6880173371088276772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2014714679
 GameObject:
   m_ObjectHideFlags: 0
@@ -11173,6 +11189,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 801270175637270653, guid: 29c5337b0306d784b9b89f19c3752efe,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1041041471464913817, guid: 29c5337b0306d784b9b89f19c3752efe,
         type: 3}
       propertyPath: m_Name
@@ -12094,12 +12115,12 @@ PrefabInstance:
         type: 3}
       propertyPath: physicCollider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1999560014}
     - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
         type: 3}
       propertyPath: col
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1999560014}
     - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
         type: 3}
       propertyPath: mass

@@ -67,6 +67,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1032167072853432882, guid: 8d4b04ffe17da77498ba3762b3456540,
+        type: 3}
+      propertyPath: collider2Ds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032167072853432882, guid: 8d4b04ffe17da77498ba3762b3456540,
+        type: 3}
+      propertyPath: collider2Ds.Array.data[0]
+      value: 
+      objectReference: {fileID: 229723355364315033}
     - target: {fileID: 1032167072853432885, guid: 8d4b04ffe17da77498ba3762b3456540,
         type: 3}
       propertyPath: m_Name
@@ -130,3 +140,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d4b04ffe17da77498ba3762b3456540, type: 3}
+--- !u!61 &229723355364315033 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1958416231888769426, guid: 8d4b04ffe17da77498ba3762b3456540,
+    type: 3}
+  m_PrefabInstance: {fileID: 1737708872980700683}
+  m_PrefabAsset: {fileID: 0}
