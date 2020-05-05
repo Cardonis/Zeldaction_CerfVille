@@ -187,7 +187,7 @@ PrefabInstance:
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: limierControllers.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
@@ -202,47 +202,47 @@ PrefabInstance:
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: mass
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: recoveryValue
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: pv
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: speed
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: detectionAngle
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: detectionDistance
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: detection.m_Bits
-      value: 0
+      value: 26624
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: minWanderingDistance
-      value: 0
+      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: maxWanderingDistance
-      value: 0
+      value: 2.96
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
@@ -252,18 +252,18 @@ PrefabInstance:
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: attackSpeed
-      value: 0
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: attackCooldown
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: attackCollider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8169547990248904527}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: physicCollider
@@ -272,13 +272,13 @@ PrefabInstance:
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: attackForce
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4635882569567033843, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: ennemyController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1495384998490685012}
     - target: {fileID: 4646585729520033964, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: m_Name
@@ -358,6 +358,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7ff158b3903e9499efa7cfedc793eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &8169547990248904527 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5138768053920815706, guid: 15d742cebac6d4c45ac0bc178153ee8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3904764695979592981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4450446413832739078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38975,13 +38981,13 @@ PrefabInstance:
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: limierControllers.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: limierControllers.Array.data[0]
       value: 
-      objectReference: {fileID: 1495384998490685012}
+      objectReference: {fileID: 5883215007163271936}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: limierControllers.Array.data[1]
@@ -38990,62 +38996,62 @@ PrefabInstance:
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: mass
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: recoveryValue
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: pv
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: speed
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: detectionAngle
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: detectionDistance
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: detection.m_Bits
-      value: 0
+      value: 26624
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: minWanderingDistance
-      value: 0
+      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: maxWanderingDistance
-      value: 0
+      value: 2.96
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: col
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1886005157780879949}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: attackSpeed
-      value: 0
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: attackCooldown
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
@@ -39056,17 +39062,17 @@ PrefabInstance:
         type: 3}
       propertyPath: physicCollider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1886005157780879949}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: attackForce
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4635882569567033843, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: ennemyController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5883215007163271936}
     - target: {fileID: 4646585729520033964, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: m_Name
@@ -39146,6 +39152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7ff158b3903e9499efa7cfedc793eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1886005157780879949 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7600142287938912780, guid: 15d742cebac6d4c45ac0bc178153ee8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8310635093820667969}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8850715763665064044
 PrefabInstance:
   m_ObjectHideFlags: 0
