@@ -394,7 +394,7 @@ public class Player_Main_Controller : MonoBehaviour
             {
                 for (int i = 0; i < confiner.activeRoom.objectsToReset.Count; i++)
                 {
-                    if (Vector2.Distance(transform.position, confiner.activeRoom.objectsToReset[i].transform.position) < 2f)
+                    if (Vector2.Distance(transform.position, confiner.activeRoom.objectsToReset[i].transform.position) < 2f && confiner.activeRoom.objectsToReset[i].isTractable)
                     {
                         if (currentPierre != null)
                         {
