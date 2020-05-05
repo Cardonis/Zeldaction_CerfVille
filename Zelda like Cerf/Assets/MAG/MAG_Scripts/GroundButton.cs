@@ -32,10 +32,10 @@ public class GroundButton : Buttonmanager
         currentPressionMass = 0;
         for(int i=0; i<pierreColliders.Count; i++)
         {
-            Elements_Controller element = pierreColliders[i].GetComponentInParent<Elements_Controller>();
+            Caisse_Controller element = pierreColliders[i].GetComponentInParent<Caisse_Controller>();
             if(element != null)
             {
-                currentPressionMass += pierreColliders[i].GetComponentInParent<Elements_Controller>().mass;
+                currentPressionMass += pierreColliders[i].GetComponentInParent<Caisse_Controller>().mass;
             }
            
         }
