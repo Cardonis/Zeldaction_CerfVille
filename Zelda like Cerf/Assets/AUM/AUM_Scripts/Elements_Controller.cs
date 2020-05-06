@@ -58,6 +58,8 @@ public class Elements_Controller : MonoBehaviour
             collider2Ds[i].gameObject.layer = ennemyCollidersLayers[i];
         }
 
+        player.canSpringAttack = false;
+
         StopCoroutine(lastTakeForce);
     }
 
@@ -109,6 +111,8 @@ public class Elements_Controller : MonoBehaviour
         {
             collider2Ds[i].gameObject.layer = ennemyCollidersLayers[i];
         }
+
+        player.canSpringAttack = false;
 
          StartCoroutine(DontCollideWithPlayerFor(0.1f));
 
@@ -189,7 +193,7 @@ public class Elements_Controller : MonoBehaviour
             MarquageController mc = GetComponentInChildren<MarquageController>();
 
             if(mc != null)
-            if (mc.venom == true)
+            if (mc.venom == true && ec.GetComponentInChildren<MarquageController>() == null)
             {
                 MarquageController newMark = Instantiate(mc.gameObject, ec.transform).GetComponent<MarquageController>();
                 newMark.player = player;
