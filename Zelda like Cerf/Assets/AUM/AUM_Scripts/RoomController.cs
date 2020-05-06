@@ -19,6 +19,8 @@ public class RoomController : MonoBehaviour
 
     public bool monsterRoom = true;
 
+    private bool wasActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,10 +50,13 @@ public class RoomController : MonoBehaviour
             for (int i = 0; i < ennemies.Count; i++)
             {
                 ennemies[i].enabled = false;
+                if (wasActive == true && MusicManager.EnemyInBattle > 0) { MusicManager.EnemyInBattle -= 1; }
             }
+            wasActive = false;
         }
         else
         {
+            wasActive = true;
             for (int i = 0; i < ennemies.Count; i++)
             {
                 if(ennemies[i] != null)

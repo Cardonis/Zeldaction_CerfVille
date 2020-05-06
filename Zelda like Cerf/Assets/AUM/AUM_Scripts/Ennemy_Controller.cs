@@ -36,6 +36,8 @@ public abstract class Ennemy_Controller : Elements_Controller
 
     public Collider2D col;
 
+    private bool PlayerWasDetected;
+
     public override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
@@ -94,6 +96,9 @@ public abstract class Ennemy_Controller : Elements_Controller
 
     public void Death()
     {
+        MusicManager.EnemyInBattle -= 1;
+        PlayerWasDetected = false;
+
         MarquageController mC = GetComponentInChildren<MarquageController>();
 
         if(GetComponentInChildren<Bullet_Versatil_Controller>() != null)
@@ -186,11 +191,15 @@ public abstract class Ennemy_Controller : Elements_Controller
                     playerDetected = true;
                     canMove = true;
                     MusicManager.InBattle = true;
+                    MusicManager.EnemyInBattle += 1;
                 }
             }
             
         }
 
     }
+
+
+
 
 }
