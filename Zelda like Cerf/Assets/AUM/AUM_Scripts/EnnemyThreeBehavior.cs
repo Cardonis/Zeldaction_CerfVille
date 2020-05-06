@@ -86,14 +86,8 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         if (canMove && attacking == false)
         {
             rb.velocity = direction * speed * Time.fixedDeltaTime;
+            
 
-            animator.SetBool("IsMoving", true);
-        }
-
-        else 
-
-        {
-            animator.SetBool("IsMoving", false);
         }
 
         #region Animator
@@ -101,6 +95,20 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
 
+        animator.SetFloat("HorizontalAim", directionForAttack.x);
+        animator.SetFloat("VerticalAim", directionForAttack.y);
+
+        if(rb.velocity != new Vector2 (0,0))
+        {
+            animator.SetBool("IsMoving", true);
+        }
+
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
+
+        
         #endregion
     }
 
