@@ -42,6 +42,7 @@ public class SolBoueux : MonoBehaviour
                 Physics2D.IgnoreCollision(player.physicCollider, player.currentPierre.GetComponentInChildren<Collider2D>(), false);
                 player.currentPierre = null;
             }
+            pierre.rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 
