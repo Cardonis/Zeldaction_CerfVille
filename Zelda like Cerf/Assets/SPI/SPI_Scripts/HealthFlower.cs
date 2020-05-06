@@ -30,9 +30,12 @@ public class HealthFlower : Elements_Controller
         {
             if (Vector2.Distance((Vector2)transform.position, playerTransform) < DestroyDistance)
             {
-                if(player.currentLife <= player.maxLife)
+                
+                player.currentLife += healValue;
+
+                if(player.currentLife > player.maxLife)
                 {
-                    player.currentLife += healValue;
+                    player.currentLife = player.maxLife;
                 }
 
                 Destroy(gameObject);
