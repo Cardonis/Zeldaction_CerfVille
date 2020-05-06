@@ -60,7 +60,7 @@ public class InventoryBook : MonoBehaviour
                 OpenPauseMenu();
 
             }
-            if (Input.GetButtonDown("Y"))
+            if (Input.GetButtonDown("Y") && iventoryIsOpen == false)
             {
                 playerAndTipsUi.SetActive(true);
                 OpenPlayerAndTipsMenu();
