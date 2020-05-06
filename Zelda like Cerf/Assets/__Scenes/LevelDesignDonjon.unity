@@ -215,6 +215,12 @@ Transform:
   m_Father: {fileID: 136067527}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &53669171 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8169547990248904527, guid: cc92fb72eb6b2684aad22969e271e2c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6880173371088276772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &76606143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -595,6 +601,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 166431776}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &177594183 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6880173371088276772}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7ff158b3903e9499efa7cfedc793eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &197619001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1071,6 +1089,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 726674310}
     m_Modifications:
+    - target: {fileID: 1282610443228355776, guid: 41d570af953ceeb4693ecd1752576443,
+        type: 3}
+      propertyPath: pressX
+      value: 
+      objectReference: {fileID: 1361387660}
+    - target: {fileID: 1282610443228355776, guid: 41d570af953ceeb4693ecd1752576443,
+        type: 3}
+      propertyPath: dialogueManager
+      value: 
+      objectReference: {fileID: 76606144}
+    - target: {fileID: 2358883726890714576, guid: 41d570af953ceeb4693ecd1752576443,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4048731715316875792, guid: 41d570af953ceeb4693ecd1752576443,
         type: 3}
       propertyPath: m_Name
@@ -1446,6 +1479,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 726674310}
     m_Modifications:
+    - target: {fileID: 1714973995888906042, guid: 62eee1ac060a4884fa1ae847a014fade,
+        type: 3}
+      propertyPath: pressX
+      value: 
+      objectReference: {fileID: 1361387660}
+    - target: {fileID: 1714973995888906042, guid: 62eee1ac060a4884fa1ae847a014fade,
+        type: 3}
+      propertyPath: dialogueManager
+      value: 
+      objectReference: {fileID: 76606144}
     - target: {fileID: 2820867055070488269, guid: 62eee1ac060a4884fa1ae847a014fade,
         type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[0].Array.size
@@ -1985,6 +2028,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.data[10].Array.data[13].y
       value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5942584205813247468, guid: 62eee1ac060a4884fa1ae847a014fade,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8699370182688936709, guid: 62eee1ac060a4884fa1ae847a014fade,
         type: 3}
@@ -9306,7 +9354,7 @@ PrefabInstance:
         type: 3}
       propertyPath: attackCollider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 53669171}
     - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
         type: 3}
       propertyPath: physicCollider
@@ -9326,7 +9374,7 @@ PrefabInstance:
         type: 3}
       propertyPath: limierControllers.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 177594183}
     - target: {fileID: 3675139831599767986, guid: cc92fb72eb6b2684aad22969e271e2c6,
         type: 3}
       propertyPath: ennemyController
@@ -9839,7 +9887,7 @@ PrefabInstance:
     - target: {fileID: 9088433855240632498, guid: 4272ce514120c5c4ab01f579b346d45a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6900024
+      value: -1.6666718
       objectReference: {fileID: 0}
     - target: {fileID: 9088433855240632498, guid: 4272ce514120c5c4ab01f579b346d45a,
         type: 3}
