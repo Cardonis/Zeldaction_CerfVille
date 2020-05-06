@@ -22,7 +22,10 @@ public class MusicManager : MonoBehaviour
     public static bool InBattle;
 
     [Range(0f, 1f)]
-    public float MusicVolume;
+    public static float MusicVolume = 1;
+
+    private float VolumeChange;
+
 
     public enum PlayerPos { Village, Graveyard, Donjon01, Forest01, Forest02, Boss };
 
@@ -34,7 +37,7 @@ public class MusicManager : MonoBehaviour
         if (instance == null) instance = this;
         else { Destroy(gameObject); return; }
 
-        DontDestroyOnLoad(gameObject);
+
         
         foreach (Music s in Musics)
         {
@@ -42,7 +45,7 @@ public class MusicManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.Clip;
 
-            s.source.volume = s.volume;
+            s.source.volume = s.volume * MusicVolume;
 
             s.source.loop = s.loop;
 
@@ -54,22 +57,34 @@ public class MusicManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.Clip;
 
-            s.source.volume = s.volume;
+            s.source.volume = s.volume * MusicVolume;
 
             s.source.loop = s.loop;
 
         }
 
+        VolumeChange = MusicVolume;
 
+        CurrentMusic = Array.Find(Musics, s => s.name == "Village");
+        StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (CurrentMusic == null)
+
+        if (MusicVolume != VolumeChange)
         {
-            CurrentMusic = Array.Find(Musics, s => s.name == "Village");
+            foreach (Music s in Musics)
+            {
+                s.source.volume = s.volume * MusicVolume;
+            }
+
+
+            VolumeChange = MusicVolume;
+
         }
+
 
         if (!InBattle)
         {
@@ -80,13 +95,14 @@ public class MusicManager : MonoBehaviour
             PlayBattleMusic();
         }
 
+
         
         
     }
 
     public IEnumerator FadeOut (AudioSource audioSource, float FadeTime)
     {
-        float startVolume = MusicVolume;
+        float startVolume = audioSource.volume;
         while (audioSource.volume > 0)
         {
             audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
@@ -103,7 +119,8 @@ public class MusicManager : MonoBehaviour
     {
         audioSource.volume = 0;
         audioSource.Play();
-        FinalVolume = MusicVolume;
+
+        FinalVolume = FinalVolume * MusicVolume;
 
         while (audioSource.volume < FinalVolume)
         {
@@ -126,37 +143,37 @@ public class MusicManager : MonoBehaviour
                 if (CurrentMusic.name == "Village") {break;}
                 StartCoroutine(FadeOut(CurrentMusic.source, 3));
                 CurrentMusic = Array.Find(Musics, s => s.name == "Village");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, 1));
+                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
                 break;
             case PlayerPos.Graveyard:
                 if (CurrentMusic.name == "Graveyard") { break; }
                 StartCoroutine(FadeOut(CurrentMusic.source, 3));
                 CurrentMusic = Array.Find(Musics, s => s.name == "Graveyard");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, 1));
+                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
                 break;
             case PlayerPos.Donjon01:
                 if (CurrentMusic.name == "Donjon01") { break; }
                 StartCoroutine(FadeOut(CurrentMusic.source, 3));
                 CurrentMusic = Array.Find(Musics, s => s.name == "Donjon01");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, 1));
+                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
                 break;
             case PlayerPos.Forest01:
                 if (CurrentMusic.name == "Forest01") { break; }
                 StartCoroutine(FadeOut(CurrentMusic.source, 3));
                 CurrentMusic = Array.Find(Musics, s => s.name == "Forest01");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, 1));
+                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
                 break;
             case PlayerPos.Forest02:
                 if (CurrentMusic.name == "Forest02") { break; }
                 StartCoroutine(FadeOut(CurrentMusic.source, 3));
                 CurrentMusic = Array.Find(Musics, s => s.name == "Forest02");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, 1));
+                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
                 break;
             case PlayerPos.Boss:
                 if (CurrentMusic.name == "Boss") { break; }
                 StartCoroutine(FadeOut(CurrentMusic.source, 3));
                 CurrentMusic = Array.Find(Musics, s => s.name == "Boss");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, 1));
+                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
                 break;
             default:
                 break;
