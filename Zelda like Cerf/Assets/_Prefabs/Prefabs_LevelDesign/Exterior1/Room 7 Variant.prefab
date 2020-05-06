@@ -26720,6 +26720,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -7395909162121508962, guid: 51ecc0d1cb877ef469d7743cbcedca63,
         type: 3}
+    - target: {fileID: 1967729466012667270, guid: 3fdd119f49146504594e1470d564c3eb,
+        type: 3}
+      propertyPath: doorsToClear.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967729466012667270, guid: 3fdd119f49146504594e1470d564c3eb,
+        type: 3}
+      propertyPath: doorsToClear.Array.data[0]
+      value: 
+      objectReference: {fileID: 8342491207900411730}
+    - target: {fileID: 1967729466012667270, guid: 3fdd119f49146504594e1470d564c3eb,
+        type: 3}
+      propertyPath: monsterRoom
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2798027013436469074, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.size
@@ -43375,6 +43390,18 @@ PrefabInstance:
       objectReference: {fileID: 3769757000792294267}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88838607eb5b5b94fb3a7a9fa55e9480, type: 3}
+--- !u!114 &8342491207900411730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2177354395942624489, guid: 88838607eb5b5b94fb3a7a9fa55e9480,
+    type: 3}
+  m_PrefabInstance: {fileID: 7922394440641194939}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6fd4e794e47f44eb29afdce95e9612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8486495392495492327
 PrefabInstance:
   m_ObjectHideFlags: 0
