@@ -55,7 +55,7 @@ public class
 
         if (currentPierre != null)
         {
-            currentPierre.transform.position = transform.position + (player.transform.position - transform.position).normalized * 1.5f;
+            currentPierre.transform.position = transform.position + (player.transform.position - transform.position).normalized * 1f;
 
             currentPierreBullet = currentPierre.GetComponentInChildren<Bullet_Versatil_Controller>();
 
@@ -71,7 +71,9 @@ public class
                 else
                 {
                     player.GetComponent<Player_Main_Controller>().stunned = false;
-                    currentPierre.StopCoroutine(currentPierre.lastTakeForce);
+
+                    
+                    currentPierre.StopTakeForce();
                     Destroy(currentPierreBullet.gameObject);
                 }
             }
@@ -225,6 +227,16 @@ public class
 
                 currentPierre.transform.position = (Vector2)transform.position + directionAttack * i;
                 yield return null;
+            }
+
+            if (currentPierre == null)
+            {
+                attacking = false;
+
+                attackCooldownTimer = 0;
+
+                StopCoroutine(lastAttack);
+                yield break;
             }
 
             audiomanager.PlayHere("Enemy2_Attack", gameObject);

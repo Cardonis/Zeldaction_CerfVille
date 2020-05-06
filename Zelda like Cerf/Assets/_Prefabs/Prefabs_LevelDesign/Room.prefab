@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7105843603161565004}
   m_Layer: 14
   m_Name: RCLimit
-  m_TagString: Untagged
+  m_TagString: RoomLimit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 1908223362718014984}
   m_Layer: 14
   m_Name: DCLimit
-  m_TagString: Untagged
+  m_TagString: RoomLimit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 7184143557996556882}
   m_Layer: 14
   m_Name: LCLimit
-  m_TagString: Untagged
+  m_TagString: RoomLimit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -874,7 +874,7 @@ GameObject:
   - component: {fileID: 3674643024950926123}
   m_Layer: 14
   m_Name: ColliderLimits
-  m_TagString: Untagged
+  m_TagString: RoomLimit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1026,7 +1026,7 @@ GameObject:
   - component: {fileID: 62414687458548608}
   m_Layer: 14
   m_Name: TCLimit
-  m_TagString: Untagged
+  m_TagString: RoomLimit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1593,6 +1593,7 @@ MonoBehaviour:
   ennemies: []
   doorsToClear: []
   objectsToReset: []
+  objectsToDestroy: []
   active: 0
   clear: 0
   monsterRoom: 1

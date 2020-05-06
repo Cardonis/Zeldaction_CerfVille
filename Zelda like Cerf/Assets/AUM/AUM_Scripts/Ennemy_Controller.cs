@@ -96,6 +96,15 @@ public abstract class Ennemy_Controller : Elements_Controller
     {
         MarquageController mC = GetComponentInChildren<MarquageController>();
 
+        if(GetComponentInChildren<Bullet_Versatil_Controller>() != null)
+        {
+            player.GetComponent<Player_Main_Controller>().stunned = false;
+
+            StopTakeForce();
+            Destroy(GetComponentInChildren<Bullet_Versatil_Controller>().gameObject);
+        }
+        
+
         if (mC != null)
         {
             Destroy(mC.gameObject);
@@ -103,6 +112,7 @@ public abstract class Ennemy_Controller : Elements_Controller
             marquageManager.marquageControllers.Remove(mC);
         }
 
+        canMove = true;
         dead = true;
 
         gameObject.SetActive(false);

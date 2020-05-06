@@ -53,6 +53,11 @@ public class Elements_Controller : MonoBehaviour
 
     public void StopTakeForce()
     {
+        for (int i = 0; i < collider2Ds.Count; i++)
+        {
+            collider2Ds[i].gameObject.layer = ennemyCollidersLayers[i];
+        }
+
         StopCoroutine(lastTakeForce);
     }
 

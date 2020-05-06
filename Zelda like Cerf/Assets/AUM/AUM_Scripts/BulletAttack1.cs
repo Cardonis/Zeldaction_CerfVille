@@ -34,7 +34,9 @@ public class BulletAttack1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player_Main_Controller pmc = collision.attachedRigidbody.GetComponent<Player_Main_Controller>();
+        Player_Main_Controller pmc = null;
+        if (collision.attachedRigidbody != null)
+            pmc = collision.attachedRigidbody.GetComponent<Player_Main_Controller>();
         Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
 
         if (collision.tag == "Wall")
