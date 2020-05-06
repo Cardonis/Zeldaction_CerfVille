@@ -47,7 +47,7 @@ public class Bullet_Versatil_Controller : MonoBehaviour
     {
         Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
 
-        if(collision.tag == "Wall")
+        if(collision.tag == "Wall" || collision.tag == "RoomLimit")
         {
             player.GetComponent<Player_Main_Controller>().stunned = false;
             audiomanager.Stop("Capa_Liane");

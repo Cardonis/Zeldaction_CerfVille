@@ -209,6 +209,17 @@ public class RoomController : MonoBehaviour
 
             ennemies[i].playerDetected = false;
 
+            ennemies[i].canMove = true;
+
+            ennemies[i].attacking = false;
+
+            EnnemiOneBehavior eob = ennemies[i].GetComponent<EnnemiOneBehavior>();
+
+            if(eob != null)
+            {
+                eob.hasAttacked = false;
+            }
+
             ennemies[i].pv = ennemies[i].initialLife;
             ennemies[i].transform.position = ennemies[i].initialPosition;
             ennemies[i].rb.velocity = Vector2.zero;

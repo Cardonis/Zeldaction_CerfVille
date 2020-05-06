@@ -25,7 +25,7 @@ public class DashAttackDamage : MonoBehaviour
                     Elements_Controller ec = bvc.GetComponentInParent<Elements_Controller>();
                     if (ec != null)
                     {
-                        ec.StopCoroutine(ec.lastTakeForce);
+                        ec.StopTakeForce();
                     }
 
                     Destroy(bvc.gameObject);
