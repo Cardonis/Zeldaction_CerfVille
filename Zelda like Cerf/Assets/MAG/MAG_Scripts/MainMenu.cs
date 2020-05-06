@@ -9,10 +9,12 @@ public class MainMenu : MonoBehaviour
 {
     public Animator animator;
 
-    public GameObject optionsFirstButton, optionClosedButton, continueButton, newGameMenu;
+    public GameObject partsFirstButton, mainMenuFirstButton, optionsFirstButton, newGameFirstButton, continueButton, newGameMenu;
 
     private void Start()
     {
+        BacktoMainMenu();
+
         if(continueButton != null)
         {
             string path = Application.persistentDataPath + "/player.save";
@@ -37,6 +39,7 @@ public class MainMenu : MonoBehaviour
             {
                 newGameMenu.SetActive(true);
                 gameObject.SetActive(false);
+                LaunchNewGame();
             }
             else
             {
@@ -72,15 +75,31 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void LauchOptions()
+    public void LaunchOptions()
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(optionsFirstButton);
     }
 
-    public void BacktoPauseMenu()
+    public void LaunchNewGame()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(optionClosedButton);
+        EventSystem.current.SetSelectedGameObject(newGameFirstButton);
+    }
+
+    public void LaunchParts()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(partsFirstButton);
+    }
+
+    public void BacktoMainMenu()
+    {
+        if(mainMenuFirstButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(mainMenuFirstButton);
+        }
+        
     }
 }
