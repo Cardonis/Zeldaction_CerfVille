@@ -41,12 +41,12 @@ public class InventoryBook : MonoBehaviour
             notSoEmptyHeart.SetActive(false);
         }
 
-        if (Input.GetButtonDown("Start") && iventoryIsOpen == true)
+        if ((Input.GetButtonDown("Start") || Input.GetButtonDown("Y")) && iventoryIsOpen == true)
         {
             StartCoroutine(CloseInventoryIn());
         }
 
-        if (Input.GetButtonDown("Start") || Input.GetButtonDown("Y") || Input.GetButtonDown("B") && iventoryIsOpen == false)
+        if ((Input.GetButtonDown("Start") || Input.GetButtonDown("Y")) && iventoryIsOpen == false)
         {
             Time.timeScale = 0f;
             inventoryBookBackgroundUI.SetActive(true);
@@ -60,7 +60,7 @@ public class InventoryBook : MonoBehaviour
                 OpenPauseMenu();
 
             }
-            if (Input.GetButtonDown("Y") && iventoryIsOpen == false)
+            if (Input.GetButtonDown("Y"))
             {
                 playerAndTipsUi.SetActive(true);
                 OpenPlayerAndTipsMenu();
