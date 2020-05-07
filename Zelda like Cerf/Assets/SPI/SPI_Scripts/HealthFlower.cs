@@ -2,70 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthFlower : Elements_Controller
+public class HealthFlower : MonoBehaviour
 {
-    public float DestroyDistance;
+    bool playerIsNear;
+    Player_Main_Controller player;
+
     public int healValue;
-    
-    public override void Start()
-    {
-        base.Start();
-    }
 
-    public override void FixedUpdate()
+    private void Start()
     {
-        base.FixedUpdate();
+        playerIsNear = false;
     }
-
-    public override void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        base.OnCollisionEnter2D(collision);
-    }
-
-    public IEnumerator FlowerGrabed(Player_Main_Controller player, Vector2 playerTransform)
-    {
-        
-        
-        while (gameObject != null)
+        Player_Main_Controller p = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
+        if (p != null)
         {
-            if (Vector2.Distance((Vector2)transform.position, playerTransform) < DestroyDistance)
+            player = p;
+            if(player.currentLife != player.maxLife)
+                player.pressX.SetActive(true);
+            playerIsNear = true;
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        Player_Main_Controller player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
+        if (player != null)
+        {
+            player.pressX.SetActive(false);
+            playerIsNear = false;
+        }
+
+    }
+    private void Update()
+    {
+        if (Input.GetButtonDown("X") && playerIsNear == true)
+        {
+            if (player.currentLife != player.maxLife)
             {
-                
+                player.pressX.SetActive(false);
                 player.currentLife += healValue;
 
-                if(player.currentLife > player.maxLife)
+                if (player.currentLife > player.maxLife)
                 {
                     player.currentLife = player.maxLife;
                 }
 
                 Destroy(gameObject);
-                
             }
-            yield return new WaitForFixedUpdate();
         }
-
-    }
-    public IEnumerator FlowerGrabedBaseAttack(Player_Main_Controller player, Vector2 playerTransform)
-    {
-        bool isFinished = false;
-        Vector2 direction = playerTransform - (Vector2)transform.position;
-
-        while (isFinished == false)
-        {
-            rb.velocity = direction * 2f;
-            if (Vector2.Distance((Vector2)transform.position, playerTransform) < DestroyDistance)
-            {
-                if (player.currentLife <= player.maxLife)
-                {
-                    player.currentLife += healValue;
-                }
-
-                Destroy(gameObject);
-                isFinished = true;
-
-            }
-            yield return new WaitForFixedUpdate();
-        }
-
     }
 }

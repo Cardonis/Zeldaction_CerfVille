@@ -8,7 +8,6 @@ public class DialogueTrigger : MonoBehaviour
     public DialogueManager dialogueManager;
     bool playerIsNear;
     Player_Main_Controller player;
-    public GameObject pressX;
 
     public bool asTalked;
 
@@ -18,20 +17,21 @@ public class DialogueTrigger : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
-        if(player != null)
+        Player_Main_Controller p = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
+        if(p != null)
         {
+            player = p;
             playerIsNear = true;
-            pressX.SetActive(true);
+            player.pressX.SetActive(true);
         }
         
     }
     private void OnTriggerExit2D(Collider2D collider)
     {
-        player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
+        Player_Main_Controller player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
         if (player != null)
         {
-            pressX.SetActive(false);
+            player.pressX.SetActive(false);
             playerIsNear = false;
         }
 
@@ -41,7 +41,7 @@ public class DialogueTrigger : MonoBehaviour
         if (Input.GetButtonDown("X") && dialogueManager.dialogueStarted == false && playerIsNear == true)
         {
             asTalked = true;
-            pressX.SetActive(false);
+            player.pressX.SetActive(false);
             dialogueManager.StartDialogue(dialogue);
 
         }

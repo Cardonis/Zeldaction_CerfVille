@@ -98,11 +98,16 @@ public class BulletAttack1 : MonoBehaviour
                 if (ronce != null)
                 {
                     ennemyController.GetComponent<Ennemy_Controller>().stuned = false;
+                    ennemyController.GetComponent<Ennemy_Controller>().attacking = false;
                     Destroy(gameObject);
+                    return;
                 }
 
                 if (etb != null)
-                    etb.lastAttack = etb.StartCoroutine( etb.ApplyForce(ec) );
+                {
+                    if(etb == false)
+                        etb.lastAttack = etb.StartCoroutine(etb.ApplyForce(ec));
+                }
                 else if (bb != null)
                     bb.StartCoroutine(bb.ApplyForce(ec));
             }

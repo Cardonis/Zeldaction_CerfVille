@@ -24,13 +24,6 @@ public class MarquePlaceur : MonoBehaviour
             ec.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 
-        HealthFlower efC = collision.GetComponentInParent<HealthFlower>();
-
-        if (efC != null)
-        {
-            StartCoroutine(efC.FlowerGrabedBaseAttack(player, transform.parent.parent.parent.parent.position));
-        }
-
         if (player.part != 1)
         {
 
@@ -42,7 +35,7 @@ public class MarquePlaceur : MonoBehaviour
                     enC.projected = false;
                 }
 
-            if ( efC == null &&  ec != null )
+            if (ec != null )
             {
                 
                 if ((ec.projected == false || baseAttack.player.canSpringAttack) && ec.GetComponentInChildren<MarquageController>() == null)
