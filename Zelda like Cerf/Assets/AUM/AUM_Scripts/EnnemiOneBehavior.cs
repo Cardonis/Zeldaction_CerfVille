@@ -131,6 +131,15 @@ public class EnnemiOneBehavior : Ennemy_Controller
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
 
+        if(rb.velocity != new Vector2 (0,0))
+        {
+            animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
+
 
         #endregion Animator
     }
