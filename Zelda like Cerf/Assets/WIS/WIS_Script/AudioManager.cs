@@ -18,9 +18,12 @@ public class AudioManager : MonoBehaviour
 
     private Player_Main_Controller player;
 
+    [Range(0f, 1f)]
+    public static float SoundEffectsVolume = 1;
 
-    
-    
+    private float VolumeChange;
+
+
     void Awake()
     {
 
@@ -29,7 +32,7 @@ public class AudioManager : MonoBehaviour
 
 
 
-        DontDestroyOnLoad(gameObject);
+
         //On instancie les différents audiospurces pour chaque sons
         foreach (Sound s in sounds)
         {
@@ -37,7 +40,7 @@ public class AudioManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.Clip;
 
-            s.source.volume = s.volume;
+            s.source.volume = s.volume * SoundEffectsVolume;
 
             s.source.loop = s.loop;
 
@@ -50,6 +53,21 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
 
+    }
+
+    private void Update()
+    {
+        if (SoundEffectsVolume != VolumeChange)
+        {
+
+            foreach (Sound s in sounds)
+            {
+                s.source.volume = s.volume * SoundEffectsVolume;
+            }
+
+            VolumeChange = SoundEffectsVolume;
+
+        }
     }
 
     public void Play (string name)
@@ -67,7 +85,6 @@ public class AudioManager : MonoBehaviour
 
         if (!s.alreadyPlayed)
         {
-
             s.source.Play();
             
 
@@ -89,7 +106,7 @@ public class AudioManager : MonoBehaviour
         s.source = here.AddComponent<AudioSource>();
         s.source.clip = s.Clip;
 
-        s.source.volume = s.volume;
+        s.source.volume = s.volume * SoundEffectsVolume;
 
         s.source.loop = s.loop;
 
@@ -110,7 +127,7 @@ public class AudioManager : MonoBehaviour
         s.source = here.AddComponent<AudioSource>();
         s.source.clip = s.Clip;
 
-        s.source.volume = s.volume;
+        s.source.volume = s.volume * SoundEffectsVolume;
 
         s.source.loop = s.loop;
 
@@ -120,6 +137,18 @@ public class AudioManager : MonoBehaviour
 
         s.source.Stop();
         Destroy(s.source);
+    }
+
+    public IEnumerator PlayOneOne(bool isPlaying)
+    {
+
+
+        isPlaying = true;
+
+        yield return new WaitForSecondsRealtime(1);
+
+        isPlaying = false;
+
     }
 
     private void WaitForSeconds()
@@ -177,12 +206,5 @@ public class AudioManager : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
-    {
 
-
-
-
-
-    }
 }
