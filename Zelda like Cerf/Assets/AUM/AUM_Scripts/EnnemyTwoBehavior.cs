@@ -30,6 +30,8 @@ public class
 
     Vector2 directionForAttack;
 
+   [HideInInspector] public Animator animator;
+
     // Start is called before the first frame update
     override public void Start()
     {
@@ -40,6 +42,8 @@ public class
         initialLife = pv;
 
         pierresParent = transform.parent.parent.Find("Autres");
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -173,7 +177,18 @@ public class
         if (canMove && attacking == false)
         {
             rb.velocity = direction * speed * Time.fixedDeltaTime;
+
         }
+
+        #region Animator
+
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+
+        animator.SetFloat("HorizontalAim", directionForAttack.x);
+        animator.SetFloat("VerticalAim", directionForAttack.y);
+
+        #endregion 
     }
 
     public override IEnumerator Attack1()
@@ -190,6 +205,8 @@ public class
                     currentPierre = Instantiate(pierrePrefab, pierresParent).GetComponent<Elements_Controller>();
                     currentPierre.spawned = true;
                     audiomanager.PlayHere("Enemy2_GrabRock", gameObject);
+
+                    animator.SetTrigger("PopingCaillou");
                 }
                 else
                 {
@@ -213,6 +230,9 @@ public class
             
             Vector2 directionAttack = (player.transform.position - transform.position).normalized;
             audiomanager.PlayHere("Enemy2_Rock", gameObject);
+
+            animator.SetTrigger("Attacks");
+
             for (float i = 1.5f; i > 0.75f; i -= Time.deltaTime * 1f)
             {
                 if(currentPierre == null)
