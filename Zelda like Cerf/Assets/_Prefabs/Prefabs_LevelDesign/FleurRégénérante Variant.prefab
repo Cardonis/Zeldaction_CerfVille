@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1441457354938530959}
   - component: {fileID: 7583371383661850561}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,12 +83,17 @@ PrefabInstance:
     - target: {fileID: 428825382785916601, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3512819092600400581, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4907068491567918153, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4907068491567918153, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
         type: 3}
@@ -119,7 +124,7 @@ PrefabInstance:
     - target: {fileID: 7795692860028205255, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8131102444539394036, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
         type: 3}
@@ -184,7 +189,7 @@ PrefabInstance:
     - target: {fileID: 8250849662888296832, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8250849662888296832, guid: 9f2406e15f48ac04fb40b7d4e4adcedc,
         type: 3}
@@ -211,8 +216,7 @@ PrefabInstance:
       propertyPath: collider2Ds.Array.data[0]
       value: 
       objectReference: {fileID: 3464942913036623030}
-    m_RemovedComponents:
-    - {fileID: 3512819092600400581, guid: 9f2406e15f48ac04fb40b7d4e4adcedc, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f2406e15f48ac04fb40b7d4e4adcedc, type: 3}
 --- !u!4 &1356672301805877206 stripped
 Transform:

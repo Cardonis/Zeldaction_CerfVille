@@ -38,10 +38,6 @@ public class DialogueManager : MonoBehaviour
             }
           
         }
-        else
-        {
-            cmVcam.m_Lens.OrthographicSize = Mathf.SmoothStep(cmVcam.m_Lens.OrthographicSize, 7.5f, 3.5f * Time.fixedDeltaTime);
-        }
     }
     public void StartDialogue (Dialogue dialogue)
     {
@@ -64,7 +60,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (sentences.Count == 0)
         {
-            Invoke("EndDialogue", 0.1f);
+            StartCoroutine("EndDialogue");
             return;
         }
         string sentence = sentences.Dequeue();
@@ -72,12 +68,23 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(TypeSentence(sentence));
     }
 
-    public void EndDialogue()
+    public IEnumerator EndDialogue()
     {
+        yield return new WaitForSeconds(0.1f);
+
         playerscript.stunned = false;
         dialogueStarted = false;
         sentences.Clear();
         animator.SetBool("IsOpen", false);
+
+
+        for(float i = 0.5f; i > 0; i -= Time.deltaTime)
+        {
+            cmVcam.m_Lens.OrthographicSize = Mathf.SmoothStep(cmVcam.m_Lens.OrthographicSize, 7.5f, 5f * Time.deltaTime);
+
+            yield return null;
+        }
+        
     }
 
     IEnumerator TypeSentence (string sentence)

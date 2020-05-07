@@ -42,6 +42,9 @@ public class MarquePlaceur : MonoBehaviour
                 {
                     MarquageController newMark = Instantiate(mark, ec.transform).GetComponent<MarquageController>();
                     newMark.player = player;
+
+                    player.marquageManager.ResetTimer(player.marquageDuration);
+
                     FindObjectOfType<AudioManager>().Play("Coup_de_vent_sweetSpot");
 
                     if (baseAttack.player.canSpringAttack)
