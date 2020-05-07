@@ -5,7 +5,6 @@ using UnityEngine;
 public class LifeTreeController : MonoBehaviour
 {
     bool playerIsNear;
-    public GameObject pressX;
     Player_Main_Controller player;
 
     [HideInInspector] public List<RoomController> rooms;
@@ -26,9 +25,9 @@ public class LifeTreeController : MonoBehaviour
         Player_Main_Controller p = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
         if (p != null)
         {
-            pressX.SetActive(true);
-            playerIsNear = true;
             player = p;
+            player.pressX.SetActive(true);
+            playerIsNear = true;
         }
 
     }
@@ -37,7 +36,7 @@ public class LifeTreeController : MonoBehaviour
         Player_Main_Controller player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
         if (player != null)
         {
-            pressX.SetActive(false);
+            player.pressX.SetActive(false);
             playerIsNear = false;
         }
 
@@ -47,7 +46,7 @@ public class LifeTreeController : MonoBehaviour
         if (Input.GetButtonDown("X") && playerIsNear == true)
         {
 
-            pressX.SetActive(false);
+            player.pressX.SetActive(false);
             player.currentLife = player.maxLife;
 
             for(int i = 0; i < rooms.Count; i++)
