@@ -95,18 +95,13 @@ public class BossBehavior : Ennemy_Controller
             {
                 if (currentElementBullet.levelProjecting >= 2)
                 {
-
-                    Collider2D[] ennemyColliders = currentElement.GetComponentsInChildren<Collider2D>();
+                    for (int x = 0; x < currentElement.collider2Ds.Count; x++)
+                    {
+                        Physics2D.IgnoreCollision(currentElement.collider2Ds[x], col, false);
+                    }
 
                     launched = false;
                     currentElement = null;
-
-                    
-
-                    for (int x = 0; x < ennemyColliders.Length - 1; x++)
-                    {
-                        Physics2D.IgnoreCollision(ennemyColliders[x], col, false);
-                    }
 
                     timerCooldownPattern = 0;
                 }
@@ -119,15 +114,13 @@ public class BossBehavior : Ennemy_Controller
             }
             else if (launched)
             {
-                Collider2D[] ennemyColliders = currentElement.GetComponentsInChildren<Collider2D>();
+                for (int x = 0; x < currentElement.collider2Ds.Count; x++)
+                {
+                    Physics2D.IgnoreCollision(currentElement.collider2Ds[x], col, false);
+                }
+
                 launched = false;
                 currentElement = null;
-                
-
-                for (int x = 0; x < ennemyColliders.Length - 1; x++)
-                {
-                    Physics2D.IgnoreCollision(ennemyColliders[x], col, false);
-                }
 
                 timerCooldownPattern = 0;
             }
@@ -397,24 +390,15 @@ public class BossBehavior : Ennemy_Controller
 
             //StartCoroutine(CollisionIgnoreWithElement(1.5f));
 
-            Collider2D[] ennemyColliders = currentElement.GetComponentsInChildren<Collider2D>();
-
-            for (int x = 0; x < ennemyColliders.Length; x++)
+            for (int x = 0; x < currentElement.collider2Ds.Count; x++)
             {
-                Physics2D.IgnoreCollision(ennemyColliders[x], col, true);
+                Physics2D.IgnoreCollision(currentElement.collider2Ds[x], col, true);
             }
 
             for (float x = 0.4f; x > 0; x -= Time.deltaTime)
             {
                 if (currentElement == null)
                 {
-                    ennemyColliders = currentElement.GetComponentsInChildren<Collider2D>();
-
-                    for (int z = 0; z < ennemyColliders.Length; z++)
-                    {
-                        Physics2D.IgnoreCollision(ennemyColliders[z], col, false);
-                    }
-
                     attacking = false;
 
                     direction = Vector2.zero;
@@ -428,17 +412,21 @@ public class BossBehavior : Ennemy_Controller
                     break;
                 }
 
-                currentElement.transform.position = transform.position + (player.transform.position - transform.position).normalized * 2f;
+                currentElement.transform.position = transform.position + (player.transform.position - transform.position).normalized * 1.2f;
 
                 yield return null;
             }
 
             Vector2 directionAttack = (player.transform.position - transform.position).normalized;
 
-            for (float x = 2f; x > 1.5f; x -= Time.deltaTime * 1f)
+            for (float x = 1.2f; x > 0.7; x -= Time.deltaTime * 1f)
             {
                 if (currentElement == null)
                 {
+                    for (int z = 0; z < currentElement.collider2Ds.Count; z++)
+                    {
+                        Physics2D.IgnoreCollision(currentElement.collider2Ds[z], col, false);
+                    }
 
                     attacking = false;
 
@@ -462,12 +450,7 @@ public class BossBehavior : Ennemy_Controller
 
             currentElement.levelProjected = 2f;
 
-            ennemyColliders = currentElement.GetComponentsInChildren<Collider2D>();
-
-            for (int x = 0; x < ennemyColliders.Length; x++)
-            {
-                Physics2D.IgnoreCollision(ennemyColliders[x], col, false);
-            }
+            StartCoroutine(CollisionIgnoreWithElement(0.1f));
 
             yield return new WaitForSeconds(0.4f);
 
@@ -485,11 +468,9 @@ public class BossBehavior : Ennemy_Controller
 
     public IEnumerator CollisionIgnoreWithElement(float time)
     {
-        Collider2D[] ennemyColliders = currentElement.GetComponentsInChildren<Collider2D>();
-
-        for (int x = 0; x < ennemyColliders.Length - 1; x++)
+        for (int x = 0; x < currentElement.collider2Ds.Count; x++)
         {
-            Physics2D.IgnoreCollision(ennemyColliders[x], col, true);
+            Physics2D.IgnoreCollision(currentElement.collider2Ds[x], col, true);
         }
 
         while (time > 0)
@@ -498,9 +479,9 @@ public class BossBehavior : Ennemy_Controller
             yield return null;
         }
 
-        for (int x = 0; x < ennemyColliders.Length - 1; x++)
+        for (int x = 0; x < currentElement.collider2Ds.Count; x++)
         {
-            Physics2D.IgnoreCollision(ennemyColliders[x], col, false);
+            Physics2D.IgnoreCollision(currentElement.collider2Ds[x], col, false);
         }
     }
 
@@ -578,17 +559,14 @@ public class BossBehavior : Ennemy_Controller
 
         Vector2 direction = transform.position - player.transform.position;
 
-        Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
+        int originalPlayerLayer = player.physicCollider.gameObject.layer;
 
-        StartCoroutine(DontCollideWithPlayerFor(1f));
+        player.physicCollider.gameObject.layer = 15;
+
+        //StartCoroutine(DontCollideWithPlayerFor(1f));
 
         while (direction.magnitude > 0.7f)
         {
-            for (int i = 0; i < ennemyColliders.Length; i++)
-            {
-                Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), true);
-            }
-
             direction = (transform.position - player.transform.position);
             player.rb.velocity = direction.normalized * forceSpectralLiane;
             yield return null;
@@ -603,16 +581,9 @@ public class BossBehavior : Ennemy_Controller
 
         player.rb.AddForce(direction.normalized * forceSpectralLiane * 3, ForceMode2D.Impulse);
 
-        for (float i = 2.5f; i > 0; i -= Time.fixedDeltaTime)
-        {
-            yield return null;
-        }
+        player.physicCollider.gameObject.layer = originalPlayerLayer;
 
-        for (int i = 0; i < ennemyColliders.Length - 1; i++)
-        {
-            Physics2D.IgnoreCollision(ennemyColliders[i], player.GetComponentInChildren<Collider2D>(), false);
-        }
-
+        StartCoroutine(DontCollideWithPlayerFor(0.1f));
     }
 
     public IEnumerator ApplyForce(Elements_Controller elementsController)
@@ -623,25 +594,13 @@ public class BossBehavior : Ennemy_Controller
 
         Vector2 direction = transform.position - elementsController.transform.position;
 
-        Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
-
-        Collider2D[] elementColliders = elementsController.GetComponentsInChildren<Collider2D>();
+        for (int i = 0; i < elementsController.collider2Ds.Count; i++)
+        {
+            elementsController.collider2Ds[i].gameObject.layer = 15;
+        }
 
         while (direction.magnitude > 0.7f)
         {
-            if(elementsController == null)
-            {
-                StopCoroutine(lastAttack);
-                stuned = false;
-                break;
-            }
-
-            for (int i = 0; i < ennemyColliders.Length; i++)
-            {
-                for (int x = 0; x < elementColliders.Length; x++)
-                    Physics2D.IgnoreCollision(ennemyColliders[i], elementColliders[x], true);
-            }
-
             direction = (transform.position - elementsController.transform.position);
             elementsController.rb.velocity = direction.normalized * forceSpectralLiane;
             yield return null;
@@ -656,21 +615,26 @@ public class BossBehavior : Ennemy_Controller
 
         elementsController.rb.AddForce(direction.normalized * forceSpectralLiane * 3, ForceMode2D.Impulse);
 
-        for (float i = 2.5f; i > 0; i -= Time.fixedDeltaTime)
+        elementsController.levelProjected = 2;
+
+        for (int i = 0; i < elementsController.collider2Ds.Count; i++)
         {
-            yield return null;
+            elementsController.collider2Ds[i].gameObject.layer = elementsController.ennemyCollidersLayers[i];
         }
 
-        ennemyColliders = GetComponentsInChildren<Collider2D>();
-
-        elementColliders = elementsController.GetComponentsInChildren<Collider2D>();
-
-        for (int i = 0; i < ennemyColliders.Length; i++)
+        for (int i = 0; i < collider2Ds.Count; i++)
         {
-            for (int x = 0; x < elementColliders.Length; x++)
-                Physics2D.IgnoreCollision(ennemyColliders[i], elementColliders[x], false);
+            for (int x = 0; x < elementsController.collider2Ds.Count; x++)
+                Physics2D.IgnoreCollision(collider2Ds[i], elementsController.collider2Ds[x], true);
         }
 
+        yield return new WaitForSeconds(0.1f);
+
+        for (int i = 0; i < collider2Ds.Count; i++)
+        {
+            for (int x = 0; x < elementsController.collider2Ds.Count; x++)
+                Physics2D.IgnoreCollision(collider2Ds[i], elementsController.collider2Ds[x], false);
+        }
     }
 
     IEnumerator Minions(int numbPattern, int spawnNumb, float spawnSpeed, int ennemyType)

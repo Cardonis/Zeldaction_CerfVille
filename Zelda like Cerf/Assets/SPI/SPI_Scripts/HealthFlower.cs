@@ -15,25 +15,30 @@ public class HealthFlower : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Player_Main_Controller p = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
-        if (p != null)
+        if(collider.attachedRigidbody != null)
         {
-            player = p;
-            if(player.currentLife != player.maxLife)
-                player.pressX.SetActive(true);
-            playerIsNear = true;
+            Player_Main_Controller p = collider.attachedRigidbody.GetComponent<Player_Main_Controller>();
+            if (p != null)
+            {
+                player = p;
+                if (player.currentLife != player.maxLife)
+                    player.pressX.SetActive(true);
+                playerIsNear = true;
+            }
         }
-
     }
+
     private void OnTriggerExit2D(Collider2D collider)
     {
-        Player_Main_Controller player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
-        if (player != null)
+        if (collider.attachedRigidbody != null)
         {
-            player.pressX.SetActive(false);
-            playerIsNear = false;
+            Player_Main_Controller player = collider.attachedRigidbody.GetComponent<Player_Main_Controller>();
+            if (player != null)
+            {
+                player.pressX.SetActive(false);
+                playerIsNear = false;
+            }
         }
-
     }
     private void Update()
     {

@@ -711,6 +711,8 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         LoadPlayer();
 
+        confiner.cmVcam.m_Lens.OrthographicSize = 7.5f;
+
         GameObject[] rs = GameObject.FindGameObjectsWithTag("Room");
 
         foreach (GameObject r in rs)
