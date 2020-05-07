@@ -96,7 +96,7 @@ public class Bullet_Versatil_Controller : MonoBehaviour
             Ronces ronce = ec.GetComponent<Ronces>();
             if(ronce != null)
             {
-                if(levelProjecting < (ronce.isARonceEpaisse ? 3 : 2))
+                if(levelProjecting < (ronce.isARonceEpaisse ? 3 : 1))
                 {
                     ronce.StartCantDestroy(gameObject);
                 }
