@@ -215,12 +215,6 @@ Transform:
   m_Father: {fileID: 136067527}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &53669171 stripped
-CircleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 8169547990248904527, guid: cc92fb72eb6b2684aad22969e271e2c6,
-    type: 3}
-  m_PrefabInstance: {fileID: 6880173371088276772}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &76606143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -601,18 +595,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 166431776}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &177594183 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
-    type: 3}
-  m_PrefabInstance: {fileID: 6880173371088276772}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e7ff158b3903e9499efa7cfedc793eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &197619001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3067,6 +3049,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1122881354, guid: a8113691204afc54ea20e3c1733cd5a8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122881354, guid: a8113691204afc54ea20e3c1733cd5a8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5999250643188420241, guid: a8113691204afc54ea20e3c1733cd5a8,
         type: 3}
       propertyPath: m_Name
@@ -3079,8 +3069,23 @@ PrefabInstance:
       objectReference: {fileID: 1545618603}
     - target: {fileID: 5999250643188420246, guid: a8113691204afc54ea20e3c1733cd5a8,
         type: 3}
+      propertyPath: confiner
+      value: 
+      objectReference: {fileID: 1505539330}
+    - target: {fileID: 5999250643188420246, guid: a8113691204afc54ea20e3c1733cd5a8,
+        type: 3}
+      propertyPath: arrowDirection
+      value: 
+      objectReference: {fileID: 697528093}
+    - target: {fileID: 5999250643188420246, guid: a8113691204afc54ea20e3c1733cd5a8,
+        type: 3}
+      propertyPath: arrowBackSR
+      value: 
+      objectReference: {fileID: 1122881355}
+    - target: {fileID: 5999250643188420246, guid: a8113691204afc54ea20e3c1733cd5a8,
+        type: 3}
       propertyPath: part
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5999250643188420247, guid: a8113691204afc54ea20e3c1733cd5a8,
         type: 3}
@@ -3136,11 +3141,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5999250644072966502, guid: a8113691204afc54ea20e3c1733cd5a8,
-        type: 3}
-      propertyPath: m_Layer
-      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8113691204afc54ea20e3c1733cd5a8, type: 3}
@@ -3378,6 +3378,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &697528093 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 27392935289104560, guid: a8113691204afc54ea20e3c1733cd5a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 617234562}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &724388951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4845,6 +4851,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1118394426}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &1122881355 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1122881355, guid: a8113691204afc54ea20e3c1733cd5a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 617234562}
+  m_PrefabAsset: {fileID: 0}
 --- !u!213 &1141160234
 Sprite:
   m_ObjectHideFlags: 0
@@ -5439,6 +5451,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 617234562}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1505539330 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9088433855865740155, guid: 4272ce514120c5c4ab01f579b346d45a,
+    type: 3}
+  m_PrefabInstance: {fileID: 9062472572902191639}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1d80c234a97524192a188303bddd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1518537085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9327,41 +9351,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 388687723}
     m_Modifications:
-    - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
-        type: 3}
-      propertyPath: limierControllers.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
-        type: 3}
-      propertyPath: attackCollider
-      value: 
-      objectReference: {fileID: 53669171}
-    - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
-        type: 3}
-      propertyPath: physicCollider
-      value: 
-      objectReference: {fileID: 290452926}
-    - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
-        type: 3}
-      propertyPath: col
-      value: 
-      objectReference: {fileID: 290452926}
-    - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
-        type: 3}
-      propertyPath: limierControllers.Array.data[0]
-      value: 
-      objectReference: {fileID: 246926946}
-    - target: {fileID: 1495384998490685012, guid: cc92fb72eb6b2684aad22969e271e2c6,
-        type: 3}
-      propertyPath: limierControllers.Array.data[1]
-      value: 
-      objectReference: {fileID: 177594183}
-    - target: {fileID: 3675139831599767986, guid: cc92fb72eb6b2684aad22969e271e2c6,
-        type: 3}
-      propertyPath: ennemyController
-      value: 
-      objectReference: {fileID: 246926946}
     - target: {fileID: 3904764694775640096, guid: cc92fb72eb6b2684aad22969e271e2c6,
         type: 3}
       propertyPath: m_Controller

@@ -11,7 +11,7 @@ public class TeleporterInitiator : MonoBehaviour
 
     public Player_Main_Controller player;
 
-    private void Start()
+    void Awake()
     {
         GameObject ddol = GameObject.Find("DontDestroyOnLoadData");
 
@@ -22,6 +22,7 @@ public class TeleporterInitiator : MonoBehaviour
             {
                 player.transform.position = teleportTransforms[teleporterManager.teleporterNumber].transform.position;
                 player.confiner.transform.position = teleportTransforms[teleporterManager.teleporterNumber].position;
+
                 player.part = teleporterManager.teleportPart;
 
                 teleporterManager.canTeleport = false;
@@ -29,6 +30,5 @@ public class TeleporterInitiator : MonoBehaviour
         }
 
         Destroy(gameObject);
-
     }
 }

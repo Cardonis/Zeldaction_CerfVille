@@ -38,12 +38,12 @@ public class RoomTransitionController : MonoBehaviour
 
         while (!Mathf.Approximately(transform.position.x, target.transform.position.x) || !Mathf.Approximately(transform.position.y, target.transform.position.y))
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 0.15f);
+            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 100f * Time.deltaTime);
             player.rb.velocity = (target.transform.position - transform.position).normalized * 40f * Time.fixedDeltaTime;
 
-            transform.localScale = Vector3.Lerp(transform.localScale, target.transform.localScale, 3f * Time.fixedDeltaTime);
+            transform.localScale = Vector3.Lerp(transform.localScale, target.transform.localScale, 50f * Time.deltaTime);
 
-            cmVcam.m_Lens.OrthographicSize = Mathf.SmoothStep(cmVcam.m_Lens.OrthographicSize, endSize, 5f * Time.fixedDeltaTime);
+            cmVcam.m_Lens.OrthographicSize = Mathf.SmoothStep(cmVcam.m_Lens.OrthographicSize, endSize, 50f * Time.deltaTime);
 
             yield return null;
         }

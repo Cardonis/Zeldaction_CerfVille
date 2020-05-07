@@ -193,12 +193,12 @@ PrefabInstance:
         type: 3}
       propertyPath: limierControllers.Array.data[0]
       value: 
-      objectReference: {fileID: 5883215007163271936}
+      objectReference: {fileID: 1495384998490685012}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: limierControllers.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1495384998490685012}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: mass
@@ -263,7 +263,7 @@ PrefabInstance:
         type: 3}
       propertyPath: attackCollider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8169547990248904527}
     - target: {fileID: 2517563279499703105, guid: 15d742cebac6d4c45ac0bc178153ee8a,
         type: 3}
       propertyPath: physicCollider
@@ -361,6 +361,12 @@ MonoBehaviour:
 --- !u!61 &6866199331119009561 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 7600142287938912780, guid: 15d742cebac6d4c45ac0bc178153ee8a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3904764695979592981}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &8169547990248904527 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5138768053920815706, guid: 15d742cebac6d4c45ac0bc178153ee8a,
     type: 3}
   m_PrefabInstance: {fileID: 3904764695979592981}
   m_PrefabAsset: {fileID: 0}

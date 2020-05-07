@@ -12,8 +12,8 @@ public class LevelUp : MonoBehaviour
 
         if(pmc != null)
         {
+            if(pmc.part < partLevel)
             pmc.part = partLevel;
-            Destroy(gameObject);
         }
     }
 }

@@ -63,7 +63,8 @@ public class Player_Main_Controller : MonoBehaviour
 
     [HideInInspector] public Transform vBullets;
 
-    Transform arrowDirection;
+    public Transform arrowDirection;
+    public SpriteRenderer arrowBackSR;
 
     [HideInInspector] public bool projected = false;
     [HideInInspector] public bool stunned = false;
@@ -76,7 +77,7 @@ public class Player_Main_Controller : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
 
     [HideInInspector] public MarquageManager marquageManager;
-    [HideInInspector] public RoomTransitionController confiner;
+    public RoomTransitionController confiner;
 
     Vector2 input;
     [HideInInspector] public Vector2 direction;
@@ -113,11 +114,8 @@ public class Player_Main_Controller : MonoBehaviour
 
         marquePlaceur = baseAttackCollidersParent.GetComponentInChildren<MarquePlaceur>();
 
-        arrowDirection = transform.Find("Arrow");
-
         vBullets = GameObject.Find("VBullets").transform;
 
-        confiner = GameObject.Find("CameraConfiner").GetComponent<RoomTransitionController>();
         marquageManager = GameObject.Find("MarquageManager").GetComponent<MarquageManager>();
 
         rb = GetComponent<Rigidbody2D>();
@@ -432,26 +430,26 @@ public class Player_Main_Controller : MonoBehaviour
             directionAngle = -directionAngle;
         }
 
-        if (currentPierre == null)
-        {
-            directionAimAngle = Vector2.Angle(transform.right, directionAim);
+        
+        directionAimAngle = Vector2.Angle(transform.right, directionAim);
 
-            if (directionAim.y < 0)
-            {
-                directionAimAngle = -directionAimAngle;
-            }
+        if (directionAim.y < 0)
+        {
+            directionAimAngle = -directionAimAngle;
+        }
+        
+        
+
+        arrowDirection.rotation = Quaternion.Euler(0, 0, directionAimAngle);
+
+        if(part >= 2)
+        {
+            arrowBackSR.enabled = true;
         }
         else
         {
-            directionAimAngle = Vector2.Angle(transform.right, -directionAim);
-
-            if (directionAim.y > 0)
-            {
-                directionAimAngle = -directionAimAngle;
-            }
+            arrowBackSR.enabled = false;
         }
-
-        arrowDirection.rotation = Quaternion.Euler(0, 0, directionAimAngle);
 
         //Animator Main Region
         #region Animator
