@@ -188,6 +188,16 @@ public class
         animator.SetFloat("HorizontalAim", directionForAttack.x);
         animator.SetFloat("VerticalAim", directionForAttack.y);
 
+        if(rb.velocity != new Vector2(0, 0))
+        {
+            animator.SetBool("IsMoving", true);
+        }
+
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
+
         #endregion 
     }
 
@@ -219,6 +229,8 @@ public class
                 currentPierre = Instantiate(pierrePrefab, pierresParent).GetComponent<Elements_Controller>();
                 currentPierre.spawned = true;
                 audiomanager.PlayHere("Enemy2_GrabRock", gameObject);
+
+                animator.SetTrigger("PopingCaillou");
             }
             
             currentPierreCol = currentPierre.GetComponentInChildren<Collider2D>();
@@ -232,6 +244,7 @@ public class
             audiomanager.PlayHere("Enemy2_Rock", gameObject);
 
             animator.SetTrigger("Attacks");
+
 
             for (float i = 1.5f; i > 0.75f; i -= Time.deltaTime * 1f)
             {
@@ -260,7 +273,9 @@ public class
             }
 
             audiomanager.PlayHere("Enemy2_Attack", gameObject);
-            
+
+            animator.SetTrigger("Attacks");
+
             currentPierre.projected = true;
             currentPierre.rb.AddForce(directionAttack * forcePierreLaunch, ForceMode2D.Impulse);
 
