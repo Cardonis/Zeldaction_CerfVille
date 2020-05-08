@@ -67,6 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4516195183009435542}
   - component: {fileID: 4516195183009435537}
+  - component: {fileID: 1995378890445457831}
   m_Layer: 0
   m_Name: CGraph
   m_TagString: Ennemy
@@ -127,8 +128,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 62586036f65f9fd4396c38e0fb2fbf49, type: 3}
-  m_Color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+  m_Sprite: {fileID: 5431480850787156830, guid: 69f5cd484ebe90b41855d2030263f538,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -138,6 +140,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1995378890445457831
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4516195183009435540}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fbf0e2ffad08b8744bd7e69420cf2865, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4516195183503993700
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,19 +230,28 @@ MonoBehaviour:
   playerProjected: 0
   stuned: 0
   rb: {fileID: 0}
+  isTractable: 1
   mass: 0
   levelProjected: 0
   player: {fileID: 0}
   marquageManager: {fileID: 0}
   recoveryValue: 1
+  initialPosition: {x: 0, y: 0}
+  spawned: 0
+  audiomanager: {fileID: 0}
+  collider2Ds: []
+  ennemyCollidersLayers: 
   pv: 5
+  initialLife: 0
   speed: 0
   detectionAngle: 0
+  detectionDistance: 0
   playerDetected: 0
   marqued: 0
   playerAngle: 0
   direction: {x: 0, y: 0}
   attacking: 0
+  dead: 0
   detection:
     serializedVersion: 2
     m_Bits: 0
@@ -229,7 +259,9 @@ MonoBehaviour:
   caisseControllersList: []
   minWanderingDistance: 0
   maxWanderingDistance: 0
+  target: {x: 0, y: 0}
   canMove: 1
+  col: {fileID: 0}
   attackSpeed: 0
   attackCooldown: 0
   attackCollider: {fileID: 0}
@@ -238,3 +270,4 @@ MonoBehaviour:
   hasAttacked: 0
   attackDirection: {x: 0, y: 0}
   limierControllers: []
+  animator: {fileID: 0}
