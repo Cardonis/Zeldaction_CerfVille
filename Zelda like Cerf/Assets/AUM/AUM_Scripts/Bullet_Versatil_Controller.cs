@@ -52,10 +52,19 @@ public class Bullet_Versatil_Controller : MonoBehaviour
             player.GetComponent<Player_Main_Controller>().stunned = false;
             audiomanager.Stop("Capa_Liane");
             Destroy(gameObject);
+            return;
         }
 
         if (ec != null && ec.GetComponentInChildren<Bullet_Versatil_Controller>() == null)
         {
+            if (ec.GetComponentInChildren<BulletAttack1>() != null || ec.GetComponentInChildren<Bullet_Versatil_Controller>() != null)
+            {
+                player.GetComponent<Player_Main_Controller>().stunned = false;
+                audiomanager.Stop("Capa_Liane");
+                Destroy(gameObject);
+                return;
+            }
+
             rb.velocity = new Vector2(0, 0);
             audiomanager.Play("Capa_Grab");
             touchedTarget = collision.transform;
