@@ -39,16 +39,11 @@ public class BulletAttack1 : MonoBehaviour
             pmc = collision.attachedRigidbody.GetComponent<Player_Main_Controller>();
         Elements_Controller ec = collision.GetComponentInParent<Elements_Controller>();
 
-        if (collision.tag == "Wall")
+        if (collision.tag == "Wall" || collision.tag == "RoomLimit")
         {
             ennemyController.GetComponent<Ennemy_Controller>().stuned = false;
             Destroy(gameObject);
-        }
-
-        if(ec != null)
-        {
-            ennemyController.GetComponent<Ennemy_Controller>().stuned = false;
-            Destroy(gameObject);
+            return;
         }
 
         if (ec != null || pmc != null)
@@ -57,8 +52,6 @@ public class BulletAttack1 : MonoBehaviour
 
             touchedTarget = collision.transform;
 
-            transform.SetParent(collision.transform);
-
             GetComponentInChildren<Collider2D>().enabled = false;
 
             BossBehavior bb = ennemyController.GetComponent<BossBehavior>();
@@ -66,6 +59,13 @@ public class BulletAttack1 : MonoBehaviour
 
             if (pmc != null)
             {
+                if (pmc.GetComponentInChildren<BulletAttack1>() != null)
+                {
+                    ennemyController.GetComponent<Ennemy_Controller>().stuned = false;
+                    Destroy(gameObject);
+                    return;
+                }
+
                 if (etb != null)
                     etb.StartCoroutine(etb.ApplyForce(pmc));
                 else if (bb != null)
@@ -73,6 +73,13 @@ public class BulletAttack1 : MonoBehaviour
             }
             else if (ec != null)
             {
+                if (ec.GetComponentInChildren<BulletAttack1>() != null || ec.GetComponentInChildren<Bullet_Versatil_Controller>() != null)
+                {
+                    ennemyController.GetComponent<Ennemy_Controller>().stuned = false;
+                    Destroy(gameObject);
+                    return;
+                }
+
                 ec.rb.constraints = RigidbodyConstraints2D.None;
                 ec.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -105,12 +112,13 @@ public class BulletAttack1 : MonoBehaviour
 
                 if (etb != null)
                 {
-                    if(etb == false)
-                        etb.lastAttack = etb.StartCoroutine(etb.ApplyForce(ec));
+                    etb.lastAttack = etb.StartCoroutine(etb.ApplyForce(ec));
                 }
                 else if (bb != null)
                     bb.StartCoroutine(bb.ApplyForce(ec));
             }
+
+            transform.SetParent(collision.transform);
         }
     }
 }
