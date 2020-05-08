@@ -118,18 +118,15 @@ public class RoomController : MonoBehaviour
 
             for(int i = 0; i < ennemies.Count; i++)
             {
-                if(ec == ennemies[i] || ec.spawned == true)
+                if(ec == ennemies[i])
                 {
-                    if (ec.spawned == true)
-                        objectsToDestroy.Add(ec);
-
                     canAdd = false;
                     break;
                 }
 
             }
 
-            if(canAdd == true)
+            if (canAdd == true && ec.spawned == false)
                 ennemies.Add(ec);
         }
 
@@ -139,18 +136,15 @@ public class RoomController : MonoBehaviour
 
             for (int i = 0; i < objectsToReset.Count; i++)
             {
-                if (elc == objectsToReset[i] || elc.spawned == true)
+                if (elc == objectsToReset[i])
                 {
-                    if (elc.spawned == true)
-                        objectsToDestroy.Add(elc);
-
                     canAdd = false;
                     break;
                 }
 
             }
 
-            if (canAdd == true)
+            if (canAdd == true && elc.spawned == false)
                 objectsToReset.Add(elc);
         }
 

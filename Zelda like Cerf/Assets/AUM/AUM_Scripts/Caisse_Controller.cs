@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Caisse_Controller : Elements_Controller
 {
-    public bool isTractable;
     private bool isPlaying;
     // Start is called before the first frame update
     public override void Start()

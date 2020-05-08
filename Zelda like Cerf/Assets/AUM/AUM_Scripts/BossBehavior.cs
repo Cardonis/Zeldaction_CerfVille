@@ -376,6 +376,8 @@ public class BossBehavior : Ennemy_Controller
                 {
                     currentElement = Instantiate(caissesToSpawns[caisseMass - 1], pierresParent);
 
+                    player.confiner.activeRoom.objectsToDestroy.Add(currentElement);
+
                     movingToAttack = false;
 
                     direction = player.transform.position - transform.position;
@@ -648,6 +650,8 @@ public class BossBehavior : Ennemy_Controller
             for(int x = 0; x < spawnNumb; x++)
             {
                 Ennemy_Controller currentEnnemy = Instantiate(ennemiesToSpawn[ennemyType - 1], parentEnnemies).GetComponent<Ennemy_Controller>();
+
+                player.confiner.activeRoom.objectsToDestroy.Add(currentEnnemy);
 
                 currentEnnemy.transform.position = (Vector2)bossRoom.transform.position + new Vector2(Random.Range(-10, +10), Random.Range(-10, +10));
 

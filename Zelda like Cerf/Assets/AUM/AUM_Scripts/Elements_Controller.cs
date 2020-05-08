@@ -10,6 +10,8 @@ public class Elements_Controller : MonoBehaviour
     [HideInInspector] public bool stuned = false;
     [HideInInspector] public Rigidbody2D rb;
 
+    [HideInInspector] public bool isTractable = true;
+
     [Range(0, 3)] public int mass;
 
     [HideInInspector] public float levelProjected = 0;
@@ -125,6 +127,8 @@ public class Elements_Controller : MonoBehaviour
         {
             ennemyCollidersLayers.Add(collider2Ds[i].gameObject.layer);
         }
+
+        isTractable = true;
 
         rb = GetComponent<Rigidbody2D>();
 

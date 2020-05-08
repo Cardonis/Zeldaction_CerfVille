@@ -95,7 +95,7 @@ public class Player_Main_Controller : MonoBehaviour
     AudioManager audiomanager;
 
     bool carrying;
-    [HideInInspector] public Caisse_Controller currentPierre;
+    [HideInInspector] public Elements_Controller currentPierre;
 
     bool takingDamage = false;
 
@@ -391,21 +391,44 @@ public class Player_Main_Controller : MonoBehaviour
         {
             if(currentPierre == null)
             {
+                List<Elements_Controller> pierresActivesRoom = new List<Elements_Controller>();
+
+                if(part >= 2)
+                {
+                    for (int i = 0; i < confiner.activeRoom.ennemies.Count; i++)
+                    {
+                        if (confiner.activeRoom.ennemies[i].dead == false)
+                            pierresActivesRoom.Add(confiner.activeRoom.ennemies[i]);
+                    }
+                }
+                
                 for (int i = 0; i < confiner.activeRoom.objectsToReset.Count; i++)
                 {
-                    if (Vector2.Distance(transform.position, confiner.activeRoom.objectsToReset[i].transform.position) < 2f && confiner.activeRoom.objectsToReset[i].isTractable)
+                    pierresActivesRoom.Add(confiner.activeRoom.objectsToReset[i]);
+                }
+
+                for (int i = 0; i < confiner.activeRoom.objectsToDestroy.Count; i++)
+                {
+                    pierresActivesRoom.Add(confiner.activeRoom.objectsToDestroy[i]);
+                }
+
+                //pierresActivesRoom = confiner.activeRoom.objectsToReset + confiner.activeRoom.objectsToDestroy;
+
+                for (int i = 0; i < pierresActivesRoom.Count; i++)
+                {
+                    if (Vector2.Distance(transform.position, pierresActivesRoom[i].transform.position) < 2f && pierresActivesRoom[i].isTractable)
                     {
                         if (currentPierre != null)
                         {
-                            if (Vector2.Distance(transform.position, currentPierre.transform.position) > Vector2.Distance(transform.position, confiner.activeRoom.objectsToReset[i].transform.position))
+                            if (Vector2.Distance(transform.position, currentPierre.transform.position) > Vector2.Distance(transform.position, pierresActivesRoom[i].transform.position))
                             {
-                                currentPierre = confiner.activeRoom.objectsToReset[i];
+                                currentPierre = pierresActivesRoom[i];
                             }
 
                         }
                         else
                         {
-                            currentPierre = confiner.activeRoom.objectsToReset[i];
+                            currentPierre = pierresActivesRoom[i];
                         }
 
                     }
