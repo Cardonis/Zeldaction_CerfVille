@@ -582,8 +582,6 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
     {
         List<Elements_Controller> copyMarquageControllers = new List<Elements_Controller>();
 
-        
-
         for (int i = 0; i <  marquageManager.marquageControllers.Count; i++)
         {
             copyMarquageControllers.Add(marquageManager.marquageControllers[i].GetComponentInParent<Elements_Controller>());
@@ -645,6 +643,21 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
             bullet.bonusLevelProjecting = 0;
         }
 
+        LineRenderer lr = bullet.GetComponent<LineRenderer>();
+
+        if(levelProjecting + bullet.bonusLevelProjecting == 1)
+        {
+            bullet.GetComponent<LineRenderer>().SetWidth(0.20f, 0.10f);
+        }
+        else if (levelProjecting + bullet.bonusLevelProjecting == 2)
+        {
+            bullet.GetComponent<LineRenderer>().SetWidth(0.40f, 0.20f);
+        }
+        else if (levelProjecting + bullet.bonusLevelProjecting == 4)
+        {
+            bullet.GetComponent<LineRenderer>().SetWidth(0.80f, 0.40f);
+        }
+
         lastAttackForce = levelProjecting + bullet.bonusLevelProjecting;
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
@@ -660,6 +673,21 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         bullet.player = transform;
         bullet.maxDistance = 20;
         bullet.levelProjecting = levelProjecting;
+
+        LineRenderer lr = bullet.GetComponent<LineRenderer>();
+
+        if(levelProjecting == 1)
+        {
+            bullet.GetComponent<LineRenderer>().SetWidth(0.20f, 0.10f);
+        }
+        else if (levelProjecting == 2)
+        {
+            bullet.GetComponent<LineRenderer>().SetWidth(0.40f, 0.20f);
+        }
+        else if (levelProjecting == 4)
+        {
+            bullet.GetComponent<LineRenderer>().SetWidth(0.80f, 0.40f);
+        }
 
         bullet.rb.velocity = (target.position - transform.position).normalized * speedBulletVersatil / Mathf.Min(3f, levelProjecting) * Time.fixedDeltaTime;
 
