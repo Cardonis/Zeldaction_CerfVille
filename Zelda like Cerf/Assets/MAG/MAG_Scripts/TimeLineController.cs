@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class TimeLineController : MonoBehaviour
+public class TimelineController : MonoBehaviour
 {
     public PlayableDirector playableDirector;
     public Player_Main_Controller player;
