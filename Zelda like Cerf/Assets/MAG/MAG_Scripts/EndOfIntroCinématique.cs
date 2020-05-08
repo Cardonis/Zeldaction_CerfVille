@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EndOfCinematique : MonoBehaviour
+public class EndOfIntroCinématique : MonoBehaviour
 {
     public Animator animator;
     void Start()
