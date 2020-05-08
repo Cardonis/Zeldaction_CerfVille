@@ -13,6 +13,7 @@ public class Door : MonoBehaviour
 
     bool wasClosed;
     bool isClosed;
+    private bool isPlaying;
 
     AudioManager audiomanager;
     Animator animator;
@@ -23,6 +24,7 @@ public class Door : MonoBehaviour
         doorSprite = GetComponentInChildren<SpriteRenderer>();
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         animator = GetComponentInChildren<Animator>();
+        isPlaying = false;
     }
 
     void Update()
@@ -55,16 +57,23 @@ public class Door : MonoBehaviour
 
         isClosed = doorCollider.enabled;
 
-        if (wasClosed == true && isClosed == false)
+        if (wasClosed == true && isClosed == false && isPlaying == false)
         {
             StartCoroutine(audiomanager.PlayOne("DoorOpen", gameObject));
+            StartCoroutine(PlayOneOne());
         }
+
 
 
 
     }
 
-
+    public IEnumerator PlayOneOne()
+    {
+        isPlaying = true;
+        yield return new WaitForSecondsRealtime(1);
+        isPlaying = false;
+    }
 
 
 }
