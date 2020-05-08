@@ -43,7 +43,7 @@ public class MainMenu : MonoBehaviour
             }
             else
             {
-                PlayGame();
+                StartNewGame();
             }
         }
         else
@@ -101,5 +101,10 @@ public class MainMenu : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(mainMenuFirstButton);
         }
         
+    }
+
+    public void StartNewGame()
+    {
+        SceneManager.LoadScene(2);
     }
 }
