@@ -121,36 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &284721056
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 284721057}
-  m_Layer: 0
-  m_Name: StunPlayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &284721057
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284721056}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -179.4725, y: -83.03624, z: -26.488281}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &350568244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -271,9 +241,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 377727944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf360c9418ce1a8409ab053dbcecb336, type: 3}
+  m_Script: {fileID: 11500000, guid: c5ba1cceed2480147abf72573c11406a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 932107395}
 --- !u!4 &377727946
 Transform:
   m_ObjectHideFlags: 0
@@ -1638,8 +1609,6 @@ PlayableDirector:
     value: {fileID: 624875440}
   - key: {fileID: -5198552498921097119, guid: 5bf74729c44c0ae40a18c597627ac78a, type: 2}
     value: {fileID: 377727944}
-  - key: {fileID: 6696292995232123823, guid: 5bf74729c44c0ae40a18c597627ac78a, type: 2}
-    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1482302410
