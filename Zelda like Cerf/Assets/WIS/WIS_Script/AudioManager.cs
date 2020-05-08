@@ -135,8 +135,14 @@ public class AudioManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(s.source.clip.length);
 
-        s.source.Stop();
         Destroy(s.source);
+        s.source.Stop();
+
+        if (s.source != null)
+        {
+
+        }
+        
     }
 
     public IEnumerator PlayOneOne(bool isPlaying)

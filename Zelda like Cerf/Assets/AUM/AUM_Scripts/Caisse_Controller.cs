@@ -26,17 +26,16 @@ public class Caisse_Controller : Elements_Controller
         if (isPlaying == false)
         {
             StartCoroutine(audiomanager.PlayOne("Rock_Impact", gameObject));
-            StartCoroutine(audiomanager.PlayOneOne(isPlaying));
+            StartCoroutine(PlayOneOne());
         }
 
     }
 
-    public IEnumerator PlayOneOne(bool isPlaying)
+    public IEnumerator PlayOneOne()
     {
         isPlaying = true;
         yield return new WaitForSecondsRealtime(1);
         isPlaying = false;
-
     }
 
 }
