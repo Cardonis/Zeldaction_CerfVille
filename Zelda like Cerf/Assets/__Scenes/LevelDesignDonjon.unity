@@ -6795,6 +6795,12 @@ Transform:
   m_Father: {fileID: 1696850712}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &727851455 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6944215928479659490, guid: a8113691204afc54ea20e3c1733cd5a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 617234562}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &733734431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11679,7 +11685,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 725732355}
     m_Modifications:
-    - target: {fileID: 3078109081692970473, guid: 0a104f16cb347c6439dbb8341ec4ce96,
+    - target: {fileID: 2086051311, guid: 0a104f16cb347c6439dbb8341ec4ce96, type: 3}
+      propertyPath: m_SceneBindings.Array.data[0].value
+      value: 
+      objectReference: {fileID: 727851455}
+    - target: {fileID: 2086051311, guid: 0a104f16cb347c6439dbb8341ec4ce96, type: 3}
+      propertyPath: m_SceneBindings.Array.data[1].value
+      value: 
+      objectReference: {fileID: 727851455}
+    - target: {fileID: 1867997807609511807, guid: 0a104f16cb347c6439dbb8341ec4ce96,
         type: 3}
       propertyPath: dialogueManager
       value: 
