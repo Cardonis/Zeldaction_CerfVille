@@ -131,7 +131,10 @@ public class EnnemiOneBehavior : Ennemy_Controller
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
 
-        if(rb.velocity != new Vector2 (0,0))
+        animator.SetFloat("HorizontalAim", directionForAttack.x);
+        animator.SetFloat("VerticalAim", directionForAttack.y);
+
+        if (rb.velocity != new Vector2 (0,0))
         {
             animator.SetBool("IsMoving", true);
         }
@@ -166,6 +169,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         Destroy(GetComponent<AudioSource>());
         audiomanager.PlayHere("Enemy1_Attack", gameObject);
+        animator.SetTrigger("Attacks");
 
         rb.velocity = new Vector2(0, 0);
 
