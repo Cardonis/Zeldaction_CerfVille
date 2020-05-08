@@ -78,9 +78,9 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", false);
 
 
-        for(float i = 0.5f; i > 0; i -= Time.deltaTime)
+        for(float i = 3f; i > 0; i -= Time.deltaTime)
         {
-            cmVcam.m_Lens.OrthographicSize = Mathf.SmoothStep(cmVcam.m_Lens.OrthographicSize, 7.5f, 5f * Time.deltaTime);
+            cmVcam.m_Lens.OrthographicSize = Mathf.SmoothStep(cmVcam.m_Lens.OrthographicSize, 7.5f, 20 * Time.deltaTime);
 
             yield return null;
         }

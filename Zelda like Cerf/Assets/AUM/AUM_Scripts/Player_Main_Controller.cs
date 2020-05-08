@@ -10,6 +10,8 @@ public class Player_Main_Controller : MonoBehaviour
 
     public GameObject pressX;
 
+    public SaveDisplay saveDisplay;
+
     [Range(100.0f, 400.0f)] public float speed;
 
     [HideInInspector] public int currentLife;
@@ -796,6 +798,8 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
     public void SavePlayer()
     {
+        saveDisplay.StartCoroutine(saveDisplay.DisplayFor(2f));
+
         SaveSystem.SavePlayer(this);
     }
 
