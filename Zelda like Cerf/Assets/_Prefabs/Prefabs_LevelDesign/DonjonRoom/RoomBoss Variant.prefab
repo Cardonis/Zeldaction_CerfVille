@@ -37097,12 +37097,12 @@ PrefabInstance:
     - target: {fileID: 8740204903664409242, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -60
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8740204903664409242, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 125
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 8740204903664409242, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
@@ -37112,17 +37112,17 @@ PrefabInstance:
     - target: {fileID: 8740204903664409242, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8740204903664409242, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8740204903664409242, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8740204903664409242, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
@@ -37202,11 +37202,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4602964965697635152}
     m_Modifications:
+    - target: {fileID: 397303486496488497, guid: 4162633d3351dd044bffaa6da96e67c4,
+        type: 3}
+      propertyPath: m_Name
+      value: BGraph
+      objectReference: {fileID: 0}
     - target: {fileID: 606353524925773717, guid: 4162633d3351dd044bffaa6da96e67c4,
         type: 3}
       propertyPath: ennemyController
       value: 
       objectReference: {fileID: 320018181}
+    - target: {fileID: 3015998742484455390, guid: 4162633d3351dd044bffaa6da96e67c4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5697554572727332377, guid: 2914daa07937bc242bafb53020bb854d,
+        type: 3}
     - target: {fileID: 4345626541067255314, guid: 4162633d3351dd044bffaa6da96e67c4,
         type: 3}
       propertyPath: m_Name
@@ -37221,7 +37232,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: a7ad4907a5b798843b458c46efd9a567, type: 2}
     - target: {fileID: 6269348177098835941, guid: 4162633d3351dd044bffaa6da96e67c4,
         type: 3}
       propertyPath: m_LocalPosition.x
