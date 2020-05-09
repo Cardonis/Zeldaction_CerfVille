@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class BossBehavior : Ennemy_Controller
 {
+    public EndGameInitiator endGameInitiator;
+
     Vector2 directionPattern;
     public int phase = 1;
     float timerCooldownPattern;
@@ -43,7 +46,6 @@ public class BossBehavior : Ennemy_Controller
 
     Vector2 lookDir;
 
-
     // Start is called before the first frame update
     public override void Start()
     {
@@ -61,6 +63,9 @@ public class BossBehavior : Ennemy_Controller
     override public void FixedUpdate()
     {
         missingLife = pv / initialLife;
+
+        if (missingLife <= 0f / 4f && endGameInitiator.ending == false)
+            endGameInitiator.StartCoroutine(endGameInitiator.EndGame());
 
         if (missingLife < 1f / 4f)
             phase = 4;
@@ -143,7 +148,7 @@ public class BossBehavior : Ennemy_Controller
                 switch (phase)
                 {
                     case 1:
-                        int rand = Random.Range(4, 5);
+                        int rand = Random.Range(1, 3);
                         switch (rand)
                         {
                             case 1:
@@ -157,13 +162,6 @@ public class BossBehavior : Ennemy_Controller
                                 {
                                     attacking = false;
                                 }
-                                break;
-                            case 3:
-                                lastAttack = StartCoroutine(DashAttack(2, 250f, 5f, 50f));
-                                break;
-
-                            case 4:
-                                lastAttack = StartCoroutine(SpectralLiane(2, 150f, 10f, 800f));
                                 break;
                         }
                         break;
@@ -445,7 +443,7 @@ public class BossBehavior : Ennemy_Controller
 
                     StopCoroutine(lastAttack);
 
-                    break;
+                    yield break;
                 }
 
                 currentElement.transform.position = transform.position + (player.transform.position - transform.position).normalized * 1.2f;
@@ -469,7 +467,7 @@ public class BossBehavior : Ennemy_Controller
 
                     StopCoroutine(lastAttack);
 
-                    break;
+                    yield break;
                 }
 
                 currentElement.transform.position = (Vector2)transform.position + directionAttack * x;
@@ -710,4 +708,5 @@ public class BossBehavior : Ennemy_Controller
 
         yield break;
     }
+
 }
