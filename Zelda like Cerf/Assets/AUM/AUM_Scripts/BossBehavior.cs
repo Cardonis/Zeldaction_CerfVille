@@ -39,6 +39,10 @@ public class BossBehavior : Ennemy_Controller
     public Transform parentEnnemies;
     int[] ennemiesNumber = { 3, 1, 3, 3 };
 
+    [HideInInspector] public Animator animator;
+
+    Vector2 lookDir;
+
 
     // Start is called before the first frame update
     public override void Start()
@@ -50,6 +54,8 @@ public class BossBehavior : Ennemy_Controller
 
 
         pierresParent = transform.parent.parent.Find("Autres");
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     override public void FixedUpdate()
@@ -243,6 +249,15 @@ public class BossBehavior : Ennemy_Controller
         {
             rb.velocity = direction * speed * Time.fixedDeltaTime;
         }
+
+        #region Animator
+
+        lookDir = player.transform.position - transform.position;
+
+        animator.SetFloat("Horizontal", lookDir.x);
+        animator.SetFloat("Vertical", lookDir.y);
+
+        #endregion 
 
     }
 
