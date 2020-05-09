@@ -106,7 +106,7 @@ public class MusicManager : MonoBehaviour
         {
             foreach (Music s in Musics)
             {
-                s.source.volume = s.volume * MusicVolume;
+                s.source.volume = MusicVolume;
             }
 
 

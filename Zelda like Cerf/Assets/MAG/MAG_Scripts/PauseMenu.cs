@@ -58,8 +58,13 @@ public class PauseMenu : MonoBehaviour
         Screen.fullScreen = isFullScreen;
     }
 
-    public void SetVolume(float volume)
+    public void SetEffectVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        AudioManager.SoundEffectsVolume = volume;
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        MusicManager.MusicVolume = volume;
     }
 }

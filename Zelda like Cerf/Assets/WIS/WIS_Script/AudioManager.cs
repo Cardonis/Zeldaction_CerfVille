@@ -57,7 +57,7 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        if (SoundEffectsVolume != VolumeChange)
+        /*if (SoundEffectsVolume != VolumeChange)
         {
 
             foreach (Sound s in sounds)
@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour
 
             VolumeChange = SoundEffectsVolume;
 
-        }
+        }*/
     }
 
     public void Play (string name)
@@ -81,7 +81,7 @@ public class AudioManager : MonoBehaviour
 
         }
 
-        
+        s.source.volume = s.volume * SoundEffectsVolume;
 
         if (!s.alreadyPlayed)
         {
