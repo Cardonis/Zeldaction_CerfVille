@@ -425,11 +425,6 @@ public class BossBehavior : Ennemy_Controller
             {
                 if (currentElement == null)
                 {
-                    for (int z = 0; z < currentElement.collider2Ds.Count; z++)
-                    {
-                        Physics2D.IgnoreCollision(currentElement.collider2Ds[z], col, false);
-                    }
-
                     attacking = false;
 
                     direction = Vector2.zero;

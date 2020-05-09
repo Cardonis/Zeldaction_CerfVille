@@ -140,7 +140,7 @@ public class AudioManager : MonoBehaviour
 
         if (s.source != null)
         {
-
+            s.source.Stop();
         }
         
     }
