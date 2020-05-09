@@ -136,14 +136,14 @@ public class BossBehavior : Ennemy_Controller
         {
 
 
-            if(timerCooldownPattern > cooldownsPatterns[phase - 1])
+            if (timerCooldownPattern > cooldownsPatterns[phase - 1])
             {
                 attacking = true;
 
                 switch (phase)
                 {
                     case 1:
-                        int rand = Random.Range(1, 3);
+                        int rand = Random.Range(4, 5);
                         switch (rand)
                         {
                             case 1:
@@ -151,12 +151,19 @@ public class BossBehavior : Ennemy_Controller
                                 break;
 
                             case 2:
-                                if(ennemyControllersList.Count < ennemiesNumber[phase - 1])
+                                if (ennemyControllersList.Count < ennemiesNumber[phase - 1])
                                     lastAttack = StartCoroutine(Minions(2, 2, 1.5f, 1));
                                 else
                                 {
                                     attacking = false;
                                 }
+                                break;
+                            case 3:
+                                lastAttack = StartCoroutine(DashAttack(2, 250f, 5f, 50f));
+                                break;
+
+                            case 4:
+                                lastAttack = StartCoroutine(SpectralLiane(2, 150f, 10f, 800f));
                                 break;
                         }
                         break;
@@ -186,7 +193,7 @@ public class BossBehavior : Ennemy_Controller
                         break;
 
                     case 3:
-                        int rand3 = Random.Range(1, 4);
+                        int rand3 = Random.Range(1, 5);
                         switch (rand3)
                         {
                             case 1:
@@ -242,12 +249,17 @@ public class BossBehavior : Ennemy_Controller
             {
                 timerCooldownPattern += Time.deltaTime;
             }
-            
+
         }
 
         if (canMove == true)
         {
             rb.velocity = direction * speed * Time.fixedDeltaTime;
+            animator.SetBool("IsFloating", true);
+        }
+        else
+        {
+            animator.SetBool("IsFloating", false);
         }
 
         #region Animator
@@ -256,6 +268,7 @@ public class BossBehavior : Ennemy_Controller
 
         animator.SetFloat("Horizontal", lookDir.x);
         animator.SetFloat("Vertical", lookDir.y);
+         
 
         #endregion 
 
@@ -306,6 +319,8 @@ public class BossBehavior : Ennemy_Controller
 
             rb.AddForce((direction).normalized * forceValue, ForceMode2D.Impulse);
             projected = true;
+
+            animator.SetTrigger("Jump_Charge");
 
             while (projected == true)
             {
@@ -384,6 +399,8 @@ public class BossBehavior : Ennemy_Controller
 
                         movingToAttack = false;
 
+                        animator.SetTrigger("IsThrowingRock");
+
                         direction = (player.transform.position - transform.position).normalized;
                     }
                 }
@@ -394,6 +411,8 @@ public class BossBehavior : Ennemy_Controller
                     player.confiner.activeRoom.objectsToDestroy.Add(currentElement);
 
                     movingToAttack = false;
+
+                    animator.SetTrigger("IsThrowingRock");
 
                     direction = player.transform.position - transform.position;
                     break;
@@ -519,6 +538,8 @@ public class BossBehavior : Ennemy_Controller
                 else
                 {
                     movingToAttack = false;
+
+                    animator.SetTrigger("IsUsingLiane");
 
                     direction = (player.transform.position - transform.position).normalized;
                 }
@@ -655,6 +676,8 @@ public class BossBehavior : Ennemy_Controller
         {
             transform.position = (Vector2)bossRoom.transform.position + new Vector2(Random.Range(-10, +10), Random.Range(-10, +10));
 
+            animator.SetBool("IsSummoning", true);
+
             yield return new WaitForSeconds(spawnSpeed);
 
             for(int x = 0; x < spawnNumb; x++)
@@ -674,6 +697,8 @@ public class BossBehavior : Ennemy_Controller
         direction = Vector2.zero;
 
         attacking = false;
+
+        animator.SetBool("IsSummoning", false);
 
         timerCooldownPattern = 0;
 
