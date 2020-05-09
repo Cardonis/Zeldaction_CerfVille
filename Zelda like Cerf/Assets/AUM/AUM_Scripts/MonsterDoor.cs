@@ -8,32 +8,42 @@ public class MonsterDoor : MonoBehaviour
 
     SpriteRenderer sr;
     Collider2D col;
+    Animator animator;
+    bool readyToOpen = false;
+    public bool isTrigger;
 
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool readyToOpen = true;
-
-        for(int i = 0; i < ennemyToOpen.Count; i++)
-        {
-            if(ennemyToOpen[i].gameObject.activeSelf == true)
+        
+            bool readyToOpen = true;
+            
+            for (int i = 0; i < ennemyToOpen.Count; i++)
             {
-                readyToOpen = false;
+                if (ennemyToOpen[i].gameObject.activeSelf == true)
+                {
+                    readyToOpen = false;
+                
                 break;
+                }
             }
-        }
 
-        if(readyToOpen == true)
-        {
-            sr.enabled = false;
-            col.enabled = false;
-        }
+            if (readyToOpen == true)
+            {
+                col.enabled = false;
+            }
+        if (isTrigger == true)
+            animator.SetBool("isOpen", readyToOpen);
+        else
+            animator.SetBool("isOpen", true);
     }
+
 }
