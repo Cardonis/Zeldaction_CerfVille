@@ -134,6 +134,7 @@ public abstract class Ennemy_Controller : Elements_Controller
         else
         {
             direction = Vector2.zero;
+            rb.velocity = Vector2.zero;
         }
 
         if (wanderingTime >= 0)

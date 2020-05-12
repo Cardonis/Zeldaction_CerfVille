@@ -18,6 +18,8 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
     Vector2 directionForAttack;
 
+    Vector2 lookDir;
+
     // Start is called before the first frame update
     override public void Start()
     {
@@ -58,10 +60,12 @@ public class EnnemyThreeBehavior : Ennemy_Controller
                 if (Vector2.Distance(transform.position, player.transform.position) <= 9.5f)
                 {
                     directionForAttack = (transform.position - player.transform.position).normalized * (1f + 9.5f - Vector2.Distance(transform.position, player.transform.position) );
+                    animator.SetBool("IsFallingBack", true);
                 }
                 else if (Vector2.Distance(transform.position, player.transform.position) >= 10f)
                 {
                     directionForAttack = (player.transform.position - transform.position).normalized;
+                    animator.SetBool("IsFallingBack", false);
                 }
                 else
                 {
@@ -86,30 +90,31 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         if (canMove && attacking == false)
         {
             rb.velocity = direction * speed * Time.fixedDeltaTime;
-            
-
+           
         }
 
         #region Animator
 
+        lookDir = player.transform.position - transform.position;
+
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
 
-        animator.SetFloat("HorizontalAim", directionForAttack.x);
-        animator.SetFloat("VerticalAim", directionForAttack.y);
+        animator.SetFloat("HorizontalAim", lookDir.x);
+        animator.SetFloat("VerticalAim", lookDir.y);
 
-        if(rb.velocity != new Vector2 (0,0))
-        {
-            animator.SetBool("IsMoving", true);
-        }
-
-        else
+        if (Mathf.Approximately(rb.velocity.x, 0) && Mathf.Approximately(rb.velocity.y, 0))
         {
             animator.SetBool("IsMoving", false);
         }
 
-        
-        #endregion
+        else
+        {
+            animator.SetBool("IsMoving", true);
+        }
+
+        #endregion Animator
+
     }
 
     public override IEnumerator Attack1()
