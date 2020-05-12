@@ -20,7 +20,9 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
     public List<EnnemiOneBehavior> limierControllers;
 
-    [HideInInspector] public Animator animator;
+    public Animator animator;
+
+    Vector2 lookDir;
 
     override public void Start()
     {
@@ -128,11 +130,13 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         #region Animator
 
+        lookDir = player.transform.position - transform.position;
+
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
 
-        animator.SetFloat("HorizontalAim", directionForAttack.x);
-        animator.SetFloat("VerticalAim", directionForAttack.y);
+        animator.SetFloat("HorizontalAim", lookDir.x);
+        animator.SetFloat("VerticalAim", lookDir.y);
 
         if (rb.velocity != new Vector2 (0,0))
         {
@@ -158,23 +162,33 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         rb.velocity = new Vector2(0, 0);
         audiomanager.PlayHere("Enemy1_grognement", gameObject);
+        
+
         for (float i = 0.5f; i > 0; i -= Time.deltaTime)
         {
+            animator.SetBool("IsCharging", true);
             rb.velocity = -attackDirection.normalized * 50f * Time.fixedDeltaTime;
             
             yield return null;
         }
+
         
+
         StartCoroutine(HitboxAttackActivatedFor(1.5f));
 
         Destroy(GetComponent<AudioSource>());
         audiomanager.PlayHere("Enemy1_Attack", gameObject);
-        animator.SetTrigger("Attacks");
+
+        animator.SetBool("IsCharging", false);
 
         rb.velocity = new Vector2(0, 0);
 
+        animator.SetTrigger("Attacks");
+
         rb.AddForce( (attackDirection).normalized * attackForce, ForceMode2D.Impulse );
         projected = true;
+
+        
 
         while (projected == true)
         {
