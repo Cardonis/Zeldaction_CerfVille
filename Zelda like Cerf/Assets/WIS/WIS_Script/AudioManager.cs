@@ -23,6 +23,8 @@ public class AudioManager : MonoBehaviour
 
     private float VolumeChange;
 
+    public DialogueManager dialogueManager;
+
 
     void Awake()
     {
@@ -72,24 +74,28 @@ public class AudioManager : MonoBehaviour
 
     public void Play (string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
+        if (dialogueManager.dialogueStarted == false)
         {
 
-            Debug.LogWarning("Sound : " + name + " not found !");
-            return;
 
+            Sound s = Array.Find(sounds, sound => sound.name == name);
+            if (s == null)
+            {
+
+                Debug.LogWarning("Sound : " + name + " not found !");
+                return;
+
+            }
+
+            s.source.volume = s.volume * SoundEffectsVolume;
+
+            if (!s.alreadyPlayed)
+            {
+                s.source.Play();
+
+
+            }
         }
-
-        s.source.volume = s.volume * SoundEffectsVolume;
-
-        if (!s.alreadyPlayed)
-        {
-            s.source.Play();
-            
-
-        }
-
     }
 
     public void PlayHere(string name, GameObject here)
