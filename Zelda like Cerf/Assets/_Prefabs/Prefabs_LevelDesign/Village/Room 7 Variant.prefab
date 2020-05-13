@@ -321,7 +321,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 9e8b4935be0f7fd4ca36aa86337d784a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2121,7 +2121,7 @@ PrefabInstance:
     - target: {fileID: 495317839208397969, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_Tiles.Array.data[53].second.m_TileSpriteIndex
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 495317839208397969, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
@@ -6559,14 +6559,13 @@ PrefabInstance:
     - target: {fileID: 495317839208397969, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_RefCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 495317839208397969, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_Data
       value: 
-      objectReference: {fileID: 7390344400808047993, guid: f651add93c2911b4e99a1d3badc0e493,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 495317839208397969, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[1].m_RefCount
@@ -6779,13 +6778,14 @@ PrefabInstance:
     - target: {fileID: 495317839208397969, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[20].m_RefCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 495317839208397969, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[20].m_Data
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7390344400808047993, guid: f651add93c2911b4e99a1d3badc0e493,
+        type: 3}
     - target: {fileID: 495317839208397969, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[21].m_RefCount
