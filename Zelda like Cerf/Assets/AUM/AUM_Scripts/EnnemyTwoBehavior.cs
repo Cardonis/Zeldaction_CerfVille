@@ -30,7 +30,9 @@ public class
 
     Vector2 directionForAttack;
 
-   [HideInInspector] public Animator animator;
+    Vector2 lookDir;
+
+    public Animator animator;
 
     // Start is called before the first frame update
     override public void Start()
@@ -182,11 +184,13 @@ public class
 
         #region Animator
 
+        lookDir = player.transform.position - transform.position;
+
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
 
-        animator.SetFloat("HorizontalAim", directionForAttack.x);
-        animator.SetFloat("VerticalAim", directionForAttack.y);
+        animator.SetFloat("HorizontalAim", lookDir.x);
+        animator.SetFloat("VerticalAim", lookDir.y);
 
         if(rb.velocity != new Vector2(0, 0))
         {
