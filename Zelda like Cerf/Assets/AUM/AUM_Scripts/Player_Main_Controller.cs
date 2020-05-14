@@ -12,7 +12,7 @@ public class Player_Main_Controller : MonoBehaviour
 
     public SaveDisplay saveDisplay;
 
-    [Range(100.0f, 400.0f)] public float speed;
+    [Range(100.0f, 800.0f)] public float speed;
 
     [HideInInspector] public int currentLife;
     public int maxLife;
@@ -645,8 +645,6 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
             bullet.bonusLevelProjecting = 0;
         }
 
-        LineRenderer lr = bullet.GetComponent<LineRenderer>();
-
         if(levelProjecting + bullet.bonusLevelProjecting == 1)
         {
             bullet.GetComponent<LineRenderer>().SetWidth(0.20f, 0.10f);
@@ -675,8 +673,6 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         bullet.player = transform;
         bullet.maxDistance = 20;
         bullet.levelProjecting = levelProjecting;
-
-        LineRenderer lr = bullet.GetComponent<LineRenderer>();
 
         if(levelProjecting == 1)
         {
@@ -733,8 +729,6 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         //Animator
         animator.SetTrigger("IsHurt");
-
-       Color baseColor = GetComponentInChildren<SpriteRenderer>().color;
 
         GetComponentInChildren<SpriteRenderer>().color = Color.red;
 

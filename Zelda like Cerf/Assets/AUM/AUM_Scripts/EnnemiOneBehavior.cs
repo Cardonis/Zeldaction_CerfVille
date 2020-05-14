@@ -100,8 +100,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
                 for (int i = 0; i < ennemyControllersList.Count; i++)
                 {
-                    if(ennemyControllersList[i].GetComponent<EnnemiOneBehavior>() != null)
-                    directionForAttack = directionForAttack + ((Vector2)transform.position - (Vector2)ennemyControllersList[i].transform.position);
+                    directionForAttack = directionForAttack + ((Vector2)transform.position - (Vector2)ennemyControllersList[i].transform.position) * 2;
                 }
 
                 direction = directionForAttack.normalized;
@@ -158,8 +157,6 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         attacking = true;
 
-        attackDirection = player.transform.position - transform.position;
-
         rb.velocity = new Vector2(0, 0);
         audiomanager.PlayHere("Enemy1_grognement", gameObject);
         
@@ -167,7 +164,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
         for (float i = 0.5f; i > 0; i -= Time.deltaTime)
         {
             animator.SetBool("IsCharging", true);
-            rb.velocity = -attackDirection.normalized * 50f * Time.fixedDeltaTime;
+            rb.velocity = -(player.transform.position - transform.position).normalized * 50f * Time.fixedDeltaTime;
             
             yield return null;
         }
@@ -185,7 +182,9 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         animator.SetTrigger("Attacks");
 
-        rb.AddForce( (attackDirection).normalized * attackForce, ForceMode2D.Impulse );
+        attackDirection = player.transform.position - transform.position;
+
+        rb.AddForce( attackDirection.normalized * attackForce, ForceMode2D.Impulse );
         projected = true;
 
         

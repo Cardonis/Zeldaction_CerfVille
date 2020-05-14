@@ -57,12 +57,12 @@ public class EnnemyThreeBehavior : Ennemy_Controller
             {
                 speed = attackSpeed;
 
-                if (Vector2.Distance(transform.position, player.transform.position) <= 9.5f)
+                if (Vector2.Distance(transform.position, player.transform.position) <= 8.5f)
                 {
-                    directionForAttack = (transform.position - player.transform.position).normalized * (1f + 9.5f - Vector2.Distance(transform.position, player.transform.position) );
+                    directionForAttack = (transform.position - player.transform.position).normalized * (1f + 8.5f - Vector2.Distance(transform.position, player.transform.position) );
                     animator.SetBool("IsFallingBack", true);
                 }
-                else if (Vector2.Distance(transform.position, player.transform.position) >= 10f)
+                else if (Vector2.Distance(transform.position, player.transform.position) >= 9.5f)
                 {
                     directionForAttack = (player.transform.position - transform.position).normalized;
                     animator.SetBool("IsFallingBack", false);
@@ -180,7 +180,7 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         player.physicCollider.gameObject.layer = originalPlayerLayer;
 
-        StartCoroutine(DontCollideWithPlayerFor(0.1f));
+        StartCoroutine(DontCollideWithPlayerFor(0.3f));
     }
 
     public IEnumerator ApplyForce(Elements_Controller elementsController)
@@ -225,7 +225,7 @@ public class EnnemyThreeBehavior : Ennemy_Controller
                 Physics2D.IgnoreCollision(collider2Ds[i], elementsController.collider2Ds[x], true);
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
 
         for (int i = 0; i < collider2Ds.Count; i++)
         {
