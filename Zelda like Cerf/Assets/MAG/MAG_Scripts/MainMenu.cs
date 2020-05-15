@@ -64,7 +64,16 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         Time.timeScale = 1f;
-        SceneManager.LoadScene(1);
+        PlayerData data = SaveSystem.LoadPlayer();
+        if(data != null)
+        {
+            Debug.Log("éf");
+            SceneManager.LoadScene(data.currentScene);
+        }
+        else
+        {
+            SceneManager.LoadScene(1);
+        }
 
         yield break;
     }

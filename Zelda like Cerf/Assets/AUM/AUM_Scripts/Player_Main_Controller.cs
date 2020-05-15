@@ -144,6 +144,11 @@ public class Player_Main_Controller : MonoBehaviour
         barsCharge2.SetActive(false);
         barsCharge3.SetActive(false);
         barCharge.gameObject.SetActive(false);
+
+        if(TransitionManager.transitionData != null)
+        {
+            LoadPlayer();
+        }
     }
 
 
@@ -805,22 +810,55 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
     public void LoadPlayer()
     {
-        PlayerData data = SaveSystem.LoadPlayer();
+        if (TransitionManager.transitionData == null)
+        {
+            PlayerData data = SaveSystem.LoadPlayer();
 
-        part = data.part;
-        maxLife = data.maxHealth;
+            part = data.part;
+            maxLife = data.maxHealth;
 
-        Vector2 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
+            Vector2 position;
+            position.x = data.position[0];
+            position.y = data.position[1];
 
-        transform.position = position;
+            transform.position = position;
 
-        Vector2 confinerPosition;
-        confinerPosition.x = data.confinerPosition[0];
-        confinerPosition.y = data.confinerPosition[1];
+            Vector2 confinerPosition;
+            confinerPosition.x = data.confinerPosition[0];
+            confinerPosition.y = data.confinerPosition[1];
 
-        confiner.transform.position = confinerPosition;
+            confiner.transform.position = confinerPosition;
+        }
+        else
+        {
+            part = TransitionManager.transitionData.part;
+            maxLife = TransitionManager.transitionData.maxHealth;
+            currentLife = TransitionManager.transitionData.currentLife;
+
+            Vector2 position = Vector2.zero;
+            foreach(SceneTransition transition in TransitionManager.transitions)
+            {
+                if(transition.transitionID == TransitionManager.previousTansitionID)
+                {
+                    position = transition.spawnPos.position;
+                }
+            }
+
+            if(position == Vector2.zero)
+            {
+                Debug.LogWarning("No Transition with correct ID found");
+            }
+            else
+            {
+                transform.position = position;
+            }
+
+            Vector2 confinerPosition;
+            confinerPosition.x = TransitionManager.transitionData.confinerPosition[0];
+            confinerPosition.y = TransitionManager.transitionData.confinerPosition[1];
+
+            confiner.transform.position = confinerPosition;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

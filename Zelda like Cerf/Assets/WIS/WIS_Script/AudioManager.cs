@@ -74,10 +74,6 @@ public class AudioManager : MonoBehaviour
 
     public void Play (string name)
     {
-        if (dialogueManager.dialogueStarted == false)
-        {
-
-
             Sound s = Array.Find(sounds, sound => sound.name == name);
             if (s == null)
             {
@@ -95,7 +91,7 @@ public class AudioManager : MonoBehaviour
 
 
             }
-        }
+
     }
 
     public void PlayHere(string name, GameObject here)
