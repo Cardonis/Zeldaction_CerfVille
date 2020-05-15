@@ -38,6 +38,14 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         if (projected)
         {
+            Ennemy_Controller[] ennemy_Controllers = transform.parent.GetComponentsInChildren<Ennemy_Controller>();
+
+            foreach (Ennemy_Controller ennemy_Controller in ennemy_Controllers)
+            {
+                ennemy_Controller.playerDetected = true;
+                ennemy_Controller.canMove = true;
+            }
+
             canMove = true;
             playerDetected = true;
         }
