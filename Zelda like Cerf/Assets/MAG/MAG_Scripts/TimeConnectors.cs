@@ -13,6 +13,9 @@ public class TimeConnectors : MonoBehaviour
     [HideInInspector] public bool openDoor;
 
     AudioManager audiomanager;
+
+    private bool TemporalIsPlaying;
+
     void Start()
     {
         timerIsActive = false;
@@ -20,6 +23,7 @@ public class TimeConnectors : MonoBehaviour
         numberOfActiveButtons = 0;
         timer = initialTimer;
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        TemporalIsPlaying = false;
     }
     void Update()
     {
@@ -37,7 +41,11 @@ public class TimeConnectors : MonoBehaviour
 
         if (timerIsActive == true)
         {
-
+            if (TemporalIsPlaying == false)
+            {
+                StartCoroutine(audiomanager.PlayAndFadeOut("Temporal01", gameObject, initialTimer));
+                TemporalIsPlaying = true;
+            }
             timer -= Time.deltaTime;
             numberOfActiveButtons = 0;
 
@@ -59,6 +67,7 @@ public class TimeConnectors : MonoBehaviour
                 }
                 timer = initialTimer;
                 timerIsActive = false;
+                TemporalIsPlaying = false;
             }
 
             if (numberOfActiveButtons == allButtons.Length)

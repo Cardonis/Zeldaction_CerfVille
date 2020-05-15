@@ -8,6 +8,7 @@ public class LifeTreeController : MonoBehaviour
     Player_Main_Controller player;
 
     [HideInInspector] public List<RoomController> rooms;
+    private float CurrentSoundEffectVolume;
 
     private void Start()
     {
@@ -46,6 +47,9 @@ public class LifeTreeController : MonoBehaviour
         if (Input.GetButtonDown("X") && playerIsNear == true)
         {
 
+            CurrentSoundEffectVolume = AudioManager.SoundEffectsVolume;
+            AudioManager.SoundEffectsVolume = 0;
+
             player.pressX.SetActive(false);
             player.currentLife = player.maxLife;
 
@@ -55,6 +59,7 @@ public class LifeTreeController : MonoBehaviour
             }
 
             player.SavePlayer();
+            AudioManager.SoundEffectsVolume = CurrentSoundEffectVolume;
         }
     }
 }

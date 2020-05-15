@@ -157,6 +157,36 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    public IEnumerator PlayAndFadeOut(string name, GameObject here, float FadeTime)
+    {
+
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        s.source = here.AddComponent<AudioSource>();
+        s.source.clip = s.Clip;
+
+        s.source.volume = s.volume * SoundEffectsVolume;
+
+        s.source.loop = s.loop;
+
+        s.source.Play();
+
+        float startVolume = s.source.volume;
+        while (s.source.volume > 0)
+        {
+            s.source.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        s.source.Stop();
+
+
+        Destroy(s.source);
+
+
+    }
+
     private void WaitForSeconds()
     {
         throw new NotImplementedException();
