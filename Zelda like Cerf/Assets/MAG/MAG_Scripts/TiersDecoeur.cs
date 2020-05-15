@@ -5,9 +5,9 @@ using UnityEngine;
 public class TiersDecoeur : MonoBehaviour
 {
 
-    public GameObject pressX;
+    GameObject pressX;
     private Player_Main_Controller player;
-    public InventoryBook inventoryBook;
+    InventoryBook inventoryBook;
     bool playerIsNear;
 
     private void Start()
@@ -19,6 +19,8 @@ public class TiersDecoeur : MonoBehaviour
         player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
         if (player != null)
         {
+            inventoryBook = player.inventoryBook;
+            pressX = player.pressX;
             pressX.SetActive(true);
             playerIsNear = true;
         }
