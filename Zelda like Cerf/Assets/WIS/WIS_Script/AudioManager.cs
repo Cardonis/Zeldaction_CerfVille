@@ -124,25 +124,23 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
-        s.source = here.AddComponent<AudioSource>();
-        s.source.clip = s.Clip;
+        
+        AudioSource thisSource = here.AddComponent<AudioSource>();
 
-        s.source.volume = s.volume * SoundEffectsVolume;
+        thisSource.clip = s.Clip;
 
-        s.source.loop = s.loop;
+        thisSource.volume = s.volume * SoundEffectsVolume;
 
-        s.source.Play();
+        thisSource.loop = s.loop;
+
+        thisSource.Play();
 
         yield return new WaitForSecondsRealtime(s.source.clip.length);
 
-        Destroy(s.source);
-        s.source.Stop();
+        thisSource.Stop();
 
-        if (s.source != null)
-        {
-            s.source.Stop();
-        }
-        
+        Destroy(thisSource);
+
     }
 
     public IEnumerator PlayOneOne(bool isPlaying)

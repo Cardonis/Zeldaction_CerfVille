@@ -108,7 +108,13 @@ public abstract class Ennemy_Controller : Elements_Controller
             StopTakeForce();
             Destroy(GetComponentInChildren<Bullet_Versatil_Controller>().gameObject);
         }
-        
+
+        AudioSource[] sourcesToDestroy = GetComponents<AudioSource>();
+
+        foreach (AudioSource sourceToDestroy in sourcesToDestroy)
+        {
+            Destroy(sourceToDestroy);
+        }
 
         if (mC != null)
         {
