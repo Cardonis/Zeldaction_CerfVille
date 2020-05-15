@@ -194,6 +194,7 @@ public abstract class Ennemy_Controller : Elements_Controller
                         foreach(Ennemy_Controller ennemy_Controller in ennemy_Controllers)
                         {
                             ennemy_Controller.playerDetected = true;
+                            ennemy_Controller.canMove = true;
                         }
 
                         playerDetected = true;
