@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5433854479219786175, guid: 11f1f752d2315cc479f933c403794e01,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.10772586
+      objectReference: {fileID: 0}
+    - target: {fileID: 5433854479219786175, guid: 11f1f752d2315cc479f933c403794e01,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.2154517
+      objectReference: {fileID: 0}
     - target: {fileID: 7091535423309701917, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -100,7 +110,27 @@ PrefabInstance:
     - target: {fileID: 8901876281111542922, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
       propertyPath: attackSpeed
-      value: 100
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901876281111542922, guid: 11f1f752d2315cc479f933c403794e01,
+        type: 3}
+      propertyPath: attackBulletForce
+      value: 1200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901876281111542922, guid: 11f1f752d2315cc479f933c403794e01,
+        type: 3}
+      propertyPath: detectionDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901876281111542922, guid: 11f1f752d2315cc479f933c403794e01,
+        type: 3}
+      propertyPath: pv
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901876281111542922, guid: 11f1f752d2315cc479f933c403794e01,
+        type: 3}
+      propertyPath: detectionAngle
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11f1f752d2315cc479f933c403794e01, type: 3}
