@@ -7,19 +7,13 @@ public class
     EnnemyTwoBehavior : Ennemy_Controller
 {
     [Header("Attack 1")]
-    public float attackSpeedEnnemyTarget;
-    public float attackSpeedPlayerTarget;
-    public float attackCooldownCarrying;
-    public float attackCooldownNotCarrying;
-    float attackCooldown;
+    public float attackSpeed;
+    public float duringAttackSpeed;
+    public float attackCooldown;
     float attackCooldownTimer = 0;
-    Transform attackMovementTarget;
-    public float distanceToEnnemy;
     public float distanceToPlayer;
-    float distanceToTarget;
     public float forcePierreLaunch;
     public GameObject pierrePrefab;
-    Transform pierresParent;
 
     Elements_Controller currentPierre;
     Collider2D currentPierreCol;
@@ -43,8 +37,6 @@ public class
 
         initialLife = pv;
 
-        pierresParent = transform.parent.parent.Find("Autres");
-
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -61,6 +53,8 @@ public class
 
         if (currentPierre != null)
         {
+            Physics2D.IgnoreCollision(currentPierreCol, physicCollider, true);
+
             currentPierre.transform.position = transform.position + (player.transform.position - transform.position).normalized * 1f;
 
             currentPierreBullet = currentPierre.GetComponentInChildren<Bullet_Versatil_Controller>();
@@ -102,7 +96,7 @@ public class
             Wandering();
         }
         else
-        {         
+        {
 
             for (int i = 0; i < ennemyControllersList.Count; i++)
             {
@@ -114,36 +108,19 @@ public class
                 }
             }
 
-            caisseControllersList = caisseControllersList.OrderBy(
-            x => Vector2.Distance(player.transform.position, x.transform.position)
-            ).ToList();
-
-            ennemyControllersList = ennemyControllersList.OrderBy(
-            x => Vector2.Distance(player.transform.position, x.transform.position)
-            ).ToList();
-
-            if(ennemyControllersList.Count > 0)
-            {
-                speed = attackSpeedEnnemyTarget;
-                distanceToTarget = distanceToEnnemy;
-                attackMovementTarget = ennemyControllersList[0].transform;
-            }
-            else
-            {
-                speed = attackSpeedPlayerTarget;
-                distanceToTarget = distanceToPlayer;
-                attackMovementTarget = player.transform;
-            }
+            
 
             if (!attacking)
             {
-                if (Vector2.Distance(transform.position, attackMovementTarget.position) <= distanceToTarget - 1f)
+                speed = attackSpeed;
+
+                if (Vector2.Distance(transform.position, player.transform.position) <= distanceToPlayer - 1f)
                 {
-                    directionForAttack = transform.position - attackMovementTarget.position;
+                    directionForAttack = transform.position - player.transform.position;
                 }
-                else if (Vector2.Distance(transform.position, attackMovementTarget.position) >= distanceToTarget + 1f)
+                else if (Vector2.Distance(transform.position, player.transform.position) >= distanceToPlayer + 1f)
                 {
-                    directionForAttack = (attackMovementTarget.position - transform.position);
+                    directionForAttack = (player.transform.position - transform.position);
                 }
                 else
                 {
@@ -157,26 +134,16 @@ public class
 
                 direction = directionForAttack.normalized;
 
-                if (currentPierre != null)
-                {
-                    Physics2D.IgnoreCollision(currentPierreCol, physicCollider, true);
-                    attackCooldown = attackCooldownCarrying;
-                }
-                else
-                {
-                    attackCooldown = attackCooldownNotCarrying;
-                }
-
                 if (attackCooldownTimer >= attackCooldown)
                 {
-                    lastAttack = StartCoroutine(Attack1());
+                    StartCoroutine(Attack1());
                 }
 
             }                        
 
         }
 
-        if (canMove && attacking == false)
+        if (canMove)
         {
             rb.velocity = direction * speed * Time.fixedDeltaTime;
 
@@ -207,7 +174,43 @@ public class
 
     public override IEnumerator Attack1()
     {
-        Destroy(GetComponent<AudioSource>());
+        attackCooldownTimer = 0;
+
+        attacking = true;
+
+        speed = duringAttackSpeed;
+
+        List<Elements_Controller> elementsControllers = new List<Elements_Controller>();
+
+        for (int x = 0; x < ennemyControllersList.Count; x++)
+        {
+            elementsControllers.Add(ennemyControllersList[x]);
+        }
+
+        for (int x = 0; x < caisseControllersList.Count; x++)
+        {
+            elementsControllers.Add(caisseControllersList[x]);
+        }
+
+        elementsControllers = elementsControllers.OrderBy(
+        x => Vector2.Distance(transform.position, x.transform.position)
+        ).ToList();
+
+        if(elementsControllers.Count > 0)
+            if (Vector2.Distance(elementsControllers[0].transform.position, transform.position) < Vector2.Distance(player.transform.position, transform.position))
+            {
+                lastAttack = StartCoroutine(GetAndThrowElement(elementsControllers[0]));
+            }
+            else
+            {
+                lastAttack = StartCoroutine(GetAndThrowPlayer());
+            }
+        else
+        {
+            lastAttack = StartCoroutine(GetAndThrowPlayer());
+        }
+
+        /*Destroy(GetComponent<AudioSource>());
         Destroy(GetComponent<AudioSource>());
         Destroy(GetComponent<AudioSource>());
         if (currentPierre == null)
@@ -290,8 +293,177 @@ public class
             launched = true;
         }
 
-        attackCooldownTimer = 0;
+        attackCooldownTimer = 0;*/
 
         yield break;
     }
+
+    public IEnumerator GetAndThrowPlayer()
+    {
+
+        bool movingToAttack = true;
+
+        while (movingToAttack == true)
+        {
+            if (Vector2.Distance(transform.position, player.transform.position) <= 1f)
+            {
+                direction = (transform.position - player.transform.position).normalized;
+            }
+            else if (Vector2.Distance(transform.position, player.transform.position) >= 2f)
+            {
+                direction = (player.transform.position - transform.position).normalized;
+            }
+            else
+            {
+                player.stunned = true;
+
+                movingToAttack = false;
+
+                animator.SetTrigger("IsThrowingRock");
+
+                direction = (player.transform.position - transform.position).normalized;
+            }
+
+
+            yield return null;
+
+        }
+
+        canMove = false;
+
+        //StartCoroutine(CollisionIgnoreWithElement(1.5f));
+
+
+        Physics2D.IgnoreCollision(player.physicCollider, col, true);
+
+
+        Vector2 directionAttack = (player.transform.position - transform.position).normalized;
+
+        for (float x = 1.2f; x > 0.7; x -= Time.deltaTime * 1f)
+        {
+            if (dead == true || projected == true)
+            {
+                player.stunned = false;
+
+                attacking = false;
+
+                direction = Vector2.zero;
+
+                canMove = true;
+
+                StopCoroutine(lastAttack);
+
+                yield break;
+            }
+
+            player.transform.position = (Vector2)transform.position + directionAttack.normalized * x;
+            yield return null;
+        }
+
+        player.stunned = false;
+
+        player.projected = true;
+        player.rb.AddForce(directionAttack.normalized * forcePierreLaunch, ForceMode2D.Impulse);
+
+        StartCoroutine(DontCollideWithPlayerFor(0.2f));
+
+        yield return new WaitForSeconds(0.3f);
+
+        canMove = true;
+
+        direction = Vector2.zero;
+
+        attacking = false;
+
+        yield break;
+    }
+
+    public IEnumerator GetAndThrowElement(Elements_Controller currentElement)
+    {
+
+        bool movingToAttack = true;
+
+        while (movingToAttack == true)
+        {
+            if (Vector2.Distance(transform.position, currentElement.transform.position) <= 1f)
+            {
+                direction = (transform.position - currentElement.transform.position).normalized;
+            }
+            else if (Vector2.Distance(transform.position, currentElement.transform.position) >= 2.5f)
+            {
+                direction = (currentElement.transform.position - transform.position).normalized;
+            }
+            else
+            {
+                currentPierre = currentElement;
+
+                currentPierreCol = currentPierre.GetComponentInChildren<Collider2D>();
+
+                movingToAttack = false;
+
+                animator.SetTrigger("IsThrowingRock");
+
+                direction = (currentElement.transform.position - transform.position).normalized;
+            }
+
+
+            yield return null;
+
+        }
+
+        canMove = false;
+
+        attacking = true;
+
+        audiomanager.PlayHere("Enemy2_Rock", gameObject);
+
+        animator.SetTrigger("Attacks");
+
+
+        for (float i = 1.5f; i > 0.75f; i -= Time.deltaTime * 1f)
+        {
+            if (currentPierre == null)
+            {
+                attacking = false;
+
+                attackCooldownTimer = 0;
+
+                StopCoroutine(lastAttack);
+                yield break;
+            }
+
+            currentPierre.transform.position = (Vector2)transform.position + (Vector2)(player.transform.position - transform.position).normalized * i;
+            yield return null;
+        }
+
+        if (currentPierre == null)
+        {
+            attacking = false;
+
+            attackCooldownTimer = 0;
+
+            StopCoroutine(lastAttack);
+            yield break;
+        }
+
+        audiomanager.PlayHere("Enemy2_Attack", gameObject);
+
+        animator.SetTrigger("Attacks");
+
+        currentPierre.projected = true;
+        currentPierre.levelProjected = 2;
+
+        currentPierre.rb.AddForce((player.transform.position - transform.position).normalized * forcePierreLaunch, ForceMode2D.Impulse);
+
+        launched = true;
+
+        yield return new WaitForSeconds(0.3f);
+
+        attacking = false;
+
+        direction = Vector2.zero;
+
+        canMove = true;
+    }
+
 }
