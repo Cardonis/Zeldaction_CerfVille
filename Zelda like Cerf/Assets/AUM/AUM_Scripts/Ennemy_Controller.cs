@@ -108,7 +108,13 @@ public abstract class Ennemy_Controller : Elements_Controller
             StopTakeForce();
             Destroy(GetComponentInChildren<Bullet_Versatil_Controller>().gameObject);
         }
-        
+
+        AudioSource[] sourcesToDestroy = GetComponents<AudioSource>();
+
+        foreach (AudioSource sourceToDestroy in sourcesToDestroy)
+        {
+            Destroy(sourceToDestroy);
+        }
 
         if (mC != null)
         {
@@ -194,7 +200,8 @@ public abstract class Ennemy_Controller : Elements_Controller
                         foreach(Ennemy_Controller ennemy_Controller in ennemy_Controllers)
                         {
                             ennemy_Controller.playerDetected = true;
-                            ennemy_Controller.canMove = true;
+                            MusicManager.InBattle = true;
+                            MusicManager.EnemyInBattle += 1;
                         }
 
                         playerDetected = true;

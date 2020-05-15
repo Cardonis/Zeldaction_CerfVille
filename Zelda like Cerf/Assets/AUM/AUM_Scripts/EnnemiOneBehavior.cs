@@ -166,7 +166,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
         attacking = true;
 
         rb.velocity = new Vector2(0, 0);
-        audiomanager.PlayHere("Enemy1_grognement", gameObject);
+        StartCoroutine(audiomanager.PlayOne("Enemy1_grognement", gameObject));
         
 
         for (float i = 0.5f; i > 0; i -= Time.deltaTime)
@@ -181,8 +181,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         StartCoroutine(HitboxAttackActivatedFor(1.5f));
 
-        Destroy(GetComponent<AudioSource>());
-        audiomanager.PlayHere("Enemy1_Attack", gameObject);
+        StartCoroutine(audiomanager.PlayOne("Enemy1_Attack", gameObject));
 
         animator.SetBool("IsCharging", false);
 
