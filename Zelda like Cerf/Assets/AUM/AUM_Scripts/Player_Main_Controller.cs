@@ -10,6 +10,8 @@ public class Player_Main_Controller : MonoBehaviour
 
     public GameObject pressX;
 
+    public InventoryBook inventoryBook;
+
     public SaveDisplay saveDisplay;
 
     [Range(100.0f, 800.0f)] public float speed;

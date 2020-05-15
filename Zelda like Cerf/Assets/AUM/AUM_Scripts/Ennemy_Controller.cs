@@ -187,13 +187,20 @@ public abstract class Ennemy_Controller : Elements_Controller
             if(hit.collider.attachedRigidbody != null)
             {
                 if(hit.distance <= detectionDistance)
-                if (hit.collider.attachedRigidbody.transform.tag == "Player")
-                {
-                    playerDetected = true;
-                    canMove = true;
-                    MusicManager.InBattle = true;
-                    MusicManager.EnemyInBattle += 1;
-                }
+                    if (hit.collider.attachedRigidbody.transform.tag == "Player")
+                    {
+                        Ennemy_Controller[] ennemy_Controllers = transform.parent.GetComponentsInChildren<Ennemy_Controller>();
+
+                        foreach(Ennemy_Controller ennemy_Controller in ennemy_Controllers)
+                        {
+                            ennemy_Controller.playerDetected = true;
+                        }
+
+                        playerDetected = true;
+                        canMove = true;
+                        MusicManager.InBattle = true;
+                        MusicManager.EnemyInBattle += 1;
+                    }
             }
             
         }

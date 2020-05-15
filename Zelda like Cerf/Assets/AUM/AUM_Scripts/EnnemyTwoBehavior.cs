@@ -61,7 +61,7 @@ public class
 
             if (currentPierreBullet != null)
             {
-                if (currentPierreBullet.levelProjecting >= 2)
+                if (currentPierreBullet.levelProjecting >= 3)
                 {
                     launched = false;
                     currentPierre = null;
