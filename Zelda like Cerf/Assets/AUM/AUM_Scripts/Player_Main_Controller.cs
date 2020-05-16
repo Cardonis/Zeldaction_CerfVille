@@ -101,7 +101,7 @@ public class Player_Main_Controller : MonoBehaviour
     bool carrying;
     [HideInInspector] public Elements_Controller currentPierre;
 
-    bool takingDamage = false;
+    [HideInInspector] public bool invincible = false;
 
     bool dying = false;
 
@@ -724,7 +724,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
     public IEnumerator TakeDamage(int damageTaken)
     {
-        takingDamage = true;
+        StartCoroutine(InvicibilityFrame());
 
         currentLife -= damageTaken;
         audiomanager.Play("Player_take_damage");
@@ -745,8 +745,18 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         {
             StartCoroutine( Die() );
         }
+    }
 
-        takingDamage = false;
+    IEnumerator InvicibilityFrame()
+    {
+        invincible = true;
+
+        for (float i = 0.8f; i > 0; i -= Time.deltaTime)
+        {
+            yield return null;
+        }
+
+        invincible = false;
     }
 
     IEnumerator Die()
@@ -825,7 +835,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         if ((collision.transform.tag == "Wall" || ec != null) && projected == true)
         {
-            if(takingDamage == false)
+            if(invincible == false)
             StartCoroutine( TakeDamage(1) );
         }
 
@@ -833,7 +843,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         {
             if (ec.projected == true && ec.playerProjected == false)
             {
-                if(takingDamage == false)
+                if(invincible == false)
                 StartCoroutine( TakeDamage(1) );
             }
         }

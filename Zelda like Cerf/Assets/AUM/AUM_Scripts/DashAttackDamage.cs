@@ -55,7 +55,8 @@ public class DashAttackDamage : MonoBehaviour
                     ennemyBehavior.player.TakeForce(ennemyBehavior.direction, forceProjecting);
                 }
 
-                ennemyBehavior.player.StartCoroutine(ennemyBehavior.player.TakeDamage(1));
+                if (ennemyBehavior.player.invincible == false)
+                    ennemyBehavior.player.StartCoroutine(ennemyBehavior.player.TakeDamage(1));
             }
     }
 }

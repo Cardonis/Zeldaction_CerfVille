@@ -34,6 +34,8 @@ public abstract class Ennemy_Controller : Elements_Controller
     public bool canMove = true;
     float wanderingTime;
 
+    [HideInInspector] public bool invincible = false;
+
     public Collider2D col;
 
     private bool PlayerWasDetected;
@@ -49,12 +51,14 @@ public abstract class Ennemy_Controller : Elements_Controller
 
             if (collision.transform.tag == "Wall" || collision.transform.tag == "Ronce")
             {
-                StartCoroutine(TakeDamage((levelProjected / mass) * 1.5f));
+                if(invincible == false)
+                    StartCoroutine(TakeDamage(levelProjected));
             }
 
             if (ec != null)
             {
-                StartCoroutine(TakeDamage((levelProjected / mass) * ec.mass));
+                if (invincible == false)
+                    StartCoroutine(TakeDamage(levelProjected));
                 
             }
         }
@@ -63,7 +67,8 @@ public abstract class Ennemy_Controller : Elements_Controller
         {
             if(ec.projected && ec.levelProjected >= 0.5f)
             {
-                StartCoroutine(TakeDamage((ec.levelProjected / mass) * ec.mass));
+                if (invincible == false)
+                    StartCoroutine(TakeDamage(ec.levelProjected));
             }
         }        
 
@@ -76,6 +81,10 @@ public abstract class Ennemy_Controller : Elements_Controller
 
     IEnumerator TakeDamage(float damageTaken)
     {
+        StartCoroutine(InvicibilityFrame());
+
+        Debug.Log("oui");
+
         pv -= damageTaken;
 
         GetComponentInChildren<SpriteRenderer>().color = new Color(1, 0, 0);
@@ -92,6 +101,18 @@ public abstract class Ennemy_Controller : Elements_Controller
         {
             Death();
         }
+    }
+
+    IEnumerator InvicibilityFrame()
+    {
+        invincible = true;
+
+        for (float i = 0.1f; i > 0; i -= Time.deltaTime)
+        {
+            yield return null;
+        }
+
+        invincible = false;
     }
 
     public void Death()
