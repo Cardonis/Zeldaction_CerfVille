@@ -54,7 +54,7 @@ public class BearTrap : MonoBehaviour
 
             if (elementennemi != null && isActive == true)
             {
-                elementennemi.StartTakeDamage(trapDamageForEnnemi);
+                //elementennemi.StartTakeDamage(trapDamageForEnnemi);
                 StartCoroutine(elementennemi.StunedForSeconds(stunTimeForEnnemi));
                 isActive = false;
                 StartCoroutine(audiomanager.PlayOne("Piege_Loup", gameObject));

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Ennemy_Controller : Elements_Controller
 {
+    public ParticleSystem damageParticleSystem;
+
     [Header("BaseStats")]
     public float pv;
     [HideInInspector] public float initialLife;
@@ -46,19 +48,21 @@ public abstract class Ennemy_Controller : Elements_Controller
 
         Elements_Controller ec = collision.transform.GetComponent<Elements_Controller>();
 
-        if (projected == true && levelProjected >= 0.5f)
+        velocityBeforeImpactAngle = Vector2.Angle(velocityBeforeImpact, transform.right);
+
+        if (projected == true && levelProjected >= 0.5f && velocityBeforeImpact.magnitude > 0.5f)
         {
 
             if (collision.transform.tag == "Wall" || collision.transform.tag == "Ronce")
             {
                 if(invincible == false)
-                    StartCoroutine(TakeDamage(levelProjected));
+                    StartCoroutine(TakeDamage(levelProjected, velocityBeforeImpactAngle));
             }
 
             if (ec != null)
             {
                 if (invincible == false)
-                    StartCoroutine(TakeDamage(levelProjected));
+                    StartCoroutine(TakeDamage(levelProjected, velocityBeforeImpactAngle));
                 
             }
         }
@@ -68,28 +72,66 @@ public abstract class Ennemy_Controller : Elements_Controller
             if(ec.projected && ec.levelProjected >= 0.5f)
             {
                 if (invincible == false)
-                    StartCoroutine(TakeDamage(ec.levelProjected));
+                    StartCoroutine(TakeDamage(ec.levelProjected, velocityBeforeImpactAngle));
             }
         }        
 
     }
 
-    public void StartTakeDamage(float damageTaken)
+    public void StartTakeDamage(float damageTaken, float damageDirectionAngle)
     {
-        StartCoroutine(TakeDamage(damageTaken));
+        StartCoroutine(TakeDamage(damageTaken, damageDirectionAngle));
     }
 
-    IEnumerator TakeDamage(float damageTaken)
+    IEnumerator TakeDamage(float damageTaken, float damageDirectionAngle)
     {
         StartCoroutine(InvicibilityFrame());
 
-        Debug.Log("oui");
-
         pv -= damageTaken;
+
+        damageParticleSystem.transform.localEulerAngles = rb.velocity;
+
+        damageParticleSystem.transform.rotation = Quaternion.Euler(0, 0, damageDirectionAngle);
+
+
+        switch(damageTaken)
+        {
+            case 0.5f:
+                damageParticleSystem.startColor = player.ennemyColorDamages[0];
+                damageParticleSystem.startSpeed = 5;
+                damageParticleSystem.startSize = 0.05f;
+                break;
+
+            case 1:
+                damageParticleSystem.startColor = player.ennemyColorDamages[1];
+                damageParticleSystem.startSpeed = 10;
+                damageParticleSystem.startSize = 0.1f;
+                break;
+
+            case 2:
+                damageParticleSystem.startColor = player.ennemyColorDamages[2];
+                damageParticleSystem.startSpeed = 20;
+                damageParticleSystem.startSize = 0.2f;
+                break;
+
+            case 4:
+                damageParticleSystem.startColor = player.ennemyColorDamages[3];
+                damageParticleSystem.startSpeed = 40;
+                damageParticleSystem.startSize = 0.4f;
+                break;
+
+            case 8:
+                damageParticleSystem.startColor = player.ennemyColorDamages[3];
+                damageParticleSystem.startSpeed = 80;
+                damageParticleSystem.startSize = 0.8f;
+                break;
+        }
+
+        damageParticleSystem.Play();
 
         GetComponentInChildren<SpriteRenderer>().color = new Color(1, 0, 0);
 
-        for (float i = 0.1f * damageTaken; i > 0; i -= Time.deltaTime)
+        for (float i = 0.5f; i > 0; i -= Time.deltaTime)
         {
 
             yield return null;
@@ -107,7 +149,7 @@ public abstract class Ennemy_Controller : Elements_Controller
     {
         invincible = true;
 
-        for (float i = 0.1f; i > 0; i -= Time.deltaTime)
+        for (float i = 0.5f; i > 0; i -= Time.deltaTime)
         {
             yield return null;
         }
