@@ -137,6 +137,8 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         for (int i = 0; i < ennemyColliders.Length - 1; i++)
         {
+
+
             Physics2D.IgnoreCollision(ennemyColliders[i], bullet.GetComponentInChildren<Collider2D>(), true);
         }
 

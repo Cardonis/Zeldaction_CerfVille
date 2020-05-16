@@ -31,8 +31,10 @@ public class Elements_Controller : MonoBehaviour
 
     public List<Collider2D> collider2Ds;
 
-   [HideInInspector] public List<int> ennemyCollidersLayers = new List<int>();
+    [HideInInspector] public List<int> ennemyCollidersLayers = new List<int>();
 
+    [HideInInspector] public Vector3 velocityBeforeImpact;
+    [HideInInspector] public float velocityBeforeImpactAngle;
 
     public void TakeForce(Vector2 direction, float forceValue, float levelMultiplicator)
     {
@@ -128,6 +130,8 @@ public class Elements_Controller : MonoBehaviour
             ennemyCollidersLayers.Add(collider2Ds[i].gameObject.layer);
         }
 
+        velocityBeforeImpact = Vector2.zero;
+
         isTractable = true;
 
         rb = GetComponent<Rigidbody2D>();
@@ -148,7 +152,9 @@ public class Elements_Controller : MonoBehaviour
             rb.velocity = new Vector2(0,0);
         }
 
-        if(projected == true && rb.velocity.magnitude < recoveryValue)
+        Invoke("Velocity10FramesAgo", 0.05f);
+
+        if (projected == true && rb.velocity.magnitude < recoveryValue)
         {
             projected = false;
             playerProjected = false;
@@ -156,6 +162,11 @@ public class Elements_Controller : MonoBehaviour
             levelProjected = 0;
         }
 
+    }
+
+    public void Velocity10FramesAgo()
+    {
+        velocityBeforeImpact = rb.velocity;
     }
 
     public IEnumerator DontCollideWithPlayerFor(float time)

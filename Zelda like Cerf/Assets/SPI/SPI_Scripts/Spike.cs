@@ -27,7 +27,7 @@ public class Spike : MonoBehaviour
         if (ennemyspike != null)
         {
             damagetaken = (detectedObjectProjectionLevel * 2) / detectedObjectMass *4;
-            collision.GetComponentInParent<Ennemy_Controller>().StartTakeDamage(damagetaken);
+            //collision.GetComponentInParent<Ennemy_Controller>().StartTakeDamage(damagetaken,);
         }
     }
 }

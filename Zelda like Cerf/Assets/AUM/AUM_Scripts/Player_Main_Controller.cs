@@ -105,6 +105,8 @@ public class Player_Main_Controller : MonoBehaviour
 
     bool dying = false;
 
+    public Color[] ennemyColorDamages = new Color[5];
+
     void Start()
     {
         direction = Vector2.down;
