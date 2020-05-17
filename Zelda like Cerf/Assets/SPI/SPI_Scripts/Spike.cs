@@ -17,7 +17,9 @@ public class Spike : MonoBehaviour
         if (ennemyspike != null)
         {
             damagetaken = 8;
-            collision.GetComponentInParent<Ennemy_Controller>().StartTakeDamage(damagetaken, collision.GetComponentInParent<Ennemy_Controller>().velocityBeforeImpactAngle);
+            ennemyspike.stuned = true;
+            ennemyspike.StartTakeDamage(damagetaken, collision.GetComponentInParent<Ennemy_Controller>().velocityBeforeImpactAngle);
+            StartCoroutine(AudioManager.instance.PlayOne("Piege_Loup", gameObject));
         }
     }
 }

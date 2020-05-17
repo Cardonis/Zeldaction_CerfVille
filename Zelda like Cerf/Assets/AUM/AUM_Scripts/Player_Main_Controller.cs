@@ -84,6 +84,7 @@ public class Player_Main_Controller : MonoBehaviour
 
     [HideInInspector] public MarquageManager marquageManager;
     public RoomTransitionController confiner;
+    public CameraShake cameraShake;
 
     Vector2 input;
     [HideInInspector] public Vector2 direction;
@@ -735,6 +736,8 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         animator.SetTrigger("IsHurt");
 
         GetComponentInChildren<SpriteRenderer>().color = Color.red;
+
+        StartCoroutine(cameraShake.CameraShakeFor(0.2f, 3));
 
         for (float i = 0.5f; i > 0; i -= Time.deltaTime)
         {

@@ -48,8 +48,6 @@ public abstract class Ennemy_Controller : Elements_Controller
 
         Elements_Controller ec = collision.transform.GetComponent<Elements_Controller>();
 
-        velocityBeforeImpactAngle = Vector2.Angle(velocityBeforeImpact, transform.right);
-
         if (projected == true && levelProjected >= 0.5f && velocityBeforeImpact.magnitude > 0.5f)
         {
 
@@ -128,6 +126,8 @@ public abstract class Ennemy_Controller : Elements_Controller
         }
 
         damageParticleSystem.Play();
+
+       StartCoroutine(player.cameraShake.CameraShakeFor(0.1f, damageTaken));
 
         GetComponentInChildren<SpriteRenderer>().color = new Color(1, 0, 0);
 

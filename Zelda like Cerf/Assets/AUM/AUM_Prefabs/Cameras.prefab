@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9088433854359981367}
   - component: {fileID: 9088433854359981365}
   - component: {fileID: 9088433854359981366}
+  - component: {fileID: 959071676}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -85,6 +86,23 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &959071676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9088433854359981360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 6
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &9088433854412253899
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,6 +114,7 @@ GameObject:
   - component: {fileID: 9088433854412253897}
   - component: {fileID: 9088433854412253898}
   - component: {fileID: 9088433854412253896}
+  - component: {fileID: 952778357}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -111,7 +130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9088433854412253899}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22000083, y: -0.468, z: -10}
+  m_LocalPosition: {x: 118.08, y: 14.700005, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9088433854359981367}
@@ -170,6 +189,19 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 9088433855865740101}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!114 &952778357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9088433854412253899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b54232faca02249b373fa4075dc19c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cmVcam: {fileID: 9088433854412253898}
 --- !u!1 &9088433854655462361
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9088433855240632509}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22000083, y: -0.468, z: -10}
+  m_LocalPosition: {x: 1.6666718, y: 2.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9088433854655462360}

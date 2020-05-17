@@ -40,6 +40,8 @@ public class Elements_Controller : MonoBehaviour
     {
         projected = true;
 
+        stuned = false;
+
         playerProjected = true;
 
         rb.velocity = new Vector2(0, 0);
@@ -153,6 +155,13 @@ public class Elements_Controller : MonoBehaviour
         }
 
         Invoke("Velocity10FramesAgo", 0.05f);
+
+        velocityBeforeImpactAngle = Vector2.Angle(velocityBeforeImpact, transform.right);
+
+        if (velocityBeforeImpact.y < 0)
+        {
+            velocityBeforeImpactAngle = -velocityBeforeImpactAngle;
+        }
 
         if (projected == true && rb.velocity.magnitude < recoveryValue)
         {
