@@ -14,6 +14,7 @@ public class GroundButton : Buttonmanager
 
     AudioManager audiomanager;
     bool wasPressed;
+    bool IsPlaying;
 
     void Start()
     {
@@ -22,6 +23,8 @@ public class GroundButton : Buttonmanager
         isPressed = false;
         buttonsprite = GetComponentInChildren<SpriteRenderer>();
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        IsPlaying = false;
+        StartCoroutine(PlayOneOne());
     }
 
     void Update()
@@ -42,11 +45,18 @@ public class GroundButton : Buttonmanager
         if (currentPressionMass >= totalMass)
         {
             isPressed = true;
-            if (wasPressed == false) {StartCoroutine(audiomanager.PlayOne("ButtonOn", gameObject));}
+            if (wasPressed == false && IsPlaying == false) {StartCoroutine(audiomanager.PlayOne("ButtonOn", gameObject)); StartCoroutine(PlayOneOne()); }
         }
         else
         {
             isPressed = false;
         }
+    }
+
+    public IEnumerator PlayOneOne()
+    {
+        IsPlaying = true;
+        yield return new WaitForSecondsRealtime(1);
+        IsPlaying = false;
     }
 }
