@@ -48,7 +48,7 @@ public abstract class Ennemy_Controller : Elements_Controller
 
         Elements_Controller ec = collision.transform.GetComponent<Elements_Controller>();
 
-        if (projected == true && levelProjected >= 0.5f && velocityBeforeImpact.magnitude > 0.5f)
+        if (projected == true && levelProjected >= 0.5f && velocityBeforeImpact.magnitude > 5f)
         {
 
             if (collision.transform.tag == "Wall" || collision.transform.tag == "Ronce")
@@ -65,10 +65,11 @@ public abstract class Ennemy_Controller : Elements_Controller
             }
         }
 
-        if(ec != null)
+        if(ec != null && ec.velocityBeforeImpact.magnitude > 5f)
         {
             if(ec.projected && ec.levelProjected >= 0.5f)
             {
+                TakeForce(transform.position - ec.transform.position, 15f ,ec.levelProjected);
                 if (invincible == false)
                     StartCoroutine(TakeDamage(ec.levelProjected, velocityBeforeImpactAngle));
             }
@@ -162,8 +163,6 @@ public abstract class Ennemy_Controller : Elements_Controller
         MusicManager.EnemyInBattle -= 1;
         PlayerWasDetected = false;
 
-        MarquageController mC = GetComponentInChildren<MarquageController>();
-
         if(GetComponentInChildren<Bullet_Versatil_Controller>() != null)
         {
             player.GetComponent<Player_Main_Controller>().stunned = false;
@@ -178,6 +177,8 @@ public abstract class Ennemy_Controller : Elements_Controller
         {
             Destroy(sourceToDestroy);
         }
+
+        MarquageController mC = GetComponentInChildren<MarquageController>();
 
         if (mC != null)
         {
