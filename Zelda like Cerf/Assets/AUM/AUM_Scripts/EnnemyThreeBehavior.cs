@@ -30,6 +30,8 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         initialLife = pv;
 
         animator = GetComponentInChildren<Animator>();
+
+        audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     override public void FixedUpdate()
@@ -128,7 +130,7 @@ public class EnnemyThreeBehavior : Ennemy_Controller
     public override IEnumerator Attack1()
     {
         stuned = true;
-
+        StartCoroutine(audiomanager.PlayOne("Enemy3Attack", gameObject));
         BulletAttack1 bullet = Instantiate(bulletAttack1, player.vBullets).GetComponent<BulletAttack1>();
 
         Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
