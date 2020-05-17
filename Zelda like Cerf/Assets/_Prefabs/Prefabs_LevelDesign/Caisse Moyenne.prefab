@@ -188,7 +188,7 @@ Rigidbody2D:
   m_LinearDrag: 6
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4e3e66ec673e5b941ba67d3a948d9819, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -221,3 +221,5 @@ MonoBehaviour:
   collider2Ds:
   - {fileID: 1812700480680503509}
   ennemyCollidersLayers: 
+  velocityBeforeImpact: {x: 0, y: 0, z: 0}
+  velocityBeforeImpactAngle: 0

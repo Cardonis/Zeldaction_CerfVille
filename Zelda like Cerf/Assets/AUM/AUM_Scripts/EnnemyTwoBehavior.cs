@@ -63,6 +63,8 @@ public class
         {
             Physics2D.IgnoreCollision(currentPierreCol, physicCollider, true);
 
+            currentPierre.stuned = true;
+
             currentPierre.transform.position = transform.position + (player.transform.position - transform.position).normalized * 1f;
 
             currentPierreBullet = currentPierre.GetComponentInChildren<Bullet_Versatil_Controller>();
@@ -71,6 +73,7 @@ public class
             {
                 if (currentPierreBullet.levelProjecting >= 3)
                 {
+                    currentPierre.stuned = false;
                     launched = false;
                     currentPierre = null;
                     Physics2D.IgnoreCollision(currentPierreCol, physicCollider, false);
@@ -87,6 +90,7 @@ public class
             }
             else if (launched)
             {
+                currentPierre.stuned = false;
                 launched = false;
                 currentPierre = null;
                 Physics2D.IgnoreCollision(currentPierreCol, physicCollider, false);
@@ -323,6 +327,7 @@ public class
             }
             else
             {
+                player.StartCoroutine(player.StunnedFor(0.5f));
                 player.stunned = true;
 
                 movingToAttack = false;
@@ -371,7 +376,7 @@ public class
         player.stunned = false;
 
         player.projected = true;
-        player.rb.AddForce(directionAttack.normalized * forcePierreLaunch, ForceMode2D.Impulse);
+        player.rb.AddForce(directionAttack.normalized * forcePierreLaunch * 2, ForceMode2D.Impulse);
 
         StartCoroutine(DontCollideWithPlayerFor(0.2f));
 
@@ -406,6 +411,8 @@ public class
                 currentPierre = currentElement;
 
                 currentPierreCol = currentPierre.GetComponentInChildren<Collider2D>();
+
+                currentPierre.stuned = true;
 
                 movingToAttack = false;
 
@@ -461,15 +468,17 @@ public class
         currentPierre.projected = true;
         currentPierre.levelProjected = 2;
 
+        currentPierre.stuned = false;
+
         currentPierre.rb.AddForce((player.transform.position - transform.position).normalized * forcePierreLaunch, ForceMode2D.Impulse);
 
         launched = true;
 
-        yield return new WaitForSeconds(0.3f);
+        direction = Vector2.zero;
+
+        yield return new WaitForSeconds(0.4f);
 
         attacking = false;
-
-        direction = Vector2.zero;
 
         canMove = true;
     }
