@@ -50,7 +50,10 @@ public class RoomController : MonoBehaviour
             for (int i = 0; i < ennemies.Count; i++)
             {
                 ennemies[i].enabled = false;
-                if (wasActive == true && MusicManager.EnemyInBattle > 0) { MusicManager.EnemyInBattle -= 1; }
+                if (wasActive == true && MusicManager.EnemyInBattle > 0)
+                {
+                    MusicManager.EnemyInBattle -= 1;
+                }
             }
             wasActive = false;
         }

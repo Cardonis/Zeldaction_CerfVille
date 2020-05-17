@@ -60,6 +60,8 @@ public class EnnemiOneBehavior : Ennemy_Controller
             {
                 ennemy_Controller.playerDetected = true;
                 ennemy_Controller.canMove = true;
+                MusicManager.InBattle = true;
+                MusicManager.EnemyInBattle += 1;
             }
 
             canMove = true;
