@@ -53,6 +53,7 @@ public class RoomController : MonoBehaviour
                 if (wasActive == true && MusicManager.EnemyInBattle > 0) { MusicManager.EnemyInBattle -= 1; }
             }
             wasActive = false;
+            if (MusicManager.EnemyInBattle <= 0) { MusicManager.InBattle = false; }
         }
         else
         {

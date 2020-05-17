@@ -12,7 +12,12 @@ public class BulletAttack1 : MonoBehaviour
     [HideInInspector] public float levelProjecting;
 
     Transform touchedTarget;
+    AudioManager audiomanager;
 
+    void Start()
+    {
+        audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -49,7 +54,7 @@ public class BulletAttack1 : MonoBehaviour
         if (ec != null || pmc != null)
         {
             rb.velocity = new Vector2(0, 0);
-
+            StartCoroutine(audiomanager.PlayOne("Capa_Grab", gameObject));
             touchedTarget = collision.transform;
 
             GetComponentInChildren<Collider2D>().enabled = false;
