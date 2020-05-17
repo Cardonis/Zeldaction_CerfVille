@@ -270,8 +270,6 @@ public abstract class Ennemy_Controller : Elements_Controller
 
                         playerDetected = true;
                         canMove = true;
-                        MusicManager.InBattle = true;
-                        MusicManager.EnemyInBattle += 1;
                     }
             }
             
