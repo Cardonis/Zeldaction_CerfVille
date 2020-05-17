@@ -12,6 +12,7 @@ public class Caisse_Controller : Elements_Controller
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         isTractable = true;
         isPlaying = false;
+        StartCoroutine(PlayOneOne());
     }
 
     // Update is called once per frame

@@ -769,6 +769,9 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         stunned = true;
         dying = true;
 
+        MusicManager.InBattle = false;
+        MusicManager.EnemyInBattle = 0;
+
         fadeAnimator.SetTrigger("FadeIn");
 
         yield return new WaitForSeconds(1.5f);
