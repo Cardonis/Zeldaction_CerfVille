@@ -116,14 +116,14 @@ public abstract class Ennemy_Controller : Elements_Controller
 
             case 4:
                 damageParticleSystem.startColor = player.ennemyColorDamages[3];
-                damageParticleSystem.startSpeed = 40;
-                damageParticleSystem.startSize = 0.4f;
+                damageParticleSystem.startSpeed = 30;
+                damageParticleSystem.startSize = 0.3f;
                 break;
 
             case 8:
-                damageParticleSystem.startColor = player.ennemyColorDamages[3];
-                damageParticleSystem.startSpeed = 80;
-                damageParticleSystem.startSize = 0.8f;
+                damageParticleSystem.startColor = player.ennemyColorDamages[4];
+                damageParticleSystem.startSpeed = 40;
+                damageParticleSystem.startSize = 0.4f;
                 break;
         }
 
