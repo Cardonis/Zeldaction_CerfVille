@@ -48,8 +48,6 @@ public abstract class Ennemy_Controller : Elements_Controller
 
         Elements_Controller ec = collision.transform.GetComponent<Elements_Controller>();
 
-        velocityBeforeImpactAngle = Vector2.Angle(velocityBeforeImpact, transform.right);
-
         if (projected == true && levelProjected >= 0.5f && velocityBeforeImpact.magnitude > 0.5f)
         {
 
@@ -116,18 +114,20 @@ public abstract class Ennemy_Controller : Elements_Controller
 
             case 4:
                 damageParticleSystem.startColor = player.ennemyColorDamages[3];
-                damageParticleSystem.startSpeed = 40;
-                damageParticleSystem.startSize = 0.4f;
+                damageParticleSystem.startSpeed = 30;
+                damageParticleSystem.startSize = 0.3f;
                 break;
 
             case 8:
-                damageParticleSystem.startColor = player.ennemyColorDamages[3];
-                damageParticleSystem.startSpeed = 80;
-                damageParticleSystem.startSize = 0.8f;
+                damageParticleSystem.startColor = player.ennemyColorDamages[4];
+                damageParticleSystem.startSpeed = 40;
+                damageParticleSystem.startSize = 0.4f;
                 break;
         }
 
         damageParticleSystem.Play();
+
+       StartCoroutine(player.cameraShake.CameraShakeFor(0.1f, damageTaken));
 
         GetComponentInChildren<SpriteRenderer>().color = new Color(1, 0, 0);
 
