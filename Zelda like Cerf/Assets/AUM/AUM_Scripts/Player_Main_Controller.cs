@@ -803,7 +803,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
     public void TakeForce(Vector2 direction, float forceValue)
     {
         projected = true;
-
+        audiomanager.Play("Capa_Lance");
         rb.velocity = new Vector2(0, 0);
 
         rb.AddForce(direction * forceValue, ForceMode2D.Impulse);

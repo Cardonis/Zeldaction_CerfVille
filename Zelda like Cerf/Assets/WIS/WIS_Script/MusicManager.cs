@@ -35,6 +35,8 @@ public class MusicManager : MonoBehaviour
     public static PlayerPos PlayerCurrentPos;
 
     public PlayerPos DefaultPosition;
+
+    private bool IsChangingMusic;
     void Awake()
     {
 
@@ -62,6 +64,8 @@ public class MusicManager : MonoBehaviour
         }
 
         VolumeChange = MusicVolume;
+
+        PlayerCurrentPos = DefaultPosition;
 
         switch (DefaultPosition)
         {
@@ -93,7 +97,7 @@ public class MusicManager : MonoBehaviour
                 break;
         }
 
-        PlayerCurrentPos = DefaultPosition;
+        IsChangingMusic = false;
     }
 
     // Update is called once per frame
@@ -113,28 +117,31 @@ public class MusicManager : MonoBehaviour
             VolumeChange = MusicVolume;
 
         }
-
-
-        if (!InBattle)
+        if (IsChangingMusic == false)
         {
-            PlayMusic();
-        }
-        else
-        {
-            PlayBattleMusic();
-        }
 
-        if (MusicManager.EnemyInBattle <= 0)
-        {
-            MusicManager.EnemyInBattle = 0;
-            MusicManager.InBattle = false;
-        }
+            if (!InBattle)
+            {
+                PlayMusic();
+            }
+            else
+            {
+                PlayBattleMusic();
+            }
 
+            if (MusicManager.EnemyInBattle <= 0)
+            {
+                MusicManager.EnemyInBattle = 0;
+                MusicManager.InBattle = false;
+            }
+
+        }
 
     }
 
     public IEnumerator FadeOut (AudioSource audioSource, float FadeTime)
     {
+        IsChangingMusic = true;
         float startVolume = audioSource.volume;
         while (audioSource.volume > 0)
         {
@@ -145,11 +152,12 @@ public class MusicManager : MonoBehaviour
 
         audioSource.Stop();
         audioSource.volume = startVolume;
-        
+        IsChangingMusic = false;
     }
 
     public IEnumerator FadeIn(AudioSource audioSource, float FadeTime, float FinalVolume)
     {
+        IsChangingMusic = true;
         audioSource.volume = 0;
         audioSource.Play();
 
@@ -164,7 +172,7 @@ public class MusicManager : MonoBehaviour
 
         
         audioSource.volume = FinalVolume;
-
+        IsChangingMusic = false;
     }
 
     void PlayMusic()

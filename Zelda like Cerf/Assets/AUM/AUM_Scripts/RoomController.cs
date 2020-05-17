@@ -56,6 +56,7 @@ public class RoomController : MonoBehaviour
                 }
             }
             wasActive = false;
+            if (MusicManager.EnemyInBattle <= 0) { MusicManager.InBattle = false; }
         }
         else
         {
