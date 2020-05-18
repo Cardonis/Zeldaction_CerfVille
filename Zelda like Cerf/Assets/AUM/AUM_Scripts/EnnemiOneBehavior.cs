@@ -169,7 +169,8 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         rb.velocity = new Vector2(0, 0);
         StartCoroutine(audiomanager.PlayOne("Enemy1_grognement", gameObject));
-        
+
+        telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(25f));
 
         for (float i = 0.5f; i > 0; i -= Time.deltaTime)
         {

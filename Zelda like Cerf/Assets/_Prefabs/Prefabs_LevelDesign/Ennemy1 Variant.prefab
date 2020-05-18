@@ -5054,6 +5054,11 @@ PrefabInstance:
       propertyPath: pv
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7323059871886866642, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
+        type: 3}
+      propertyPath: telegraphAttack
+      value: 
+      objectReference: {fileID: 8757789856382282822}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55e0c43e5a991f24f8aed0f7e457eda4, type: 3}
 --- !u!4 &4646585729520033966 stripped
@@ -5092,3 +5097,89 @@ CircleCollider2D:
     type: 3}
   m_PrefabInstance: {fileID: 5138768054416460691}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5450797144661367840
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4646585729520033966}
+    m_Modifications:
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.005332947
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.40266642
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876709, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_Name
+      value: Freeform Light 2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876710, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: ennemyController
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40c71e7210ccb9e45b1e3e77003b8785, type: 3}
+--- !u!114 &8757789856382282822 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3615533322503876710, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+    type: 3}
+  m_PrefabInstance: {fileID: 5450797144661367840}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a020fd986d960409d565c9eb925fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
