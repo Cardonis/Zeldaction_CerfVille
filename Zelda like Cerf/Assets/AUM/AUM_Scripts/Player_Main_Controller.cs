@@ -37,7 +37,7 @@ public class Player_Main_Controller : MonoBehaviour
 
     public Collider2D[] baseAttackColliders;
     //PlaceHolder pour le  moment, avec l'animation il y en aura pas besoin
-    public SpriteRenderer[] baseAttackSRs;
+    public GameObject[] baseAttackSRs;
 
     [Header("Versatil Attack")]
 
@@ -138,7 +138,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         for (int i = 0; i < baseAttackSRs.Length; i++)
         {
-            baseAttackSRs[i].enabled = false;
+            baseAttackSRs[i].SetActive(false);
         }
 
         for (int i = 0; i < baseAttackColliders.Length; i++)
@@ -529,8 +529,8 @@ public class Player_Main_Controller : MonoBehaviour
         //Activation des Sprite Renderes
         for (int i = 0; i < baseAttackSRs.Length; i++)
         {
-            baseAttackSRs[i].enabled = true;
-           
+            baseAttackSRs[i].SetActive(true);
+
         }
 
         //Activation de l'hitbox du sweetspot
@@ -556,7 +556,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         for (int i = 0; i < baseAttackSRs.Length; i++)
         {
-            baseAttackSRs[i].enabled = false;
+            baseAttackSRs[i].SetActive(false);
         }
 
         stunned = false;
