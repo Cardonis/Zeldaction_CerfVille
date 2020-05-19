@@ -36,6 +36,8 @@ public class Elements_Controller : MonoBehaviour
     [HideInInspector] public Vector3 velocityBeforeImpact;
     [HideInInspector] public float velocityBeforeImpactAngle;
 
+    [HideInInspector] public float initialDrag;
+
     public void TakeForce(Vector2 direction, float forceValue, float levelMultiplicator)
     {
         projected = true;
@@ -138,6 +140,8 @@ public class Elements_Controller : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
+        initialDrag = rb.drag;
+
         player = GameObject.Find("Player").GetComponent<Player_Main_Controller>();
 
         marquageManager = GameObject.Find("MarquageManager").GetComponent<MarquageManager>();
@@ -145,6 +149,7 @@ public class Elements_Controller : MonoBehaviour
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         initialPosition = transform.position;
+
     }
 
     public virtual void FixedUpdate()
