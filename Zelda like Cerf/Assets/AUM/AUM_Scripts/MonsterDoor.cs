@@ -12,6 +12,10 @@ public class MonsterDoor : MonoBehaviour
     bool readyToOpen = false;
     public bool isTrigger;
 
+    public List<GameObject> particleSystems;
+
+    public GameObject particleSystemPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,27 +27,39 @@ public class MonsterDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-            bool readyToOpen = true;
-            
-            for (int i = 0; i < ennemyToOpen.Count; i++)
-            {
-                if (ennemyToOpen[i].gameObject.activeSelf == true)
-                {
-                    readyToOpen = false;
-                
-                break;
-                }
-            }
 
-            if (readyToOpen == true)
+        bool readyToOpen = true;
+
+        for (int i = 0; i < ennemyToOpen.Count; i++)
+        {
+            if (ennemyToOpen[i].gameObject.activeSelf == true)
             {
-                col.enabled = false;
+                readyToOpen = false;
+
+                break;
             }
+        }
+
+        if (readyToOpen == true)
+        {
+            col.enabled = false;
+
+        }
+
         if (isTrigger == true)
+        {
             animator.SetBool("isOpen", readyToOpen);
+
+            for (int i = 0; i < particleSystems.Count; i++)
+            {
+                particleSystems[i].SetActive(!readyToOpen);
+            }
+        }
         else
+        {
             animator.SetBool("isOpen", true);
+        }
+            
     }
 
 }

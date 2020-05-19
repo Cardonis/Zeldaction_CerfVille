@@ -38,7 +38,7 @@ public class DashAttackDamage : MonoBehaviour
 
                     for (int i = 0; i < ennemyBehavior.player.baseAttackSRs.Length; i++)
                     {
-                        ennemyBehavior.player.baseAttackSRs[i].enabled = false;
+                        ennemyBehavior.player.baseAttackSRs[i].SetActive(false);
                     }
 
                     for (int i = 0; i < ennemyBehavior.player.baseAttackColliders.Length; i++)

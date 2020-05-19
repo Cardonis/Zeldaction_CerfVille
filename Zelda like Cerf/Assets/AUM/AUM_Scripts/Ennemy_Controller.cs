@@ -40,6 +40,8 @@ public abstract class Ennemy_Controller : Elements_Controller
 
     public Collider2D col;
 
+    public TelegraphAttack telegraphAttack;
+
     private bool PlayerWasDetected;
 
     public override void OnCollisionEnter2D(Collision2D collision)
