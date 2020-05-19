@@ -9,6 +9,8 @@ public class DialogueTrigger : MonoBehaviour
     bool playerIsNear;
     Player_Main_Controller player;
 
+    
+
     public bool asTalked;
 
     private void Start()
@@ -38,6 +40,7 @@ public class DialogueTrigger : MonoBehaviour
     }
     private void Update()
     {
+        
         if (Input.GetButtonDown("X") && dialogueManager.dialogueStarted == false && playerIsNear == true)
         {
             asTalked = true;

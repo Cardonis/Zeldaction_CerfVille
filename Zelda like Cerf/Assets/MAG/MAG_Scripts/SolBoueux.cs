@@ -6,24 +6,29 @@ public class SolBoueux : MonoBehaviour
 {
     
     private Player_Main_Controller player;
+    private List<Caisse_Controller> pierres;
     private Caisse_Controller pierre;
     [HideInInspector]
     public bool isTractable;
+    public float boueDrag;
+
 
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player_Main_Controller>();
+        pierres = new List<Caisse_Controller>();
     }
 
     private void Update()
     {
-        if(pierre != null)
-        {
-            if(Mathf.Approximately(0, pierre.rb.velocity.magnitude))
+            foreach (Caisse_Controller pierre1 in pierres)
             {
-                pierre.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                if (Mathf.Approximately(0, pierre1.rb.velocity.magnitude))
+                {
+                    pierre1.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                    pierre1.rb.drag = boueDrag;
+                }
             }
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -36,6 +41,7 @@ public class SolBoueux : MonoBehaviour
 
         if (pierre != null)
         {
+            pierres.Add(pierre);
             pierre.isTractable = false;
             if (pierre == player.currentPierre)
             {
@@ -58,11 +64,17 @@ public class SolBoueux : MonoBehaviour
 
         if (pierre != null)
         {
-            pierre.isTractable = true;
-            pierre.rb.constraints = RigidbodyConstraints2D.None;
-            pierre.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            pierre = null;
+            if (pierres.Contains(pierre))
+            {
+
+                pierre.isTractable = true;
+                pierre.rb.constraints = RigidbodyConstraints2D.None;
+                pierre.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                pierre.rb.drag = pierre.initialDrag;
+                pierres.Remove(pierre);
+            }
         }
+
     }
 
 

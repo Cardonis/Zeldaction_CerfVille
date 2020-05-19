@@ -14,6 +14,7 @@ public class DialogueManager : MonoBehaviour
     public Player_Main_Controller playerscript;
 
     public GameObject XtoContinue;
+    public AudioManager audioManager;
 
     public Cinemachine.CinemachineVirtualCamera cmVcam;
     private Queue<string> sentences;
@@ -27,6 +28,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogueStarted == true)
         {
+            audioManager.Stop("Deplacement");
             cmVcam.m_Lens.OrthographicSize = Mathf.SmoothStep(cmVcam.m_Lens.OrthographicSize, 5f, 3.5f * Time.fixedDeltaTime);
             if(sentenceFullyDisplay == true)
             {
