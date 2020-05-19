@@ -132,6 +132,11 @@ public class EnnemyThreeBehavior : Ennemy_Controller
     public override IEnumerator Attack1()
     {
         stuned = true;
+
+        telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50));
+
+        yield return new WaitForSeconds(0.2f);
+
         StartCoroutine(audiomanager.PlayOne("Enemy3Attack", gameObject));
         BulletAttack1 bullet = Instantiate(bulletAttack1, player.vBullets).GetComponent<BulletAttack1>();
 
@@ -141,8 +146,6 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         for (int i = 0; i < ennemyColliders.Length - 1; i++)
         {
-
-
             Physics2D.IgnoreCollision(ennemyColliders[i], bullet.GetComponentInChildren<Collider2D>(), true);
         }
 

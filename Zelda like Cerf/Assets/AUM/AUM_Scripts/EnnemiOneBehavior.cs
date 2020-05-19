@@ -170,17 +170,15 @@ public class EnnemiOneBehavior : Ennemy_Controller
         rb.velocity = new Vector2(0, 0);
         StartCoroutine(audiomanager.PlayOne("Enemy1_grognement", gameObject));
 
-        telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(25f));
+        telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
 
-        for (float i = 0.5f; i > 0; i -= Time.deltaTime)
+        for (float i = 0.4f; i > 0; i -= Time.deltaTime)
         {
             animator.SetBool("IsCharging", true);
             rb.velocity = -(player.transform.position - transform.position).normalized * 50f * Time.fixedDeltaTime;
             
             yield return null;
         }
-
-        
 
         StartCoroutine(HitboxAttackActivatedFor(1.5f));
 

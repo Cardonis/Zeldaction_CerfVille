@@ -4812,6 +4812,102 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1001 &2580814092962619036
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4135952210824252431}
+    m_Modifications:
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876708, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876709, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: m_Name
+      value: Freeform Light 2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615533322503876710, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+        type: 3}
+      propertyPath: ennemyController
+      value: 
+      objectReference: {fileID: 2120168398007969832}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40c71e7210ccb9e45b1e3e77003b8785, type: 3}
+--- !u!114 &1295929316084133626 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3615533322503876710, guid: 40c71e7210ccb9e45b1e3e77003b8785,
+    type: 3}
+  m_PrefabInstance: {fileID: 2580814092962619036}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a020fd986d960409d565c9eb925fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5681157526835082127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4924,6 +5020,11 @@ PrefabInstance:
       propertyPath: damageParticleSystem
       value: 
       objectReference: {fileID: 2946399523759644802}
+    - target: {fileID: 6033661623695874983, guid: 54637fe6b8bb44b458a624b46c6c27dc,
+        type: 3}
+      propertyPath: telegraphAttack
+      value: 
+      objectReference: {fileID: 1295929316084133626}
     - target: {fileID: 6823094215960403234, guid: 54637fe6b8bb44b458a624b46c6c27dc,
         type: 3}
       propertyPath: m_Offset.y
@@ -5037,6 +5138,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5681157526835082127}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2120168398007969832 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6033661623695874983, guid: 54637fe6b8bb44b458a624b46c6c27dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 5681157526835082127}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fd8d487757fe4448826a03858d7074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &1181920718709665453 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 6823094215960403234, guid: 54637fe6b8bb44b458a624b46c6c27dc,

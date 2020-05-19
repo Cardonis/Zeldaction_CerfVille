@@ -314,6 +314,13 @@ public class
 
     public IEnumerator GetAndThrowPlayer()
     {
+        telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
+
+        canMove = false;
+
+        yield return new WaitForSeconds(0.3f);
+
+        canMove = true;
 
         bool movingToAttack = true;
 
@@ -436,6 +443,7 @@ public class
 
         animator.SetTrigger("Attacks");
 
+        telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
 
         for (float i = 1.5f; i > 0.75f; i -= Time.deltaTime * 1f)
         {

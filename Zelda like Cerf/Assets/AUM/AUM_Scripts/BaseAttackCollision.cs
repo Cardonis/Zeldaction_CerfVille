@@ -53,6 +53,11 @@ public class BaseAttackCollision : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                ec.rb.constraints = RigidbodyConstraints2D.None;
+                ec.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
 
             if (ec.playerProjected == false || player.canSpringAttack == true)
             {

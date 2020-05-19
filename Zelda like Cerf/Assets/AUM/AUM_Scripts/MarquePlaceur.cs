@@ -22,6 +22,7 @@ public class MarquePlaceur : MonoBehaviour
         {
             ec.rb.constraints = RigidbodyConstraints2D.None;
             ec.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            ec.rb.drag = ec.initialDrag;
         }
 
         if (player.part != 1)

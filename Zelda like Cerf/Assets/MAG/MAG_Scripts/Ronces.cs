@@ -40,8 +40,8 @@ public class Ronces : Elements_Controller
     public IEnumerator Destruction(float levelProjecting, float forceValueVersatilAttack)
     {
         isDestroy = true;
-        ronceRb.bodyType = RigidbodyType2D.Dynamic;
-        StartTakeForce(forceValueVersatilAttack, levelProjecting);
+        //ronceRb.bodyType = RigidbodyType2D.Dynamic;
+        //StartTakeForce(forceValueVersatilAttack, levelProjecting);
         yield return new WaitForSeconds(ronceDestructionClip.length);
         Destroy(gameObject);
     }
