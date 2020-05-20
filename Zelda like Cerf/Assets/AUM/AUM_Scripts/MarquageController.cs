@@ -7,7 +7,7 @@ public class MarquageController : MonoBehaviour
     [HideInInspector] public Player_Main_Controller player;
     public float marquageTimer;
 
-    public SpriteRenderer sR;
+    public LineRenderer lr;
 
     float originalTimer;
 
@@ -22,7 +22,6 @@ public class MarquageController : MonoBehaviour
         player.marquageManager.marquageControllers.Add(this);
 
         originalTimer = marquageTimer;
-
     }
 
     // Update is called once per frame
@@ -32,9 +31,14 @@ public class MarquageController : MonoBehaviour
 
         elementsAttachedTo.outlineController.outLining = true;
 
-        if(marquageTimer < 0)
+        lr.SetPosition(0, player.transform.position);
+        lr.SetPosition(1, transform.position);
+
+        if (marquageTimer < 0)
         {
             elementsAttachedTo.outlineController.outLining = false;
+
+            player.pressX.SetActive(false);
 
             player.marquageManager.marquageControllers.Remove(this);
             Destroy(gameObject);
