@@ -9,11 +9,14 @@ public class EndCinematic : MonoBehaviour
 
     private void OnEnable()
     {
-        ResetGraphPosition();
+        StartCoroutine (ResetGraphPosition());
     }
 
-    void ResetGraphPosition()
+    IEnumerator ResetGraphPosition()
     {
+
+
+        yield return new WaitForSeconds(0.05f);
 
         mainPlayer.transform.position = animatorPlayer.transform.position;
 
