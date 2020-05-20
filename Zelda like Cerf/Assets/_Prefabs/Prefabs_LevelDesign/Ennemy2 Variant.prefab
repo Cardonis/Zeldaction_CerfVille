@@ -4812,6 +4812,23 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2111041570344749568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4135952210824252429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f1bd75c51ea454c847c9a20896babf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outLining: 0
+  outlineColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
+  baseGraph: {fileID: 4135952211335555325}
+  outLines: []
+  thiccness: 0.08
 --- !u!1001 &2580814092962619036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5025,6 +5042,11 @@ PrefabInstance:
       propertyPath: telegraphAttack
       value: 
       objectReference: {fileID: 1295929316084133626}
+    - target: {fileID: 6033661623695874983, guid: 54637fe6b8bb44b458a624b46c6c27dc,
+        type: 3}
+      propertyPath: outlineController
+      value: 
+      objectReference: {fileID: 2111041570344749568}
     - target: {fileID: 6823094215960403234, guid: 54637fe6b8bb44b458a624b46c6c27dc,
         type: 3}
       propertyPath: m_Offset.y
@@ -5048,12 +5070,12 @@ PrefabInstance:
     - target: {fileID: 8625057618838257536, guid: 54637fe6b8bb44b458a624b46c6c27dc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.0230923
+      value: 11.008022
       objectReference: {fileID: 0}
     - target: {fileID: 8625057618838257536, guid: 54637fe6b8bb44b458a624b46c6c27dc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.7698307
+      value: 16.31135
       objectReference: {fileID: 0}
     - target: {fileID: 8625057618838257536, guid: 54637fe6b8bb44b458a624b46c6c27dc,
         type: 3}
@@ -5132,6 +5154,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54637fe6b8bb44b458a624b46c6c27dc, type: 3}
+--- !u!1 &4135952210824252429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8625057618838257538, guid: 54637fe6b8bb44b458a624b46c6c27dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 5681157526835082127}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4135952210824252431 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8625057618838257536, guid: 54637fe6b8bb44b458a624b46c6c27dc,
@@ -5144,12 +5172,18 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5681157526835082127}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4135952210824252429}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0fd8d487757fe4448826a03858d7074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4135952211335555325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8625057618277112690, guid: 54637fe6b8bb44b458a624b46c6c27dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 5681157526835082127}
+  m_PrefabAsset: {fileID: 0}
 --- !u!61 &1181920718709665453 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 6823094215960403234, guid: 54637fe6b8bb44b458a624b46c6c27dc,

@@ -38,6 +38,8 @@ public class Elements_Controller : MonoBehaviour
 
     [HideInInspector] public float initialDrag;
 
+    public OutlineController outlineController;
+
     public void TakeForce(Vector2 direction, float forceValue, float levelMultiplicator)
     {
         projected = true;

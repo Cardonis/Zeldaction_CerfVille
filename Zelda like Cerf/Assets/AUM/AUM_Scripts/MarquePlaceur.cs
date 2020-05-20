@@ -43,6 +43,9 @@ public class MarquePlaceur : MonoBehaviour
                 {
                     MarquageController newMark = Instantiate(mark, ec.transform).GetComponent<MarquageController>();
                     newMark.player = player;
+                    newMark.elementsAttachedTo = ec;
+
+                    player.pressX.SetActive(true);
 
                     player.marquageManager.ResetTimer(player.marquageDuration);
 

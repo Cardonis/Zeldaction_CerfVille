@@ -26,8 +26,6 @@ public class
 
     Vector2 lookDir;
 
-    public Animator animator;
-
     // Start is called before the first frame update
     override public void Start()
     {
@@ -36,8 +34,6 @@ public class
         WanderingNewDirection();
 
         initialLife = pv;
-
-        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -167,20 +163,23 @@ public class
 
         lookDir = player.transform.position - transform.position;
 
-        animator.SetFloat("Horizontal", direction.x);
-        animator.SetFloat("Vertical", direction.y);
-
-        animator.SetFloat("HorizontalAim", lookDir.x);
-        animator.SetFloat("VerticalAim", lookDir.y);
-
-        if(rb.velocity != new Vector2(0, 0))
+        for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
         {
-            animator.SetBool("IsMoving", true);
-        }
+            outlineController.outLinesAnimator[i].SetFloat("Horizontal", direction.x);
+            outlineController.outLinesAnimator[i].SetFloat("Vertical", direction.y);
 
-        else
-        {
-            animator.SetBool("IsMoving", false);
+            outlineController.outLinesAnimator[i].SetFloat("HorizontalAim", lookDir.x);
+            outlineController.outLinesAnimator[i].SetFloat("VerticalAim", lookDir.y);
+
+            if (rb.velocity != new Vector2(0, 0))
+            {
+                outlineController.outLinesAnimator[i].SetBool("IsMoving", true);
+            }
+
+            else
+            {
+                outlineController.outLinesAnimator[i].SetBool("IsMoving", false);
+            }
         }
 
         #endregion 
@@ -341,7 +340,10 @@ public class
 
                 movingToAttack = false;
 
-                animator.SetTrigger("IsThrowingRock");
+                for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+                {
+                    outlineController.outLinesAnimator[i].SetTrigger("IsThrowingRock");
+                }
 
                 direction = (player.transform.position - transform.position).normalized;
             }
@@ -425,7 +427,10 @@ public class
 
                 movingToAttack = false;
 
-                animator.SetTrigger("IsThrowingRock");
+                for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+                {
+                    outlineController.outLinesAnimator[i].SetTrigger("IsThrowingRock");
+                }
 
                 direction = (currentElement.transform.position - transform.position).normalized;
             }
@@ -441,7 +446,10 @@ public class
 
         audiomanager.PlayHere("Enemy2_Rock", gameObject);
 
-        animator.SetTrigger("Attacks");
+        for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+        {
+            outlineController.outLinesAnimator[i].SetTrigger("Attacks");
+        }
 
         telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
 
@@ -473,7 +481,10 @@ public class
 
         audiomanager.PlayHere("Enemy2_Attack", gameObject);
 
-        animator.SetTrigger("Attacks");
+        for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+        {
+            outlineController.outLinesAnimator[i].SetTrigger("Attacks");
+        }
 
         currentPierre.projected = true;
         currentPierre.levelProjected = 2;

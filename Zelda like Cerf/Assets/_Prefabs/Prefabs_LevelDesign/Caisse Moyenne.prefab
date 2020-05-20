@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 1812700482024183146}
   - component: {fileID: 1812700482024183147}
   - component: {fileID: 1812700482024183149}
+  - component: {fileID: 3954851554992836490}
   m_Layer: 0
   m_Name: Caisse Moyenne
   m_TagString: Untagged
@@ -223,3 +224,22 @@ MonoBehaviour:
   ennemyCollidersLayers: 
   velocityBeforeImpact: {x: 0, y: 0, z: 0}
   velocityBeforeImpactAngle: 0
+  initialDrag: 0
+  outlineController: {fileID: 3954851554992836490}
+--- !u!114 &3954851554992836490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812700482024183144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f1bd75c51ea454c847c9a20896babf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outLining: 0
+  outlineColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
+  baseGraph: {fileID: 1812700481461776792}
+  outLines: []
+  thiccness: 0.08

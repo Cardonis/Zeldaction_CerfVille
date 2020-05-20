@@ -56,6 +56,7 @@ public class Player_Main_Controller : MonoBehaviour
     public float marquageDuration;
     [HideInInspector] public float lastAttackVersatilTimer = 1f;
     float lastAttackForce = 1;
+    bool charging = false;
 
     [HideInInspector] public bool canSpringAttack;
     [HideInInspector] public bool canAccelerate;
@@ -243,11 +244,17 @@ public class Player_Main_Controller : MonoBehaviour
             lastAttackVersatilTimer += Time.deltaTime;
         }
 
+        if (marquageManager.marquageControllers.Count != 0)
+        {
+            pressX.SetActive(true);
+        }
+
         if (timerCooldownVersatilAttack < 0 && part >= 2)
         {
             if(!projected && !stunned)
             {
-                if(Input.GetButtonDown("RB"))
+
+                if(Input.GetButtonDown("RB") || Input.GetButtonDown("X"))
                 {
                     if(part == 3)
                     {
@@ -260,19 +267,33 @@ public class Player_Main_Controller : MonoBehaviour
                         barsCharge2.SetActive(true);
                     }
 
-                    if(marquageManager.marquageControllers.Count == 0)
+                    charging = true;
+
+                    barCharge.gameObject.SetActive(true);
+
+                    if (Input.GetButtonDown("RB"))
                     {
                         multipleAttack = false;
+
+                        audiomanager.Play("Capa_charge");
+                    }
+                    else if(marquageManager.marquageControllers.Count != 0 && Input.GetButtonDown("X"))
+                    {
+                        multipleAttack = true;
+
+                        audiomanager.Play("Capa_charge");
                     }
                     else
                     {
-                        multipleAttack = true;
+                        barsCharge3.SetActive(false);
+                        barsCharge2.SetActive(false);
+                        barCharge.gameObject.SetActive(false);
+
+                        charging = false;
                     }
-                    audiomanager.Play("Capa_charge");
-                    barCharge.gameObject.SetActive(true);
                 }
 
-                if (Input.GetButton("RB"))
+                if (charging)
                 {
                     animator.SetBool("IsChargingCV", true);
 
@@ -300,10 +321,12 @@ public class Player_Main_Controller : MonoBehaviour
                         barsCharge2.SetActive(true);
                     }
 
+                    pressX.SetActive(false);
+
                     barCharge.gameObject.SetActive(true);
                 }
 
-                if(Input.GetButtonUp("RB"))
+                if((Input.GetButtonUp("RB") || Input.GetButtonUp("X")) && charging)
                 {
                     animator.SetBool("IsChargingCV", false);
                     audiomanager.Stop("Capa_charge");
@@ -368,6 +391,10 @@ public class Player_Main_Controller : MonoBehaviour
                         }
                     }
 
+                    pressX.SetActive(false);
+
+                    charging = false;
+
                     chargeTimer = 0;
 
                     barsCharge2.SetActive(false);
@@ -392,61 +419,75 @@ public class Player_Main_Controller : MonoBehaviour
             timerCooldownVersatilAttack -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("X") && canTrack == true)
+        if (confiner.activeRoom != null)
         {
-            if(currentPierre == null)
-            {
-                List<Elements_Controller> pierresActivesRoom = new List<Elements_Controller>();
+            List<Elements_Controller> pierresActivesRoom = new List<Elements_Controller>();
 
-                if(part >= 2)
+            if (part >= 2)
+            {
+                for (int i = 0; i < confiner.activeRoom.ennemies.Count; i++)
                 {
-                    for (int i = 0; i < confiner.activeRoom.ennemies.Count; i++)
+                    confiner.activeRoom.ennemies[i].outlineController.outLining = false;
+                    if (confiner.activeRoom.ennemies[i].dead == false)
+                        pierresActivesRoom.Add(confiner.activeRoom.ennemies[i]);
+                }
+            }
+
+            for (int i = 0; i < confiner.activeRoom.objectsToReset.Count; i++)
+            {
+                confiner.activeRoom.objectsToReset[i].outlineController.outLining = false;
+                pierresActivesRoom.Add(confiner.activeRoom.objectsToReset[i]);
+            }
+
+            for (int i = 0; i < confiner.activeRoom.objectsToDestroy.Count; i++)
+            {
+                confiner.activeRoom.objectsToDestroy[i].outlineController.outLining = false;
+                pierresActivesRoom.Add(confiner.activeRoom.objectsToDestroy[i]);
+            }
+
+            //pierresActivesRoom = confiner.activeRoom.objectsToReset + confiner.activeRoom.objectsToDestroy;
+
+            Elements_Controller nearestPierre = null;
+
+            for (int i = 0; i < pierresActivesRoom.Count; i++)
+            {
+                if (Vector2.Distance(transform.position, pierresActivesRoom[i].transform.position) < 2f && pierresActivesRoom[i].isTractable)
+                {
+                    if (nearestPierre != null)
                     {
-                        if (confiner.activeRoom.ennemies[i].dead == false)
-                            pierresActivesRoom.Add(confiner.activeRoom.ennemies[i]);
+                        if (Vector2.Distance(transform.position, nearestPierre.transform.position) > Vector2.Distance(transform.position, pierresActivesRoom[i].transform.position))
+                        {
+                            nearestPierre = pierresActivesRoom[i];
+                        }
+                    }
+                    else
+                    {
+                        nearestPierre = pierresActivesRoom[i];
+                    }
+
+                }
+            }
+
+            if (nearestPierre != null)
+            {
+                if (currentPierre == null)
+                {
+                    nearestPierre.outlineController.outLining = true;
+
+                    if (Input.GetButtonDown("X") && canTrack == true)
+                    {
+                        currentPierre = nearestPierre;
                     }
                 }
-                
-                for (int i = 0; i < confiner.activeRoom.objectsToReset.Count; i++)
+                else
                 {
-                    pierresActivesRoom.Add(confiner.activeRoom.objectsToReset[i]);
-                }
-
-                for (int i = 0; i < confiner.activeRoom.objectsToDestroy.Count; i++)
-                {
-                    pierresActivesRoom.Add(confiner.activeRoom.objectsToDestroy[i]);
-                }
-
-                //pierresActivesRoom = confiner.activeRoom.objectsToReset + confiner.activeRoom.objectsToDestroy;
-
-                for (int i = 0; i < pierresActivesRoom.Count; i++)
-                {
-                    if (Vector2.Distance(transform.position, pierresActivesRoom[i].transform.position) < 2f && pierresActivesRoom[i].isTractable)
+                    if (Input.GetButtonDown("X") && canTrack == true)
                     {
-                        if (currentPierre != null)
-                        {
-                            if (Vector2.Distance(transform.position, currentPierre.transform.position) > Vector2.Distance(transform.position, pierresActivesRoom[i].transform.position))
-                            {
-                                currentPierre = pierresActivesRoom[i];
-                            }
-
-                        }
-                        else
-                        {
-                            currentPierre = pierresActivesRoom[i];
-                        }
-
+                        Physics2D.IgnoreCollision(physicCollider, currentPierre.GetComponentInChildren<Collider2D>(), false);
+                        currentPierre = null;
                     }
                 }
             }
-            else
-            {
-                Physics2D.IgnoreCollision(physicCollider, currentPierre.GetComponentInChildren<Collider2D>(), false);
-                currentPierre = null;
-            }
-
-            
-
         }
 
         chargeSpeedMultiplicator = 1 - ((chargeTimer) / (chargeTime + 0.6f));
