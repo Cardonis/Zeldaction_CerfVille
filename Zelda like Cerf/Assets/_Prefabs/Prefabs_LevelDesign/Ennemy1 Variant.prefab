@@ -4831,6 +4831,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1194169962121811641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4646585729520033964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f1bd75c51ea454c847c9a20896babf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outLining: 0
+  outlineColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
+  baseGraph: {fileID: 4646585728958891100}
+  outLines: []
+  thiccness: 0.08
 --- !u!1001 &5138768054416460691
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4851,12 +4868,12 @@ PrefabInstance:
     - target: {fileID: 516628952340409149, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.48
+      value: 3.285983
       objectReference: {fileID: 0}
     - target: {fileID: 516628952340409149, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.44
+      value: 15.4477005
       objectReference: {fileID: 0}
     - target: {fileID: 516628952340409149, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
         type: 3}
@@ -5059,8 +5076,19 @@ PrefabInstance:
       propertyPath: telegraphAttack
       value: 
       objectReference: {fileID: 8757789856382282822}
+    - target: {fileID: 7323059871886866642, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
+        type: 3}
+      propertyPath: outlineController
+      value: 
+      objectReference: {fileID: 1194169962121811641}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55e0c43e5a991f24f8aed0f7e457eda4, type: 3}
+--- !u!1 &4646585729520033964 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 516628952340409151, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5138768054416460691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4646585729520033966 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 516628952340409149, guid: 55e0c43e5a991f24f8aed0f7e457eda4,
@@ -5073,7 +5101,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5138768054416460691}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4646585729520033964}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e7ff158b3903e9499efa7cfedc793eb, type: 3}

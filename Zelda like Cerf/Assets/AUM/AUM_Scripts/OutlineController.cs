@@ -11,6 +11,7 @@ public class OutlineController : MonoBehaviour
     public GameObject baseGraph;
 
     public List<SpriteRenderer> outLines;
+    public List<Animator> outLinesAnimator;
 
     public float thiccness;
 
@@ -18,6 +19,8 @@ public class OutlineController : MonoBehaviour
     void Start()
     {
         int outLinesSortingOrder = baseGraph.GetComponent<SpriteRenderer>().sortingOrder - 1;
+
+        Animator baseGraphAnimator = baseGraph.GetComponent<Animator>();
 
         SpriteRenderer topOutline = Instantiate(baseGraph, transform).GetComponent<SpriteRenderer>();
 
@@ -46,6 +49,15 @@ public class OutlineController : MonoBehaviour
         rightOutline.sortingOrder = outLinesSortingOrder;
         rightOutline.transform.localPosition = new Vector3(rightOutline.transform.localPosition.x + thiccness, rightOutline.transform.localPosition.y);
         outLines.Add(rightOutline);
+
+        if(baseGraphAnimator != null)
+        {
+            outLinesAnimator.Add(baseGraphAnimator);
+            outLinesAnimator.Add(topOutline.GetComponent<Animator>());
+            outLinesAnimator.Add(leftOutline.GetComponent<Animator>());
+            outLinesAnimator.Add(downOutline.GetComponent<Animator>());
+            outLinesAnimator.Add(rightOutline.GetComponent<Animator>());
+        }
 
         outLining = false;
     }

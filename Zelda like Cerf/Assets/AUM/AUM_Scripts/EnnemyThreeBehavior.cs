@@ -14,8 +14,6 @@ public class EnnemyThreeBehavior : Ennemy_Controller
     public float attackForce;
     public float attackBulletForce;
 
-    [HideInInspector] public Animator animator;
-
     Vector2 directionForAttack;
 
     Vector2 lookDir;
@@ -28,8 +26,6 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         WanderingNewDirection();
 
         initialLife = pv;
-
-        animator = GetComponentInChildren<Animator>();
 
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
@@ -72,12 +68,18 @@ public class EnnemyThreeBehavior : Ennemy_Controller
                 if (Vector2.Distance(transform.position, player.transform.position) <= 8.5f)
                 {
                     directionForAttack = (transform.position - player.transform.position).normalized * (1f + 8.5f - Vector2.Distance(transform.position, player.transform.position) );
-                    animator.SetBool("IsFallingBack", true);
+                    for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+                    {
+                        outlineController.outLinesAnimator[i].SetBool("IsFallingBack", true);
+                    }
                 }
                 else if (Vector2.Distance(transform.position, player.transform.position) >= 9.5f)
                 {
                     directionForAttack = (player.transform.position - transform.position).normalized;
-                    animator.SetBool("IsFallingBack", false);
+                    for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+                    {
+                        outlineController.outLinesAnimator[i].SetBool("IsFallingBack", false);
+                    }
                 }
                 else
                 {
@@ -109,20 +111,23 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         lookDir = player.transform.position - transform.position;
 
-        animator.SetFloat("Horizontal", direction.x);
-        animator.SetFloat("Vertical", direction.y);
-
-        animator.SetFloat("HorizontalAim", lookDir.x);
-        animator.SetFloat("VerticalAim", lookDir.y);
-
-        if (Mathf.Approximately(rb.velocity.x, 0) && Mathf.Approximately(rb.velocity.y, 0))
+        for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
         {
-            animator.SetBool("IsMoving", false);
-        }
+            outlineController.outLinesAnimator[i].SetFloat("Horizontal", direction.x);
+            outlineController.outLinesAnimator[i].SetFloat("Vertical", direction.y);
 
-        else
-        {
-            animator.SetBool("IsMoving", true);
+            outlineController.outLinesAnimator[i].SetFloat("HorizontalAim", lookDir.x);
+            outlineController.outLinesAnimator[i].SetFloat("VerticalAim", lookDir.y);
+
+            if (Mathf.Approximately(rb.velocity.x, 0) && Mathf.Approximately(rb.velocity.y, 0))
+            {
+                outlineController.outLinesAnimator[i].SetBool("IsMoving", false);
+            }
+
+            else
+            {
+                outlineController.outLinesAnimator[i].SetBool("IsMoving", true);
+            }
         }
 
         #endregion Animator
@@ -142,7 +147,10 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
 
-        animator.SetTrigger("Attacks");
+        for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+        {
+            outlineController.outLinesAnimator[i].SetTrigger("Attacks");
+        }
 
         for (int i = 0; i < ennemyColliders.Length - 1; i++)
         {

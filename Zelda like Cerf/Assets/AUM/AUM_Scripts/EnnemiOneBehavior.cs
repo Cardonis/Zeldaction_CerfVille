@@ -20,8 +20,6 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
     public List<EnnemiOneBehavior> limierControllers;
 
-    public Animator animator;
-
     Vector2 lookDir;
 
     override public void Start()
@@ -43,8 +41,6 @@ public class EnnemiOneBehavior : Ennemy_Controller
                 limierControllers.Add(eob);
             }
         }
-
-        animator = GetComponentInChildren<Animator>();
     }
 
 
@@ -141,21 +137,23 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         lookDir = player.transform.position - transform.position;
 
-        animator.SetFloat("Horizontal", direction.x);
-        animator.SetFloat("Vertical", direction.y);
-
-        animator.SetFloat("HorizontalAim", lookDir.x);
-        animator.SetFloat("VerticalAim", lookDir.y);
-
-        if (rb.velocity != new Vector2 (0,0))
+        for(int i = 0; i < outlineController.outLinesAnimator.Count; i++)
         {
-            animator.SetBool("IsMoving", true);
-        }
-        else
-        {
-            animator.SetBool("IsMoving", false);
-        }
+            outlineController.outLinesAnimator[i].SetFloat("Horizontal", direction.x);
+            outlineController.outLinesAnimator[i].SetFloat("Vertical", direction.y);
 
+            outlineController.outLinesAnimator[i].SetFloat("HorizontalAim", lookDir.x);
+            outlineController.outLinesAnimator[i].SetFloat("VerticalAim", lookDir.y);
+
+            if (rb.velocity != new Vector2(0, 0))
+            {
+                outlineController.outLinesAnimator[i].SetBool("IsMoving", true);
+            }
+            else
+            {
+                outlineController.outLinesAnimator[i].SetBool("IsMoving", false);
+            }
+        }
 
         #endregion Animator
     }
@@ -174,7 +172,10 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         for (float i = 0.4f; i > 0; i -= Time.deltaTime)
         {
-            animator.SetBool("IsCharging", true);
+            for (int y = 0; y < outlineController.outLinesAnimator.Count; y++)
+            {
+                outlineController.outLinesAnimator[y].SetBool("IsCharging", true);
+            }
             rb.velocity = -(player.transform.position - transform.position).normalized * 50f * Time.fixedDeltaTime;
             
             yield return null;
@@ -184,11 +185,17 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
         StartCoroutine(audiomanager.PlayOne("Enemy1_Attack", gameObject));
 
-        animator.SetBool("IsCharging", false);
+        for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+        {
+            outlineController.outLinesAnimator[i].SetBool("IsCharging", false);
+        }
 
         rb.velocity = new Vector2(0, 0);
 
-        animator.SetTrigger("Attacks");
+        for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+        {
+            outlineController.outLinesAnimator[i].SetTrigger("Attacks");
+        }
 
         attackDirection = player.transform.position - transform.position;
 

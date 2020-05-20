@@ -9,10 +9,11 @@ public class MarquageController : MonoBehaviour
 
     public SpriteRenderer sR;
 
-    Color originalColor;
     float originalTimer;
 
     [HideInInspector] public bool venom = false;
+
+    public Elements_Controller elementsAttachedTo;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,6 @@ public class MarquageController : MonoBehaviour
         marquageTimer = player.marquageDuration;
         player.marquageManager.marquageControllers.Add(this);
 
-        originalColor = sR.material.color;
         originalTimer = marquageTimer;
 
     }
@@ -30,10 +30,12 @@ public class MarquageController : MonoBehaviour
     {
         marquageTimer -= Time.deltaTime;
 
-        sR.material.color = new Color(originalColor.r, originalColor.g, originalColor.b, (marquageTimer + 0.5f) / (originalTimer + 0.5f));
+        elementsAttachedTo.outlineController.outLining = true;
 
         if(marquageTimer < 0)
         {
+            elementsAttachedTo.outlineController.outLining = false;
+
             player.marquageManager.marquageControllers.Remove(this);
             Destroy(gameObject);
         }

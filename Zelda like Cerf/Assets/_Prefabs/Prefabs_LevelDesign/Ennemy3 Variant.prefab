@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6614126294438637062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452855053996713159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f1bd75c51ea454c847c9a20896babf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outLining: 0
+  outlineColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
+  baseGraph: {fileID: 1452855054491222071}
+  outLines: []
+  thiccness: 0.08
 --- !u!1 &2833750300725364542
 GameObject:
   m_ObjectHideFlags: 0
@@ -4847,12 +4864,12 @@ PrefabInstance:
     - target: {fileID: 7091535423309701917, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.87985486
       objectReference: {fileID: 0}
     - target: {fileID: 7091535423309701917, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 12.80595
       objectReference: {fileID: 0}
     - target: {fileID: 7091535423309701917, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
@@ -4979,8 +4996,19 @@ PrefabInstance:
       propertyPath: telegraphAttack
       value: 
       objectReference: {fileID: 5688200635331269385}
+    - target: {fileID: 8901876281111542922, guid: 11f1f752d2315cc479f933c403794e01,
+        type: 3}
+      propertyPath: outlineController
+      value: 
+      objectReference: {fileID: 6614126294438637062}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11f1f752d2315cc479f933c403794e01, type: 3}
+--- !u!1 &1452855053996713159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7091535423309701919, guid: 11f1f752d2315cc479f933c403794e01,
+    type: 3}
+  m_PrefabInstance: {fileID: 8521833162163324888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1452855053996713157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7091535423309701917, guid: 11f1f752d2315cc479f933c403794e01,
@@ -4993,12 +5021,18 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 8521833162163324888}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1452855053996713159}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b695199fcb1d1448bee32d298d8051c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1452855054491222071 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7091535423821252591, guid: 11f1f752d2315cc479f933c403794e01,
+    type: 3}
+  m_PrefabInstance: {fileID: 8521833162163324888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!61 &4407704379296843367 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 5433854479219786175, guid: 11f1f752d2315cc479f933c403794e01,

@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 2032557703932809302}
   - component: {fileID: 2032557703932809303}
   - component: {fileID: 2032557703932809297}
+  - component: {fileID: 1814125151570669978}
   m_Layer: 0
   m_Name: Caisse Grande
   m_TagString: Untagged
@@ -223,3 +224,22 @@ MonoBehaviour:
   ennemyCollidersLayers: 
   velocityBeforeImpact: {x: 0, y: 0, z: 0}
   velocityBeforeImpactAngle: 0
+  initialDrag: 0
+  outlineController: {fileID: 1814125151570669978}
+--- !u!114 &1814125151570669978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032557703932809300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f1bd75c51ea454c847c9a20896babf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outLining: 0
+  outlineColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
+  baseGraph: {fileID: 2032557703438038180}
+  outLines: []
+  thiccness: 0.08
