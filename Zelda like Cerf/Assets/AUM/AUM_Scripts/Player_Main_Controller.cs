@@ -95,7 +95,7 @@ public class Player_Main_Controller : MonoBehaviour
     float directionAimAngle;
 
     //Variable Animator
-    [HideInInspector] public Animator animator;
+    public Animator animator;
 
     AudioManager audiomanager;
 
@@ -113,8 +113,6 @@ public class Player_Main_Controller : MonoBehaviour
         direction = Vector2.down;
 
         directionAim = Vector2.down;
-
-        animator = GetComponentInChildren<Animator>();
 
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
