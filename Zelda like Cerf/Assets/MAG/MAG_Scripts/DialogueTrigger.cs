@@ -9,7 +9,7 @@ public class DialogueTrigger : MonoBehaviour
     bool playerIsNear;
     Player_Main_Controller player;
 
-    
+    public OutlineController outlineController;
 
     public bool asTalked;
 
@@ -25,6 +25,8 @@ public class DialogueTrigger : MonoBehaviour
             player = p;
             playerIsNear = true;
             player.pressX.SetActive(true);
+
+            outlineController.outLining = true;
         }
         
     }
@@ -35,6 +37,8 @@ public class DialogueTrigger : MonoBehaviour
         {
             player.pressX.SetActive(false);
             playerIsNear = false;
+
+            outlineController.outLining = false;
         }
 
     }
@@ -47,6 +51,7 @@ public class DialogueTrigger : MonoBehaviour
             player.pressX.SetActive(false);
             dialogueManager.StartDialogue(dialogue);
 
+            outlineController.outLining = false;
         }
     }
 }

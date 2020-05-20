@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TiersDecoeur : MonoBehaviour
 {
+    public OutlineController outlineController;
 
     GameObject pressX;
     private Player_Main_Controller player;
@@ -23,6 +24,7 @@ public class TiersDecoeur : MonoBehaviour
             pressX = player.pressX;
             pressX.SetActive(true);
             playerIsNear = true;
+            outlineController.outLining = true;
         }
     }
 
@@ -33,6 +35,8 @@ public class TiersDecoeur : MonoBehaviour
         {
             pressX.SetActive(false);
             playerIsNear = false;
+
+            outlineController.outLining = false;
         }
     }
 
@@ -42,6 +46,8 @@ public class TiersDecoeur : MonoBehaviour
         {
             inventoryBook.currentNumberOfHearthThird++;
             pressX.SetActive(false);
+            outlineController.outLining = false;
+
             Destroy(gameObject);
         }
     }

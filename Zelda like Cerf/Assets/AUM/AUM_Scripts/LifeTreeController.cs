@@ -10,6 +10,8 @@ public class LifeTreeController : MonoBehaviour
     [HideInInspector] public List<RoomController> rooms;
     private float CurrentSoundEffectVolume;
 
+    public OutlineController outlineController;
+
     private void Start()
     {
         playerIsNear = false;
@@ -29,6 +31,7 @@ public class LifeTreeController : MonoBehaviour
             player = p;
             player.pressX.SetActive(true);
             playerIsNear = true;
+            outlineController.outLining = true;
         }
 
     }
@@ -39,6 +42,7 @@ public class LifeTreeController : MonoBehaviour
         {
             player.pressX.SetActive(false);
             playerIsNear = false;
+            outlineController.outLining = false;
         }
 
     }
@@ -51,6 +55,8 @@ public class LifeTreeController : MonoBehaviour
             AudioManager.SoundEffectsVolume = 0;
 
             player.pressX.SetActive(false);
+            outlineController.outLining = false;
+
             player.currentLife = player.maxLife;
 
             for(int i = 0; i < rooms.Count; i++)

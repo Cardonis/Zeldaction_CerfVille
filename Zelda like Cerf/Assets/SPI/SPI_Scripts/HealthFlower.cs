@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HealthFlower : MonoBehaviour
 {
+    public OutlineController outlineController;
+
     bool playerIsNear;
     Player_Main_Controller player;
 
@@ -24,6 +26,7 @@ public class HealthFlower : MonoBehaviour
                 if (player.currentLife != player.maxLife)
                     player.pressX.SetActive(true);
                 playerIsNear = true;
+                outlineController.outLining = true;
             }
         }
     }
@@ -37,6 +40,7 @@ public class HealthFlower : MonoBehaviour
             {
                 player.pressX.SetActive(false);
                 playerIsNear = false;
+                outlineController.outLining = false;
             }
         }
     }
@@ -53,6 +57,8 @@ public class HealthFlower : MonoBehaviour
                 {
                     player.currentLife = player.maxLife;
                 }
+
+                outlineController.outLining = false;
 
                 Destroy(gameObject);
             }
