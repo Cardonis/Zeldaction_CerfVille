@@ -244,14 +244,14 @@ public class Player_Main_Controller : MonoBehaviour
             lastAttackVersatilTimer += Time.deltaTime;
         }
 
-        if (marquageManager.marquageControllers.Count != 0)
-        {
-            pressX.SetActive(true);
-        }
-
         if (timerCooldownVersatilAttack < 0 && part >= 2)
         {
-            if(!projected && !stunned)
+            if (marquageManager.marquageControllers.Count != 0)
+            {
+                pressX.SetActive(true);
+            }
+
+            if (!projected && !stunned)
             {
 
                 if(Input.GetButtonDown("RB") || Input.GetButtonDown("X"))
@@ -306,6 +306,8 @@ public class Player_Main_Controller : MonoBehaviour
                     }
                     else if (multipleAttack == true)
                     {
+                        marquageManager.ResetTimer(marquageDuration);
+
                         if (chargeTimer < chargeTime)
                         {
                             chargeTimer += Time.deltaTime;
@@ -509,8 +511,6 @@ public class Player_Main_Controller : MonoBehaviour
             directionAimAngle = -directionAimAngle;
         }
         
-        
-
         arrowDirection.rotation = Quaternion.Euler(0, 0, directionAimAngle);
 
         if(part >= 2)
@@ -655,7 +655,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
                 marquageManager.marquageControllers.Remove(mC);
             }
 
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.2f);
 
         }
 
@@ -712,7 +712,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
     {
         Bullet_Versatil_Controller bullet = Instantiate(bulletVersatilAttack, vBullets).GetComponent<Bullet_Versatil_Controller>();
         audiomanager.Play("Capa_Liane");
-        bullet.transform.position = transform.position;
+        bullet.transform.position = target.transform.position;
 
         bullet.player = transform;
         bullet.maxDistance = 20;

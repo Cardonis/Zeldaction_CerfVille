@@ -37,9 +37,14 @@ public class Bullet_Versatil_Controller : MonoBehaviour
 
         if (Vector2.Distance(transform.position, player.position) > maxDistance && touchedTarget == null)
         {
+            if (player.GetComponent<Player_Main_Controller>().marquageManager.marquageControllers.Count != 0)
+            {
+                player.GetComponent<Player_Main_Controller>().pressX.SetActive(true);
+            }
+
             player.GetComponent<Player_Main_Controller>().stunned = false;
             audiomanager.Stop("Capa_Liane");
-            Destroy(gameObject);           
+            Destroy(gameObject);
         }
     }
 
