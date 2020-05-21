@@ -248,6 +248,7 @@ MonoBehaviour:
   playableDirector: {fileID: 358077505}
   playerCantMoveFor: 0
   setPlayerTransform: 0
+  cinematicIsInteraction: 0
 --- !u!1 &2095582458
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +784,11 @@ PrefabInstance:
       propertyPath: detectionDistance
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1443289614740479384, guid: bbe63a94c9316dd459c44e89f743b9c8,
+        type: 3}
+      propertyPath: ennemyController
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1452855053996713157, guid: bbe63a94c9316dd459c44e89f743b9c8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -853,6 +859,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5688200635331269385, guid: bbe63a94c9316dd459c44e89f743b9c8,
+        type: 3}
+      propertyPath: ennemyController
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5688200635331269386, guid: bbe63a94c9316dd459c44e89f743b9c8,
         type: 3}
       propertyPath: m_IsActive
@@ -863,7 +874,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 993733438106467154, guid: bbe63a94c9316dd459c44e89f743b9c8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bbe63a94c9316dd459c44e89f743b9c8, type: 3}
 --- !u!1 &2704170796402096223 stripped
 GameObject:
