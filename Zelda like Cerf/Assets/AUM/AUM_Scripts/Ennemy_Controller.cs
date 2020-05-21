@@ -130,7 +130,8 @@ public abstract class Ennemy_Controller : Elements_Controller
 
         damageParticleSystem.Play();
 
-       StartCoroutine(player.cameraShake.CameraShakeFor(0.1f, damageTaken));
+        if (player.cameraShake.shaking == false)
+            player.cameraShake.lastCameraShake = player.cameraShake.StartCoroutine(player.cameraShake.CameraShakeFor(0.1f, 0.1f,damageTaken));
 
         GetComponentInChildren<SpriteRenderer>().color = new Color(1, 0, 0);
 

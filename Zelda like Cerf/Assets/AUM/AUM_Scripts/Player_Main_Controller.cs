@@ -655,7 +655,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
                 marquageManager.marquageControllers.Remove(mC);
             }
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
 
         }
 
@@ -776,7 +776,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         GetComponentInChildren<SpriteRenderer>().color = Color.red;
 
-        StartCoroutine(cameraShake.CameraShakeFor(0.2f, 3));
+        StartCoroutine(cameraShake.CameraShakeFor(0.2f, 0.2f, 3));
 
         for (float i = 0.5f; i > 0; i -= Time.deltaTime)
         {

@@ -70,6 +70,7 @@ public class Elements_Controller : MonoBehaviour
 
         player.canSpringAttack = false;
 
+        if(lastTakeForce != null)
         StopCoroutine(lastTakeForce);
     }
 
