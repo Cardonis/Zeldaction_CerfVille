@@ -352,7 +352,7 @@ public class
 
                 for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
                 {
-                    outlineController.outLinesAnimator[i].SetTrigger("IsThrowingRock");
+                    outlineController.outLinesAnimator[i].SetTrigger("Attacks");
                 }
 
                 direction = (player.transform.position - transform.position).normalized;

@@ -87,10 +87,20 @@ public class EnnemiOneBehavior : Ennemy_Controller
                 if (Vector2.Distance(transform.position, player.transform.position) <= 3f)
                 {
                     directionForAttack = transform.position - player.transform.position;
+
+                    for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+                    {
+                        outlineController.outLinesAnimator[i].SetBool("IsFallingBack", true);
+                    }
                 }
                 else if(Vector2.Distance(transform.position, player.transform.position) >= 4.5f)
                 {
                     directionForAttack = (player.transform.position - transform.position) * 1.5f;
+
+                    for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+                    {
+                        outlineController.outLinesAnimator[i].SetBool("IsFallingBack", false);
+                    }
                 }
                 else
                 {
