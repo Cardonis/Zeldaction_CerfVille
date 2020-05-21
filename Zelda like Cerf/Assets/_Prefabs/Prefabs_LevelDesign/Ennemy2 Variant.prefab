@@ -4828,7 +4828,83 @@ MonoBehaviour:
   outlineColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
   baseGraph: {fileID: 4135952211335555325}
   outLines: []
+  outLinesAnimator: []
   thiccness: 0.08
+--- !u!1001 &545053298355681026
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4135952210824252431}
+    m_Modifications:
+    - target: {fileID: 8389883856423232690, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Particle System Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 12148dbdd572a134ca4024dea88606eb, type: 3}
+--- !u!198 &8358313655154054070 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8389883856423232692, guid: 12148dbdd572a134ca4024dea88606eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 545053298355681026}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2580814092962619036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5047,6 +5123,11 @@ PrefabInstance:
       propertyPath: outlineController
       value: 
       objectReference: {fileID: 2111041570344749568}
+    - target: {fileID: 6033661623695874983, guid: 54637fe6b8bb44b458a624b46c6c27dc,
+        type: 3}
+      propertyPath: trailParticleSystem
+      value: 
+      objectReference: {fileID: 8358313655154054070}
     - target: {fileID: 6823094215960403234, guid: 54637fe6b8bb44b458a624b46c6c27dc,
         type: 3}
       propertyPath: m_Offset.y

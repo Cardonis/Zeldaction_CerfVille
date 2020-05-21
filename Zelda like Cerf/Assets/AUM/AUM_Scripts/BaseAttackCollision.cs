@@ -70,15 +70,19 @@ public class BaseAttackCollision : MonoBehaviour
                     sweetspotParticleSystem.Play();
                 }
 
-                    if (bulletController != null)
+                if (bulletController != null)
                 {
                     ec.StopTakeForce();
                     ec.projected = false;
                     if (GetComponent<MarquePlaceur>() != null)
                     {
-                        sweetspotParticleSystem.Play();
+                        if (player.cameraShake.shaking == false)
+                            player.cameraShake.lastCameraShake = player.cameraShake.StartCoroutine(player.cameraShake.CameraShakeFor(0.1f, 0.1f, 0.25f));
 
-                        bulletLevel = bulletController.levelProjecting * 4;
+                        ec.trailParticleSystem.loop = true;
+                        ec.trailParticleSystem.Play();
+
+                        bulletLevel = (bulletController.levelProjecting + bulletController.bonusLevelProjecting) * 4;
 
                         forceBulletLevel = 2;
                     }

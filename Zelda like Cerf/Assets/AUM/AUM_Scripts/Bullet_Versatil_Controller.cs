@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet_Versatil_Controller : MonoBehaviour
 {
     public LineRenderer lr;
-    [HideInInspector] public Transform player;
+    [HideInInspector] public Player_Main_Controller player;
     public Rigidbody2D rb;
     
     [HideInInspector] public float maxDistance;
@@ -27,7 +27,9 @@ public class Bullet_Versatil_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lr.SetPosition(0, player.position);
+        
+
+        lr.SetPosition(0, player.transform.position);
         lr.SetPosition(1, transform.position);
 
         if (touchedTarget != null)
@@ -35,14 +37,14 @@ public class Bullet_Versatil_Controller : MonoBehaviour
             transform.position = touchedTarget.position;
         }
 
-        if (Vector2.Distance(transform.position, player.position) > maxDistance && touchedTarget == null)
+        if (Vector2.Distance(transform.position, player.transform.position) > maxDistance && touchedTarget == null)
         {
-            if (player.GetComponent<Player_Main_Controller>().marquageManager.marquageControllers.Count != 0)
+            if (player.marquageManager.marquageControllers.Count != 0)
             {
-                player.GetComponent<Player_Main_Controller>().pressX.SetActive(true);
+                player.pressX.SetActive(true);
             }
 
-            player.GetComponent<Player_Main_Controller>().stunned = false;
+            player.stunned = false;
             audiomanager.Stop("Capa_Liane");
             Destroy(gameObject);
         }
@@ -54,7 +56,7 @@ public class Bullet_Versatil_Controller : MonoBehaviour
 
         if(collision.tag == "Wall" || collision.tag == "RoomLimit")
         {
-            player.GetComponent<Player_Main_Controller>().stunned = false;
+            player.stunned = false;
             audiomanager.Stop("Capa_Liane");
             Destroy(gameObject);
             return;
@@ -64,7 +66,7 @@ public class Bullet_Versatil_Controller : MonoBehaviour
         {
             if (ec.GetComponentInChildren<BulletAttack1>() != null || ec.GetComponentInChildren<Bullet_Versatil_Controller>() != null)
             {
-                player.GetComponent<Player_Main_Controller>().stunned = false;
+                player.stunned = false;
                 audiomanager.Stop("Capa_Liane");
                 Destroy(gameObject);
                 return;
@@ -121,6 +123,15 @@ public class Bullet_Versatil_Controller : MonoBehaviour
             }
             else
             {
+                if(bonusLevelProjecting != 0)
+                {
+                    if (player.cameraShake.shaking == false)
+                        player.cameraShake.lastCameraShake = player.cameraShake.StartCoroutine(player.cameraShake.CameraShakeFor(0.1f, 0.1f, 0.25f));
+
+                    ec.trailParticleSystem.loop = true;
+                    ec.trailParticleSystem.Play();
+                }
+
                 ec.StartTakeForce(player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack, levelProjecting + bonusLevelProjecting);
             }
             

@@ -674,7 +674,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         //projected = true;
         //rb.velocity = new Vector2(0, 0);
 
-        bullet.player = transform;
+        bullet.player = this;
         bullet.maxDistance = (rangeMaxVersatilAttack / 4f) + (rangeMaxVersatilAttack * 3f / 4f) / levelProjecting;
         bullet.levelProjecting = levelProjecting;
 
@@ -714,7 +714,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         audiomanager.Play("Capa_Liane");
         bullet.transform.position = target.transform.position;
 
-        bullet.player = transform;
+        bullet.player = this;
         bullet.maxDistance = 20;
         bullet.levelProjecting = levelProjecting;
 

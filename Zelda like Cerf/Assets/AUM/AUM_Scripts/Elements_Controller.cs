@@ -40,6 +40,10 @@ public class Elements_Controller : MonoBehaviour
 
     public OutlineController outlineController;
 
+    public ParticleSystem trailParticleSystem;
+
+    [HideInInspector] public float trailParticleSystemAngle;
+
     public void TakeForce(Vector2 direction, float forceValue, float levelMultiplicator)
     {
         projected = true;
@@ -162,6 +166,16 @@ public class Elements_Controller : MonoBehaviour
             rb.velocity = new Vector2(0,0);
         }
 
+        trailParticleSystemAngle = Vector2.Angle(transform.right, -rb.velocity);
+
+        if (-rb.velocity.y < 0)
+        {
+            trailParticleSystemAngle = -trailParticleSystemAngle;
+        }
+
+        if(GetComponent<Ronces>() == null)
+        trailParticleSystem.transform.rotation = Quaternion.Euler(0, 0, trailParticleSystemAngle);
+
         Invoke("Velocity10FramesAgo", 0.05f);
 
         velocityBeforeImpactAngle = Vector2.Angle(velocityBeforeImpact, transform.right);
@@ -177,6 +191,8 @@ public class Elements_Controller : MonoBehaviour
             playerProjected = false;
             rb.velocity = new Vector2(0, 0);
             levelProjected = 0;
+
+            trailParticleSystem.loop = false;
         }
 
     }

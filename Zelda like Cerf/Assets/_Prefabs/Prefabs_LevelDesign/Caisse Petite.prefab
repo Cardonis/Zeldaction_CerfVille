@@ -16,7 +16,83 @@ MonoBehaviour:
   outlineColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
   baseGraph: {fileID: 7462816930750640262}
   outLines: []
+  outLinesAnimator: []
   thiccness: 0.08
+--- !u!1001 &135822323391377820
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7462816930255590516}
+    m_Modifications:
+    - target: {fileID: 8389883856423232690, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_Name
+      value: Particle System Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 18.886377
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.461689
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389883856423232695, guid: 12148dbdd572a134ca4024dea88606eb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 12148dbdd572a134ca4024dea88606eb, type: 3}
+--- !u!198 &8470236552892224808 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8389883856423232692, guid: 12148dbdd572a134ca4024dea88606eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 135822323391377820}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &367768059317923715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,6 +146,11 @@ PrefabInstance:
       propertyPath: outlineController
       value: 
       objectReference: {fileID: -3014970193200600683}
+    - target: {fileID: 7101001700987042800, guid: 7b256dc489e0fa64b97780e20f608e87,
+        type: 3}
+      propertyPath: trailParticleSystem
+      value: 
+      objectReference: {fileID: 8470236552892224808}
     - target: {fileID: 7101001700987042805, guid: 7b256dc489e0fa64b97780e20f608e87,
         type: 3}
       propertyPath: m_Name
@@ -190,6 +271,12 @@ PrefabInstance:
 --- !u!1 &7462816930255590518 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7101001700987042805, guid: 7b256dc489e0fa64b97780e20f608e87,
+    type: 3}
+  m_PrefabInstance: {fileID: 367768059317923715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7462816930255590516 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7101001700987042807, guid: 7b256dc489e0fa64b97780e20f608e87,
     type: 3}
   m_PrefabInstance: {fileID: 367768059317923715}
   m_PrefabAsset: {fileID: 0}

@@ -34,7 +34,7 @@ public class CrackedPillar : MonoBehaviour
         if (wallDamagePoints >= wallMaxPoints)
         {
             element.player.cameraShake.StopCameraShake();
-            element.player.cameraShake.lastCameraShake = element.player.cameraShake.StartCoroutine(element.player.cameraShake.CameraShakeFor(1.5f, 0.2f, 2));
+            element.player.cameraShake.lastCameraShake = element.player.cameraShake.StartCoroutine(element.player.cameraShake.CameraShakeFor(1f, 0.1f, 2));
             isOpen = true;
             animator.SetBool("isOpen", isOpen);
             pillarCollider.enabled = !isOpen;
