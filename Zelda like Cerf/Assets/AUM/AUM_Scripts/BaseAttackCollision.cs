@@ -9,6 +9,8 @@ public class BaseAttackCollision : MonoBehaviour
     float bulletLevel = 1;
     float forceBulletLevel = 1;
 
+    public ParticleSystem sweetspotParticleSystem;
+
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player_Main_Controller>();
@@ -63,12 +65,19 @@ public class BaseAttackCollision : MonoBehaviour
             {
                 bulletController = ec.GetComponentInChildren<Bullet_Versatil_Controller>();
 
-                if (bulletController != null)
+                if (GetComponent<MarquePlaceur>() != null)
+                {
+                    sweetspotParticleSystem.Play();
+                }
+
+                    if (bulletController != null)
                 {
                     ec.StopTakeForce();
                     ec.projected = false;
                     if (GetComponent<MarquePlaceur>() != null)
                     {
+                        sweetspotParticleSystem.Play();
+
                         bulletLevel = bulletController.levelProjecting * 4;
 
                         forceBulletLevel = 2;
