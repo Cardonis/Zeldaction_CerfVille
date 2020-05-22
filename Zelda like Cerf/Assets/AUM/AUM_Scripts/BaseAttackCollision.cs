@@ -14,6 +14,9 @@ public class BaseAttackCollision : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player_Main_Controller>();
+
+        if(sweetspotParticleSystem != null)
+            sweetspotParticleSystem.gameObject.SetActive(false);
     }
 
 
@@ -67,6 +70,9 @@ public class BaseAttackCollision : MonoBehaviour
 
                 if (GetComponent<MarquePlaceur>() != null)
                 {
+                    if (sweetspotParticleSystem != null)
+                        sweetspotParticleSystem.gameObject.SetActive(true);
+
                     sweetspotParticleSystem.Play();
                 }
 
