@@ -8,6 +8,8 @@ public class LifeDisplay : MonoBehaviour
     int currentHealth;
     int numberOfHearts;
 
+    public Color hearthRegenColor;
+
     public Image[] hearths;
     public Sprite fullHeart;
     public Sprite emptyHeart;
@@ -57,7 +59,15 @@ public class LifeDisplay : MonoBehaviour
                 hearths[i].gameObject.SetActive(true);
             }
 
+            hearths[i].color = Color.white;
+
             i++;
+        }
+
+        if (player.gainingLife == true)
+        {
+            int hearthFilling = (int)Mathf.Ceil(currentHealth / 2f);
+            hearths[hearthFilling - 1].color = hearthRegenColor;
         }
     }
 }

@@ -107,6 +107,8 @@ public class Player_Main_Controller : MonoBehaviour
 
     bool dying = false;
 
+    [HideInInspector] public bool gainingLife = false;
+
     public Color[] ennemyColorDamages = new Color[5];
 
     void Start()
@@ -789,6 +791,27 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         {
             StartCoroutine( Die() );
         }
+    }
+
+    public IEnumerator GainLife(int lifeToRegain)
+    {
+        gainingLife = true;
+
+        for(int i = 0; i < lifeToRegain; i++)
+        {
+            if (currentLife == maxLife)
+            {
+                yield return new WaitForSeconds(0.5f);
+
+                break;
+            }
+
+            currentLife += 1;
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        gainingLife = false;
     }
 
     IEnumerator InvicibilityFrame()

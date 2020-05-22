@@ -6,10 +6,18 @@ public class HealthFlower : MonoBehaviour
 {
     public OutlineController outlineController;
 
+    public ParticleSystem healthParticleSystem;
+
+    public SpriteRenderer sR;
+
+    public GameObject lightt;
+
     bool playerIsNear;
     Player_Main_Controller player;
 
     public int healValue;
+
+    bool desactivating = false;
 
     private void Start()
     {
@@ -48,20 +56,36 @@ public class HealthFlower : MonoBehaviour
     {
         if (Input.GetButtonDown("X") && playerIsNear == true)
         {
-            if (player.currentLife != player.maxLife)
+            if (player.currentLife != player.maxLife && desactivating == false)
             {
                 player.pressX.SetActive(false);
-                player.currentLife += healValue;
+                player.StartCoroutine(player.GainLife(healValue));
 
-                if (player.currentLife > player.maxLife)
-                {
-                    player.currentLife = player.maxLife;
-                }
+                StartCoroutine(DesactivationAfter(2f));
+
+                healthParticleSystem.Play();
 
                 outlineController.outLining = false;
-
-                Destroy(gameObject);
             }
         }
+    }
+
+    IEnumerator DesactivationAfter(float time)
+    {
+        desactivating = true;
+
+        sR.gameObject.SetActive(false);
+
+        lightt.SetActive(false);
+
+        yield return new WaitForSeconds(time);
+
+        sR.gameObject.SetActive(true);
+
+        lightt.SetActive(true);
+
+        desactivating = false;
+
+        gameObject.SetActive(false);
     }
 }

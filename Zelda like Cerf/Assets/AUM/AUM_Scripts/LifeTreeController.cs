@@ -12,6 +12,8 @@ public class LifeTreeController : MonoBehaviour
 
     public OutlineController outlineController;
 
+    public ParticleSystem healthParticleSystem;
+
     private void Start()
     {
         playerIsNear = false;
@@ -57,7 +59,9 @@ public class LifeTreeController : MonoBehaviour
             player.pressX.SetActive(false);
             outlineController.outLining = false;
 
-            player.currentLife = player.maxLife;
+            healthParticleSystem.Play();
+
+           player.StartCoroutine(player.GainLife(player.maxLife - player.currentLife));
 
             for(int i = 0; i < rooms.Count; i++)
             {
