@@ -6,10 +6,18 @@ public class TiersDecoeur : MonoBehaviour
 {
     public OutlineController outlineController;
 
+    public ParticleSystem healthParticleSystem;
+
+    public SpriteRenderer sR;
+
+    public GameObject lightt;
+
     GameObject pressX;
     private Player_Main_Controller player;
     InventoryBook inventoryBook;
     bool playerIsNear;
+
+    bool desactivating = false;
 
     private void Start()
     {
@@ -45,10 +53,55 @@ public class TiersDecoeur : MonoBehaviour
         if(playerIsNear == true && Input.GetButtonDown("X"))
         {
             inventoryBook.currentNumberOfHearthThird++;
+
+            inventoryBook.StartCoroutine(HeartThirdShow());
+
+            healthParticleSystem.Play();
+
+            StartCoroutine(DesactivationAfter(2f));
+
             pressX.SetActive(false);
             outlineController.outLining = false;
-
-            Destroy(gameObject);
         }
+    }
+
+    IEnumerator HeartThirdShow()
+    {
+        float elapsedTime = 0.0f;
+
+        player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].gameObject.SetActive(true);
+        Color c = player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].color;
+
+        while (elapsedTime < 4f * inventoryBook.currentNumberOfHearthThird)
+        {
+            elapsedTime += Time.deltaTime;
+            c.a = 1.0f - Mathf.Clamp01(elapsedTime / (4f * inventoryBook.currentNumberOfHearthThird));
+            player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].color = c;
+            yield return null;
+        }
+
+        c.a = 1.0f;
+        player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].color = c;
+
+        player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].gameObject.SetActive(false);
+    }
+
+    IEnumerator DesactivationAfter(float time)
+    {
+        desactivating = true;
+
+        sR.gameObject.SetActive(false);
+
+        lightt.SetActive(false);
+
+        yield return new WaitForSeconds(time);
+
+        sR.gameObject.SetActive(true);
+
+        lightt.SetActive(true);
+
+        desactivating = false;
+
+        gameObject.SetActive(false);
     }
 }

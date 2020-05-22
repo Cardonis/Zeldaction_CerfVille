@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LifeDisplay : MonoBehaviour
 {
     int currentHealth;
-    int numberOfHearts;
+    [HideInInspector] public int numberOfHearts;
 
     public Color hearthRegenColor;
 
@@ -50,11 +50,7 @@ public class LifeDisplay : MonoBehaviour
             }
 
 
-            if(i >= numberOfHearts)
-            {
-                hearths[i].gameObject.SetActive(false);
-            }
-            else
+            if(i < numberOfHearts)
             {
                 hearths[i].gameObject.SetActive(true);
             }

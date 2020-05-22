@@ -17,6 +17,7 @@ MonoBehaviour:
   baseGraph: {fileID: 1437559409036327640}
   outLines: []
   outLinesAnimator: []
+  healthRegenParticleSystem: {fileID: 0}
   thiccness: 0.08
 --- !u!1 &6742294193743194001
 GameObject:
@@ -297,6 +298,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2827467778919702885}
     m_Modifications:
+    - target: {fileID: 41719932678220235, guid: 8684756c344d8704bbbde1acb0caa1a0,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 991832945788905630, guid: 8684756c344d8704bbbde1acb0caa1a0,
         type: 3}
       propertyPath: m_LocalPosition.x
