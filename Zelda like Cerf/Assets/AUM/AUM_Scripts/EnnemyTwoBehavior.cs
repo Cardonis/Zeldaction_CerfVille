@@ -127,10 +127,20 @@ public class
                 if (Vector2.Distance(transform.position, player.transform.position) <= distanceToPlayer - 1f)
                 {
                     directionForAttack = transform.position - player.transform.position;
+
+                    for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+                    {
+                        outlineController.outLinesAnimator[i].SetBool("IsFallingBack", true);
+                    }
                 }
                 else if (Vector2.Distance(transform.position, player.transform.position) >= distanceToPlayer + 1f)
                 {
                     directionForAttack = (player.transform.position - transform.position);
+
+                    for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+                    {
+                        outlineController.outLinesAnimator[i].SetBool("IsFallingBack", false);
+                    }
                 }
                 else
                 {
@@ -342,7 +352,7 @@ public class
 
                 for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
                 {
-                    outlineController.outLinesAnimator[i].SetTrigger("IsThrowingRock");
+                    outlineController.outLinesAnimator[i].SetTrigger("Attacks");
                 }
 
                 direction = (player.transform.position - transform.position).normalized;

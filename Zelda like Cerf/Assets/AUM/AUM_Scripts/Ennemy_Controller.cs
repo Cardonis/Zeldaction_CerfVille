@@ -87,8 +87,11 @@ public abstract class Ennemy_Controller : Elements_Controller
     IEnumerator TakeDamage(float damageTaken, float damageDirectionAngle)
     {
         StartCoroutine(InvicibilityFrame());
-
-        pv -= damageTaken;
+        for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
+        {
+            outlineController.outLinesAnimator[i].SetTrigger("IsHurt");
+        }
+            pv -= damageTaken;
 
         damageParticleSystem.transform.localEulerAngles = rb.velocity;
 
