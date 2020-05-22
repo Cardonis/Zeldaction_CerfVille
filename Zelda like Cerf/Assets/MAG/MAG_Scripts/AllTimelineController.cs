@@ -40,12 +40,14 @@ public class AllTimelineController : MonoBehaviour
                 
             }
         }
+
+
     }
 
-    public void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (player!= null && cinematicIsInteraction == true)
-        player.pressX.SetActive(false);
+        if (player != null && cinematicIsInteraction == true)
+            player.pressX.SetActive(false);
         playerIsNear = false;
     }
 

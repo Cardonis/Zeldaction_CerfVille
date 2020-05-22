@@ -11,10 +11,16 @@ public class PartBlocks : MonoBehaviour
 
     public int partToBlock;
 
+    Animator animator;
+    public bool hasFall;
+    public bool isFalling;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
+        hasFall = false;
+        isFalling = false;
     }
 
     // Update is called once per frame
@@ -22,13 +28,17 @@ public class PartBlocks : MonoBehaviour
     {
         if(player.part == partToBlock)
         {
+            
             col.enabled = true;
-            sR.enabled = true;
+            isFalling = true;
+            hasFall = true;
         }
         else
         {
             col.enabled = false;
-            sR.enabled = false;
+
         }
+        animator.SetBool("hasFall", hasFall);
+        animator.SetBool("isFalling", isFalling);
     }
 }
