@@ -276,6 +276,26 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 2025445692}
+    - target: {fileID: 2999257143944465772, guid: 86c023901be0c924e9ea704b8ee5a080,
+        type: 3}
+      propertyPath: sounds.Array.data[3].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999257143944465772, guid: 86c023901be0c924e9ea704b8ee5a080,
+        type: 3}
+      propertyPath: sounds.Array.data[26].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999257143944465772, guid: 86c023901be0c924e9ea704b8ee5a080,
+        type: 3}
+      propertyPath: sounds.Array.data[27].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999257143944465772, guid: 86c023901be0c924e9ea704b8ee5a080,
+        type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7691491351211713956, guid: 86c023901be0c924e9ea704b8ee5a080,
         type: 3}
       propertyPath: player
@@ -2564,12 +2584,12 @@ PrefabInstance:
     - target: {fileID: 5999250643188420247, guid: a8113691204afc54ea20e3c1733cd5a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -186.88
+      value: -185.9
       objectReference: {fileID: 0}
     - target: {fileID: 5999250643188420247, guid: a8113691204afc54ea20e3c1733cd5a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -91.24
+      value: -92.4
       objectReference: {fileID: 0}
     - target: {fileID: 5999250643188420247, guid: a8113691204afc54ea20e3c1733cd5a8,
         type: 3}
@@ -3195,7 +3215,7 @@ PrefabInstance:
         type: 3}
       propertyPath: tips2
       value: 
-      objectReference: {fileID: 1447767369}
+      objectReference: {fileID: 1655995806}
     - target: {fileID: 4597813765544884564, guid: 26351ec34f5ffd043afb068184daea04,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4655,12 +4675,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1349805467}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1447767369 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7560861049356597032, guid: cff34bc6e42604f49b8f4a76262ba7c5,
-    type: 3}
-  m_PrefabInstance: {fileID: 2025445688}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1505539330 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9088433855865740155, guid: 4272ce514120c5c4ab01f579b346d45a,
@@ -5394,6 +5408,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7913167469596550647, guid: c59b73b5d9d524c4e9da82a04c780595,
     type: 3}
   m_PrefabInstance: {fileID: 1645403401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1655995806 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5678681906787878032, guid: cff34bc6e42604f49b8f4a76262ba7c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2025445688}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1672827442
 PrefabInstance:
@@ -7042,6 +7062,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2554334672461669375, guid: cff34bc6e42604f49b8f4a76262ba7c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2831716777755395485, guid: cff34bc6e42604f49b8f4a76262ba7c5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -7407,6 +7432,12 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
       value: UI_Enter
       objectReference: {fileID: 0}
+    - target: {fileID: 3236680855450931490, guid: cff34bc6e42604f49b8f4a76262ba7c5,
+        type: 3}
+      propertyPath: m_Text
+      value: Si tu touche un ennemi que tu attire avec la zone lumineuse du coup
+        de vent, tu peux le projetter encore plus fort !
+      objectReference: {fileID: 0}
     - target: {fileID: 3474284515452306397, guid: cff34bc6e42604f49b8f4a76262ba7c5,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -7441,6 +7472,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
       value: UI_Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 3694809117113113002, guid: cff34bc6e42604f49b8f4a76262ba7c5,
+        type: 3}
+      propertyPath: m_Text
+      value: Juste avoir projetter un ennemi, inverser la position du joystick droit
+        et viser dans la direction de l'objet augmentera la porte de la liane ainsi
+        que sa puissance.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104983529207673070, guid: cff34bc6e42604f49b8f4a76262ba7c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185698552825490733, guid: cff34bc6e42604f49b8f4a76262ba7c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8537593079218395338, guid: cff34bc6e42604f49b8f4a76262ba7c5,
         type: 3}
@@ -14682,12 +14730,12 @@ PrefabInstance:
     - target: {fileID: 9088433854412253897, guid: 4272ce514120c5c4ab01f579b346d45a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.660004
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 9088433854412253897, guid: 4272ce514120c5c4ab01f579b346d45a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: -6.019989
       objectReference: {fileID: 0}
     - target: {fileID: 9088433854412253898, guid: 4272ce514120c5c4ab01f579b346d45a,
         type: 3}
@@ -14762,7 +14810,7 @@ PrefabInstance:
     - target: {fileID: 9088433855240632498, guid: 4272ce514120c5c4ab01f579b346d45a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6666565
+      value: -1.6666718
       objectReference: {fileID: 0}
     - target: {fileID: 9088433855240632499, guid: 4272ce514120c5c4ab01f579b346d45a,
         type: 3}
