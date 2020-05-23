@@ -23,7 +23,12 @@ public class AudioManager : MonoBehaviour
 
     private float VolumeChange;
 
+    private InventoryBook inventoryBook;
 
+    Vector2 input;
+
+    private bool DeplacementPlaying;
+    private bool ButtonPlaying;
     void Awake()
     {
 
@@ -52,22 +57,29 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-
+        inventoryBook = GameObject.Find("InventoryBook").GetComponent<InventoryBook>();
     }
 
     private void Update()
     {
-        /*if (SoundEffectsVolume != VolumeChange)
+        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        if (input.magnitude > 0 && inventoryBook.iventoryIsOpen == false)
         {
+            if (DeplacementPlaying == false) { StartCoroutine(PlayOneOf("Deplacement", "Deplacement2", "Deplacement3", gameObject)); }
+        }
+        else if (inventoryBook.iventoryIsOpen == true && input.magnitude > 0.8 && ButtonPlaying == false)
+        {
+            StartCoroutine(PlayButton());
+        }
 
-            foreach (Sound s in sounds)
-            {
-                s.source.volume = s.volume * SoundEffectsVolume;
-            }
 
-            VolumeChange = SoundEffectsVolume;
 
-        }*/
+            
+
+
+        
+
     }
 
     public void Play (string name)
@@ -115,11 +127,6 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void StopPlay()
-    {
-        Destroy(GetComponent<AudioSource>());
-    }
-
     public IEnumerator PlayOne(string name, GameObject here)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -135,23 +142,13 @@ public class AudioManager : MonoBehaviour
 
         thisSource.Play();
 
+        Debug.Log("PlayButton");
+
         yield return new WaitForSecondsRealtime(s.source.clip.length);
 
         thisSource.Stop();
 
         Destroy(thisSource);
-
-    }
-
-    public IEnumerator PlayOneOne(bool isPlaying)
-    {
-
-
-        isPlaying = true;
-
-        yield return new WaitForSecondsRealtime(1);
-
-        isPlaying = false;
 
     }
 
@@ -185,42 +182,76 @@ public class AudioManager : MonoBehaviour
 
     }
 
+
+    public IEnumerator PlayButton()
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == "UI_Button");
+
+        s.source.volume = s.volume * SoundEffectsVolume;
+
+        ButtonPlaying = true;
+
+        s.source.Play();
+
+        yield return new WaitForSecondsRealtime(s.source.clip.length + 0.15f);
+
+        s.source.Stop();
+
+        ButtonPlaying = false;
+
+    }
+
+    public IEnumerator PlayOneOf(string name1, string name2, string name3, GameObject here)
+    {
+
+            int temp = UnityEngine.Random.Range(0,2);
+
+            string musicName = "";
+
+            switch (temp)
+            {
+                case 0:
+                    musicName = name1;
+                    break;
+                case 1:
+                    musicName = name2;
+                    break;
+                default:
+                    break;
+            }
+
+            Sound s = Array.Find(sounds, sound => sound.name == musicName);
+
+
+            AudioSource thisSource = s.source;
+
+            thisSource.clip = s.Clip;
+
+            thisSource.volume = s.volume * SoundEffectsVolume;
+
+            thisSource.loop = s.loop;
+
+            DeplacementPlaying = true;
+
+            thisSource.Play();            
+
+            yield return new WaitForSecondsRealtime(s.source.clip.length);
+
+            thisSource.Stop();
+
+            //yield return new WaitForSecondsRealtime(0.1f);
+
+            DeplacementPlaying = false;
+    }
+
+
     private void WaitForSeconds()
     {
         throw new NotImplementedException();
     }
 
-    public void RePlay (string name)
-    {
 
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
 
-            Debug.LogWarning("Sound : " + name + " not found !");
-            return;
-
-        }
-
-        s.alreadyPlayed = false;
-                              
-    }
-
-    public void AlreadyPlay(string name)
-    {
-
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-
-            Debug.LogWarning("Sound : " + name + " not found !");
-            return;
-
-        }
-
-        s.alreadyPlayed = true;
-
-    }
 
     public void Stop(string name)
     {
@@ -239,6 +270,6 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+   
 
 }
