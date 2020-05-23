@@ -55,6 +55,10 @@ public class GroundButton : Buttonmanager
         {
             notFullyPressed = false;
             isPressed = true;
+            if(wasPressed)
+            {
+
+            }
             if (wasPressed == false && IsPlaying == false) {StartCoroutine(audiomanager.PlayOne("ButtonOn", gameObject)); StartCoroutine(PlayOneOne()); }
         }
         else if(currentPressionMass <= totalMass && currentPressionMass != 0)

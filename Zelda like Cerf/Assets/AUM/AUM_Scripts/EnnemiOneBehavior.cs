@@ -54,10 +54,15 @@ public class EnnemiOneBehavior : Ennemy_Controller
 
             foreach (Ennemy_Controller ennemy_Controller in ennemy_Controllers)
             {
-                ennemy_Controller.playerDetected = true;
                 ennemy_Controller.canMove = true;
-                MusicManager.InBattle = true;
-                MusicManager.EnemyInBattle += 1;
+
+                if(ennemy_Controller.playerDetected == false)
+                {
+                    ennemy_Controller.playerDetected = true;
+                    MusicManager.InBattle = true;
+                    MusicManager.EnemyInBattle += 1;
+                }
+                
             }
 
             canMove = true;
