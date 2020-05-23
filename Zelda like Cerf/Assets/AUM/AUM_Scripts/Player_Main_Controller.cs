@@ -186,8 +186,7 @@ public class Player_Main_Controller : MonoBehaviour
                 else
                     direction = input;
 
-                audiomanager.Play("Deplacement");
-                audiomanager.AlreadyPlay("Deplacement");
+
                 if(currentPierre != null)
                 {
                     rb.velocity = (direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime) * ( 6 - currentPierre.mass) / 6;
@@ -201,8 +200,6 @@ public class Player_Main_Controller : MonoBehaviour
             else
             {
                 rb.velocity = new Vector2(0, 0);
-                audiomanager.Stop("Deplacement");
-                audiomanager.RePlay("Deplacement");
             }
 
             if (inputAim.magnitude > 0)

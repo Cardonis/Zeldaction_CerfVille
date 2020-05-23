@@ -11,11 +11,15 @@ public class MainMenu : MonoBehaviour
 
     public GameObject partsFirstButton, mainMenuFirstButton, optionsFirstButton, newGameFirstButton, continueButton, newGameMenu;
 
+    private MainSoundManager mainSoundManager;
+
     private void Start()
     {
         BacktoMainMenu();
 
-        if(continueButton != null)
+        mainSoundManager = GameObject.Find("MainMenuSounds").GetComponent<MainSoundManager>();
+
+        if (continueButton != null)
         {
             string path = Application.persistentDataPath + "/player.save";
             if (File.Exists(path))
@@ -48,6 +52,7 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
+            StartCoroutine(mainSoundManager.FadeOut(mainSoundManager.CurrentMusic.source, 0.5f));
             PlayGame();
         }
     }
