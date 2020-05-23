@@ -44,6 +44,13 @@ public class WallButton : Buttonmanager
 
         if (detectedObjectMass * detectedObjectProjectionLevel >= scoreNeeded)
         {
+            if (lastStarting != null)
+                StopCoroutine(lastStarting);
+
+            lastStarting = StartCoroutine(StartLineLit(0f, 1f, 0.5f));
+
+            if (element.player.cameraShake.shaking == false)
+                element.player.cameraShake.lastCameraShake = element.player.cameraShake.StartCoroutine(element.player.cameraShake.CameraShakeFor(0.1f, 0.1f, 0.25f));
             isPressed = true;
             if (IsPlaying == false) { StartCoroutine(audiomanager.PlayOne("ButtonOn", gameObject)); StartCoroutine(PlayOneOne()); }
         }

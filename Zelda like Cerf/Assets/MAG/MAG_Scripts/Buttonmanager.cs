@@ -8,23 +8,37 @@ public class Buttonmanager : MonoBehaviour
 
     public Renderer dissolveMaterial;
 
-    /*IEnumerator LineLitFromToFor(float valueFrom, float valueTo, float timeFor)
+    [HideInInspector] public Coroutine lastLineLit;
+
+    [HideInInspector] public Coroutine lastStarting;
+
+    public IEnumerator StartLineLit(float valueFrom, float valueTo, float timeFor)
+    {
+        while(lastLineLit != null)
+        {
+            yield return null;
+        }
+
+        lastLineLit = StartCoroutine(LineLitFromToFor(valueFrom, valueTo, timeFor));
+
+        lastStarting = null;
+    }
+
+    public IEnumerator LineLitFromToFor(float valueFrom, float valueTo, float timeFor)
     {
         float elapsedTime = 0.0f;
 
-        Color c = dissolveMaterial.color;
+        dissolveMaterial.material.SetFloat("_Fade", valueTo);
 
         while (elapsedTime < timeFor)
         {
             elapsedTime += Time.deltaTime;
-            c.a = 1.0f - Mathf.Clamp01(elapsedTime / (timeFor));
-            player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].color = c;
+            dissolveMaterial.material.SetFloat("_Fade", valueFrom - Mathf.Clamp01(elapsedTime / timeFor) * (valueFrom - valueTo) );
             yield return null;
         }
 
-        c.a = 1.0f;
-        player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].color = c;
+        dissolveMaterial.material.SetFloat("_Fade", valueTo);
 
-        player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].gameObject.SetActive(false);
-    }*/
+        lastLineLit = null;
+    }
 }

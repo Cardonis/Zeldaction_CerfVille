@@ -32,6 +32,10 @@ public class TimeConnectors : MonoBehaviour
 
             if (allButtons[counter].isPressed == true)
             {
+                if (allButtons[counter].lastStarting != null)
+                    allButtons[counter].StopCoroutine(allButtons[counter].lastStarting);
+
+                allButtons[counter].lastStarting = allButtons[counter].StartCoroutine(allButtons[counter].StartLineLit(1f, 0f, initialTimer - 0.5f));
                 timerIsActive = true;
                 counter = allButtons.Length + 1;
             }
@@ -62,6 +66,20 @@ public class TimeConnectors : MonoBehaviour
             {
                 foreach (Buttonmanager buttonsActivated in allButtons)
                 {
+                    if (buttonsActivated.lastStarting != null)
+                    {
+                        buttonsActivated.StopCoroutine(buttonsActivated.lastStarting);
+                        buttonsActivated.lastStarting = null;
+                    }
+
+                    if (buttonsActivated.lastLineLit != null)
+                    {
+                        buttonsActivated.StopCoroutine(buttonsActivated.lastLineLit);
+                        buttonsActivated.lastLineLit = null;
+                    }
+
+                    buttonsActivated.dissolveMaterial.material.SetFloat("_Fade", 0f);
+
                     buttonsActivated.isPressed = false;
                     StartCoroutine(audiomanager.PlayOne("ButtonOff", gameObject));
                 }
@@ -72,6 +90,23 @@ public class TimeConnectors : MonoBehaviour
 
             if (numberOfActiveButtons == allButtons.Length)
             {
+                foreach (Buttonmanager buttonsActivated in allButtons)
+                {
+                    if (buttonsActivated.lastStarting != null)
+                    {
+                        buttonsActivated.StopCoroutine(buttonsActivated.lastStarting);
+                        buttonsActivated.lastStarting = null;
+                    }
+
+                    if (buttonsActivated.lastLineLit != null)
+                    {
+                        buttonsActivated.StopCoroutine(buttonsActivated.lastLineLit);
+                        buttonsActivated.lastLineLit = null;
+                    }
+
+                    buttonsActivated.lastStarting = buttonsActivated.StartCoroutine(buttonsActivated.StartLineLit(buttonsActivated.dissolveMaterial.material.GetFloat("_Fade"), 1f, 0.5f));
+                }
+
                 timerIsActive = false;
                 openDoor = true;
             }

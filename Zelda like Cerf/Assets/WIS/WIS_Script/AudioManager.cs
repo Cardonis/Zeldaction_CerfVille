@@ -142,8 +142,6 @@ public class AudioManager : MonoBehaviour
 
         thisSource.Play();
 
-        Debug.Log("PlayButton");
-
         yield return new WaitForSecondsRealtime(s.source.clip.length);
 
         thisSource.Stop();

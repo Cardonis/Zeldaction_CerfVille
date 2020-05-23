@@ -13,6 +13,8 @@ public class GroundButton : Buttonmanager
     Animator animator;
     Animator animatorNotFullyPressed;
 
+    Player_Main_Controller player;
+
     AudioManager audiomanager;
     bool wasPressed;
     bool IsPlaying;
@@ -43,11 +45,8 @@ public class GroundButton : Buttonmanager
             Caisse_Controller element = pierreColliders[i].GetComponentInParent<Caisse_Controller>();
             if(element != null)
             {
-                currentPressionMass += pierreColliders[i].GetComponentInParent<Caisse_Controller>().mass;
-            }
-            else
-            {
-                notFullyPressed = false;
+                currentPressionMass += element.mass;
+                player = element.player;
             }
            
         }
@@ -55,20 +54,48 @@ public class GroundButton : Buttonmanager
         {
             notFullyPressed = false;
             isPressed = true;
-            if(wasPressed)
+            if(wasPressed == false)
             {
+                if (player.cameraShake.shaking == false)
+                    player.cameraShake.lastCameraShake = player.cameraShake.StartCoroutine(player.cameraShake.CameraShakeFor(0.1f, 0.1f, 0.25f));
 
+                if (lastStarting != null)
+                    StopCoroutine(lastStarting);
+
+                lastStarting = StartCoroutine(StartLineLit(dissolveMaterial.material.GetFloat("_Fade"), 1f, 0.5f));
             }
+
             if (wasPressed == false && IsPlaying == false) {StartCoroutine(audiomanager.PlayOne("ButtonOn", gameObject)); StartCoroutine(PlayOneOne()); }
         }
         else if(currentPressionMass <= totalMass && currentPressionMass != 0)
         {
             isPressed = false;
+
+            if (notFullyPressed == false)
+            {
+                if (lastStarting != null)
+                    StopCoroutine(lastStarting);
+
+                lastStarting = StartCoroutine(StartLineLit(dissolveMaterial.material.GetFloat("_Fade"), 0.5f, 0.5f));
+            }
+
             notFullyPressed = true;
         }
         else
         {
             isPressed = false;
+
+            if (wasPressed == true || notFullyPressed == true)
+            {
+                if (lastStarting != null)
+                    StopCoroutine(lastStarting);
+
+                lastStarting = StartCoroutine(StartLineLit(dissolveMaterial.material.GetFloat("_Fade"), 0f, 0.5f));
+            }
+
+            if ((wasPressed == true || notFullyPressed == true)&& IsPlaying == false) { StartCoroutine(audiomanager.PlayOne("ButtonOn", gameObject)); StartCoroutine(PlayOneOne()); }
+
+            notFullyPressed = false;
         }
         
     }
