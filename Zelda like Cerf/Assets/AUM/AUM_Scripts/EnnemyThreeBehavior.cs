@@ -10,6 +10,7 @@ public class EnnemyThreeBehavior : Ennemy_Controller
     public float attackCooldown;
     float attackCooldownTimer = 0;
     public float attackRange;
+    public float attackRangeToPlayer;
     public Collider2D physicCollider;
     public float attackForce;
     public float attackBulletForce;
@@ -69,15 +70,15 @@ public class EnnemyThreeBehavior : Ennemy_Controller
             {
                 speed = attackSpeed;
 
-                if (Vector2.Distance(transform.position, player.transform.position) <= 8.5f)
+                if (Vector2.Distance(transform.position, player.transform.position) <= attackRangeToPlayer)
                 {
-                    directionForAttack = (transform.position - player.transform.position).normalized * (1f + 8.5f - Vector2.Distance(transform.position, player.transform.position) );
+                    directionForAttack = (transform.position - player.transform.position).normalized * (1f + attackRangeToPlayer - Vector2.Distance(transform.position, player.transform.position) );
                     for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
                     {
                         outlineController.outLinesAnimator[i].SetBool("IsFallingBack", true);
                     }
                 }
-                else if (Vector2.Distance(transform.position, player.transform.position) >= 9.5f)
+                else if ( Vector2.Distance(transform.position, player.transform.position) >= (attackRangeToPlayer + 1) )
                 {
                     directionForAttack = (player.transform.position - transform.position).normalized;
                     for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
