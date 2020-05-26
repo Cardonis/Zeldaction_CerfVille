@@ -19,6 +19,8 @@ public class TiersDecoeur : MonoBehaviour
 
     bool desactivating = false;
 
+    bool collected = false;
+
     private void Start()
     {
         playerIsNear = false;
@@ -50,8 +52,10 @@ public class TiersDecoeur : MonoBehaviour
 
     void Update()
     {
-        if(playerIsNear == true && Input.GetButtonDown("X"))
+        if(playerIsNear == true && Input.GetButtonDown("X") && collected == false)
         {
+            collected = true;
+
             inventoryBook.currentNumberOfHearthThird++;
 
             inventoryBook.StartCoroutine(HeartThirdShow());
@@ -61,6 +65,7 @@ public class TiersDecoeur : MonoBehaviour
             StartCoroutine(DesactivationAfter(2f));
 
             pressX.SetActive(false);
+
             outlineController.outLining = false;
         }
     }

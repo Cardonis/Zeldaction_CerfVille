@@ -37,6 +37,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             player.pressX.SetActive(false);
             playerIsNear = false;
+            asTalked = false;
 
             outlineController.outLining = false;
         }
@@ -45,7 +46,7 @@ public class DialogueTrigger : MonoBehaviour
     private void Update()
     {
         
-        if (Input.GetButtonDown("X") && dialogueManager.dialogueStarted == false && playerIsNear == true)
+        if (Input.GetButtonDown("X") && dialogueManager.dialogueStarted == false && playerIsNear == true && asTalked == false)
         {
             asTalked = true;
             player.pressX.SetActive(false);

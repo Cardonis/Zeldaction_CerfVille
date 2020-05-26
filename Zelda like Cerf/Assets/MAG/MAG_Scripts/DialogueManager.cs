@@ -18,6 +18,11 @@ public class DialogueManager : MonoBehaviour
 
     public Cinemachine.CinemachineVirtualCamera cmVcam;
     private Queue<string> sentences;
+
+    public DialogueManager dialogueManager;
+
+    public bool skip = false;
+    [HideInInspector] public bool inSentence=false;
     void Start()
     {
         sentenceFullyDisplay = true;
@@ -30,7 +35,11 @@ public class DialogueManager : MonoBehaviour
         {
             audioManager.Stop("Deplacement");
             cmVcam.m_Lens.OrthographicSize = Mathf.SmoothStep(cmVcam.m_Lens.OrthographicSize, 5f, 3.5f * Time.fixedDeltaTime);
-            if(sentenceFullyDisplay == true)
+
+            if (sentenceFullyDisplay == false && Input.GetButtonDown("X") && inSentence == true)
+                dialogueManager.skip = true;
+
+            if (sentenceFullyDisplay == true)
             {
                 XtoContinue.SetActive(true);
                 if (Input.GetButtonDown("X"))
@@ -48,6 +57,7 @@ public class DialogueManager : MonoBehaviour
         sentences.Clear();
         dialogueStarted = true;
         animator.SetBool("IsOpen", true);
+        
 
         foreach (string sentence in dialogue.sentences)
         {
@@ -94,12 +104,27 @@ public class DialogueManager : MonoBehaviour
         XtoContinue.SetActive(false);
         sentenceFullyDisplay = false;
         dialogueText.text = "";
+        dialogueManager.skip = false;
+        inSentence = true;
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return new WaitForSeconds(0.02f);
+
+            if ( dialogueManager.skip == false)
+            {
+                yield return new WaitForSeconds(0.02f);
+               
+            }
+            else
+            {
+
+                yield return null;
+            }
         }
+        inSentence = false;
+        dialogueManager.skip = false;
         sentenceFullyDisplay = true;
 
     }
+
 }
