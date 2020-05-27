@@ -16,7 +16,7 @@ public class Player_Main_Controller : MonoBehaviour
 
     public LifeDisplay lifeDisplay;
 
-    [Range(100.0f, 800.0f)] public float speed;
+    [Range(200f, 1600f)] public float speed;
 
     [HideInInspector] public int currentLife;
     public int maxLife;

@@ -30,23 +30,11 @@ public class CameraShake : MonoBehaviour
 
         GamePad.SetVibration(0, force / 5, force / 5);
 
-        for(float i = time; i > 0; i -= Time.deltaTime)
-        {
-            cmVcamNoise.m_AmplitudeGain = force;
-
-            GamePad.SetVibration(0, force / 5, force / 5);
-
-            yield return new WaitForFixedUpdate();
-        }
+        yield return new WaitForSeconds(time);
 
         cmVcamNoise.m_AmplitudeGain = 0;
 
-        for (float i = secondTime; i > 0; i -= Time.deltaTime)
-        {
-            GamePad.SetVibration(0, force / 5, force / 5);
-
-            yield return new WaitForFixedUpdate();
-        }
+        yield return new WaitForSeconds(secondTime);
 
         GamePad.SetVibration(0, 0, 0);
 
