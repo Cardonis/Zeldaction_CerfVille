@@ -18,10 +18,11 @@ public class HealthFlower : MonoBehaviour
     public int healValue;
 
     bool desactivating = false;
-
+    AudioManager audioManager;
     private void Start()
     {
         playerIsNear = false;
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -73,7 +74,7 @@ public class HealthFlower : MonoBehaviour
     IEnumerator DesactivationAfter(float time)
     {
         desactivating = true;
-
+        audioManager.Play("Item_Soin");
         sR.gameObject.SetActive(false);
 
         lightt.SetActive(false);

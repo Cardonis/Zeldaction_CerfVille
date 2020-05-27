@@ -21,9 +21,11 @@ public class TiersDecoeur : MonoBehaviour
 
     bool collected = false;
 
+    AudioManager audioManager;
     private void Start()
     {
         playerIsNear = false;
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -94,7 +96,7 @@ public class TiersDecoeur : MonoBehaviour
     IEnumerator DesactivationAfter(float time)
     {
         desactivating = true;
-
+        audioManager.Play("Item_Coeur");
         sR.gameObject.SetActive(false);
 
         lightt.SetActive(false);

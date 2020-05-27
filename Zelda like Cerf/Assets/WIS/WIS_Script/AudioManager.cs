@@ -66,7 +66,8 @@ public class AudioManager : MonoBehaviour
 
         if (input.magnitude > 0 && inventoryBook.iventoryIsOpen == false)
         {
-            if (DeplacementPlaying == false) { StartCoroutine(PlayOneOf("Deplacement", "Deplacement2", "Deplacement3", gameObject)); }
+            if (DeplacementPlaying == false && MusicManager.PlayerCurrentPos != MusicManager.PlayerPos.Donjon01) { StartCoroutine(PlayOneOf("D1", "D2", "D3")); }
+            else if (DeplacementPlaying == false) { StartCoroutine(PlayOneOf("D4", "D5", "D6")); }
         }
         else if (inventoryBook.iventoryIsOpen == true && input.magnitude > 0.8 && ButtonPlaying == false)
         {
@@ -199,7 +200,7 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public IEnumerator PlayOneOf(string name1, string name2, string name3, GameObject here)
+    public IEnumerator PlayOneOf(string name1, string name2, string name3)
     {
 
             int temp = UnityEngine.Random.Range(0,2);
