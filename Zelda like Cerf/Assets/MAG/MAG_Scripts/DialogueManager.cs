@@ -19,8 +19,6 @@ public class DialogueManager : MonoBehaviour
     public Cinemachine.CinemachineVirtualCamera cmVcam;
     private Queue<string> sentences;
 
-    public DialogueManager dialogueManager;
-
     public bool skip = false;
     [HideInInspector] public bool inSentence=false;
     void Start()
@@ -37,7 +35,7 @@ public class DialogueManager : MonoBehaviour
             cmVcam.m_Lens.OrthographicSize = Mathf.SmoothStep(cmVcam.m_Lens.OrthographicSize, 5f, 3.5f * Time.fixedDeltaTime);
 
             if (sentenceFullyDisplay == false && Input.GetButtonDown("X") && inSentence == true)
-                dialogueManager.skip = true;
+                skip = true;
 
             if (sentenceFullyDisplay == true)
             {
@@ -104,25 +102,19 @@ public class DialogueManager : MonoBehaviour
         XtoContinue.SetActive(false);
         sentenceFullyDisplay = false;
         dialogueText.text = "";
-        dialogueManager.skip = false;
+        skip = false;
         inSentence = true;
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
 
-            if ( dialogueManager.skip == false)
+            if ( skip == false)
             {
                 yield return new WaitForSeconds(0.02f);
-               
-            }
-            else
-            {
-
-                yield return null;
             }
         }
         inSentence = false;
-        dialogueManager.skip = false;
+        skip = false;
         sentenceFullyDisplay = true;
 
     }
