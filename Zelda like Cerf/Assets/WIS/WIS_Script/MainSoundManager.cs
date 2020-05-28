@@ -16,8 +16,6 @@ public class MainSoundManager : MonoBehaviour
 
     public Music CurrentMusic;
 
-    private bool ButtonPlaying;
-    Vector2 input;
     void Awake()
     {
         if (instance == null) instance = this;
@@ -46,7 +44,7 @@ public class MainSoundManager : MonoBehaviour
             s.source.loop = s.loop;
         }
 
-        ButtonPlaying = false;
+
     }
 
 
@@ -56,17 +54,6 @@ public class MainSoundManager : MonoBehaviour
         PlayMusic();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-        if (input.magnitude > 0.8 && ButtonPlaying == false)
-        {
-            StartCoroutine(PlayButton());
-        }
-
-    }
 
     public void PlayMusic()
     {
@@ -109,23 +96,7 @@ public class MainSoundManager : MonoBehaviour
         
     }
 
-    public IEnumerator PlayButton()
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == "UI_Button");
 
-        s.source.volume = s.volume * AudioManager.SoundEffectsVolume;
-
-        ButtonPlaying = true;
-
-        s.source.Play();
-
-        yield return new WaitForSecondsRealtime(s.source.clip.length + 0.15f);
-
-        s.source.Stop();
-
-        ButtonPlaying = false;
-
-    }
 
     public void Play(string name)
     {
