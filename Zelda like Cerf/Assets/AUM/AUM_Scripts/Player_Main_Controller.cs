@@ -16,6 +16,8 @@ public class Player_Main_Controller : MonoBehaviour
 
     public LifeDisplay lifeDisplay;
 
+    public ParticleSystem damageParticleSystem;
+
     [Range(200f, 1600f)] public float speed;
 
     [HideInInspector] public int currentLife;
@@ -771,6 +773,8 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         currentLife -= damageTaken;
         audiomanager.Play("Player_take_damage");
+
+        damageParticleSystem.Play();
 
         //Animator
         animator.SetTrigger("IsHurt");

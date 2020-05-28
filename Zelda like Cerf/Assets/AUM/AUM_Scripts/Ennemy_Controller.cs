@@ -156,7 +156,7 @@ public abstract class Ennemy_Controller : Elements_Controller
     {
         invincible = true;
 
-        for (float i = 0.5f; i > 0; i -= Time.deltaTime)
+        for (float i = 0.1f; i > 0; i -= Time.deltaTime)
         {
             yield return null;
         }

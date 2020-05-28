@@ -13,6 +13,8 @@ public class Spike : MonoBehaviour
         if (collision.attachedRigidbody.CompareTag("Player"))
         {
             collision.attachedRigidbody.GetComponent<Player_Main_Controller>().StartCoroutine(collision.attachedRigidbody.GetComponent<Player_Main_Controller>().TakeDamage(baseDamage));
+
+            collision.attachedRigidbody.GetComponent<Player_Main_Controller>().StartCoroutine(collision.attachedRigidbody.GetComponent<Player_Main_Controller>().StunnedFor(0.5f));
         }
         if (ennemyspike != null)
         {

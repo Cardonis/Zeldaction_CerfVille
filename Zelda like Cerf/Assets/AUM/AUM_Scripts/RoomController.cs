@@ -195,6 +195,8 @@ public class RoomController : MonoBehaviour
                 if (ennemies[i].dead == false)
                     ennemies[i].transform.position = ennemies[i].initialPosition;
 
+                ennemies[i].stuned = false;
+
                 ennemies[i].playerDetected = false;
 
                 ennemies[i].pv = ennemies[i].initialLife;
@@ -215,6 +217,8 @@ public class RoomController : MonoBehaviour
             ennemies[i].canMove = true;
 
             ennemies[i].attacking = false;
+
+            ennemies[i].stuned = false;
 
             EnnemiOneBehavior eob = ennemies[i].GetComponent<EnnemiOneBehavior>();
 
