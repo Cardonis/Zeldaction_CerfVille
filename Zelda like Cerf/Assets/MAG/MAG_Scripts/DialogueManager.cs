@@ -113,6 +113,8 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(0.02f);
             }
         }
+
+        XtoContinue.SetActive(true);
         inSentence = false;
         skip = false;
         sentenceFullyDisplay = true;

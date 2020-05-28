@@ -44,7 +44,7 @@ public class BearTrap : MonoBehaviour
             if (elementplayer != null && isActive == true) 
             {
                 elementplayer.StartCoroutine(elementplayer.TakeDamage(trapDamageForPlayer));
-                elementplayer.StartCoroutine(elementplayer.StunnedFor(stunTimeForPlayer));
+                elementplayer.StartCoroutine(elementplayer.StunnedFor(0.5f));
                 elementplayer.rb.velocity = Vector2.zero;
                 isActive = false;
                 StartCoroutine(audiomanager.PlayOne("Piege_Loup", gameObject));

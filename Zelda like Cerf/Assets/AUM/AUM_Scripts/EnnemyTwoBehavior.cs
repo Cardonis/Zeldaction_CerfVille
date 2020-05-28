@@ -13,6 +13,7 @@ public class
     float attackCooldownTimer = 0;
     public float distanceToPlayer;
     public float forcePierreLaunch;
+    public float forcePlayerLaunch;
     public GameObject pierrePrefab;
 
     Elements_Controller currentPierre;
@@ -401,7 +402,7 @@ public class
         player.stunned = false;
 
         player.projected = true;
-        player.rb.AddForce(directionAttack.normalized * forcePierreLaunch * 2, ForceMode2D.Impulse);
+        player.rb.AddForce(directionAttack.normalized * forcePlayerLaunch, ForceMode2D.Impulse);
 
         StartCoroutine(DontCollideWithPlayerFor(0.2f));
 
