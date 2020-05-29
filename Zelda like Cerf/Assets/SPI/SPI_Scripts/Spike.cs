@@ -15,6 +15,10 @@ public class Spike : MonoBehaviour
             collision.attachedRigidbody.GetComponent<Player_Main_Controller>().StartCoroutine(collision.attachedRigidbody.GetComponent<Player_Main_Controller>().TakeDamage(baseDamage));
 
             collision.attachedRigidbody.GetComponent<Player_Main_Controller>().StartCoroutine(collision.attachedRigidbody.GetComponent<Player_Main_Controller>().StunnedFor(0.5f));
+
+            collision.attachedRigidbody.velocity = Vector2.zero;
+
+            StartCoroutine(AudioManager.instance.PlayOne("Piege_Loup", gameObject));
         }
         if (ennemyspike != null)
         {
