@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class BossBehavior : Ennemy_Controller
 {
-    public EndGameInitiator endGameInitiator;
+    //public EndGameInitiator endGameInitiator;
+    public GameObject endCinematic;
 
     Vector2 directionPattern;
     public int phase = 1;
@@ -82,8 +83,9 @@ public class BossBehavior : Ennemy_Controller
 
         missingLife = pv / initialLife;
 
-        if (missingLife <= 0f / 4f && endGameInitiator.ending == false)
-            endGameInitiator.StartCoroutine(endGameInitiator.EndGame());
+        if (missingLife <= 0f / 4f /*&& endGameInitiator.ending == false*/)
+            //endGameInitiator.StartCoroutine(endGameInitiator.EndGame());
+            endCinematic.SetActive(true);
 
         if (missingLife < 1f / 4f)
         {
