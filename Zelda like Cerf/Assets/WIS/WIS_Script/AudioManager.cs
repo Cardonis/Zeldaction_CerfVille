@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
     private Player_Main_Controller player;
 
     [Range(0f, 1f)]
-    public static float SoundEffectsVolume = 1;
+    public static float SoundEffectsVolume = 0.5f;
 
     private float VolumeChange;
 
@@ -29,6 +29,8 @@ public class AudioManager : MonoBehaviour
 
     private bool DeplacementPlaying;
     private bool ButtonPlaying;
+
+    public AudioMixer audioMaster;
     void Awake()
     {
 
@@ -69,17 +71,32 @@ public class AudioManager : MonoBehaviour
             if (DeplacementPlaying == false && MusicManager.PlayerCurrentPos != MusicManager.PlayerPos.Donjon01) { StartCoroutine(PlayOneOf("D1", "D2", "D3")); }
             else if (DeplacementPlaying == false) { StartCoroutine(PlayOneOf("D4", "D5", "D6")); }
         }
-        else if (inventoryBook.iventoryIsOpen == true && input.magnitude > 0.8 && ButtonPlaying == false)
-        {
-            StartCoroutine(PlayButton());
-        }
 
 
+        CinematicVolume();
 
             
 
 
         
+
+    }
+
+    public void CinematicVolume ()
+    {
+        float cinematicVolume;
+
+        if (SoundEffectsVolume == 0) { cinematicVolume = -80f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.07f) { cinematicVolume = -65f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.13f) { cinematicVolume = -55f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.19f) { cinematicVolume = -45f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.25f) { cinematicVolume = -40f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.31f) { cinematicVolume = -35f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.37f) { cinematicVolume = -30f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.43f) { cinematicVolume = -25f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.49f) { cinematicVolume = -20f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.55f) { cinematicVolume = -15f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume == 0.6f) { cinematicVolume = -10f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
 
     }
 
@@ -182,23 +199,6 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public IEnumerator PlayButton()
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == "UI_Button");
-
-        s.source.volume = s.volume * SoundEffectsVolume;
-
-        ButtonPlaying = true;
-
-        s.source.Play();
-
-        yield return new WaitForSecondsRealtime(s.source.clip.length + 0.15f);
-
-        s.source.Stop();
-
-        ButtonPlaying = false;
-
-    }
 
     public IEnumerator PlayOneOf(string name1, string name2, string name3)
     {

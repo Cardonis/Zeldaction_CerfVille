@@ -25,7 +25,7 @@ public class MusicManager : MonoBehaviour
     public int EnemyInBattleP;
 
     [Range(0f, 1f)]
-    public static float MusicVolume = 1;
+    public static float MusicVolume = 0.5f;
 
     private float VolumeChange;
 
