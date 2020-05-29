@@ -776,6 +776,18 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         damageParticleSystem.Play();
 
+        //Stop charge 
+        pressX.SetActive(false);
+
+        charging = false;
+
+        chargeTimer = 0;
+
+        barsCharge2.SetActive(false);
+        barsCharge3.SetActive(false);
+        barCharge.gameObject.SetActive(false);
+        //End Stop charge
+
         //Animator
         animator.SetTrigger("IsHurt");
 
@@ -794,6 +806,9 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         {
             StartCoroutine( Die() );
         }
+
+
+
     }
 
     public IEnumerator GainLife(int lifeToRegain)
