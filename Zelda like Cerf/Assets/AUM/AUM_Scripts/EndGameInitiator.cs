@@ -20,4 +20,8 @@ public class EndGameInitiator : MonoBehaviour
 
         SceneManager.LoadScene(0);
     }
+    public void OnEnable()
+    {
+        StartCoroutine(EndGame());
+    }
 }
