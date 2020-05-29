@@ -58,9 +58,10 @@ public class TiersDecoeur : MonoBehaviour
         {
             collected = true;
 
-            inventoryBook.currentNumberOfHearthThird++;
+            if (inventoryBook.currentNumberOfHearthThird != 2)
+                inventoryBook.StartCoroutine(HeartThirdShow());
 
-            inventoryBook.StartCoroutine(HeartThirdShow());
+            inventoryBook.currentNumberOfHearthThird++;
 
             healthParticleSystem.Play();
 
@@ -77,18 +78,27 @@ public class TiersDecoeur : MonoBehaviour
         float elapsedTime = 0.0f;
 
         player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].gameObject.SetActive(true);
+        player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].color = Color.grey;
         Color c = player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].color;
 
-        while (elapsedTime < 4f * inventoryBook.currentNumberOfHearthThird)
+        player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].fillAmount = (1f / 3f) * inventoryBook.currentNumberOfHearthThird;
+
+        while (elapsedTime < 4f )
         {
+            player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].fillAmount = (1f / 3f) * inventoryBook.currentNumberOfHearthThird;
+
             elapsedTime += Time.deltaTime;
-            c.a = 1.0f - Mathf.Clamp01(elapsedTime / (4f * inventoryBook.currentNumberOfHearthThird));
+            c.a = 1.0f - Mathf.Clamp01(elapsedTime / (4f));
             player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].color = c;
             yield return null;
         }
 
         c.a = 1.0f;
         player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].color = c;
+
+        player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].color = Color.white;
+
+        player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].fillAmount = 1f;
 
         player.lifeDisplay.hearths[player.lifeDisplay.numberOfHearts].gameObject.SetActive(false);
     }

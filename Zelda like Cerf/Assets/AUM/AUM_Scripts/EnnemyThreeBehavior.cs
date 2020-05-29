@@ -13,6 +13,7 @@ public class EnnemyThreeBehavior : Ennemy_Controller
     public float attackRangeToPlayer;
     public Collider2D physicCollider;
     public float attackForce;
+    public float attackForcePlayer;
     public float attackBulletForce;
 
     Vector2 directionForAttack;
@@ -195,7 +196,19 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         {
 
             direction = (transform.position - player.transform.position);
-            player.rb.velocity = direction.normalized * attackForce;
+            player.rb.velocity = direction.normalized * attackForcePlayer;
+
+            if(direction.magnitude < 1.5f)
+            {
+                for (int i = 0; i < collider2Ds.Count; i++)
+                {
+                    Physics2D.IgnoreCollision(collider2Ds[i], player.physicCollider, true);
+                }
+
+                player.physicCollider.gameObject.layer = originalPlayerLayer;
+            }
+                
+
             yield return null;
         }
 
@@ -206,7 +219,7 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         player.rb.velocity = new Vector2(0, 0);
 
-        player.rb.AddForce(direction.normalized * attackForce * 3, ForceMode2D.Impulse);
+        player.rb.AddForce(direction.normalized * attackForcePlayer * 5, ForceMode2D.Impulse);
 
         player.physicCollider.gameObject.layer = originalPlayerLayer;
 
@@ -230,6 +243,21 @@ public class EnnemyThreeBehavior : Ennemy_Controller
         {
             direction = (transform.position - elementsController.transform.position);
             elementsController.rb.velocity = direction.normalized * attackForce;
+
+            if (direction.magnitude < 1.5f)
+            {
+                for (int i = 0; i < collider2Ds.Count; i++)
+                {
+                    for (int x = 0; x < elementsController.collider2Ds.Count; x++)
+                        Physics2D.IgnoreCollision(collider2Ds[i], elementsController.collider2Ds[x], true);
+                }
+
+                for (int i = 0; i < elementsController.collider2Ds.Count; i++)
+                {
+                    elementsController.collider2Ds[i].gameObject.layer = 15;
+                }
+            }
+
             yield return null;
         }
 

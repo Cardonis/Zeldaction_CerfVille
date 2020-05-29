@@ -14,8 +14,6 @@ public class EndCinematic : MonoBehaviour
 
     IEnumerator ResetGraphPosition()
     {
-
-
         yield return new WaitForSeconds(0.05f);
 
         mainPlayer.transform.position = animatorPlayer.transform.position;

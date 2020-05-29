@@ -38,21 +38,33 @@ public class WallButton : Buttonmanager
 
         if(element != null)
         {
-            detectedObjectMass = element.mass;
-            detectedObjectProjectionLevel = element.levelProjected;
-        }
+            if (element.projected == true)
+            {
+                detectedObjectMass = element.mass;
+                detectedObjectProjectionLevel = element.levelProjected;
 
-        if (detectedObjectMass * detectedObjectProjectionLevel >= scoreNeeded)
-        {
-            if (lastStarting != null)
-                StopCoroutine(lastStarting);
+                if (detectedObjectMass * detectedObjectProjectionLevel >= scoreNeeded)
+                {
+                    if (lastStarting != null)
+                        StopCoroutine(lastStarting);
 
-            lastStarting = StartCoroutine(StartLineLit(0f, 1f, 0.5f));
+                    lastStarting = StartCoroutine(StartLineLit(0f, 1f, 0.5f));
 
-            if (element.player.cameraShake.shaking == false)
-                element.player.cameraShake.lastCameraShake = element.player.cameraShake.StartCoroutine(element.player.cameraShake.CameraShakeFor(0.1f, 0.1f, 0.25f));
-            isPressed = true;
-            if (IsPlaying == false) { StartCoroutine(audiomanager.PlayOne("ButtonOn", gameObject)); StartCoroutine(PlayOneOne()); }
+                    if (element.player.cameraShake.shaking == false)
+                        element.player.cameraShake.lastCameraShake = element.player.cameraShake.StartCoroutine(element.player.cameraShake.CameraShakeFor(0.1f, 0.1f, 0.25f));
+                    isPressed = true;
+                    if (IsPlaying == false) { StartCoroutine(audiomanager.PlayOne("ButtonOn", gameObject)); StartCoroutine(PlayOneOne()); }
+                }
+                else
+                {
+                    if (lastStarting != null)
+                        StopCoroutine(lastStarting);
+
+                    lastStarting = StartCoroutine(StartLineLit(0f, 0.5f, 0.2f));
+                    lastStarting = StartCoroutine(StartLineLit(0.5f, 0f, 0.2f));
+                }
+            }
+            
         }
     }
 
