@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TipsPlayer : MonoBehaviour
 {
@@ -10,20 +11,30 @@ public class TipsPlayer : MonoBehaviour
     public GameObject tipsYoyo;
 
     public GameObject currentTips;
-    public Animator fadeAnimator;
+    public Image fadeScreen;
     public Player_Main_Controller playerscript;
     private void Update()
     {
-        if (Input.GetButtonDown("X") && isInTips)
+        if (Input.GetButtonDown("X") || Input.GetButtonDown("A") && isInTips)
         {
             StartCoroutine(CloseTips(currentTips));
         }
     }
     public IEnumerator OpenTips(GameObject tips)
     {
+        float elapsedTime = 0.0f;
+        Time.timeScale = 0f;
+        fadeScreen.gameObject.SetActive(true);
+        Color c = fadeScreen.color;
+
+        while (elapsedTime < 0.5f)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
+            c.a = 0.0f + Mathf.Clamp01(elapsedTime / (0.5f))*0.7f;
+            fadeScreen.color = c;
+            yield return null;
+        }
         playerscript.stunned = true;
-        fadeAnimator.SetTrigger("FadeOut");
-        //Time.timeScale = 0f;
         tips.SetActive(true);
         currentTips = tips;
         yield return null;
@@ -32,11 +43,37 @@ public class TipsPlayer : MonoBehaviour
     }
     public IEnumerator CloseTips(GameObject currentTips)
     {
+        float elapsedTime = 0.0f;
+
+        fadeScreen.gameObject.SetActive(true);
+        Color c = fadeScreen.color;
+
         playerscript.stunned = false;
         isInTips = false;
         currentTips.SetActive(false);
-        fadeAnimator.SetTrigger("FadeIn");
-        //Time.timeScale = 1f;
+        while (elapsedTime < 0.5f)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
+            c.a = 0.7f - Mathf.Clamp01(elapsedTime / (0.5f)*0.7f);
+            fadeScreen.color = c;
+            yield return null;
+        }
+        Time.timeScale = 1f;
         yield return null;
+    }
+
+    public void tips1Launcher()
+    {
+        StartCoroutine(OpenTips(tipsMark));
+    }
+
+    public void tips2Launcher()
+    {
+        StartCoroutine(OpenTips(tipsYoyo));
+    }
+
+    public void tips3Launcher()
+    {
+        StartCoroutine(OpenTips(tipsRenv));
     }
 }

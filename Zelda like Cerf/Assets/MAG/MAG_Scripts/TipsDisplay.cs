@@ -10,13 +10,13 @@ public class TipsDisplay : MonoBehaviour
 
     public GameObject tips1, tips2, tips3;
 
-    public DialogueTrigger dialogueTrigger;
+    public TipsTrigger tipsTrigger;
 
     bool asTalked;
 
     private void Update()
     {
-        asTalked = dialogueTrigger.asTalked;
+        asTalked = tipsTrigger.asTalked;
 
         if (asTalked == true)
         {

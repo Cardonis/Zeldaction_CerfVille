@@ -14,6 +14,8 @@ public class InventoryBook : MonoBehaviour
     [HideInInspector] public bool iventoryIsOpen;
     public GameObject pauseFirstButton, playerAndTipsUIFirstButton, mapUIFirstButton;
     public GameObject emptyHeart, notSoEmptyHeart, notNotSoEmptyHeart;
+
+    public bool tipsMenu; 
     void Start()
     {
       currentNumberOfHearthThird = 0;
@@ -72,25 +74,30 @@ public class InventoryBook : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+        tipsMenu = false;
     }
 
     public void OpenMapMenu()
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(mapUIFirstButton);
+        tipsMenu = false;
     }
 
     public void OpenPlayerAndTipsMenu()
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(playerAndTipsUIFirstButton);
+        tipsMenu = true;
     }
     public void CloseInventory()
     {
         inventoryBookBackgroundUI.SetActive(false);
         iventoryIsOpen = false;
         marquePageUI.SetActive(false);
-        Time.timeScale = 1f;
+        if (tipsMenu == false) 
+            Time.timeScale = 1f;
+        tipsMenu = false;
     }
     IEnumerator CloseInventoryIn()
     {
@@ -103,5 +110,9 @@ public class InventoryBook : MonoBehaviour
         mapUi.SetActive(false);
         playerAndTipsUi.SetActive(false);
         pauseMenuUi.SetActive(false);
+    }
+    public void CloseInventoryAll()
+    {
+        StartCoroutine(CloseInventoryIn());
     }
 }
