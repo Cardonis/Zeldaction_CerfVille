@@ -1,5 +1,95 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4064371746630740513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6046571598312612421}
+  m_Layer: 0
+  m_Name: PlayMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6046571598312612421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4064371746630740513}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7581247578789968820}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4440791057601779621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8670214395473445292}
+  m_Layer: 0
+  m_Name: PlayEncounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8670214395473445292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4440791057601779621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7581247578789968820}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5696274561544188325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3784145268536212991}
+  m_Layer: 0
+  m_Name: PlayForest02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3784145268536212991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5696274561544188325}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7581247578789968820}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7581247578789968821
 GameObject:
   m_ObjectHideFlags: 0
@@ -27,7 +117,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -34.450115, y: -14.612281, z: -166975.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6046571598312612421}
+  - {fileID: 8670214395473445292}
+  - {fileID: 3784145268536212991}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43,6 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f5c00183e7a01468a2aef0d7cb7afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayingMusic: {fileID: 4064371746630740513}
+  EncounterMusic: {fileID: 4440791057601779621}
+  PlayForest02: {fileID: 5696274561544188325}
   Musics:
   - name: Battle01
     Clip: {fileID: 8300000, guid: b2d93c720ed6e4f4c892d38e53908b70, type: 3}
@@ -104,6 +200,18 @@ MonoBehaviour:
     loop: 1
     IsPlaying: 0
     source: {fileID: 0}
+  - name: Encounter
+    Clip: {fileID: 8300000, guid: 68c9a5b51a4606042ad76f27c499e903, type: 3}
+    volume: 1
+    loop: 1
+    IsPlaying: 0
+    source: {fileID: 0}
+  - name: Encounter_Battle
+    Clip: {fileID: 8300000, guid: 1cb2723360542d844b4505aced890971, type: 3}
+    volume: 0.3
+    loop: 1
+    IsPlaying: 0
+    source: {fileID: 0}
   Ambiances: []
   CurrentMusic:
     name: 
@@ -119,4 +227,7 @@ MonoBehaviour:
     loop: 0
     IsPlaying: 0
     source: {fileID: 0}
+  InBattleP: 0
+  EnemyInBattleP: 0
   DefaultPosition: 1
+  audioMaster: {fileID: 24100000, guid: aa41820d7f883e040b0ad4fd88a88e81, type: 2}

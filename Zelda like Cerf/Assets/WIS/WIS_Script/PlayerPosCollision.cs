@@ -16,7 +16,7 @@ public class PlayerPosCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.attachedRigidbody.gameObject.tag == "Player")
+        if (collision.attachedRigidbody.gameObject.tag == "Player" && MusicManager.Encounter == false)
         {
             
             switch (Position)

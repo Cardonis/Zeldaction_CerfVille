@@ -88,15 +88,15 @@ public class AudioManager : MonoBehaviour
 
         if (SoundEffectsVolume == 0) { cinematicVolume = -80f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
         else if (SoundEffectsVolume < 0.07f) { cinematicVolume = -65f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
-        else if (SoundEffectsVolume < 0.13f) { cinematicVolume = -55f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
-        else if (SoundEffectsVolume < 0.19f) { cinematicVolume = -45f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
-        else if (SoundEffectsVolume < 0.25f) { cinematicVolume = -40f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
-        else if (SoundEffectsVolume < 0.31f) { cinematicVolume = -35f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
-        else if (SoundEffectsVolume < 0.37f) { cinematicVolume = -30f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
-        else if (SoundEffectsVolume < 0.43f) { cinematicVolume = -25f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
-        else if (SoundEffectsVolume < 0.49f) { cinematicVolume = -20f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
-        else if (SoundEffectsVolume < 0.55f) { cinematicVolume = -15f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
-        else if (SoundEffectsVolume == 0.6f) { cinematicVolume = -10f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.13f) { cinematicVolume = -50f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.19f) { cinematicVolume = -35f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.25f) { cinematicVolume = -25f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.31f) { cinematicVolume = -15f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.37f) { cinematicVolume = -10f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.43f) { cinematicVolume = -5f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.49f) { cinematicVolume = 0f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume < 0.55f) { cinematicVolume = 5f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
+        else if (SoundEffectsVolume == 0.6f) { cinematicVolume = 10f; audioMaster.SetFloat("CinematicVolume", cinematicVolume); }
 
     }
 
