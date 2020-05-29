@@ -302,9 +302,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    npcName: Panel
+    npcName: Panneau
     sentences:
-    - '" Pond of the unliving child " - is written'
+    - "-\xC9tang de l'enfant noy\xE9-"
   dialogueManager: {fileID: 0}
   outlineController: {fileID: 0}
   asTalked: 0
@@ -68189,7 +68189,7 @@ PrefabInstance:
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
@@ -68204,24 +68204,29 @@ PrefabInstance:
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[0]
-      value: "Depuis quelques temps tu ne parle plus beaucoup, j'esp\xE8re que tout
-        va bien pour toi !"
+      value: "Bonjour Alwin ! On ne te voit plus beaucoup en ce moment... Depuis
+        la mort d\u2019Ayen\u2026"
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[1]
-      value: "Tout le monde s'inqui\xE8te pour toi depuis la mort d'Ayen .."
+      value: ...
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[2]
-      value: Si tu a envie d'en parler un jour, on est tous la pour toi, n'oublie
-        pas !
+      value: "Tu n\u2019as pas l\u2019air de vouloir en parler. Pardonne moi."
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[3]
-      value: Vise avec le joystick R et repousses les obstacles avec LB.
+      value: "Nous nous inqui\xE9tons tous pour toi. Reviens nous voir quand tu veux
+        !"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: dialogue.npcName
+      value: Pibidy
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943777, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
