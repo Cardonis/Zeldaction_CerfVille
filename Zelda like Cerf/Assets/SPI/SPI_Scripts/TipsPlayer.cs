@@ -15,9 +15,9 @@ public class TipsPlayer : MonoBehaviour
     public Player_Main_Controller playerscript;
     private void Update()
     {
-        if (Input.GetButtonDown("X") || Input.GetButtonDown("A") && isInTips)
+        if ((Input.GetButtonDown("X") || Input.GetButtonDown("A")) && isInTips)
         {
-            StartCoroutine(CloseTips(currentTips));
+            StartCoroutine(CloseTips());
         }
     }
     public IEnumerator OpenTips(GameObject tips)
@@ -41,15 +41,15 @@ public class TipsPlayer : MonoBehaviour
         isInTips = true;
 
     }
-    public IEnumerator CloseTips(GameObject currentTips)
+    public IEnumerator CloseTips()
     {
         float elapsedTime = 0.0f;
-
+        isInTips = false;
         fadeScreen.gameObject.SetActive(true);
         Color c = fadeScreen.color;
 
         playerscript.stunned = false;
-        isInTips = false;
+        
         currentTips.SetActive(false);
         while (elapsedTime < 0.5f)
         {
