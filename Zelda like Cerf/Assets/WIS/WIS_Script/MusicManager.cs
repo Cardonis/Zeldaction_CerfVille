@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
+    public GameObject PlayingMusic;
+    public GameObject EncounterMusic;
+    public GameObject PlayForest02;
 
     public Music[] Musics;
 
@@ -29,14 +32,22 @@ public class MusicManager : MonoBehaviour
 
     private float VolumeChange;
 
-    public enum PlayerPos { Village, Graveyard, Donjon01, Forest01, Forest02, Boss };
+    public enum PlayerPos { Village, Graveyard, Donjon01, Forest01, Forest02, Boss, Encounter };
 
     
     public static PlayerPos PlayerCurrentPos;
 
+
     public PlayerPos DefaultPosition;
 
-    private bool IsChangingMusic;
+    public bool IsChangingMusic;
+    private bool MusicPause;
+    public static bool Encounter;
+
+    public AudioMixer audioMaster;
+
+    public PlayerPos playerCurrentPosP;
+
     void Awake()
     {
 
@@ -98,13 +109,18 @@ public class MusicManager : MonoBehaviour
         }
 
         IsChangingMusic = false;
+        MusicPause = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //CinematicVolume();
+
         InBattleP = InBattle;
         EnemyInBattleP = EnemyInBattle;
+
+        playerCurrentPosP = PlayerCurrentPos;
 
         if (MusicVolume != VolumeChange)
         {
@@ -136,6 +152,30 @@ public class MusicManager : MonoBehaviour
             }
 
         }
+
+        if (PlayingMusic.activeSelf == false && MusicPause == false && IsChangingMusic == false)
+        {
+            StartCoroutine(PausePlayingMusic());
+
+            MusicPause = true;
+        }
+
+        if (EncounterMusic.activeSelf == false && MusicPause == false && IsChangingMusic == false)
+        {
+
+            PlayerCurrentPos = PlayerPos.Encounter;
+            Encounter = true;
+
+        }
+
+        if (PlayForest02.activeSelf == false && MusicPause == false && IsChangingMusic == false)
+        {
+
+            PlayerCurrentPos = PlayerPos.Forest02;
+            Encounter = false;
+
+        }
+
 
     }
 
@@ -216,6 +256,12 @@ public class MusicManager : MonoBehaviour
                 CurrentMusic = Array.Find(Musics, s => s.name == "Boss");
                 StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
                 break;
+            case PlayerPos.Encounter:
+                if (CurrentMusic.name == "Encounter") { break; }
+                StartCoroutine(FadeOut(CurrentMusic.source, 3));
+                CurrentMusic = Array.Find(Musics, s => s.name == "Encounter");
+                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
+                break;
             default:
                 break;
         }
@@ -229,29 +275,57 @@ public class MusicManager : MonoBehaviour
 
     void PlayBattleMusic()
     {
-            if (CurrentMusic.name != "Battle01" && CurrentMusic.name != "Battle02" && EnemyInBattle > 0 && EnemyInBattle < 4)
+            if (PlayerCurrentPos != PlayerPos.Encounter)
             {
-                StartCoroutine(FadeOut(CurrentMusic.source, 3));
-                CurrentMusic = Array.Find(Musics, s => s.name == "Battle01");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
-            }
+
+                if (CurrentMusic.name != "Battle01" && CurrentMusic.name != "Battle02" && EnemyInBattle > 0 && EnemyInBattle < 4)
+                {
+                    StartCoroutine(FadeOut(CurrentMusic.source, 3));
+                    CurrentMusic = Array.Find(Musics, s => s.name == "Battle01");
+                    StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
+                }
     
-            if (CurrentMusic.name != "Battle02" && EnemyInBattle > 3)
-            {
-                StartCoroutine(FadeOut(CurrentMusic.source, 3));
-                CurrentMusic = Array.Find(Musics, s => s.name == "Battle02");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
-            }
+                if (CurrentMusic.name != "Battle02" && EnemyInBattle > 3)
+                {
+                    StartCoroutine(FadeOut(CurrentMusic.source, 3));
+                    CurrentMusic = Array.Find(Musics, s => s.name == "Battle02");
+                    StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
+                }
         
-            if (CurrentMusic.name != "Boss" && PlayerCurrentPos == PlayerPos.Boss)
+                if (CurrentMusic.name != "Boss" && PlayerCurrentPos == PlayerPos.Boss)
+                {
+                    StartCoroutine(FadeOut(CurrentMusic.source, 3));
+                    CurrentMusic = Array.Find(Musics, s => s.name == "Boss");
+                    StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
+                }
+
+            }
+            else if (PlayerCurrentPos == PlayerPos.Encounter && EnemyInBattle > 0 && CurrentMusic.name != "Encounter_Battle")
             {
-                StartCoroutine(FadeOut(CurrentMusic.source, 3));
-                CurrentMusic = Array.Find(Musics, s => s.name == "Boss");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
+            StartCoroutine(FadeOut(CurrentMusic.source, 3));
+            CurrentMusic = Array.Find(Musics, s => s.name == "Encounter_Battle");
+            StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
             }
     }
 
+    public IEnumerator PausePlayingMusic()
+    {
 
+        MusicPause = true;
+
+        StartCoroutine(FadeOut(CurrentMusic.source, 3));
+
+        while (PlayingMusic.activeSelf == false)
+        {
+
+
+            yield return null;
+        }
+
+        StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
+
+        MusicPause = false;
+    }
 
 
     public void PlayAmbiance()
@@ -260,6 +334,23 @@ public class MusicManager : MonoBehaviour
 
     }
 
+    public void CinematicVolume()
+    {
+        float cinematicVolume;
+
+        if (MusicVolume == 0) { cinematicVolume = -80f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
+        else if (MusicVolume < 0.07f) { cinematicVolume = -65f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
+        else if (MusicVolume < 0.13f) { cinematicVolume = -50f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
+        else if (MusicVolume < 0.19f) { cinematicVolume = -35f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
+        else if (MusicVolume < 0.25f) { cinematicVolume = -25f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
+        else if (MusicVolume < 0.31f) { cinematicVolume = -15f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
+        else if (MusicVolume < 0.37f) { cinematicVolume = -10f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
+        else if (MusicVolume < 0.43f) { cinematicVolume = -5f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
+        else if (MusicVolume < 0.49f) { cinematicVolume = 0f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
+        else if (MusicVolume < 0.55f) { cinematicVolume = 5f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
+        else if (MusicVolume == 0.6f) { cinematicVolume = 10f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
+
+    }
 
 
 }
