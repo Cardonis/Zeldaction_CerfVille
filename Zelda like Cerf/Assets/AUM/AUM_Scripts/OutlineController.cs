@@ -13,17 +13,22 @@ public class OutlineController : MonoBehaviour
     public List<SpriteRenderer> outLines;
     public List<Animator> outLinesAnimator;
 
+    Player_Main_Controller player;
+
     public float thiccness;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Player_Main_Controller>();
+
         int outLinesSortingOrder = baseGraph.GetComponent<SpriteRenderer>().sortingOrder - 1;
 
         Animator baseGraphAnimator = baseGraph.GetComponent<Animator>();
 
         SpriteRenderer topOutline = Instantiate(baseGraph, transform).GetComponent<SpriteRenderer>();
 
+        topOutline.material = player.outlineMaterial;
         topOutline.color = outlineColor;
         topOutline.sortingOrder = outLinesSortingOrder;
         topOutline.transform.localPosition = new Vector3(topOutline.transform.localPosition.x, topOutline.transform.localPosition.y + thiccness);
@@ -31,6 +36,7 @@ public class OutlineController : MonoBehaviour
 
         SpriteRenderer leftOutline = Instantiate(baseGraph, transform).GetComponent<SpriteRenderer>();
 
+        leftOutline.material = player.outlineMaterial;
         leftOutline.color = outlineColor;
         leftOutline.sortingOrder = outLinesSortingOrder;
         leftOutline.transform.localPosition = new Vector3(leftOutline.transform.localPosition.x - thiccness, leftOutline.transform.localPosition.y);
@@ -38,6 +44,7 @@ public class OutlineController : MonoBehaviour
 
         SpriteRenderer downOutline = Instantiate(baseGraph, transform).GetComponent<SpriteRenderer>();
 
+        downOutline.material = player.outlineMaterial;
         downOutline.color = outlineColor;
         downOutline.sortingOrder = outLinesSortingOrder;
         downOutline.transform.localPosition = new Vector3(downOutline.transform.localPosition.x, downOutline.transform.localPosition.y - thiccness);
@@ -45,6 +52,7 @@ public class OutlineController : MonoBehaviour
 
         SpriteRenderer rightOutline = Instantiate(baseGraph, transform).GetComponent<SpriteRenderer>();
 
+        rightOutline.material = player.outlineMaterial;
         rightOutline.color = outlineColor;
         rightOutline.sortingOrder = outLinesSortingOrder;
         rightOutline.transform.localPosition = new Vector3(rightOutline.transform.localPosition.x + thiccness, rightOutline.transform.localPosition.y);

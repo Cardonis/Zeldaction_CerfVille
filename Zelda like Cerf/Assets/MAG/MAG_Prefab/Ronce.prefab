@@ -71,6 +71,7 @@ MonoBehaviour:
   playerProjected: 0
   stuned: 0
   rb: {fileID: 0}
+  isTractable: 1
   mass: 3
   levelProjected: 0
   player: {fileID: 0}
@@ -78,6 +79,15 @@ MonoBehaviour:
   recoveryValue: 0
   initialPosition: {x: 0, y: 0}
   spawned: 0
+  audiomanager: {fileID: 0}
+  collider2Ds: []
+  ennemyCollidersLayers: 
+  velocityBeforeImpact: {x: 0, y: 0, z: 0}
+  velocityBeforeImpactAngle: 0
+  initialDrag: 0
+  outlineController: {fileID: 0}
+  trailParticleSystem: {fileID: 0}
+  trailParticleSystemAngle: 0
   isARonceEpaisse: 0
   shakeMagnitude: 0.2
   ronceDestructionClip: {fileID: 7400000, guid: 94ef2934426e5cf44872537a61668823,
@@ -189,7 +199,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea6b0a554dd918442be205ba3bfecf26, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

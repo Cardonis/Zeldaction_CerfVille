@@ -22,6 +22,10 @@ public class Player_Main_Controller : MonoBehaviour
 
     public TelegraphAttack telegraphAttack;
 
+    public Material outlineMaterial;
+
+    public Sprite arrowLevel2;
+
     [Range(200f, 1600f)] public float speed;
 
     [HideInInspector] public int currentLife;
@@ -169,6 +173,11 @@ public class Player_Main_Controller : MonoBehaviour
     void Update()
     {
 
+        if(part == 3)
+        {
+            arrowBackSR.sprite = arrowLevel2;
+        }
+
         if(projected)
         {
             if (rb.velocity.magnitude <= 5)
@@ -279,22 +288,27 @@ public class Player_Main_Controller : MonoBehaviour
                         //barsCharge2.SetActive(true);
                     }
 
-                    chargeParticleSystem.loop = true;
-                    chargeParticleSystem.Play();
-
-                    charging = true;
-
                     //barCharge.gameObject.SetActive(true);
 
-                    if (Input.GetButtonDown("RB"))
+                    if (Input.GetButtonDown("RB") && part > 1)
                     {
                         multipleAttack = false;
 
+                        chargeParticleSystem.loop = true;
+                        chargeParticleSystem.Play();
+
+                        charging = true;
+
                         audiomanager.Play("Capa_charge");
                     }
-                    else if(marquageManager.marquageControllers.Count != 0 && Input.GetButtonDown("X"))
+                    else if(marquageManager.marquageControllers.Count != 0 && Input.GetButtonDown("X") && part > 1)
                     {
                         multipleAttack = true;
+
+                        chargeParticleSystem.loop = true;
+                        chargeParticleSystem.Play();
+
+                        charging = true;
 
                         audiomanager.Play("Capa_charge");
                     }
