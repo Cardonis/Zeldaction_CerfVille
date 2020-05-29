@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &5836020988090547763
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481294488521974249}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a448c67c5d1622b4bb5a3b635686cb64, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1007386461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,6 +1628,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7638607037318573015
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8173451898098992394}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 347508e36c3b2ee44bff9d7e2d95ce88, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6843407782667445661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,6 +2205,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2773421464665757619}
     m_Modifications:
+    - target: {fileID: 375220018374052139, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 375220018374052139, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7358052613506444629, guid: fdd55c057567dd34982c49fa8565e25f,
+        type: 3}
+    - target: {fileID: 1652651037526869528, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.092
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652651037526869528, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.506
+      objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.size
@@ -2185,14 +2244,13 @@ PrefabInstance:
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[0]
-      value: "Seulement deux jours que Ayen est mort, j'ai l'impression que \xE7a
-        fait une \xE9ternit\xE9 !"
+      value: Je me demande bien la raison de toutes ces disparitions depuis quelques
+        mois.
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[1]
-      value: "Heureusement, on m'a dit qu'il y a un nouvel arrivant a ce qu'il parait
-        ! Il \xE9tait temps !"
+      value: "Mais j'ai bien trop peur pour aller enqu\xEAter dans la for\xEAt !"
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
@@ -2218,12 +2276,12 @@ PrefabInstance:
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.16
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.67
+      value: -2.97
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
@@ -2253,7 +2311,7 @@ PrefabInstance:
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
@@ -2273,12 +2331,12 @@ PrefabInstance:
     - target: {fileID: 2817377811130943783, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_Offset.x
-      value: 0.1327362
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943783, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_Offset.y
-      value: -1.1621065
+      value: -1.55
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943783, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
@@ -2290,8 +2348,19 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.6286831
       objectReference: {fileID: 0}
+    - target: {fileID: 2817377811399464507, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.406
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14fddf612b3feff4c9e18866095f9594, type: 3}
+--- !u!1 &6481294488521974249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6481294488374533000, guid: 14fddf612b3feff4c9e18866095f9594,
+    type: 3}
+  m_PrefabInstance: {fileID: 156138081}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1030585063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2516,6 +2585,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2773421464665757619}
     m_Modifications:
+    - target: {fileID: 375220018374052139, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1536694718491260076, guid: 796b8506eecd6364490bc8cd446cabdd,
+        type: 3}
+    - target: {fileID: 1652651037526869528, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.155
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652651037526869528, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.367
+      objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.size
@@ -2534,12 +2619,14 @@ PrefabInstance:
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[0]
-      value: "J'ai de plus en plus peur avec ce qu'il se passe dans la for\xEAt !"
+      value: "Seulement deux jours que Ayen est mort, j'ai l'impression que \xE7a
+        fait une \xE9ternit\xE9 !"
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[1]
-      value: "Heureusement que notre druide est la pour nous prot\xE9ger !"
+      value: "Heureusement, on m'a dit qu'il y a un nouvel arrivant a ce qu'il parait
+        ! Il \xE9tait temps !"
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
@@ -2560,17 +2647,17 @@ PrefabInstance:
     - target: {fileID: 2817377811130943779, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_Name
-      value: "Ma\xEEtre Chiffon Variant"
+      value: Bichette
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.89
+      value: -10.16
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.87
+      value: 3.67
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
@@ -2600,7 +2687,7 @@ PrefabInstance:
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
@@ -2620,12 +2707,12 @@ PrefabInstance:
     - target: {fileID: 2817377811130943783, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_Offset.x
-      value: 0.1327362
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943783, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_Offset.y
-      value: -1.1621065
+      value: -0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943783, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
@@ -2637,8 +2724,29 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.6286831
       objectReference: {fileID: 0}
+    - target: {fileID: 2817377811399464507, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.085
+      objectReference: {fileID: 0}
+    - target: {fileID: 2817377811399464507, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.444
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481294488374533000, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: m_Name
+      value: Bgraph
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14fddf612b3feff4c9e18866095f9594, type: 3}
+--- !u!1 &8173451898098992394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6481294488374533000, guid: 14fddf612b3feff4c9e18866095f9594,
+    type: 3}
+  m_PrefabInstance: {fileID: 2927271370078035586}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3499995564146892179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68083,19 +68191,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3499995564146892179}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2773421464665757619 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1652635569004710432, guid: 3fdd119f49146504594e1470d564c3eb,
-    type: 3}
-  m_PrefabInstance: {fileID: 3499995564146892179}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6101985799624464477 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7222894926222263758, guid: 3fdd119f49146504594e1470d564c3eb,
     type: 3}
   m_PrefabInstance: {fileID: 3499995564146892179}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6329765661789502603
+--- !u!4 &2773421464665757619 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1652635569004710432, guid: 3fdd119f49146504594e1470d564c3eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 3499995564146892179}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6634437463267887916
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -68120,13 +68228,12 @@ PrefabInstance:
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[0]
-      value: Je me demande bien la raison de toutes ces disparitions depuis quelques
-        mois.
+      value: "J'ai de plus en plus peur avec ce qu'il se passe dans la for\xEAt !"
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[1]
-      value: "Mais j'ai bien trop peur pour aller enqu\xEAter dans la for\xEAt !"
+      value: "Heureusement que notre druide est la pour nous prot\xE9ger !"
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
@@ -68152,12 +68259,12 @@ PrefabInstance:
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.14
+      value: 9.89
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.97
+      value: 3.87
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
@@ -68187,7 +68294,7 @@ PrefabInstance:
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943782, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}

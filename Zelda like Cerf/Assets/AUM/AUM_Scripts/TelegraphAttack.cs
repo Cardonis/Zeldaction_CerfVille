@@ -5,8 +5,6 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class TelegraphAttack : MonoBehaviour
 {
-    public Ennemy_Controller ennemyController;
-
     public Light2D lightt;
 
     public float baseIntensity;
@@ -36,4 +34,25 @@ public class TelegraphAttack : MonoBehaviour
         lightt.intensity = 0;
     }
 
+    public IEnumerator LitLight(float speed, float intensityToGo)
+    {
+        while (lightt.intensity <= intensityToGo)
+        {
+            lightt.intensity = lightt.intensity + speed * Time.deltaTime;
+            yield return null;
+        }
+
+        lightt.intensity = intensityToGo;
+    }
+
+    public IEnumerator UnlitLight(float speed)
+    {
+        while (lightt.intensity >= 0)
+        {
+            lightt.intensity = lightt.intensity - speed * Time.deltaTime;
+            yield return null;
+        }
+
+        lightt.intensity = 0;
+    }
 }
