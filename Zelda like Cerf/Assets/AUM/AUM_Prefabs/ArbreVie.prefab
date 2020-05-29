@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rooms: []
   outlineController: {fileID: 776686773}
+  healthParticleSystem: {fileID: 0}
 --- !u!61 &1026146872202064990
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169,9 +170,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outLining: 0
-  outlineColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
+  outlineColor: {r: 1, g: 0.1764706, b: 0.3137255, a: 0.39215687}
   baseGraph: {fileID: 486007205950905235}
   outLines: []
+  outLinesAnimator: []
   thiccness: 0.08
 --- !u!1 &8218745416301442367
 GameObject:
