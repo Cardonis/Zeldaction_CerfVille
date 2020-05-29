@@ -18,6 +18,10 @@ public class Player_Main_Controller : MonoBehaviour
 
     public ParticleSystem damageParticleSystem;
 
+    public ParticleSystem chargeParticleSystem;
+
+    public TelegraphAttack telegraphAttack;
+
     [Range(200f, 1600f)] public float speed;
 
     [HideInInspector] public int currentLife;
@@ -61,6 +65,7 @@ public class Player_Main_Controller : MonoBehaviour
     [HideInInspector] public float lastAttackVersatilTimer = 1f;
     float lastAttackForce = 1;
     bool charging = false;
+    int telegraphedLevel = 1;
 
     [HideInInspector] public bool canSpringAttack;
     [HideInInspector] public bool canAccelerate;
@@ -154,6 +159,10 @@ public class Player_Main_Controller : MonoBehaviour
         barsCharge2.SetActive(false);
         barsCharge3.SetActive(false);
         barCharge.gameObject.SetActive(false);
+
+        chargeParticleSystem.loop = false;
+
+        damageParticleSystem.gameObject.SetActive(false);
     }
 
 
@@ -262,17 +271,20 @@ public class Player_Main_Controller : MonoBehaviour
                     if(part == 3)
                     {
                         chargeTime = chargeTimeLevel3;
-                        barsCharge3.SetActive(true);
+                        //barsCharge3.SetActive(true);
                     }
                     else
                     {
                         chargeTime = chargeTimeLevel2;
-                        barsCharge2.SetActive(true);
+                        //barsCharge2.SetActive(true);
                     }
+
+                    chargeParticleSystem.loop = true;
+                    chargeParticleSystem.Play();
 
                     charging = true;
 
-                    barCharge.gameObject.SetActive(true);
+                    //barCharge.gameObject.SetActive(true);
 
                     if (Input.GetButtonDown("RB"))
                     {
@@ -319,16 +331,44 @@ public class Player_Main_Controller : MonoBehaviour
 
                     if (part == 3)
                     {
-                        barsCharge3.SetActive(true);
+                        if (chargeTimer >= chargeTime)
+                        {
+                            if (telegraphedLevel == 2)
+                                StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity * 2f));
+
+                            telegraphedLevel = 3;
+                        }
+                        else if (chargeTimer >= (chargeTime * (1f / 3f)))
+                        {
+                            if (telegraphedLevel == 1)
+                                StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity / 10f));
+
+                            telegraphedLevel = 2;
+                        }
+                    }
+                    else if (part == 2)
+                    {
+                        if (chargeTimer >= chargeTime)
+                        {
+                            if (telegraphedLevel == 1)
+                                StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity));
+
+                            telegraphedLevel = 2;
+                        }
+                    }
+
+                    if (part == 3)
+                    {
+                        //barsCharge3.SetActive(true);
                     }
                     else
                     {
-                        barsCharge2.SetActive(true);
+                        //barsCharge2.SetActive(true);
                     }
 
                     pressX.SetActive(false);
 
-                    barCharge.gameObject.SetActive(true);
+                    //barCharge.gameObject.SetActive(true);
                 }
 
                 if((Input.GetButtonUp("RB") || Input.GetButtonUp("X")) && charging)
@@ -399,6 +439,11 @@ public class Player_Main_Controller : MonoBehaviour
                     pressX.SetActive(false);
 
                     charging = false;
+                    chargeParticleSystem.loop = false;
+
+                    StartCoroutine(telegraphAttack.UnlitLight(50f));
+
+                    telegraphedLevel = 1;
 
                     chargeTimer = 0;
 
@@ -774,12 +819,19 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         currentLife -= damageTaken;
         audiomanager.Play("Player_take_damage");
 
+        damageParticleSystem.gameObject.SetActive(true);
+
         damageParticleSystem.Play();
 
         //Stop charge 
         pressX.SetActive(false);
 
         charging = false;
+        chargeParticleSystem.loop = false;
+
+        StartCoroutine( telegraphAttack.UnlitLight(50f) );
+
+        telegraphedLevel = 1;
 
         chargeTimer = 0;
 
