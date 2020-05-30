@@ -102,7 +102,7 @@ Transform:
   m_Children:
   - {fileID: 4650168708771456169}
   - {fileID: 3031133309280150224}
-  - {fileID: 3980080684094887277}
+  - {fileID: 2571479928485058282}
   m_Father: {fileID: 5794604417719003630}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -243,7 +243,7 @@ Transform:
   m_LocalPosition: {x: 91, y: -32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5646318650186065147}
+  m_Father: {fileID: 1328575282052945369}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3175159082902155747
@@ -260,10 +260,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 0}
   dialogue:
-    npcName: Alwin
+    npcName: "Esprit Myst\xE9rieux"
     sentences:
-    - "Mais... cette ramure si particuli\xE8re... C'\xE9tait la l\xE9gendraire ancienne
-      druide, Awinohken !"
+    - "Eh, l\xE0 ! Viens me voir, jeune druide."
+    - "Je suis l\xE0 haut, dans mon arbre ! Cela fait une \xE9ternit\xE9 que je n'ai
+      vu passer une \xE2me par ici."
+    - "Pour r\xE9compenser ta bravoure, je vais t'offrir ma sagesse, et puisse-t-elle
+      guider ta qu\xEAte."
 --- !u!1 &3207434092484623780
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +315,7 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -5292505933856436911, guid: ce9a795389504264f83869d67df9594b, type: 2}
-    value: {fileID: 2516767136440058702}
+    value: {fileID: 6005008842437463059}
   m_ExposedReferences:
     m_References: []
 --- !u!95 &5058400774181773545
@@ -382,9 +385,9 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -5292505933856436911, guid: ce9a795389504264f83869d67df9594b, type: 2}
-    value: {fileID: 6672720843492356453}
+    value: {fileID: 2516767136440058702}
   - key: {fileID: 521635956869421039, guid: 2dc2fa2732ff0c24fa58cbefc8d93a03, type: 2}
-    value: {fileID: 6672720843492356453}
+    value: {fileID: 2516767136440058702}
   - key: {fileID: -407694799702920979, guid: 2dc2fa2732ff0c24fa58cbefc8d93a03, type: 2}
     value: {fileID: 9186101839382920044}
   m_ExposedReferences:
@@ -521,7 +524,7 @@ MonoBehaviour:
   playerCantMoveFor: 0
   setPlayerTransform: 0
   cinematicIsInteraction: 0
---- !u!1 &6672720843492356453
+--- !u!1 &6005008842437463059
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,8 +532,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3980080684094887277}
-  - component: {fileID: 8532182134806908419}
+  - component: {fileID: 3419907156838675852}
+  - component: {fileID: 8324754289987521948}
   m_Layer: 0
   m_Name: Dialogue cinematic
   m_TagString: Untagged
@@ -538,27 +541,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &3980080684094887277
+--- !u!4 &3419907156838675852
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6672720843492356453}
+  m_GameObject: {fileID: 6005008842437463059}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 91, y: -32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1328575282052945369}
+  m_Father: {fileID: 5646318650186065147}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8532182134806908419
+--- !u!114 &8324754289987521948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6672720843492356453}
+  m_GameObject: {fileID: 6005008842437463059}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 335f59b62d73ec3419a35bd9b57fe254, type: 3}
@@ -568,11 +571,8 @@ MonoBehaviour:
   dialogue:
     npcName: Alwin
     sentences:
-    - "Eh, l\xE0 ! Viens me voir, jeune druide."
-    - "Je suis l\xE0 haut, dans mon arbre ! Cela fait une \xE9ternit\xE9 que je n'ai
-      vu passer une \xE2me par ici."
-    - "Pour r\xE9compenser ta bravoure, je vais t'offrir ma sagesse, et puisse-t-elle
-      guider ta qu\xEAte."
+    - "Mais... cette ramure si particuli\xE8re... C'\xE9tait la l\xE9gendraire ancienne
+      druide, Awinohken !"
 --- !u!1 &9186101839382920044
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,7 +603,7 @@ Transform:
   m_Children:
   - {fileID: 5075786585941776908}
   - {fileID: 3943748800094029628}
-  - {fileID: 2571479928485058282}
+  - {fileID: 3419907156838675852}
   m_Father: {fileID: 5794604417719003630}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
