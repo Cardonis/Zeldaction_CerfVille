@@ -9,6 +9,8 @@ public class TelegraphAttack : MonoBehaviour
 
     public float baseIntensity;
 
+    [HideInInspector] public Coroutine lastLight;
+
     private void Start()
     {
         baseIntensity = lightt.intensity;
