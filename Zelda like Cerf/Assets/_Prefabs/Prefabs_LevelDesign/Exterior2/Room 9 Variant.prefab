@@ -100,9 +100,9 @@ Transform:
   m_LocalPosition: {x: -1.89, y: -8.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8202478447855739963}
+  - {fileID: 4650168708771456169}
   - {fileID: 3031133309280150224}
-  - {fileID: 9095527564860701523}
+  - {fileID: 3980080684094887277}
   m_Father: {fileID: 5794604417719003630}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -154,7 +154,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5646318650186065147}
+  m_Father: {fileID: 1328575282052945369}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3863220578414090517
@@ -170,7 +170,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.09693146, y: 1.1297431}
+  m_Offset: {x: 0.053886414, y: 3.1385002}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -181,7 +181,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.4392548, y: 2.9155684}
+  m_Size: {x: 20.550797, y: 6.9330826}
   m_EdgeRadius: 0
 --- !u!114 &6695211266133728500
 MonoBehaviour:
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e34abaf17720eb419066f9af325a82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 4363864806251539715}
+  playableDirector: {fileID: 2114911952338871853}
   playerCantMoveFor: 0
   setPlayerTransform: 0
   cinematicIsInteraction: 0
@@ -215,22 +215,55 @@ MonoBehaviour:
   tipsPlayer: {fileID: 0}
   outlineController: {fileID: 2079466642934404410}
   theTips: {fileID: 0}
---- !u!114 &8666566436641472689
+--- !u!1 &2516767136440058702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2571479928485058282}
+  - component: {fileID: 3175159082902155747}
+  m_Layer: 0
+  m_Name: Dialogue cinematic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2571479928485058282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2516767136440058702}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 91, y: -32, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5646318650186065147}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3175159082902155747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2426566735960899209}
+  m_GameObject: {fileID: 2516767136440058702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afcc4ed1c7a431248a061c446aab0604, type: 3}
+  m_Script: {fileID: 11500000, guid: 335f59b62d73ec3419a35bd9b57fe254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asTalked: 0
-  tipsPlayer: {fileID: 0}
-  outlineController: {fileID: 2079466642934404410}
-  theTips: {fileID: 0}
+  dialogueManager: {fileID: 0}
+  dialogue:
+    npcName: Alwin
+    sentences:
+    - "Mais... cette ramure si particuli\xE8re... C'\xE9tait la l\xE9gendraire ancienne
+      druide, Awinohken !"
 --- !u!1 &3207434092484623780
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +312,7 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -5292505933856436911, guid: ce9a795389504264f83869d67df9594b, type: 2}
-    value: {fileID: 6672720843492356453}
+    value: {fileID: 2516767136440058702}
   m_ExposedReferences:
     m_References: []
 --- !u!95 &5058400774181773545
@@ -349,9 +382,9 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -5292505933856436911, guid: ce9a795389504264f83869d67df9594b, type: 2}
-    value: {fileID: 4662480876332032018}
+    value: {fileID: 6672720843492356453}
   - key: {fileID: 521635956869421039, guid: 2dc2fa2732ff0c24fa58cbefc8d93a03, type: 2}
-    value: {fileID: 4662480876332032018}
+    value: {fileID: 6672720843492356453}
   - key: {fileID: -407694799702920979, guid: 2dc2fa2732ff0c24fa58cbefc8d93a03, type: 2}
     value: {fileID: 9186101839382920044}
   m_ExposedReferences:
@@ -414,7 +447,7 @@ Transform:
   m_Father: {fileID: 4597813765544884564}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4662480876332032018
+--- !u!1 &5613474996235734488
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -422,50 +455,72 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9095527564860701523}
-  - component: {fileID: 3436781085827207652}
+  - component: {fileID: 5075786585941776908}
+  - component: {fileID: 3448870702139262031}
+  - component: {fileID: 3853791826279765862}
   m_Layer: 0
-  m_Name: Dialogue cinematic
+  m_Name: Timeline launcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &9095527564860701523
+  m_IsActive: 1
+--- !u!4 &5075786585941776908
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4662480876332032018}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 91, y: -32, z: 0}
+  m_GameObject: {fileID: 5613474996235734488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1328575282052945369}
-  m_RootOrder: 2
+  m_Father: {fileID: 5646318650186065147}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3436781085827207652
+--- !u!61 &3448870702139262031
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5613474996235734488}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.09693146, y: 1.1297431}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.4392548, y: 2.9155684}
+  m_EdgeRadius: 0
+--- !u!114 &3853791826279765862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4662480876332032018}
+  m_GameObject: {fileID: 5613474996235734488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 335f59b62d73ec3419a35bd9b57fe254, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e34abaf17720eb419066f9af325a82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 0}
-  dialogue:
-    npcName: Alwin
-    sentences:
-    - "Eh, l\xE0 ! Viens me voir, jeune druide."
-    - "Je suis l\xE0 haut, dans mon arbre ! Cela fait une \xE9ternit\xE9 que je n'ai
-      vu passer une \xE2me par ici."
-    - "Pour r\xE9compenser ta bravoure, je vais t'offrir ma sagesse, et puisse-t-elle
-      guider ta qu\xEAte."
+  playableDirector: {fileID: 4363864806251539715}
+  playerCantMoveFor: 0
+  setPlayerTransform: 0
+  cinematicIsInteraction: 0
 --- !u!1 &6672720843492356453
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +549,7 @@ Transform:
   m_LocalPosition: {x: 91, y: -32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5646318650186065147}
+  m_Father: {fileID: 1328575282052945369}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8532182134806908419
@@ -513,82 +568,11 @@ MonoBehaviour:
   dialogue:
     npcName: Alwin
     sentences:
-    - "Mais... cette ramure si particuli\xE8re... C'\xE9tait la l\xE9gendraire ancienne
-      druide, Awinohken !"
---- !u!1 &8030126915939836488
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8202478447855739963}
-  - component: {fileID: 8667182100516380304}
-  - component: {fileID: 8727471067040963414}
-  m_Layer: 0
-  m_Name: Timeline launcher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8202478447855739963
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8030126915939836488}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1328575282052945369}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &8667182100516380304
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8030126915939836488}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.053886414, y: 3.1385002}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 20.550797, y: 6.9330826}
-  m_EdgeRadius: 0
---- !u!114 &8727471067040963414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8030126915939836488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e34abaf17720eb419066f9af325a82b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playableDirector: {fileID: 2114911952338871853}
-  playerCantMoveFor: 0
-  setPlayerTransform: 0
-  cinematicIsInteraction: 0
+    - "Eh, l\xE0 ! Viens me voir, jeune druide."
+    - "Je suis l\xE0 haut, dans mon arbre ! Cela fait une \xE9ternit\xE9 que je n'ai
+      vu passer une \xE2me par ici."
+    - "Pour r\xE9compenser ta bravoure, je vais t'offrir ma sagesse, et puisse-t-elle
+      guider ta qu\xEAte."
 --- !u!1 &9186101839382920044
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,9 +601,9 @@ Transform:
   m_LocalPosition: {x: -3.77, y: -15.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4650168708771456169}
+  - {fileID: 5075786585941776908}
   - {fileID: 3943748800094029628}
-  - {fileID: 3980080684094887277}
+  - {fileID: 2571479928485058282}
   m_Father: {fileID: 5794604417719003630}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49785,9 +49769,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5081684697881207758}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7105754501656118245 stripped
+--- !u!4 &5056822365648426156 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2601237104292257835, guid: 3fdd119f49146504594e1470d564c3eb,
+  m_CorrespondingSourceObject: {fileID: 47486159974496098, guid: 3fdd119f49146504594e1470d564c3eb,
     type: 3}
   m_PrefabInstance: {fileID: 5081684697881207758}
   m_PrefabAsset: {fileID: 0}
@@ -49797,21 +49781,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5081684697881207758}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5056822365648426156 stripped
+--- !u!4 &7105754501656118245 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 47486159974496098, guid: 3fdd119f49146504594e1470d564c3eb,
-    type: 3}
-  m_PrefabInstance: {fileID: 5081684697881207758}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3000877807747120678 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8007548814412078568, guid: 3fdd119f49146504594e1470d564c3eb,
+  m_CorrespondingSourceObject: {fileID: 2601237104292257835, guid: 3fdd119f49146504594e1470d564c3eb,
     type: 3}
   m_PrefabInstance: {fileID: 5081684697881207758}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4597813765544884564 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8740204903664409242, guid: 3fdd119f49146504594e1470d564c3eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 5081684697881207758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3000877807747120678 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8007548814412078568, guid: 3fdd119f49146504594e1470d564c3eb,
     type: 3}
   m_PrefabInstance: {fileID: 5081684697881207758}
   m_PrefabAsset: {fileID: 0}
@@ -50422,7 +50406,7 @@ PrefabInstance:
         type: 3}
       propertyPath: tipsTrigger
       value: 
-      objectReference: {fileID: 8666566436641472689}
+      objectReference: {fileID: 890782969}
     - target: {fileID: 4661256345819788563, guid: 3ca08445419d6684e9e1beb767703758,
         type: 3}
       propertyPath: m_Name
