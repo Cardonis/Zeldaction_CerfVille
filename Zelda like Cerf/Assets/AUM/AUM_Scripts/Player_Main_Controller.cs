@@ -25,6 +25,7 @@ public class Player_Main_Controller : MonoBehaviour
     public Material outlineMaterial;
 
     public Sprite arrowLevel2;
+    public Sprite arrowLevel3;
 
     [Range(200f, 1600f)] public float speed;
 
@@ -174,6 +175,10 @@ public class Player_Main_Controller : MonoBehaviour
     {
 
         if(part == 3)
+        {
+            arrowBackSR.sprite = arrowLevel3;
+        }
+        else if(part == 2)
         {
             arrowBackSR.sprite = arrowLevel2;
         }
@@ -348,14 +353,14 @@ public class Player_Main_Controller : MonoBehaviour
                         if (chargeTimer >= chargeTime)
                         {
                             if (telegraphedLevel == 2)
-                                StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity * 2f));
+                                telegraphAttack.lastLight = StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity * 2f));
 
                             telegraphedLevel = 3;
                         }
                         else if (chargeTimer >= (chargeTime * (1f / 3f)))
                         {
                             if (telegraphedLevel == 1)
-                                StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity / 10f));
+                                telegraphAttack.lastLight = StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity / 10f));
 
                             telegraphedLevel = 2;
                         }
@@ -365,7 +370,7 @@ public class Player_Main_Controller : MonoBehaviour
                         if (chargeTimer >= chargeTime)
                         {
                             if (telegraphedLevel == 1)
-                                StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity));
+                                telegraphAttack.lastLight = StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity));
 
                             telegraphedLevel = 2;
                         }
@@ -454,6 +459,9 @@ public class Player_Main_Controller : MonoBehaviour
 
                     charging = false;
                     chargeParticleSystem.loop = false;
+
+                    if(telegraphAttack.lastLight != null)
+                    StopCoroutine(telegraphAttack.lastLight);
 
                     StartCoroutine(telegraphAttack.UnlitLight(50f));
 
