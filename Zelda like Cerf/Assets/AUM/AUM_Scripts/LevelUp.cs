@@ -5,6 +5,8 @@ using UnityEngine;
 public class LevelUp : MonoBehaviour
 {
     public int partLevel;
+    public GameObject arbusteAmiMortPetit;
+    public GameObject arbusteAmiMortGrand;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,6 +16,8 @@ public class LevelUp : MonoBehaviour
         {
             if(pmc.part < partLevel)
             pmc.part = partLevel;
+            arbusteAmiMortPetit.SetActive(false);
+            arbusteAmiMortGrand.SetActive(true);
         }
     }
 }
