@@ -1877,95 +1877,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!1 &3147824550372642013
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2156456146407089387}
-  - component: {fileID: 4989151604318448493}
-  m_Layer: 0
-  m_Name: Freeform Light 2D (26)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2156456146407089387
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3147824550372642013}
-  m_LocalRotation: {x: -0, y: -0, z: 0.8764571, w: 0.48148003}
-  m_LocalPosition: {x: 1.7299995, y: 0.44000244, z: 0}
-  m_LocalScale: {x: 0.5390359, y: 0.7139489, z: 0.19716947}
-  m_Children: []
-  m_Father: {fileID: 6471557253415272448}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 122.436005}
---- !u!114 &4989151604318448493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3147824550372642013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_LightType: 1
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.61
-  m_Color: {r: 0.41509432, g: 0.24994637, b: 0.045033827, a: 1}
-  m_Intensity: 0.5
-  m_LightVolumeOpacity: 0.01
-  m_ApplyToSortingLayers: 00000000
-  m_LightCookieSprite: {fileID: 0}
-  m_UseNormalMap: 0
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_ShadowIntensity: 0
-  m_ShadowVolumeIntensity: 0
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1
-  m_PointLightDistance: 3
-  m_PointLightQuality: 1
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
-  m_ShapeLightFalloffOffset: {x: -15.94, y: 0}
-  m_ShapePath:
-  - {x: -0.34441003, y: -2.5871453, z: 0}
-  - {x: 5.0740643, y: -2.6772473, z: 0}
-  - {x: 4.6911206, y: -2.1961718, z: 0}
-  - {x: 7.913262, y: -3.0610359, z: 0}
-  - {x: 8.201368, y: -2.6209087, z: 0}
-  - {x: 9.070389, y: -2.7535872, z: 0}
-  - {x: 8.802791, y: -2.2219965, z: 0}
-  - {x: 8.031537, y: -2.281621, z: 0}
-  - {x: 5.6844225, y: -1.0745817, z: 0}
-  - {x: 9.336329, y: -1.6708573, z: 0}
-  - {x: 8.993342, y: -1.1389496, z: 0}
-  - {x: 9.7569685, y: -0.8178628, z: 0}
-  - {x: 9.18072, y: -0.32268712, z: 0}
-  - {x: 10.24232, y: 0.2096348, z: 0}
-  - {x: 9.608331, y: 0.4420747, z: 0}
-  - {x: 6.234854, y: -0.008306326, z: 0}
-  - {x: 6.0415316, y: 0.4577617, z: 0}
-  - {x: 0.1685566, y: -0.5966179, z: 0}
-  - {x: -5.7598505, y: -1.2392086, z: 0}
-  - {x: -9.75566, y: -1.902725, z: 0}
-  - {x: -6.0885453, y: -1.6679592, z: 0}
 --- !u!1 &5158057072378656714
 GameObject:
   m_ObjectHideFlags: 0
@@ -82471,7 +82382,7 @@ PrefabInstance:
     - target: {fileID: 8740204903664409241, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_Name
-      value: Room 3 Variant
+      value: Room 3
       objectReference: {fileID: 0}
     - target: {fileID: 8740204903664409242, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
@@ -82530,9 +82441,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdd119f49146504594e1470d564c3eb, type: 3}
---- !u!4 &6471557253415272448 stripped
+--- !u!4 &7530653380073017438 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8740204903664409242, guid: 3fdd119f49146504594e1470d564c3eb,
+  m_CorrespondingSourceObject: {fileID: 5190016336704047812, guid: 3fdd119f49146504594e1470d564c3eb,
     type: 3}
   m_PrefabInstance: {fileID: 2343249518501354138}
   m_PrefabAsset: {fileID: 0}
@@ -82652,12 +82563,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 993733438106467154, guid: bbe63a94c9316dd459c44e89f743b9c8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bbe63a94c9316dd459c44e89f743b9c8, type: 3}
---- !u!95 &120032794075190462 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8521833162012260843, guid: bbe63a94c9316dd459c44e89f743b9c8,
-    type: 3}
-  m_PrefabInstance: {fileID: 8640669548382367061}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7187816292467296656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1452855053996713157, guid: bbe63a94c9316dd459c44e89f743b9c8,
