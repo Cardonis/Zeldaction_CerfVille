@@ -149,6 +149,88 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ennemyController: {fileID: 8901876281111542922}
+--- !u!1 &6010236194910052568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6558563518261218731}
+  - component: {fileID: 8114057055174642893}
+  m_Layer: 0
+  m_Name: ombres_1_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6558563518261218731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6010236194910052568}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7091535423309701917}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &8114057055174642893
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6010236194910052568}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 4528657855108198665, guid: f6efa8fb50172b941a947604e35e65dc,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.125, y: 0.90625}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &7091535423309701919
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,6 +263,7 @@ Transform:
   - {fileID: 7091535423821252589}
   - {fileID: 8526876121269872251}
   - {fileID: 4376500400815360576}
+  - {fileID: 6558563518261218731}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -221,6 +304,7 @@ MonoBehaviour:
   playerProjected: 0
   stuned: 0
   rb: {fileID: 0}
+  isTractable: 1
   mass: 2
   levelProjected: 0
   player: {fileID: 0}
@@ -231,6 +315,13 @@ MonoBehaviour:
   audiomanager: {fileID: 0}
   collider2Ds: []
   ennemyCollidersLayers: 
+  velocityBeforeImpact: {x: 0, y: 0, z: 0}
+  velocityBeforeImpactAngle: 0
+  initialDrag: 0
+  outlineController: {fileID: 0}
+  trailParticleSystem: {fileID: 0}
+  trailParticleSystemAngle: 0
+  damageParticleSystem: {fileID: 0}
   pv: 6
   initialLife: 0
   speed: 200
@@ -251,16 +342,19 @@ MonoBehaviour:
   maxWanderingDistance: 2
   target: {x: 0, y: 0}
   canMove: 1
+  invincible: 0
   col: {fileID: 5433854479219786175}
+  telegraphAttack: {fileID: 0}
   bulletAttack1: {fileID: 7027103313488091529, guid: 1b5fb195799ca2148b01e51cff6a408c,
     type: 3}
   attackSpeed: 200
   attackCooldown: 2
   attackRange: 15
+  attackRangeToPlayer: 0
   physicCollider: {fileID: 5433854479219786175}
   attackForce: 50
+  attackForcePlayer: 0
   attackBulletForce: 1000
-  animator: {fileID: 0}
 --- !u!1 &7091535423821252591
 GameObject:
   m_ObjectHideFlags: 0
