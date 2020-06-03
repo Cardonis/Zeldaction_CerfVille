@@ -1181,7 +1181,7 @@ GameObject:
   - component: {fileID: 641521658690628563}
   - component: {fileID: 641521658690628562}
   m_Layer: 0
-  m_Name: Lucioles corrompues
+  m_Name: Lucioles Arbre de la connaissance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1195,7 +1195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641521658690628573}
   m_LocalRotation: {x: -0.003588913, y: 0.7070977, z: -0.7070977, w: 0.003588913}
-  m_LocalPosition: {x: 6.290001, y: 1.8800011, z: 0}
+  m_LocalPosition: {x: 6.18, y: 4.79, z: 0}
   m_LocalScale: {x: 1.075, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7047241889923326155}
@@ -1284,8 +1284,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 5
+      scalar: 50
+      minScalar: 40
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1454,7 +1454,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 0.5
-      minScalar: 0.4
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1829,14 +1829,14 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 5
-    angle: 30
+    angle: 23.53
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 10.1, y: 1, z: 7.42}
+    m_Scale: {x: 10.27, y: 1, z: 2.6}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -1915,7 +1915,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.4
       mode: 0
       spread: 0
       speed:
@@ -1972,7 +1972,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 360
+      value: 359.31
       mode: 0
       spread: 0
       speed:
@@ -2034,7 +2034,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2152,15 +2152,24 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0.08108115
-          inSlope: 4.984821
-          outSlope: 4.984821
+          inSlope: 6.639612
+          outSlope: 6.639612
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.1843434
-          value: 1
+          time: 0.11180218
+          value: 0.8234043
+          inSlope: 2.5732377
+          outSlope: 2.5732377
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.47061354
+          value: 0.9230766
           inSlope: -0.5823535
           outSlope: -0.5823535
           tangentMode: 0
@@ -2170,8 +2179,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0.9772644
           value: 0
-          inSlope: -1.2611597
-          outSlope: -1.2611597
+          inSlope: -1.8219186
+          outSlope: -1.8219186
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -2481,8 +2490,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.5176471, g: 0.1764706, b: 0.7058824, a: 0}
-        key1: {r: 0.5176471, g: 0.1764706, b: 0.7058824, a: 0.84313726}
+        key0: {r: 0.7058824, g: 0.24313727, b: 0.1764706, a: 0}
+        key1: {r: 0.7058824, g: 0.24313727, b: 0.1764706, a: 0.84313726}
         key2: {r: 1, g: 1, b: 1, a: 0.7921569}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -2510,7 +2519,7 @@ ParticleSystem:
         m_NumAlphaKeys: 4
       minGradient:
         serializedVersion: 2
-        key0: {r: 0.6039216, g: 0.36078432, b: 0.28235295, a: 0}
+        key0: {r: 1, g: 0.4490608, b: 0, a: 0}
         key1: {r: 0.82745105, g: 0.7019608, b: 0.47450984, a: 1}
         key2: {r: 0.23791772, g: 0.19063722, b: 0.26415092, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -5896,7 +5905,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a3cd949f7c9a82c4f930729fc35fa31e, type: 2}
+  - {fileID: 2100000, guid: 42381f72c5018e145bc4e67bee81d069, type: 2}
   - {fileID: 2100000, guid: f9d865c59c867cb4f8308bcaf0bf1f75, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
