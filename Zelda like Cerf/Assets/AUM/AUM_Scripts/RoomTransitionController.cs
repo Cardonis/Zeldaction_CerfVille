@@ -6,6 +6,7 @@ public class RoomTransitionController : MonoBehaviour
 {
     [HideInInspector] public RoomController activeRoom;
     public Cinemachine.CinemachineVirtualCamera cmVcam;
+    public MapDisplay mapScript;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +73,8 @@ public class RoomTransitionController : MonoBehaviour
         }
 
         player.stunned = false;
+
+        mapScript.UpdateCloud();
     }
 
 }
