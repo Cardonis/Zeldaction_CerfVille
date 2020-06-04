@@ -9,6 +9,7 @@ public class TipsPlayer : MonoBehaviour
     public GameObject tipsMark;
     public GameObject tipsRenv;
     public GameObject tipsYoyo;
+    public GameObject cadre;
 
     public GameObject currentTips;
     public Image fadeScreen;
@@ -35,6 +36,7 @@ public class TipsPlayer : MonoBehaviour
             yield return null;
         }
         playerscript.stunned = true;
+        cadre.SetActive(true);
         tips.SetActive(true);
         currentTips = tips;
         yield return null;
@@ -49,7 +51,7 @@ public class TipsPlayer : MonoBehaviour
         Color c = fadeScreen.color;
 
         playerscript.stunned = false;
-        
+        cadre.SetActive(false);
         currentTips.SetActive(false);
         while (elapsedTime < 0.5f)
         {
