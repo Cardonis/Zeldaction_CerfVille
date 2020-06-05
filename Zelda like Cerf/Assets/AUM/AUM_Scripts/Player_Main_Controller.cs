@@ -220,7 +220,8 @@ public class Player_Main_Controller : MonoBehaviour
                 }
                 else
                 {
-                    rb.velocity = direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime;
+                    rb.AddForce(direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime * 25f, ForceMode2D.Force);
+                    //rb.velocity = (direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime);
                 }
 
             }
