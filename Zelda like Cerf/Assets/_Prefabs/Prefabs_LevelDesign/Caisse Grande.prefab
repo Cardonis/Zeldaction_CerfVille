@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032557702591884783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.016, y: 0.024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2032557703932809302}
@@ -44,9 +44,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.012082815, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.5926354
 --- !u!1 &2032557703438038180
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,8 +177,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1.2
-  m_LinearDrag: 6
+  m_Mass: 1.5
+  m_LinearDrag: 11
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 4e3e66ec673e5b941ba67d3a948d9819, type: 2}
@@ -220,6 +220,7 @@ MonoBehaviour:
   outlineController: {fileID: 1814125151570669978}
   trailParticleSystem: {fileID: 2059442187169071708}
   trailParticleSystemAngle: 0
+  initialMass: 0
 --- !u!114 &1814125151570669978
 MonoBehaviour:
   m_ObjectHideFlags: 0

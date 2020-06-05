@@ -1,23 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &6614126294438637062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452855053996713159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f1bd75c51ea454c847c9a20896babf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outLining: 0
-  outlineColor: {r: 1, g: 0.1764706, b: 0.3137255, a: 0.5882353}
-  baseGraph: {fileID: 1452855054491222071}
-  outLines: []
-  outLinesAnimator: []
-  thiccness: 0.08
 --- !u!1 &2833750300725364542
 GameObject:
   m_ObjectHideFlags: 0
@@ -4830,6 +4812,24 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &6614126294438637062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452855053996713159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f1bd75c51ea454c847c9a20896babf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outLining: 0
+  outlineColor: {r: 1, g: 0.1764706, b: 0.3137255, a: 0.5882353}
+  baseGraph: {fileID: 1452855054491222071}
+  outLines: []
+  outLinesAnimator: []
+  thiccness: 0.08
 --- !u!1001 &4251888801910899437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4955,13 +4955,18 @@ PrefabInstance:
     - target: {fileID: 7091535423309701916, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
       propertyPath: m_Mass
-      value: 0.6
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7091535423309701916, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 4e3e66ec673e5b941ba67d3a948d9819, type: 2}
+    - target: {fileID: 7091535423309701916, guid: 11f1f752d2315cc479f933c403794e01,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7091535423309701917, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5045,17 +5050,17 @@ PrefabInstance:
     - target: {fileID: 8901876281111542922, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
       propertyPath: attackForce
-      value: 30
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 8901876281111542922, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
       propertyPath: speed
-      value: 200
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8901876281111542922, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
       propertyPath: attackSpeed
-      value: 130
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 8901876281111542922, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
@@ -5110,7 +5115,7 @@ PrefabInstance:
     - target: {fileID: 8901876281111542922, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}
       propertyPath: attackRangeToPlayer
-      value: 7
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 8901876281111542922, guid: 11f1f752d2315cc479f933c403794e01,
         type: 3}

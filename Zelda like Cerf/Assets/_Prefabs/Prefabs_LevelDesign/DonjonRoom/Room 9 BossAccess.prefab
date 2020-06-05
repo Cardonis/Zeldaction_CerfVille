@@ -208,8 +208,6 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 4545445752735130849, guid: 35ee85b3da3070a4b86d80c0177c8836, type: 2}
     value: {fileID: 124645241}
-  - key: {fileID: -6201809032892582275, guid: 35ee85b3da3070a4b86d80c0177c8836, type: 2}
-    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!95 &1411691419
@@ -276,6 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playableDirector: {fileID: 1411691418}
+  alreadyPlayed: 0
   playerCantMoveFor: 8
   setPlayerTransform: 0
   cinematicIsInteraction: 0
@@ -5625,7 +5624,7 @@ PrefabInstance:
     - target: {fileID: 2911704692970983436, guid: b18c1764ef711a04faa40ecd0b5354fc,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3044399708841764472, guid: b18c1764ef711a04faa40ecd0b5354fc,
         type: 3}
@@ -61984,7 +61983,7 @@ PrefabInstance:
     - target: {fileID: 1607621757538632766, guid: f546e75599be13542a3de719bed381fd,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f546e75599be13542a3de719bed381fd, type: 3}

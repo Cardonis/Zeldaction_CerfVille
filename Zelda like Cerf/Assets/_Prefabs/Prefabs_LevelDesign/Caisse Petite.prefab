@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3014970193200600683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462816930255590518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f1bd75c51ea454c847c9a20896babf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outLining: 0
+  outlineColor: {r: 1, g: 0.1745283, b: 0.3137255, a: 0.5882353}
+  baseGraph: {fileID: 7462816930750640262}
+  outLines: []
+  outLinesAnimator: []
+  thiccness: 0.08
+--- !u!58 &8972221130210030969
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462816928914532813}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.32400656
 --- !u!1 &1605730524950554301
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,40 +116,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3014970193200600683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7462816930255590518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f1bd75c51ea454c847c9a20896babf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outLining: 0
-  outlineColor: {r: 1, g: 0.1745283, b: 0.3137255, a: 0.5882353}
-  baseGraph: {fileID: 7462816930750640262}
-  outLines: []
-  outLinesAnimator: []
-  thiccness: 0.08
---- !u!58 &8972221130210030969
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7462816928914532813}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.2
 --- !u!1001 &135822323391377820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -262,12 +262,12 @@ PrefabInstance:
     - target: {fileID: 7101001700987042806, guid: 7b256dc489e0fa64b97780e20f608e87,
         type: 3}
       propertyPath: m_LinearDrag
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7101001700987042806, guid: 7b256dc489e0fa64b97780e20f608e87,
         type: 3}
       propertyPath: m_Mass
-      value: 0.4
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7101001700987042806, guid: 7b256dc489e0fa64b97780e20f608e87,
         type: 3}

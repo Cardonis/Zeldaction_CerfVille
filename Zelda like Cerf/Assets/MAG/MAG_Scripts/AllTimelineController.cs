@@ -6,7 +6,7 @@ using UnityEngine.Playables;
 public class AllTimelineController : MonoBehaviour
 {
     public PlayableDirector playableDirector;
-    bool alreadyPlayed;
+    public bool alreadyPlayed;
     public int playerCantMoveFor;
     public bool setPlayerTransform;
 
