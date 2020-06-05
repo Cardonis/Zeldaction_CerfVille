@@ -16,6 +16,7 @@ MonoBehaviour:
   outlineColor: {r: 0.35686275, g: 0.35686275, b: 0.35686275, a: 1}
   baseGraph: {fileID: 6481294488374533000}
   outLines: []
+  outLinesAnimator: []
   thiccness: 0.05
 --- !u!1 &6481294488374533000
 GameObject:
@@ -105,6 +106,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4603314899839108261, guid: c08bf204d06469c4bbbb6a469d9e56ab,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603314899839108261, guid: c08bf204d06469c4bbbb6a469d9e56ab,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603314899839108261, guid: c08bf204d06469c4bbbb6a469d9e56ab,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.27
+      objectReference: {fileID: 0}
     - target: {fileID: 5900479460590231160, guid: c08bf204d06469c4bbbb6a469d9e56ab,
         type: 3}
       propertyPath: dialogue.sentences.Array.size
@@ -194,6 +210,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682189471937217356, guid: c08bf204d06469c4bbbb6a469d9e56ab,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5900479460590231161, guid: c08bf204d06469c4bbbb6a469d9e56ab, type: 3}
