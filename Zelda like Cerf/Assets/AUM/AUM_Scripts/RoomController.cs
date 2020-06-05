@@ -178,16 +178,18 @@ public class RoomController : MonoBehaviour
             if (clear == false)
             {
 
-
                 foreach (Caisse_Controller objectToReset in objectsToReset)
                 {
                     objectToReset.transform.position = objectToReset.initialPosition;
-                    if (objectToReset.spawned == true)
-                    {
-                        objectsToReset.Remove(objectToReset);
-                        Destroy(objectToReset.gameObject);
-                    }
                 }
+
+                foreach (Elements_Controller objectToDestroy in objectsToDestroy)
+                {
+                    Destroy(objectToDestroy.gameObject);
+                }
+
+                objectsToDestroy.Clear();
+
             }
 
             for (int i = 0; i < ennemies.Count; i++)
@@ -206,42 +208,49 @@ public class RoomController : MonoBehaviour
 
     public void FullReset()
     {
-        for (int i = 0; i < ennemies.Count; i++)
+        if (monsterRoom == false)
         {
-            ennemies[i].gameObject.SetActive(true);
 
-            ennemies[i].dead = false;
-
-            ennemies[i].playerDetected = false;
-
-            ennemies[i].canMove = true;
-
-            ennemies[i].attacking = false;
-
-            ennemies[i].stuned = false;
-
-            EnnemiOneBehavior eob = ennemies[i].GetComponent<EnnemiOneBehavior>();
-
-            if(eob != null)
+            for (int i = 0; i < ennemies.Count; i++)
             {
-                eob.hasAttacked = false;
+                ennemies[i].gameObject.SetActive(true);
+
+                ennemies[i].dead = false;
+
+                ennemies[i].playerDetected = false;
+
+                ennemies[i].canMove = true;
+
+                ennemies[i].attacking = false;
+
+                ennemies[i].stuned = false;
+
+                EnnemiOneBehavior eob = ennemies[i].GetComponent<EnnemiOneBehavior>();
+
+                if (eob != null)
+                {
+                    eob.hasAttacked = false;
+                }
+
+                ennemies[i].pv = ennemies[i].initialLife;
+                ennemies[i].transform.position = ennemies[i].initialPosition;
+                ennemies[i].rb.velocity = Vector2.zero;
             }
 
-            ennemies[i].pv = ennemies[i].initialLife;
-            ennemies[i].transform.position = ennemies[i].initialPosition;
-            ennemies[i].rb.velocity = Vector2.zero;
+            foreach (Caisse_Controller objectToReset in objectsToReset)
+            {
+                objectToReset.transform.position = objectToReset.initialPosition;
+            }
+
+            foreach (Elements_Controller objectToDestroy in objectsToDestroy)
+            {
+                Destroy(objectToDestroy.gameObject);
+            }
+
+            objectsToDestroy.Clear();
+
         }
 
-        foreach(Caisse_Controller objectToReset in objectsToReset)
-        {
-            objectToReset.transform.position = objectToReset.initialPosition;
-        }
-
-        foreach(Elements_Controller objectToDestroy in objectsToDestroy)
-        {
-            Destroy(objectToDestroy.gameObject);
-        }
-
-        objectsToDestroy.Clear();
     }
+
 }

@@ -218,7 +218,7 @@ public class Player_Main_Controller : MonoBehaviour
 
                 if(currentPierre != null)
                 {
-                    rb.velocity = (direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime) * ( 6 - currentPierre.mass) / 6;
+                    rb.AddForce(direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime * 25f * (6 - currentPierre.mass) / 6, ForceMode2D.Force);
                 }
                 else
                 {

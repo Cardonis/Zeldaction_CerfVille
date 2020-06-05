@@ -146,6 +146,8 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50));
 
+        audiomanager.Play("pre-attack");
+
         yield return new WaitForSeconds(0.2f);
 
         StartCoroutine(audiomanager.PlayOne("Enemy3Attack", gameObject));

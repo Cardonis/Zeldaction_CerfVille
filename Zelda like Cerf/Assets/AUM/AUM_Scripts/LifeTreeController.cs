@@ -61,7 +61,7 @@ public class LifeTreeController : MonoBehaviour
 
             healthParticleSystem.Play();
 
-           player.StartCoroutine(player.GainLife(player.maxLife - player.currentLife));
+            player.StartCoroutine(player.GainLife(player.maxLife - player.currentLife));
 
             for(int i = 0; i < rooms.Count; i++)
             {
