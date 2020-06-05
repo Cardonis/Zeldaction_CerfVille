@@ -184,6 +184,7 @@ public class EnnemiOneBehavior : Ennemy_Controller
         StartCoroutine(audiomanager.PlayOne("Enemy1_grognement", gameObject));
 
         telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
+        audiomanager.Play("pre-attack");
 
         for (float i = 0.4f; i > 0; i -= Time.deltaTime)
         {

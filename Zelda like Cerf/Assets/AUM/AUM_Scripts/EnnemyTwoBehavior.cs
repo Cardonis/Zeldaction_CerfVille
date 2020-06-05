@@ -329,6 +329,7 @@ public class
     public IEnumerator GetAndThrowPlayer()
     {
         telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
+        audiomanager.Play("pre-attack");
 
         canMove = false;
 
@@ -467,6 +468,7 @@ public class
         }
 
         telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
+        audiomanager.Play("pre-attack");
 
         for (float i = 1.5f; i > 0.75f; i -= Time.deltaTime * 1f)
         {
