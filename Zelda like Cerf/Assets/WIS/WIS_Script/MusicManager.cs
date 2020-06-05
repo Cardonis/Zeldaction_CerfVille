@@ -74,7 +74,7 @@ public class MusicManager : MonoBehaviour
             s.source.loop = s.loop;
         }
 
-        VolumeChange = MusicVolume;
+        VolumeChange = 0;
 
         PlayerCurrentPos = DefaultPosition;
 
