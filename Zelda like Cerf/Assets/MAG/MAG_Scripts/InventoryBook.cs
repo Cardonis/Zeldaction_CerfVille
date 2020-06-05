@@ -95,9 +95,7 @@ public class InventoryBook : MonoBehaviour
         inventoryBookBackgroundUI.SetActive(false);
         iventoryIsOpen = false;
         marquePageUI.SetActive(false);
-        if (tipsMenu == false) 
-            Time.timeScale = 1f;
-        tipsMenu = false;
+        Time.timeScale = 1f;
     }
     IEnumerator CloseInventoryIn()
     {
