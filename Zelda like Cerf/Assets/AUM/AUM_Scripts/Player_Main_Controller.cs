@@ -243,7 +243,7 @@ public class Player_Main_Controller : MonoBehaviour
         {
             if (currentPierre.projected == true || projected == true || stunned == true)
             {
-                Physics2D.IgnoreCollision(physicCollider, currentPierre.GetComponentInChildren<Collider2D>(), false);
+                Physics2D.IgnoreCollision(physicCollider, currentPierre.collider2Ds[0], false);
                 currentPierre = null;
             }
         }
@@ -254,7 +254,7 @@ public class Player_Main_Controller : MonoBehaviour
 
             currentPierre.transform.position = (Vector2)transform.position + directionAim * 0.8f;
 
-            Physics2D.IgnoreCollision(physicCollider, currentPierre.GetComponentInChildren<Collider2D>(), true);
+            Physics2D.IgnoreCollision(physicCollider, currentPierre.collider2Ds[0], true);
         }
 
         if (timerCooldownBaseAttack < 0)
@@ -560,7 +560,7 @@ public class Player_Main_Controller : MonoBehaviour
                 {
                     if (Input.GetButtonDown("X") && canTrack == true)
                     {
-                        Physics2D.IgnoreCollision(physicCollider, currentPierre.GetComponentInChildren<Collider2D>(), false);
+                        Physics2D.IgnoreCollision(physicCollider, currentPierre.collider2Ds[0], false);
                         currentPierre = null;
                     }
                 }
