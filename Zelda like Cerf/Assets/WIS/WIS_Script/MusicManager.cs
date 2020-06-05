@@ -28,7 +28,7 @@ public class MusicManager : MonoBehaviour
     public int EnemyInBattleP;
 
     [Range(0f, 1f)]
-    public static float MusicVolume = 0.5f;
+    public static float MusicVolume = 1;
 
     private float VolumeChange;
 
@@ -126,7 +126,7 @@ public class MusicManager : MonoBehaviour
         {
             foreach (Music s in Musics)
             {
-                s.source.volume = MusicVolume;
+                s.source.volume = s.volume * MusicVolume;
             }
 
 
@@ -336,19 +336,8 @@ public class MusicManager : MonoBehaviour
 
     public void CinematicVolume()
     {
-        float cinematicVolume;
 
-        if (MusicVolume == 0) { cinematicVolume = -80f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
-        else if (MusicVolume < 0.07f) { cinematicVolume = -65f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
-        else if (MusicVolume < 0.13f) { cinematicVolume = -50f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
-        else if (MusicVolume < 0.19f) { cinematicVolume = -35f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
-        else if (MusicVolume < 0.25f) { cinematicVolume = -25f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
-        else if (MusicVolume < 0.31f) { cinematicVolume = -15f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
-        else if (MusicVolume < 0.37f) { cinematicVolume = -10f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
-        else if (MusicVolume < 0.43f) { cinematicVolume = -5f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
-        else if (MusicVolume < 0.49f) { cinematicVolume = 0f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
-        else if (MusicVolume < 0.55f) { cinematicVolume = 5f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
-        else if (MusicVolume == 0.6f) { cinematicVolume = 10f; audioMaster.SetFloat("CinematicMusic", cinematicVolume); }
+        audioMaster.SetFloat("CinematicMusic", Mathf.Log10(MusicVolume) * 20);
 
     }
 
