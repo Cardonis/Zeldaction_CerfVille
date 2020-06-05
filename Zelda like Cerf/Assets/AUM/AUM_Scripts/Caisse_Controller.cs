@@ -6,7 +6,7 @@ public class Caisse_Controller : Elements_Controller
 {
     private bool isPlaying;
     bool playerNearby = false;
-    float initialMass;
+    [HideInInspector] public float initialMass;
     float slowMultiplicator = 100;
     Coroutine lastDisableMassLoss;
 
@@ -24,17 +24,19 @@ public class Caisse_Controller : Elements_Controller
     // Update is called once per frame
     public override void FixedUpdate()
     {
-        /*if(playerNearby)
-        {
-            player.speed = playerSpeed / (slowMultiplicator * mass);
-            if ((player.transform.position - transform.position).magnitude > 0.0f * mass)
-            {
-                playerNearby = false;
-                player.speed = playerSpeed;
-            }
-        }*/
-
         base.FixedUpdate();
+
+        if (projected)
+            return;
+
+        if ((player.transform.position - transform.position).magnitude < 1.5f)
+        {
+            rb.mass = initialMass * 100f;
+        }
+        else
+        {
+            rb.mass = initialMass;
+        }
     }
 
     public override void OnCollisionEnter2D(Collision2D collision)
@@ -58,15 +60,9 @@ public class Caisse_Controller : Elements_Controller
             }
            
         }
-
-        if (collision.transform.tag == "Player")
-        {
-            rb.mass = initialMass * 100f;
-        }
-
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    /*private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.transform.tag == "Player")
         {
@@ -75,7 +71,7 @@ public class Caisse_Controller : Elements_Controller
 
             lastDisableMassLoss = StartCoroutine(DisableMassLossAfter(1f));
         }
-    }
+    }*/
 
     public IEnumerator DisableMassLossAfter(float time)
     {

@@ -109,8 +109,8 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         if (canMove && attacking == false)
         {
-            rb.velocity = direction * speed * Time.fixedDeltaTime;
-           
+            rb.AddForce(direction * speed * Time.fixedDeltaTime * 10f, ForceMode2D.Force);
+
         }
 
         #region Animator
