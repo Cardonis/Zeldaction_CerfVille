@@ -20,6 +20,8 @@ public class Player_Main_Controller : MonoBehaviour
 
     public ParticleSystem chargeParticleSystem;
 
+    public ParticleSystem walkParticleSystem;
+
     public TelegraphAttack telegraphAttack;
 
     public Material outlineMaterial;
@@ -103,7 +105,7 @@ public class Player_Main_Controller : MonoBehaviour
 
     Vector2 input;
     [HideInInspector] public Vector2 direction;
-    float directionAngle;
+    float inverseDirectionAngle;
 
     Vector2 inputAim;
     [HideInInspector] public Vector2 directionAim;
@@ -218,7 +220,8 @@ public class Player_Main_Controller : MonoBehaviour
                 }
                 else
                 {
-                    rb.velocity = direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime;
+                    rb.AddForce(direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime * 25f, ForceMode2D.Force);
+                    //rb.velocity = (direction * speed * chargeSpeedMultiplicator * Time.fixedDeltaTime);
                 }
 
             }
@@ -566,14 +569,15 @@ public class Player_Main_Controller : MonoBehaviour
 
         barCharge.localScale = new Vector2(((chargeTimer) / (chargeTime)) * 1.5f, barCharge.localScale.y );
 
-        directionAngle = Vector2.Angle(transform.right, direction);
+        inverseDirectionAngle = Vector2.Angle(transform.right, -direction);
 
-        if (direction.y < 0)
+        if (direction.y > 0)
         {
-            directionAngle = -directionAngle;
+            inverseDirectionAngle = -inverseDirectionAngle;
         }
 
-        
+        walkParticleSystem.transform.rotation = Quaternion.Euler(0, 0, inverseDirectionAngle);
+
         directionAimAngle = Vector2.Angle(transform.right, directionAim);
 
         if (directionAim.y < 0)

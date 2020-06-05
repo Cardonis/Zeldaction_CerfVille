@@ -5,6 +5,11 @@ using UnityEngine;
 public class Caisse_Controller : Elements_Controller
 {
     private bool isPlaying;
+    bool playerNearby = false;
+    float initialMass;
+    float slowMultiplicator = 100;
+    Coroutine lastDisableMassLoss;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -12,12 +17,23 @@ public class Caisse_Controller : Elements_Controller
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         isTractable = true;
         isPlaying = false;
+        initialMass = rb.mass;
         StartCoroutine(PlayOneOne());
     }
 
     // Update is called once per frame
     public override void FixedUpdate()
     {
+        /*if(playerNearby)
+        {
+            player.speed = playerSpeed / (slowMultiplicator * mass);
+            if ((player.transform.position - transform.position).magnitude > 0.0f * mass)
+            {
+                playerNearby = false;
+                player.speed = playerSpeed;
+            }
+        }*/
+
         base.FixedUpdate();
     }
 
@@ -32,7 +48,7 @@ public class Caisse_Controller : Elements_Controller
             if((collision.transform.tag == "Wall" || collision.transform.tag == "Ronce") || ec != null)
             {
                 if(player.cameraShake.shaking == false)
-                player.cameraShake.lastCameraShake = player.cameraShake.StartCoroutine(player.cameraShake.CameraShakeFor(0.1f, 0.1f, levelProjected));
+                    player.cameraShake.lastCameraShake = player.cameraShake.StartCoroutine(player.cameraShake.CameraShakeFor(0.1f, 0.1f, levelProjected));
 
                 if (isPlaying == false)
                 {
@@ -40,9 +56,32 @@ public class Caisse_Controller : Elements_Controller
                     StartCoroutine(PlayOneOne());
                 }
             }
-            
+           
         }
 
+        if (collision.transform.tag == "Player")
+        {
+            rb.mass = initialMass * 100f;
+        }
+
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            if(lastDisableMassLoss != null)
+            StopCoroutine(lastDisableMassLoss);
+
+            lastDisableMassLoss = StartCoroutine(DisableMassLossAfter(1f));
+        }
+    }
+
+    public IEnumerator DisableMassLossAfter(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        rb.mass = initialMass;
     }
 
     public IEnumerator PlayOneOne()
