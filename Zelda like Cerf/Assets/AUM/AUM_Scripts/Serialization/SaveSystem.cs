@@ -6,14 +6,14 @@ public static class SaveSystem
 {
 
 
-    public static void SavePlayer(Player_Main_Controller player)
+    public static void SavePlayer(Player_Main_Controller player, MapDisplay map)
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
         string path = Application.persistentDataPath + "/player.save";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(player);
+        PlayerData data = new PlayerData(player, map);
 
         formatter.Serialize(stream, data);
         stream.Close();

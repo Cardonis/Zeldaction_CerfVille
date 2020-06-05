@@ -9,9 +9,11 @@ public class PlayerData
     public int maxHealth;
     public float[] position;
     public float[] confinerPosition;
+    public bool[,] mapDiscovery = new bool[7, 11];
 
-    public PlayerData (Player_Main_Controller player)
+    public PlayerData (Player_Main_Controller player, MapDisplay map)
     {
+
         part = player.part;
         maxHealth = player.maxLife;
 
@@ -22,5 +24,16 @@ public class PlayerData
         confinerPosition = new float[2];
         confinerPosition[0] = player.confiner.transform.position.x;
         confinerPosition[1] = player.confiner.transform.position.y;
+
+        for (int i = 0; i < 7; i++)
+        {
+            for (int a = 0; a < 11; a++)
+            {
+                if( map.fullClouds[i].cloudCollumn[a] != null)
+                {
+                    mapDiscovery[i, a] = !map.fullClouds[i].cloudCollumn[a].activeSelf;
+                }
+            }
+        }
     }
 }

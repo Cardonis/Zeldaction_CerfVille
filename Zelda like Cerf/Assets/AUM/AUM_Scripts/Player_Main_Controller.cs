@@ -127,6 +127,8 @@ public class Player_Main_Controller : MonoBehaviour
 
     public Color[] ennemyColorDamages = new Color[5];
 
+    public MapDisplay map;
+
     void Start()
     {
         direction = Vector2.down;
@@ -972,7 +974,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
     {
         saveDisplay.StartCoroutine(saveDisplay.DisplayFor(2f));
 
-        SaveSystem.SavePlayer(this);
+        SaveSystem.SavePlayer(this, map);
     }
 
     public void LoadPlayer()
