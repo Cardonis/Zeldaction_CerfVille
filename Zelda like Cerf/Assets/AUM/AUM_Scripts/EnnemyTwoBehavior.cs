@@ -170,7 +170,7 @@ public class
 
         if (canMove)
         {
-            rb.AddForce(direction * speed * Time.fixedDeltaTime, ForceMode2D.Force);
+            rb.AddForce(direction * speed * Time.fixedDeltaTime * 10f, ForceMode2D.Force);
 
         }
 
