@@ -84,6 +84,13 @@ public class Elements_Controller : MonoBehaviour
         audiomanager.Play("Capa_Liane");
         playerProjected = true;
 
+        Caisse_Controller cc = GetComponent<Caisse_Controller>();
+
+        if(cc != null)
+        {
+            cc.rb.mass = cc.initialMass;
+        }
+
         for (int i = 0; i < collider2Ds.Count; i++)
         {
             collider2Ds[i].gameObject.layer = 15;

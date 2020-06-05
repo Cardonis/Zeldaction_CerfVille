@@ -97,6 +97,14 @@ public class BaseAttackCollision : MonoBehaviour
                 }
 
                 player.canSpringAttack = false;
+
+                Caisse_Controller cc = ec.GetComponent<Caisse_Controller>();
+
+                if (cc != null)
+                {
+                    cc.rb.mass = cc.initialMass;
+                }
+
                 ec.TakeForce(player.directionAim.normalized, forceValue / forceBulletLevel, levelMultiplicator * (bulletLevel));
             }
 
