@@ -7,7 +7,7 @@ public class AllTimelineController : MonoBehaviour
 {
     public PlayableDirector playableDirector;
     public bool alreadyPlayed;
-    bool wasPlayed = false;
+    public bool wasPlayed = false;
     public int playerCantMoveFor;
     public float cineTime;
     public bool setPlayerTransform;
