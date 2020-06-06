@@ -8,19 +8,27 @@ public class DoorMidDonjon : MonoBehaviour
     Animator animator;
     Collider2D col;
     bool isOpen =false;
+    public bool toClose;
+    public Door theDoor;
 
     void Start()
     {
-        
         col = GetComponentInChildren<Collider2D>();
         animator = GetComponentInChildren<Animator>();
     }
     private void Update()
     {
-        if(cineEntreBoss.alreadyPlayed == true)
+        if(cineEntreBoss.alreadyPlayed == true && toClose == false)
         {
             isOpen = true;
             col.enabled = false;
+            animator.SetBool("isOpen", isOpen);
+        }
+        if (cineEntreBoss.alreadyPlayed == true && toClose== true)
+        {
+            theDoor.enabled = false;
+            isOpen = false;
+            col.enabled = true;
             animator.SetBool("isOpen", isOpen);
         }
     }

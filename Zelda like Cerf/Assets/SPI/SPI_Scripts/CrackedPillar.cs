@@ -37,7 +37,15 @@ public class CrackedPillar : MonoBehaviour
             element.player.cameraShake.lastCameraShake = element.player.cameraShake.StartCoroutine(element.player.cameraShake.CameraShakeFor(1f, 0.1f, 2));
             isOpen = true;
             animator.SetBool("isOpen", isOpen);
-            pillarCollider.enabled = !isOpen;
+            StartCoroutine(DesactivateColl(pillarCollider,isOpen));
         }
     }
+
+
+    IEnumerator DesactivateColl(Collider2D pillarCol, bool isOp)
+    {
+        yield return new WaitForSeconds(1.1f);
+        pillarCol.enabled =! isOp;
+    }
+
 }
