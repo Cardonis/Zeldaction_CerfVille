@@ -974,7 +974,16 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
     {
         saveDisplay.StartCoroutine(saveDisplay.DisplayFor(2f));
 
-        SaveSystem.SavePlayer(this, map);
+        GameObject[] roomObjects = GameObject.FindGameObjectsWithTag("Room");
+
+        List<RoomController> roomControllers = new List<RoomController>();
+
+        foreach(GameObject roomObject in roomObjects)
+        {
+            roomControllers.Add(roomObject.GetComponent<RoomController>());
+        }
+
+        SaveSystem.SavePlayer(this, map, roomControllers);
     }
 
     public void LoadPlayer()
@@ -983,6 +992,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         part = data.part;
         maxLife = data.maxHealth;
+        inventoryBook.currentNumberOfHearthThird = data.healthThirdNumber;
 
         Vector2 position;
         position.x = data.position[0];
@@ -995,6 +1005,31 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         confinerPosition.y = data.confinerPosition[1];
 
         confiner.transform.position = confinerPosition;
+
+        for (int i = 0; i < 7; i++)
+        {
+            for (int a = 0; a < 11; a++)
+            {
+                if (map.fullClouds[i].cloudCollumn[a] != null)
+                {
+                    map.fullClouds[i].cloudCollumn[a].SetActive(!data.mapDiscovery[i, a]);
+                }
+            }
+        }
+
+        for (int i = 0; i < data.roomsCleared.Count; i++)
+        {
+            RoomController rc = GameObject.Find(data.biomeNames[i]).transform.Find(data.roomNames[i]).GetComponent<RoomController>();
+
+            rc.clear = data.roomsCleared[i];
+
+            if (data.tiersDeCoeurCollected[i] == true)
+                rc.transform.Find("Autres").GetComponentInChildren<TiersDecoeur>().collected = data.tiersDeCoeurCollected[i];
+
+            if (data.cinematiquePlayed[i] == true)
+                rc.timelineController.wasPlayed = data.cinematiquePlayed[i];
+        } 
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

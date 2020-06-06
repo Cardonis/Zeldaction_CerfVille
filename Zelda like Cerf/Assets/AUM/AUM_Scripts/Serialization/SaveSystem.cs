@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
@@ -6,14 +7,14 @@ public static class SaveSystem
 {
 
 
-    public static void SavePlayer(Player_Main_Controller player, MapDisplay map)
+    public static void SavePlayer(Player_Main_Controller player, MapDisplay map, List<RoomController> roomControllers)
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
         string path = Application.persistentDataPath + "/player.save";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(player, map);
+        PlayerData data = new PlayerData(player, map, roomControllers);
 
         formatter.Serialize(stream, data);
         stream.Close();
