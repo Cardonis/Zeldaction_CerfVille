@@ -9,6 +9,7 @@ public class AllTimelineController : MonoBehaviour
     public bool alreadyPlayed;
     bool wasPlayed = false;
     public int playerCantMoveFor;
+    public float cineTime;
     public bool setPlayerTransform;
 
     public bool cinematicIsInteraction;
@@ -69,7 +70,7 @@ public class AllTimelineController : MonoBehaviour
     private void LaunchTimeline(Player_Main_Controller player)
     {
         player.StartCoroutine(player.StunnedFor(playerCantMoveFor));
-        StartCoroutine(WasPlayedAfter(playerCantMoveFor));
+        StartCoroutine(WasPlayedAfter(cineTime));
         playableDirector.Play();
         alreadyPlayed = true;
     } 
