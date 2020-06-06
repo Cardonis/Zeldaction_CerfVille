@@ -11,17 +11,7 @@ public class MapDisplay : MonoBehaviour
     
     void Start()
     {
-        PlayerData data = SaveSystem.LoadPlayer();
-        for (int i = 0; i < 7; i++)
-        {
-            for (int a = 0; a < 11; a++)
-            {
-                if (fullClouds[i].cloudCollumn[a] != null)
-                {
-                    fullClouds[i].cloudCollumn[a].SetActive(!data.mapDiscovery[i, a]);
-                }
-            }
-        }
+        
     }
 
     // Update is called once per frame

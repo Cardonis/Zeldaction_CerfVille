@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playableDirector: {fileID: 1411691418}
+  wasPlayed: 0
   playerCantMoveFor: 8
   setPlayerTransform: 0
   cinematicIsInteraction: 0
@@ -626,6 +627,7 @@ MonoBehaviour:
   healthParticleSystem: {fileID: 318742133412072866}
   sR: {fileID: 7882512116209224613}
   lightt: {fileID: 7519470043117916317}
+  collected: 0
 --- !u!114 &2261551067845119007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36728,6 +36730,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -1148980382890834552, guid: 0d909848dadfe5d4e8babbe874ea9545,
         type: 3}
+    - target: {fileID: 1967729466012667270, guid: 3fdd119f49146504594e1470d564c3eb,
+        type: 3}
+      propertyPath: timelineController
+      value: 
+      objectReference: {fileID: 1506427898}
     - target: {fileID: 2309141696718185882, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_Tiles.Array.size

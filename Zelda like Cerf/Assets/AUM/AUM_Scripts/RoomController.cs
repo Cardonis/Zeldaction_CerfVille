@@ -13,6 +13,14 @@ public class RoomController : MonoBehaviour
 
     [HideInInspector] public List<Elements_Controller> objectsToDestroy;
 
+    [HideInInspector] public string biomeName;
+
+    [HideInInspector] public string roomName;
+
+    [HideInInspector] public TiersDecoeur tiersDecoeur;
+
+    public AllTimelineController timelineController;
+
     public bool active = false;
 
     public bool clear = false;
@@ -24,6 +32,9 @@ public class RoomController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        biomeName = transform.parent.name;
+        roomName = name;
+
         for (int i = 0; i < limitSRs.Count; i++)
         {
             limitSRs[i].enabled = false;
@@ -123,6 +134,13 @@ public class RoomController : MonoBehaviour
         Ennemy_Controller ec = collision.GetComponentInParent<Ennemy_Controller>();
 
         Caisse_Controller elc = collision.GetComponentInParent<Caisse_Controller>();
+
+        TiersDecoeur tdc = collision.GetComponent<TiersDecoeur>();
+
+        if(tdc != null)
+        {
+            tiersDecoeur = tdc;
+        }
 
         if (ec != null)
         {

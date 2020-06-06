@@ -19,7 +19,7 @@ public class TiersDecoeur : MonoBehaviour
 
     bool desactivating = false;
 
-    bool collected = false;
+    [HideInInspector] public bool collected = false;
 
     AudioManager audioManager;
     private void Start()
@@ -29,7 +29,8 @@ public class TiersDecoeur : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
+        if(collider.attachedRigidbody != null)
+        player = collider.attachedRigidbody.GetComponent<Player_Main_Controller>();
         if (player != null)
         {
             inventoryBook = player.inventoryBook;
@@ -42,7 +43,8 @@ public class TiersDecoeur : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        player = collider.transform.parent.parent.GetComponent<Player_Main_Controller>();
+        if (collider.attachedRigidbody != null)
+            player = collider.attachedRigidbody.GetComponent<Player_Main_Controller>();
         if (player != null)
         {
             pressX.SetActive(false);
@@ -54,6 +56,11 @@ public class TiersDecoeur : MonoBehaviour
 
     void Update()
     {
+        if (collected == true && desactivating == false) 
+        {
+            gameObject.SetActive(false);
+        }
+
         if(playerIsNear == true && Input.GetButtonDown("X") && collected == false)
         {
             collected = true;
