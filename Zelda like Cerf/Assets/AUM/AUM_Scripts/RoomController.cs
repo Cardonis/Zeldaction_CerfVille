@@ -19,6 +19,8 @@ public class RoomController : MonoBehaviour
 
     [HideInInspector] public TiersDecoeur tiersDecoeur;
 
+    [HideInInspector] public MonsterDoor monsterDoor;
+
     public AllTimelineController timelineController;
 
     public bool active = false;
@@ -34,6 +36,8 @@ public class RoomController : MonoBehaviour
     {
         biomeName = transform.parent.name;
         roomName = name;
+
+        monsterDoor = transform.Find("Portes").GetComponentInChildren<MonsterDoor>();
 
         for (int i = 0; i < limitSRs.Count; i++)
         {

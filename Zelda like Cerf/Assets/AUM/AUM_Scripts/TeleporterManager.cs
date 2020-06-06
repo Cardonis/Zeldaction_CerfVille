@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class TeleporterManager : MonoBehaviour
 {
-    public int teleporterNumber = 0;
-    public int teleportPart = 0;
+    public string saveToTeleport;
+
     public bool canTeleport = false;
 
-    public void SetTeleporterNumber(int telNumb)
+    public void SetTeleporterName(string saveName)
     {
-        teleporterNumber = telNumb;
+        saveToTeleport = saveName;
         canTeleport = true;
-    }
-
-    public void SetPartNumber(int telPart)
-    {
-        teleportPart = telPart;
     }
 
 }

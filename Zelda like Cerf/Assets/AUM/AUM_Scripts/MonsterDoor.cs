@@ -10,6 +10,7 @@ public class MonsterDoor : MonoBehaviour
     Collider2D col;
     Animator animator;
     bool readyToOpen = false;
+    [HideInInspector] public bool wasOpen = false;
     public bool isTrigger;
 
     public List<GameObject> particleSystems;
@@ -27,6 +28,14 @@ public class MonsterDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(wasOpen)
+        {
+            for (int i = 0; i < ennemyToOpen.Count; i++)
+            {
+                ennemyToOpen[i].dead = true;
+                ennemyToOpen[i].gameObject.SetActive(false);
+            }
+        }
 
         bool readyToOpen = true;
 
@@ -53,6 +62,11 @@ public class MonsterDoor : MonoBehaviour
             for (int i = 0; i < particleSystems.Count; i++)
             {
                 particleSystems[i].SetActive(!readyToOpen);
+            }
+
+            if(readyToOpen)
+            {
+                wasOpen = true;
             }
         }
         else

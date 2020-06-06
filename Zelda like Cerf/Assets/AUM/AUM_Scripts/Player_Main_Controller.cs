@@ -1028,8 +1028,60 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
             if (data.cinematiquePlayed[i] == true)
                 rc.timelineController.wasPlayed = data.cinematiquePlayed[i];
+
+            if (data.monsterDoorOpened[i] == true)
+                rc.transform.Find("Portes").GetComponentInChildren<MonsterDoor>().wasOpen = data.monsterDoorOpened[i];
         } 
         
+    }
+
+    public void LoadPlayer(string saveName)
+    {
+        PlayerData data = SaveSystem.LoadTeleporter(saveName);
+
+        part = data.part;
+        maxLife = data.maxHealth;
+        inventoryBook.currentNumberOfHearthThird = data.healthThirdNumber;
+
+        Vector2 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+
+        transform.position = position;
+
+        Vector2 confinerPosition;
+        confinerPosition.x = data.confinerPosition[0];
+        confinerPosition.y = data.confinerPosition[1];
+
+        confiner.transform.position = confinerPosition;
+
+        for (int i = 0; i < 7; i++)
+        {
+            for (int a = 0; a < 11; a++)
+            {
+                if (map.fullClouds[i].cloudCollumn[a] != null)
+                {
+                    map.fullClouds[i].cloudCollumn[a].SetActive(!data.mapDiscovery[i, a]);
+                }
+            }
+        }
+
+        for (int i = 0; i < data.roomsCleared.Count; i++)
+        {
+            RoomController rc = GameObject.Find(data.biomeNames[i]).transform.Find(data.roomNames[i]).GetComponent<RoomController>();
+
+            rc.clear = data.roomsCleared[i];
+
+            if (data.tiersDeCoeurCollected[i] == true)
+                rc.transform.Find("Autres").GetComponentInChildren<TiersDecoeur>().collected = data.tiersDeCoeurCollected[i];
+
+            if (data.cinematiquePlayed[i] == true)
+                rc.timelineController.wasPlayed = data.cinematiquePlayed[i];
+
+            if (data.monsterDoorOpened[i] == true)
+                rc.transform.Find("Portes").GetComponentInChildren<MonsterDoor>().wasOpen = data.monsterDoorOpened[i];
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
