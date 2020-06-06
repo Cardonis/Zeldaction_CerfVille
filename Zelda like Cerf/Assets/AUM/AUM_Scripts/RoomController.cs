@@ -37,6 +37,14 @@ public class RoomController : MonoBehaviour
 
     private void Update()
     {
+        if(monsterRoom == false && clear == true)
+        {
+            foreach(Door doorToClear in doorsToClear)
+            {
+                doorToClear.roomCleared = true;
+            }
+        }
+
         for (int i = 0; i < ennemies.Count; i++)
         {
             if (ennemies[i] == null)
@@ -208,7 +216,7 @@ public class RoomController : MonoBehaviour
 
     public void FullReset()
     {
-        if (monsterRoom == false)
+        if (monsterRoom == true)
         {
 
             for (int i = 0; i < ennemies.Count; i++)

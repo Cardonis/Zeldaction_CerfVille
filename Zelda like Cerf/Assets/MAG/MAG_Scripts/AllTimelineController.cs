@@ -7,6 +7,7 @@ public class AllTimelineController : MonoBehaviour
 {
     public PlayableDirector playableDirector;
     bool alreadyPlayed;
+    bool wasPlayed = false;
     public int playerCantMoveFor;
     public bool setPlayerTransform;
 
@@ -58,12 +59,25 @@ public class AllTimelineController : MonoBehaviour
             player.pressX.SetActive(false);
             LaunchTimeline(player);
         }
+
+        if(wasPlayed == true)
+        {
+            transform.parent.gameObject.SetActive(false);
+        }
     }
 
     private void LaunchTimeline(Player_Main_Controller player)
     {
         player.StartCoroutine(player.StunnedFor(playerCantMoveFor));
+        StartCoroutine(WasPlayedAfter(playerCantMoveFor));
         playableDirector.Play();
         alreadyPlayed = true;
     } 
+
+    IEnumerator WasPlayedAfter(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        wasPlayed = true;
+    }
 }
