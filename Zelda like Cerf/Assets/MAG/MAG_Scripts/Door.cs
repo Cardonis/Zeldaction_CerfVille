@@ -11,6 +11,8 @@ public class Door : MonoBehaviour
     public TimeConnectors timeConnectors;
     public OrderConnectors orderConnectors;
 
+    public bool roomCleared = false;
+
     bool wasClosed;
     bool isClosed;
     private bool isPlaying;
@@ -30,25 +32,29 @@ public class Door : MonoBehaviour
     void Update()
     {
         isOpen = true;
-        foreach(Buttonmanager button in normalyConnectedButtons )
+
+        if(roomCleared == false)
         {
-            if( button.isPressed == false)
+            foreach (Buttonmanager button in normalyConnectedButtons)
             {
-                isOpen = false;
-            }
-        }
-        
-        if(timeConnectors != null)
-            if(timeConnectors.openDoor == false)
-            {
-                isOpen = false;
+                if (button.isPressed == false)
+                {
+                    isOpen = false;
+                }
             }
 
-        if (orderConnectors != null)
-            if (orderConnectors.openDoor == false)
-            {
-                isOpen = false;
-            }
+            if (timeConnectors != null)
+                if (timeConnectors.openDoor == false)
+                {
+                    isOpen = false;
+                }
+
+            if (orderConnectors != null)
+                if (orderConnectors.openDoor == false)
+                {
+                    isOpen = false;
+                }
+        }
 
         wasClosed = isClosed;
 
