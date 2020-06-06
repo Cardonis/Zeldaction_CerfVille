@@ -11588,7 +11588,7 @@ PrefabInstance:
     - target: {fileID: 1784452313, guid: 59248a23316e8f14a9fed12e9c05b7e7, type: 3}
       propertyPath: m_SceneBindings.Array.data[2].value
       value: 
-      objectReference: {fileID: 753862073}
+      objectReference: {fileID: 0}
     - target: {fileID: 1883864327, guid: 59248a23316e8f14a9fed12e9c05b7e7, type: 3}
       propertyPath: dialogueManager
       value: 
@@ -12127,6 +12127,11 @@ PrefabInstance:
       propertyPath: theTips
       value: 
       objectReference: {fileID: 1082851577}
+    - target: {fileID: 2114911952338871853, guid: 26351ec34f5ffd043afb068184daea04,
+        type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].value
+      value: 
+      objectReference: {fileID: 1518537087}
     - target: {fileID: 2426566735960899206, guid: 26351ec34f5ffd043afb068184daea04,
         type: 3}
       propertyPath: dialogueManager
@@ -12217,22 +12222,11 @@ PrefabInstance:
       propertyPath: m_TileAssetArray.Array.data[4].m_Data
       value: 
       objectReference: {fileID: 1250340518}
-    - target: {fileID: 8324754289987521948, guid: 26351ec34f5ffd043afb068184daea04,
-        type: 3}
-      propertyPath: dialogueManager
-      value: 
-      objectReference: {fileID: 76606144}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26351ec34f5ffd043afb068184daea04, type: 3}
 --- !u!4 &753862072 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4597813765544884564, guid: 26351ec34f5ffd043afb068184daea04,
-    type: 3}
-  m_PrefabInstance: {fileID: 753862071}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &753862073 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9186101839382920044, guid: 26351ec34f5ffd043afb068184daea04,
     type: 3}
   m_PrefabInstance: {fileID: 753862071}
   m_PrefabAsset: {fileID: 0}
@@ -26339,11 +26333,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room 5 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2089424654306388937, guid: 626b8ff67798fff4db22cd07ec45d711,
+        type: 3}
+      propertyPath: dialogueManager
+      value: 
+      objectReference: {fileID: 76606144}
+    - target: {fileID: 4604965684600532213, guid: 626b8ff67798fff4db22cd07ec45d711,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 626b8ff67798fff4db22cd07ec45d711, type: 3}
 --- !u!4 &1518537086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1817072000780854669, guid: 626b8ff67798fff4db22cd07ec45d711,
+    type: 3}
+  m_PrefabInstance: {fileID: 1518537085}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1518537087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4604965684600532213, guid: 626b8ff67798fff4db22cd07ec45d711,
     type: 3}
   m_PrefabInstance: {fileID: 1518537085}
   m_PrefabAsset: {fileID: 0}
@@ -28398,7 +28408,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SceneBindings.Array.data[2].value
       value: 
-      objectReference: {fileID: 753862073}
+      objectReference: {fileID: 0}
     - target: {fileID: 6278349447805123629, guid: 517d84c48c81686418772294db894060,
         type: 3}
       propertyPath: dialogueManager
@@ -34038,7 +34048,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SceneBindings.Array.data[2].value
       value: 
-      objectReference: {fileID: 753862073}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91b4571fd1f10904d8348acf31ea19b0, type: 3}
 --- !u!4 &1951151767 stripped
@@ -38623,7 +38633,7 @@ PrefabInstance:
     - target: {fileID: 4251787678284253, guid: 01761b7334890ca4a99866e9882b8da0, type: 3}
       propertyPath: m_SceneBindings.Array.data[2].value
       value: 
-      objectReference: {fileID: 753862073}
+      objectReference: {fileID: 0}
     - target: {fileID: 3567560991600210214, guid: 01761b7334890ca4a99866e9882b8da0,
         type: 3}
       propertyPath: dialogueManager

@@ -6116,7 +6116,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playableDirector: {fileID: 7500125865488921055}
   alreadyPlayed: 0
+  wasPlayed: 0
   playerCantMoveFor: 0
+  cineTime: 0.8
   setPlayerTransform: 0
   cinematicIsInteraction: 0
 --- !u!1 &7247263192620633442
@@ -42356,6 +42358,11 @@ PrefabInstance:
       propertyPath: monsterRoom
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1967729466012667270, guid: 3fdd119f49146504594e1470d564c3eb,
+        type: 3}
+      propertyPath: timelineController
+      value: 
+      objectReference: {fileID: 6633468782363684999}
     - target: {fileID: 2309141696718185882, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_Tiles.Array.size

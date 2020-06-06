@@ -792,6 +792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playableDirector: {fileID: 30251972}
   alreadyPlayed: 0
+  wasPlayed: 0
   playerCantMoveFor: 0
   cineTime: 2.6
   setPlayerTransform: 0
@@ -43911,6 +43912,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5519343223215979388, guid: 0d909848dadfe5d4e8babbe874ea9545,
         type: 3}
+    - target: {fileID: 1967729466012667270, guid: 3fdd119f49146504594e1470d564c3eb,
+        type: 3}
+      propertyPath: timelineController
+      value: 
+      objectReference: {fileID: 1405518593}
     - target: {fileID: 2309141696718185882, guid: 3fdd119f49146504594e1470d564c3eb,
         type: 3}
       propertyPath: m_Tiles.Array.size
