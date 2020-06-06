@@ -21,6 +21,8 @@ public class PlayerData
 
     public List<bool> cinematiquePlayed = new List<bool>();
 
+    public List<bool> monsterDoorOpened = new List<bool>();
+
     public PlayerData (Player_Main_Controller player, MapDisplay map, List<RoomController> roomControllers)
     {
 
@@ -71,6 +73,11 @@ public class PlayerData
                 cinematiquePlayed.Add(roomControllers[i].timelineController.wasPlayed);
             else
                 cinematiquePlayed.Add(false);
+
+            if (roomControllers[i].monsterDoor != null)
+                monsterDoorOpened.Add(roomControllers[i].monsterDoor.wasOpen);
+            else
+                monsterDoorOpened.Add(false);
         }
     }
 }

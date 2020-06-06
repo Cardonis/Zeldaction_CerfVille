@@ -20,10 +20,7 @@ public class TeleporterInitiator : MonoBehaviour
             teleporterManager = ddol.GetComponent<TeleporterManager>();
             if (teleporterManager.canTeleport == true)
             {
-                player.transform.position = teleportTransforms[teleporterManager.teleporterNumber].transform.position;
-                player.confiner.transform.position = teleportTransforms[teleporterManager.teleporterNumber].position;
-
-                player.part = teleporterManager.teleportPart;
+                player.LoadPlayer(teleporterManager.saveToTeleport);
 
                 teleporterManager.canTeleport = false;
             }

@@ -5,8 +5,6 @@ using System.IO;
 
 public static class SaveSystem
 {
-
-
     public static void SavePlayer(Player_Main_Controller player, MapDisplay map, List<RoomController> roomControllers)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -24,6 +22,28 @@ public static class SaveSystem
     {
         string path = Application.persistentDataPath + "/player.save";
         if(File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            PlayerData data = formatter.Deserialize(stream) as PlayerData;
+
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.LogError("Save file was not found in " + path);
+            return null;
+        }
+    }
+
+    public static PlayerData LoadTeleporter(string saveName)
+    {
+        string path = Application.persistentDataPath + "/" + saveName + ".save";
+        if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
 
