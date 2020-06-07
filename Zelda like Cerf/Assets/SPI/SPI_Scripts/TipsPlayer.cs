@@ -16,7 +16,7 @@ public class TipsPlayer : MonoBehaviour
     public Player_Main_Controller playerscript;
     private void Update()
     {
-        if ((Input.GetButtonDown("X") || Input.GetButtonDown("A")) && isInTips)
+        if ((Input.GetButtonDown("X") || Input.GetButtonDown("A") || Input.GetButtonDown("Y")) && isInTips)
         {
             StartCoroutine(CloseTips());
         }
