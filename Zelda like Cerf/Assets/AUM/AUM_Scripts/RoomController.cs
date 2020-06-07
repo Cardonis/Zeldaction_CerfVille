@@ -13,6 +13,8 @@ public class RoomController : MonoBehaviour
 
     [HideInInspector] public List<Elements_Controller> objectsToDestroy;
 
+    public List<HealthFlower> healthFlowers;
+
     [HideInInspector] public string biomeName;
 
     [HideInInspector] public string roomName;
@@ -141,6 +143,26 @@ public class RoomController : MonoBehaviour
 
         TiersDecoeur tdc = collision.GetComponent<TiersDecoeur>();
 
+        HealthFlower hf = collision.attachedRigidbody.GetComponent<HealthFlower>();
+
+        if(hf)
+        {
+            bool canAdd = true;
+
+            for (int i = 0; i < healthFlowers.Count; i++)
+            {
+                if (hf == healthFlowers[i])
+                {
+                    canAdd = false;
+                    break;
+                }
+
+            }
+
+            if (canAdd == true)
+                healthFlowers.Add(hf);
+        }
+
         if(tdc != null)
         {
             tiersDecoeur = tdc;
@@ -238,6 +260,11 @@ public class RoomController : MonoBehaviour
 
     public void FullReset()
     {
+        foreach (HealthFlower healthFlower in healthFlowers)
+        {
+            healthFlower.gameObject.SetActive(true);
+        }
+
         if (monsterRoom == true)
         {
 
