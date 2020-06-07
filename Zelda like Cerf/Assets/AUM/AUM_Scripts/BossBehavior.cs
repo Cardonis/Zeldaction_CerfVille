@@ -53,6 +53,8 @@ public class BossBehavior : Ennemy_Controller
 
     Vector2 lookDir;
 
+    public BossSoundManager bossSoundManager;
+
     // Start is called before the first frame update
     public override void Start()
     {
