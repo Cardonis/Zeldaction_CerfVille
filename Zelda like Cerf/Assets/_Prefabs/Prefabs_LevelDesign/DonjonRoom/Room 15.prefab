@@ -935,6 +935,37 @@ MonoBehaviour:
     npcName: Alwin
     sentences:
     - "Quelle trag\xE9die..."
+--- !u!1 &955029666335205078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4735797778221814086}
+  m_Layer: 0
+  m_Name: Particules
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4735797778221814086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955029666335205078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1614958450347759287}
+  m_Father: {fileID: 7953310753015693166}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1663138814572373492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66778,15 +66809,90 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdd119f49146504594e1470d564c3eb, type: 3}
+--- !u!4 &142972503159189460 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1652635569004710432, guid: 3fdd119f49146504594e1470d564c3eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1663138814572373492}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7953310753015693166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8740204903664409242, guid: 3fdd119f49146504594e1470d564c3eb,
     type: 3}
   m_PrefabInstance: {fileID: 1663138814572373492}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &142972503159189460 stripped
+--- !u!1001 &1767198073605026503
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4735797778221814086}
+    m_Modifications:
+    - target: {fileID: 1076119996901696624, guid: 913537efab237ed48993005c38f950fe,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076119996901696624, guid: 913537efab237ed48993005c38f950fe,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076119996901696624, guid: 913537efab237ed48993005c38f950fe,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076119996901696624, guid: 913537efab237ed48993005c38f950fe,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076119996901696624, guid: 913537efab237ed48993005c38f950fe,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076119996901696624, guid: 913537efab237ed48993005c38f950fe,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076119996901696624, guid: 913537efab237ed48993005c38f950fe,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076119996901696624, guid: 913537efab237ed48993005c38f950fe,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076119996901696624, guid: 913537efab237ed48993005c38f950fe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076119996901696624, guid: 913537efab237ed48993005c38f950fe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076119996901696624, guid: 913537efab237ed48993005c38f950fe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076119996901696637, guid: 913537efab237ed48993005c38f950fe,
+        type: 3}
+      propertyPath: m_Name
+      value: "Poussi\xE8re Donjon"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 913537efab237ed48993005c38f950fe, type: 3}
+--- !u!4 &1614958450347759287 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1652635569004710432, guid: 3fdd119f49146504594e1470d564c3eb,
+  m_CorrespondingSourceObject: {fileID: 1076119996901696624, guid: 913537efab237ed48993005c38f950fe,
     type: 3}
-  m_PrefabInstance: {fileID: 1663138814572373492}
+  m_PrefabInstance: {fileID: 1767198073605026503}
   m_PrefabAsset: {fileID: 0}
