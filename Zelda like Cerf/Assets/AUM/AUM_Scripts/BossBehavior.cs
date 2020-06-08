@@ -87,8 +87,20 @@ public class BossBehavior : Ennemy_Controller
         missingLife = pv / initialLife;
 
         if (missingLife <= 0f / 4f /*&& endGameInitiator.ending == false*/)
+        {
             //endGameInitiator.StartCoroutine(endGameInitiator.EndGame());
             endCinematic.SetActive(true);
+
+            for (int i = 0; i < parentEnnemies.childCount; i++)
+            {
+                if (parentEnnemies.GetChild(i).gameObject.activeInHierarchy == true)
+                {
+                    if (parentEnnemies.GetChild(i).GetComponent<BossBehavior>() == null)
+                        parentEnnemies.gameObject.SetActive(false);
+                }
+            }
+        }
+            
 
         if (missingLife < 1f / 4f)
         {

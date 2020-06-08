@@ -175,7 +175,7 @@ public class Player_Main_Controller : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
 
         if(part == 3)

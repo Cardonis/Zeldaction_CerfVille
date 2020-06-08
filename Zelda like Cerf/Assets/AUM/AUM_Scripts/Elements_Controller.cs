@@ -22,6 +22,7 @@ public class Elements_Controller : MonoBehaviour
     public float recoveryValue;
 
     [HideInInspector] public Coroutine lastTakeForce;
+    [HideInInspector] public Coroutine lastDontCollideWithPlayer;
 
     [HideInInspector] public Vector2 initialPosition;
 
@@ -108,7 +109,7 @@ public class Elements_Controller : MonoBehaviour
 
         //StartCoroutine(DontCollideWithPlayerFor(1f));
 
-        while (direction.magnitude > 0.7f)
+        while (direction.magnitude > 1.5f)
         {
             direction = (player.transform.position - transform.position );
             rb.velocity = direction.normalized * (forceValue * Mathf.Sqrt(levelProjected) / 2);
@@ -136,7 +137,10 @@ public class Elements_Controller : MonoBehaviour
 
         player.canSpringAttack = false;
 
-         StartCoroutine(DontCollideWithPlayerFor(0.1f));
+        if (lastDontCollideWithPlayer != null)
+            StopCoroutine(lastDontCollideWithPlayer);
+
+         StartCoroutine(DontCollideWithPlayerFor(0.5f));
 
     }
 
