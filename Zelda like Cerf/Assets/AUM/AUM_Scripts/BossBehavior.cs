@@ -53,6 +53,9 @@ public class BossBehavior : Ennemy_Controller
 
     Vector2 lookDir;
 
+    public BossSoundManager bossSoundManager;
+
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -382,7 +385,7 @@ public class BossBehavior : Ennemy_Controller
             }
 
             canMove = false;
-
+            
             telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
 
             for (float x = 0.25f; x > 0; x -= Time.deltaTime)
@@ -393,11 +396,13 @@ public class BossBehavior : Ennemy_Controller
             }
 
             StartCoroutine(HitboxAttackActivatedFor(1.5f));
-
+            
             rb.velocity = new Vector2(0, 0);
 
             rb.AddForce((direction).normalized * forceValue, ForceMode2D.Impulse);
             projected = true;
+            StartCoroutine(audiomanager.PlayOne("Boss_Dash", gameObject));
+
 
             for (int z = 0; z < outlineController.outLinesAnimator.Count; z++)
             {
@@ -564,7 +569,7 @@ public class BossBehavior : Ennemy_Controller
             }
 
             launched = true;
-
+            StartCoroutine(audiomanager.PlayOne("Enemy2_Attack", gameObject));
             currentElement.projected = true;
             currentElement.rb.AddForce(directionAttack.normalized * forceValue, ForceMode2D.Impulse);
 
@@ -663,7 +668,7 @@ public class BossBehavior : Ennemy_Controller
             {
                 yield return null;
             }
-
+            StartCoroutine(audiomanager.PlayOne("Enemy3Attack", gameObject));
             BulletAttack1 bullet = Instantiate(bulletAttack1, player.vBullets).GetComponent<BulletAttack1>();
 
             Collider2D[] ennemyColliders = GetComponentsInChildren<Collider2D>();
@@ -807,6 +812,7 @@ public class BossBehavior : Ennemy_Controller
             }
 
                 transform.position = (Vector2)teleportPointToGo.position + new Vector2(Random.Range(-0.5f, +0.5f), Random.Range(-0.5f, +0.5f));
+                StartCoroutine(audiomanager.PlayOne("Charging", gameObject));
 
             for (int z = 0; z < outlineController.outLinesAnimator.Count; z++)
             {
@@ -818,7 +824,7 @@ public class BossBehavior : Ennemy_Controller
             for(int x = 0; x < spawnNumb; x++)
             {
                 Ennemy_Controller currentEnnemy = Instantiate(ennemiesToSpawn[ennemyType - 1], parentEnnemies).GetComponent<Ennemy_Controller>();
-
+                StartCoroutine(audiomanager.PlayOne("Invocation", gameObject));
                 player.confiner.activeRoom.objectsToDestroy.Add(currentEnnemy);
 
                 currentEnnemy.transform.position = (Vector2)spawnPoints[Random.Range(0, spawnPoints.Count)].transform.position + new Vector2(Random.Range(-0.5f, +0.5f), Random.Range(-0.5f, +0.5f));

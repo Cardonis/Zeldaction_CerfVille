@@ -29,10 +29,14 @@ public class TiersDecoeur : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.attachedRigidbody != null)
-        player = collider.attachedRigidbody.GetComponent<Player_Main_Controller>();
-        if (player != null)
+        Player_Main_Controller p = null;
+
+        if (collider.attachedRigidbody != null)
+                p = collider.attachedRigidbody.GetComponent<Player_Main_Controller>();
+
+        if (p != null)
         {
+            player = p;
             inventoryBook = player.inventoryBook;
             pressX = player.pressX;
             pressX.SetActive(true);
@@ -43,9 +47,12 @@ public class TiersDecoeur : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
+        Player_Main_Controller p = null;
+
         if (collider.attachedRigidbody != null)
-            player = collider.attachedRigidbody.GetComponent<Player_Main_Controller>();
-        if (player != null)
+            p = collider.attachedRigidbody.GetComponent<Player_Main_Controller>();
+
+        if (p != null)
         {
             pressX.SetActive(false);
             playerIsNear = false;
