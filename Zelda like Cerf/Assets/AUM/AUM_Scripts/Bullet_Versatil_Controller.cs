@@ -73,7 +73,7 @@ public class Bullet_Versatil_Controller : MonoBehaviour
             }
 
             rb.velocity = new Vector2(0, 0);
-            audiomanager.Play("Capa_Grab");
+            AudioManager.instance.Play("Capa_Grab");
             touchedTarget = collision.transform;
 
             ec.stuned = false;
