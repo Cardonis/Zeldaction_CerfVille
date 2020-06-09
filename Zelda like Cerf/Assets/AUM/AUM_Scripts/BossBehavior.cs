@@ -587,7 +587,7 @@ public class BossBehavior : Ennemy_Controller
 
             currentElement.levelProjected = 2f;
 
-            StartCoroutine(CollisionIgnoreWithElement(0.1f));
+            StartCoroutine(CollisionIgnoreWithElement(0.5f));
 
             yield return new WaitForSeconds(0.4f);
 

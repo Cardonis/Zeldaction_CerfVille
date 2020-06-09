@@ -754,6 +754,8 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         bullet.maxDistance = (rangeMaxVersatilAttack / 4f) + (rangeMaxVersatilAttack * 3f / 4f) / levelProjecting;
         bullet.levelProjecting = levelProjecting;
 
+        bullet.transform.position = transform.position + (Vector3)directionAim * 0.5f;
+
         bullet.rb.velocity = directionAim.normalized * speedBulletVersatil / Mathf.Min(3f, levelProjecting) * Time.fixedDeltaTime;
 
         if(lastAttackVersatilTimer <= 0.5f)
@@ -768,17 +770,22 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         if(levelProjecting + bullet.bonusLevelProjecting == 1)
         {
             bullet.GetComponent<LineRenderer>().SetWidth(0.20f, 0.10f);
+            bullet.col.transform.localScale = new Vector3(1, 1, 1);
         }
         else if (levelProjecting + bullet.bonusLevelProjecting == 2)
         {
             bullet.GetComponent<LineRenderer>().SetWidth(0.40f, 0.20f);
+            bullet.col.transform.localScale = new Vector3(1, 2, 1);
         }
         else if (levelProjecting + bullet.bonusLevelProjecting == 4)
         {
             bullet.GetComponent<LineRenderer>().SetWidth(0.80f, 0.40f);
+            bullet.col.transform.localScale = new Vector3(1, 3, 1);
         }
 
         lastAttackForce = levelProjecting + bullet.bonusLevelProjecting;
+
+        
 
         timerCooldownVersatilAttack = cooldownVersatilAttack;
         animator.SetTrigger("UsesCapaV");

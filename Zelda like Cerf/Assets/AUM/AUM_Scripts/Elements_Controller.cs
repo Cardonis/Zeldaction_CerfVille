@@ -109,6 +109,10 @@ public class Elements_Controller : MonoBehaviour
 
         //StartCoroutine(DontCollideWithPlayerFor(1f));
 
+        direction = (player.transform.position - transform.position);
+        rb.velocity = direction.normalized * (forceValue * Mathf.Sqrt(levelProjected) / 2);
+        yield return null;
+
         while (direction.magnitude > 1.5f)
         {
             direction = (player.transform.position - transform.position );

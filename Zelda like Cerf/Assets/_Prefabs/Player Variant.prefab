@@ -358,8 +358,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.1
+      scalar: 0.25
+      minScalar: 0.05
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10099,7 +10099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   bulletController: {fileID: 0}
-  forceValue: 30
+  forceValue: 60
   levelMultiplicator: 0.25
   sweetspotParticleSystem: {fileID: 0}
 --- !u!1 &1475095804
@@ -16256,7 +16256,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 829979663, guid: 603ec871160439742bb890b9e1d2ec16, type: 3}
       propertyPath: forceValue
-      value: 30
+      value: 62
       objectReference: {fileID: 0}
     - target: {fileID: 829979663, guid: 603ec871160439742bb890b9e1d2ec16, type: 3}
       propertyPath: levelMultiplicator
@@ -16268,7 +16268,7 @@ PrefabInstance:
       objectReference: {fileID: 6546805874507588748}
     - target: {fileID: 1847402320, guid: 603ec871160439742bb890b9e1d2ec16, type: 3}
       propertyPath: forceValue
-      value: 15
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1847402320, guid: 603ec871160439742bb890b9e1d2ec16, type: 3}
       propertyPath: levelMultiplicator
@@ -16368,7 +16368,7 @@ PrefabInstance:
     - target: {fileID: 6214150370898231133, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: m_LinearDrag
-      value: 12
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231133, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
@@ -16388,12 +16388,12 @@ PrefabInstance:
     - target: {fileID: 6214150370898231134, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -147.8
+      value: -69.7
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231134, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -100.8
+      value: 35.2
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231134, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
@@ -16463,7 +16463,7 @@ PrefabInstance:
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: speedKnockBackBaseAttack
-      value: 250
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
@@ -16488,7 +16488,7 @@ PrefabInstance:
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: forceValueVersatilAttack
-      value: 25
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
@@ -16533,7 +16533,7 @@ PrefabInstance:
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: speed
-      value: 850
+      value: 650
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
@@ -16548,7 +16548,7 @@ PrefabInstance:
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}
       propertyPath: part
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6214150370898231135, guid: 603ec871160439742bb890b9e1d2ec16,
         type: 3}

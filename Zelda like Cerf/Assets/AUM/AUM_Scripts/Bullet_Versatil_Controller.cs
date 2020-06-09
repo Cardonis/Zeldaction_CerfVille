@@ -7,6 +7,9 @@ public class Bullet_Versatil_Controller : MonoBehaviour
     public LineRenderer lr;
     [HideInInspector] public Player_Main_Controller player;
     public Rigidbody2D rb;
+    public Collider2D col;
+
+    float directionAngle;
     
     [HideInInspector] public float maxDistance;
 
@@ -27,7 +30,14 @@ public class Bullet_Versatil_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        directionAngle = Vector2.Angle(-rb.velocity, transform.right);
+
+        if(-rb.velocity.y < 0)
+        {
+            directionAngle = -directionAngle;
+        }
+
+        col.transform.rotation = Quaternion.Euler(0, 0, directionAngle);
 
         lr.SetPosition(0, player.transform.position);
         lr.SetPosition(1, transform.position);
@@ -57,7 +67,7 @@ public class Bullet_Versatil_Controller : MonoBehaviour
         if(collision.tag == "Wall" || collision.tag == "RoomLimit")
         {
             player.stunned = false;
-            audiomanager.Stop("Capa_Liane");
+            AudioManager.instance.Stop("Capa_Liane");
             Destroy(gameObject);
             return;
         }
@@ -67,7 +77,7 @@ public class Bullet_Versatil_Controller : MonoBehaviour
             if (ec.GetComponentInChildren<BulletAttack1>() != null || ec.GetComponentInChildren<Bullet_Versatil_Controller>() != null)
             {
                 player.stunned = false;
-                audiomanager.Stop("Capa_Liane");
+                AudioManager.instance.Stop("Capa_Liane");
                 Destroy(gameObject);
                 return;
             }
