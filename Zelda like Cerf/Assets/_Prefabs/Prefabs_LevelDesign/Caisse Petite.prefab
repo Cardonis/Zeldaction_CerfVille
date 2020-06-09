@@ -18,6 +18,38 @@ MonoBehaviour:
   outLines: []
   outLinesAnimator: []
   thiccness: 0.08
+--- !u!60 &7204352709296845214
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462816928914532813}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.16871929, y: 0.23884296}
+      - {x: -0.2990918, y: 0.07555246}
+      - {x: -0.30929652, y: -0.117829084}
+      - {x: -0.1440976, y: -0.2539816}
+      - {x: 0.28560206, y: -0.1965959}
+      - {x: 0.30485716, y: 0.057169914}
+      - {x: 0.025389845, y: 0.25488067}
 --- !u!58 &8972221130210030969
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -363,6 +395,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101001702330451535, guid: 7b256dc489e0fa64b97780e20f608e87,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7101001702330451528, guid: 7b256dc489e0fa64b97780e20f608e87, type: 3}

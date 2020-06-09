@@ -770,17 +770,17 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         if(levelProjecting + bullet.bonusLevelProjecting == 1)
         {
             bullet.GetComponent<LineRenderer>().SetWidth(0.20f, 0.10f);
-            bullet.col.transform.localScale = new Vector3(1, 1, 1);
+            bullet.col.transform.localScale = new Vector3(1, 0.4f, 1);
         }
         else if (levelProjecting + bullet.bonusLevelProjecting == 2)
         {
             bullet.GetComponent<LineRenderer>().SetWidth(0.40f, 0.20f);
-            bullet.col.transform.localScale = new Vector3(1, 2, 1);
+            bullet.col.transform.localScale = new Vector3(1, 0.8f, 1);
         }
         else if (levelProjecting + bullet.bonusLevelProjecting == 4)
         {
             bullet.GetComponent<LineRenderer>().SetWidth(0.80f, 0.40f);
-            bullet.col.transform.localScale = new Vector3(1, 3, 1);
+            bullet.col.transform.localScale = new Vector3(1, 1.3f, 1);
         }
 
         lastAttackForce = levelProjecting + bullet.bonusLevelProjecting;
