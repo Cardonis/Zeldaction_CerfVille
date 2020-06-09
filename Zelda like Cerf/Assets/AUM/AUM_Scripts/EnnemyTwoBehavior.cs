@@ -96,7 +96,8 @@ public class
                 currentPierre.stuned = false;
                 launched = false;
                 currentPierre = null;
-                Physics2D.IgnoreCollision(currentPierreCol, physicCollider, false);
+
+                StartCoroutine(ReactivateCollisionWithAfter(physicCollider, 0.5f));
                 attackCooldownTimer = 0;
             }
         }
@@ -198,6 +199,13 @@ public class
         }
 
         #endregion 
+    }
+
+    IEnumerator ReactivateCollisionWithAfter(Collider2D col, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        Physics2D.IgnoreCollision(col, physicCollider, false);
     }
 
     public override IEnumerator Attack1()
