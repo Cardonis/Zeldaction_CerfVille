@@ -111,6 +111,14 @@ public class Player_Main_Controller : MonoBehaviour
     [HideInInspector] public Vector2 directionAim;
     float directionAimAngle;
 
+    [HideInInspector] public bool autoAimIsActive;
+    public float autoAimAngle;
+    public int nbRaycastAutoAim;
+    public float autoAimAugmentedAngle;
+    public int autoAimAugmentedRaycast;
+    int currentNumberOfRaycast;
+    float currentAutoAimAngle;
+
     //Variable Animator
     public Animator animator;
 
@@ -131,6 +139,7 @@ public class Player_Main_Controller : MonoBehaviour
 
     void Start()
     {
+
         direction = Vector2.down;
 
         directionAim = Vector2.down;
@@ -754,11 +763,49 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         bullet.maxDistance = (rangeMaxVersatilAttack / 4f) + (rangeMaxVersatilAttack * 3f / 4f) / levelProjecting;
         bullet.levelProjecting = levelProjecting;
 
-        bullet.transform.position = transform.position + (Vector3)directionAim * 0.5f;
+        if (autoAimIsActive == true)
+        {
+            currentAutoAimAngle = autoAimAugmentedAngle;
+            currentNumberOfRaycast = autoAimAugmentedRaycast;
+        }
+        else
+        {
+            currentAutoAimAngle = autoAimAngle;
+            currentNumberOfRaycast = nbRaycastAutoAim;
+        }
+        Elements_Controller element = null;
+        Transform selectedElement = null;
+        float minimumAngle = 100;
+        float subAngle = currentAutoAimAngle / currentNumberOfRaycast;
+        float startAngle = Vector2.SignedAngle(Vector2.right, directionAim) - currentAutoAimAngle / 2;
+        Vector2 raycastDirection;
+        Vector2 autoAimDirection = directionAim;
 
-        bullet.rb.velocity = directionAim.normalized * speedBulletVersatil / Mathf.Min(3f, levelProjecting) * Time.fixedDeltaTime;
+        for (int i = 0; i < currentNumberOfRaycast; i++)
+        {
+            float angle = startAngle + i * subAngle;
+            raycastDirection = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, bullet.maxDistance, LayerMask.GetMask("Physic", "EnnemyPhysic"));
+            if (hit)
+            {
+                element = hit.collider.gameObject.GetComponentInParent<Elements_Controller>();
 
-        if(lastAttackVersatilTimer <= 0.5f)
+                if (element != null && minimumAngle > Mathf.Abs(Vector2.SignedAngle(Vector2.right, directionAim) - angle))
+                {
+                    minimumAngle = startAngle + i * subAngle;
+                    selectedElement = element.transform;
+                }
+            }
+        }
+        if (selectedElement != null)
+        {
+            autoAimDirection = selectedElement.transform.position - transform.position;
+        }
+
+        bullet.rb.velocity = autoAimDirection.normalized * speedBulletVersatil / Mathf.Min(3f, levelProjecting) * Time.fixedDeltaTime;
+
+
+        if (lastAttackVersatilTimer <= 0.5f)
         {
             bullet.bonusLevelProjecting = ( Mathf.Min((lastAttackForce * 2), 4f) - 1);
         }

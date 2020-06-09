@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     //Resolution[] resolutions;
     //public Dropdown resolutioDropdown;
     public AudioMixer audioMixer;
+    public Player_Main_Controller playerScript;
     void Start()
     {
         //resolutions = Screen.resolutions;
@@ -66,5 +67,10 @@ public class PauseMenu : MonoBehaviour
     public void SetMusicVolume(float volume)
     {
         MusicManager.MusicVolume = volume;
+    }
+
+    public void SetAutoAim(bool isActive)
+    {
+        playerScript.autoAimIsActive = isActive;
     }
 }
