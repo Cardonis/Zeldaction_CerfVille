@@ -946,7 +946,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &6109338903319531615
+--- !u!95 &5378749334298386938
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -1370,7 +1370,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2395861299459532372
+--- !u!95 &6109338903319531615
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -68438,7 +68438,7 @@ PrefabInstance:
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
@@ -68453,32 +68453,41 @@ PrefabInstance:
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[0]
-      value: "Avant, j'aimais bien explorer la for\xEAt, il m'arrivait m\xEAme d'aller
-        jusqu'aux ruines !"
+      value: "Bonjour Alwin ! Tu vas chercher le nouveau-n\xE9 dans la for\xEAt ?"
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[1]
-      value: "J'ai toujours cru qu'il y avais peut \xEAtre un moyen d'y entrer, mais
-        je n'ai jamais pu trouver de passage."
+      value: "Avant, j'aimais bien explorer les bois, moi aussi. Il m'arrivait m\xEAme
+        d'aller jusqu'aux ruines !"
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[2]
-      value: "J'y retournerait bien, je suis curieux de savoir d'o\xF9 es ce quelle
-        viennent ..."
+      value: "J'ai toujours \xE9t\xE9 convaincu qu'il y avait peut-\xEAtre un moyen
+        d'y entrer, mais je n'ai jamais pu trouver de passage."
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
       propertyPath: dialogue.sentences.Array.data[3]
+      value: "J'y retournerais bien, je suis curieux de savoir d'o\xF9 elles viennent..."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[4]
       value: "Mais avec tout ce qu'il se passe en ce moment, je pr\xE9f\xE8re \xE9viter
         de m'en approcher !"
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
-      propertyPath: dialogue.sentences.Array.data[4]
-      value: "Fait bien attention a toi si jamais tu doit y aller, m\xEAme si, bien
-        s\xFBr, j'ai confiance en notre druide pour s'en sortir !"
+      propertyPath: dialogue.npcName
+      value: Didi
+      objectReference: {fileID: 0}
+    - target: {fileID: 2817377811130943776, guid: 14fddf612b3feff4c9e18866095f9594,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[5]
+      value: "Fais bien attention \xE0 toi, dans la for\xEAt. Elle n\u2019est plus
+        la m\xEAme, ces derniers temps."
       objectReference: {fileID: 0}
     - target: {fileID: 2817377811130943777, guid: 14fddf612b3feff4c9e18866095f9594,
         type: 3}
