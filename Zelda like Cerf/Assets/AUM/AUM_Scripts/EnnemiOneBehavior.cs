@@ -163,6 +163,15 @@ public class EnnemiOneBehavior : Ennemy_Controller
             if (rb.velocity != new Vector2(0, 0))
             {
                 outlineController.outLinesAnimator[i].SetBool("IsMoving", true);
+
+                if (rb.velocity.magnitude > 2)
+                {
+                    outlineController.outLinesAnimator[i].SetBool("IsRunning", true);
+                }
+                else
+                {
+                    outlineController.outLinesAnimator[i].SetBool("IsRunning", false);
+                }
             }
             else
             {
