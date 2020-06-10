@@ -137,6 +137,8 @@ public class Player_Main_Controller : MonoBehaviour
 
     public MapDisplay map;
 
+    [HideInInspector] public bool canTakeStone=true;
+
     void Start()
     {
 
@@ -560,17 +562,19 @@ public class Player_Main_Controller : MonoBehaviour
                 {
                     nearestPierre.outlineController.outLining = true;
 
-                    if (Input.GetButtonDown("X") && canTrack == true)
+                    if (Input.GetButtonDown("X") && canTrack == true && canTakeStone == true)
                     {
                         currentPierre = nearestPierre;
                     }
                 }
-                else
+                else if (currentPierre != null)
                 {
                     if (Input.GetButtonDown("X") && canTrack == true)
                     {
                         Physics2D.IgnoreCollision(physicCollider, currentPierre.collider2Ds[0], false);
                         currentPierre = null;
+                        canTakeStone = false;
+                        StartCoroutine(StoneCooldown());
                     }
                 }
             }
@@ -1158,5 +1162,10 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         }
     }
 
+    IEnumerator StoneCooldown()
+    {
+        yield return new WaitForSeconds(0.25f);
+        canTakeStone = true;
+    }
     
 }
