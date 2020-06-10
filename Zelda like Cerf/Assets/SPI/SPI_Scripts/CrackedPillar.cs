@@ -31,7 +31,7 @@ public class CrackedPillar : MonoBehaviour
             wallDamagePoints += detectedObjectMass * detectedObjectProjectionLevel;
             
         }
-        if (wallDamagePoints >= wallMaxPoints)
+        if (wallDamagePoints >= wallMaxPoints && isOpen!=true)
         {
             element.player.cameraShake.StopCameraShake();
             element.player.cameraShake.lastCameraShake = element.player.cameraShake.StartCoroutine(element.player.cameraShake.CameraShakeFor(1f, 0.1f, 2));
