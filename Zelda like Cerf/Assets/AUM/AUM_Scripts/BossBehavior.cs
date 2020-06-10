@@ -17,7 +17,7 @@ public class BossBehavior : Ennemy_Controller
     public Transform centerTeleport;
     float missingLife;
 
-    float[] cooldownsPatterns = { 1.5f, 1f, 0.5f, 0.2f };
+    float[] cooldownsPatterns = { 1f, 0.5f, 0.5f, 0.5f, 0.5f };
 
     [Header("Dash Attack")]
     [Header("Patterns")]
@@ -37,8 +37,8 @@ public class BossBehavior : Ennemy_Controller
     [Header("Spectral Liane")]
 
     public GameObject bulletAttack1;
-    float forceSpectralLiane = 40f;
-    float forceSpectralLianePlayer = 80f;
+    float forceSpectralLiane = 100f;
+    float forceSpectralLianePlayer = 100f;
 
     [Header("Minions")]
 
@@ -47,9 +47,11 @@ public class BossBehavior : Ennemy_Controller
     public List<Transform> teleportPoints;
     public List<Transform> spawnPoints;
     int ennemiesNumber = 0;
-    int[] ennemiesNumberLimit = { 3, 1, 2, 3 };
+    int[] ennemiesNumberLimit = { 2, 1, 3, 4 };
 
     [HideInInspector] public Animator animator;
+
+    [HideInInspector] public List<BossBehavior> bossesSpawned;
 
     Vector2 lookDir;
 
@@ -95,36 +97,52 @@ public class BossBehavior : Ennemy_Controller
             {
                 if (parentEnnemies.GetChild(i).gameObject.activeInHierarchy == true)
                 {
-                    if (parentEnnemies.GetChild(i).GetComponent<BossBehavior>() == null)
+                    if (parentEnnemies.GetChild(i).GetComponent<BossBehavior>() != this)
                         parentEnnemies.gameObject.SetActive(false);
                 }
             }
+
+
         }
             
-
-        if (missingLife < 1f / 4f)
+        if(spawned == false)
         {
-            if (phase != 4)
-                StartCoroutine(NextPhase());
+            if (missingLife < 1f / 4f)
+            {
+                if (phase != 4)
+                {
+                    CreateShadowClone();
+                    int[] shadowClonePhase = { 5, 3 };
+                    StartCoroutine(NextPhase(shadowClonePhase));
+                }
 
-            phase = 4;
-        }
-        else if (missingLife < 2f / 4f)
-        {
-            if (phase != 3)
-                StartCoroutine(NextPhase());
+                phase = 4;
+            }
+            else if (missingLife < 2f / 4f)
+            {
+                if (phase != 3)
+                {
+                    CreateShadowClone();
+                    int[] shadowClonePhase = { 5 };
+                    StartCoroutine(NextPhase(shadowClonePhase));
+                }
 
-            phase = 3;
-        }
-        else if (missingLife < 3f / 4f)
-        {
-            if (phase != 2)
-                StartCoroutine(NextPhase());
+                phase = 3;
+            }
+            else if (missingLife < 3f / 4f)
+            {
+                if (phase != 2)
+                {
+                    int[] shadowClonePhase = { };
+                    StartCoroutine(NextPhase(shadowClonePhase));
+                }
 
-            phase = 2;
+                phase = 2;
+            }
+            else if (missingLife <= 4f / 4f)
+                phase = 1;
         }
-        else if (missingLife <= 4f / 4f)
-            phase = 1;
+        
 
         if (playerProjected)
         {
@@ -191,11 +209,7 @@ public class BossBehavior : Ennemy_Controller
             }
             else if (launched)
             {
-                for (int x = 0; x < currentElement.collider2Ds.Count; x++)
-                {
-                    Physics2D.IgnoreCollision(currentElement.collider2Ds[x], col, false);
-                }
-
+                
                 launched = false;
                 currentElement = null;
 
@@ -218,7 +232,8 @@ public class BossBehavior : Ennemy_Controller
                         switch (rand)
                         {
                             case 1:
-                                lastAttack = StartCoroutine(RockThrow(2, 500f, 2f, 20f, 1));
+                                rand = Random.Range(1, 4);
+                                lastAttack = StartCoroutine(RockThrow(2, 500f, 2f, 30f, rand));
                                 break;
 
                             case 2:
@@ -233,16 +248,16 @@ public class BossBehavior : Ennemy_Controller
                         break;
 
                     case 2:
-                        int rand2 = Random.Range(1, 3);
+                        int rand2 = Random.Range(1, 2);
                         switch (rand2)
                         {
                             case 1:
                                 lastAttack = StartCoroutine(DashAttack(2, 1000f, 4f, 50f));
                                 break;
 
-                            case 2:
-                                lastAttack = StartCoroutine(RockThrow(3, 500f, 2f, 40f, 2));
-                                break;
+                            /*case 2:
+                                lastAttack = StartCoroutine(RockThrow(3, 500f, 2f, 70f, 2));
+                                break;*/
 
                                 /*case 3:
                                     lastAttack = StartCoroutine(SpectralLiane(2, 150f, 10f, 800f));
@@ -261,29 +276,29 @@ public class BossBehavior : Ennemy_Controller
                         break;
 
                     case 3:
-                        int rand3 = Random.Range(1, 3);
+                        int rand3 = Random.Range(1, 2);
                         switch (rand3)
                         {
                             /*case 1:
-                                lastAttack = StartCoroutine(DashAttack(2, 500f, 5f, 50f));
-                                break;
+                                lastAttack = StartCoroutine(DashAttack(2, 1000f, 5f, 50f));
+                                break;*/
 
-                            case 2:
-                                lastAttack = StartCoroutine(RockThrow(1, 500f, 2f, 45f, 1));
+                            /*case 1:
+                                lastAttack = StartCoroutine(RockThrow(1, 500f, 2f, 45f, 3));
                                 break;*/
 
                             case 1:
-                                lastAttack = StartCoroutine(SpectralLiane(2, 300f, 10f, 1200f));
+                                lastAttack = StartCoroutine(SpectralLiane(2, 700f, 10f, 1200f));
                                 break;
 
-                            case 2:
+                            /*case 2:
                                 if (ennemiesNumber < ennemiesNumberLimit[phase - 1])
                                     lastAttack = StartCoroutine(Minions(2, 2, 1f, 1));
                                 else
                                 {
                                     attacking = false;
                                 }
-                                break;
+                                break;*/
                         }
 
                         break;
@@ -293,16 +308,16 @@ public class BossBehavior : Ennemy_Controller
                         switch (rand4)
                         {
                             case 1:
-                                lastAttack = StartCoroutine(DashAttack(1, 300f, 8f, 80f));
+                                lastAttack = StartCoroutine(DashAttack(1, 700f, 8f, 50f));
                                 break;
 
                             case 2:
-                                lastAttack = StartCoroutine(SpectralLiane(2, 300f, 10f, 1600f));
+                                lastAttack = StartCoroutine(SpectralLiane(1, 700f, 10f, 1200f));
                                 break;
 
                             case 3:
                                 if (ennemiesNumber < ennemiesNumberLimit[phase - 1])
-                                    lastAttack = StartCoroutine(Minions(3, 1, 0.2f, 1));
+                                    lastAttack = StartCoroutine(Minions(1, 2, 1f, 1));
                                 else
                                 {
                                     attacking = false;
@@ -310,6 +325,33 @@ public class BossBehavior : Ennemy_Controller
                                 break;
                         }
 
+                        break;
+
+                    case 5:
+                        int rand5 = Random.Range(1, 2);
+                        switch (rand5)
+                        {
+                            case 1:
+                                lastAttack = StartCoroutine(DashAttack(2, 700f, 4f, 50f));
+                                break;
+
+                                /*case 2:
+                                    lastAttack = StartCoroutine(RockThrow(3, 500f, 2f, 70f, 2));
+                                    break;*/
+
+                                /*case 3:
+                                    lastAttack = StartCoroutine(SpectralLiane(2, 150f, 10f, 800f));
+                                    break;
+
+                                case 4:
+                                    if (ennemiesNumber < ennemiesNumberLimit[phase - 1])
+                                        lastAttack = StartCoroutine(Minions(2, 1, 1f, 1));
+                                    else
+                                    {
+                                        attacking = false;
+                                    }
+                                    break;*/
+                        }
                         break;
                 }
             }
@@ -333,6 +375,21 @@ public class BossBehavior : Ennemy_Controller
             }
         }
 
+    }
+
+    void CreateShadowClone()
+    {
+        BossBehavior currentEnnemy = Instantiate(gameObject, parentEnnemies).GetComponent<BossBehavior>();
+        StartCoroutine(audiomanager.PlayOne("Invocation", gameObject));
+        player.confiner.activeRoom.objectsToDestroy.Add(currentEnnemy);
+
+        currentEnnemy.transform.position = (Vector2)centerTeleport.position + new Vector2(Random.Range(-0.5f, +0.5f), Random.Range(-0.5f, +0.5f));
+
+        currentEnnemy.playerDetected = true;
+
+        currentEnnemy.spawned = true;
+
+        bossesSpawned.Add(currentEnnemy);
     }
 
     IEnumerator ResetPattern()
@@ -467,7 +524,8 @@ public class BossBehavior : Ennemy_Controller
 
             for(int x = 0; x < ennemyControllersList.Count; x++)
             {
-                elementsControllers.Add(ennemyControllersList[x]);
+                if(ennemyControllersList[x].GetComponent<BossBehavior>() == null)
+                    elementsControllers.Add(ennemyControllersList[x]);
             }
 
             for (int x = 0; x < caisseControllersList.Count; x++)
@@ -557,8 +615,6 @@ public class BossBehavior : Ennemy_Controller
 
             telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
 
-            Vector2 directionAttack = (Vector2)(player.transform.position) - (Vector2)transform.position;
-
             for (float x = 1.2f; x > 0.7; x -= Time.deltaTime * 1f)
             {
                 if (currentElement == null)
@@ -576,18 +632,18 @@ public class BossBehavior : Ennemy_Controller
                     yield break;
                 }
 
-                currentElement.transform.position = (Vector2)transform.position + directionAttack.normalized * x;
+                currentElement.transform.position = (Vector2)transform.position + ((Vector2)(player.transform.position) - (Vector2)transform.position).normalized * x;
                 yield return null;
             }
 
             launched = true;
             StartCoroutine(audiomanager.PlayOne("Enemy2_Attack", gameObject));
             currentElement.projected = true;
-            currentElement.rb.AddForce(directionAttack.normalized * forceValue, ForceMode2D.Impulse);
+            currentElement.rb.AddForce(((Vector2)(player.transform.position) - (Vector2)transform.position).normalized * (forceValue + (forceValue * currentElement.mass)), ForceMode2D.Impulse);
 
             currentElement.levelProjected = 2f;
 
-            StartCoroutine(CollisionIgnoreWithElement(0.5f));
+            StartCoroutine(CollisionIgnoreWithElement(currentElement, 1f));
 
             yield return new WaitForSeconds(0.4f);
 
@@ -603,23 +659,28 @@ public class BossBehavior : Ennemy_Controller
         yield break;
     }
 
-    public IEnumerator CollisionIgnoreWithElement(float time)
+    public IEnumerator CollisionIgnoreWithElement(Elements_Controller ec, float time)
     {
-        for (int x = 0; x < currentElement.collider2Ds.Count; x++)
+        for (int x = 0; x < ec.collider2Ds.Count; x++)
         {
-            Physics2D.IgnoreCollision(currentElement.collider2Ds[x], col, true);
+            Physics2D.IgnoreCollision(ec.collider2Ds[x], col, true);
         }
 
         while (time > 0)
         {
+            for (int x = 0; x < ec.collider2Ds.Count; x++)
+            {
+                Physics2D.IgnoreCollision(ec.collider2Ds[x], col, true);
+            }
+
             time -= Time.deltaTime;
             yield return null;
         }
 
-        if(currentElement != null)
-        for (int x = 0; x < currentElement.collider2Ds.Count; x++)
+        if(ec != null)
+        for (int x = 0; x < ec.collider2Ds.Count; x++)
         {
-            Physics2D.IgnoreCollision(currentElement.collider2Ds[x], col, false);
+            Physics2D.IgnoreCollision(ec.collider2Ds[x], col, false);
         }
     }
 
@@ -730,10 +791,10 @@ public class BossBehavior : Ennemy_Controller
 
         //StartCoroutine(DontCollideWithPlayerFor(1f));
 
-        while (direction.magnitude > 0.7f)
+        while (direction.magnitude > 1.5f)
         {
             direction = (transform.position - player.transform.position);
-            player.rb.velocity = direction.normalized * forceSpectralLiane;
+            player.rb.velocity = direction.normalized * forceSpectralLiane * Time.fixedDeltaTime;
             yield return null;
         }
 
@@ -748,7 +809,7 @@ public class BossBehavior : Ennemy_Controller
 
         player.physicCollider.gameObject.layer = originalPlayerLayer;
 
-        StartCoroutine(DontCollideWithPlayerFor(0.1f));
+        StartCoroutine(DontCollideWithPlayerFor(0.5f));
     }
 
     public IEnumerator ApplyForce(Elements_Controller elementsController)
@@ -764,10 +825,10 @@ public class BossBehavior : Ennemy_Controller
             elementsController.collider2Ds[i].gameObject.layer = 15;
         }
 
-        while (direction.magnitude > 0.7f)
+        while (direction.magnitude > 1.5f)
         {
             direction = (transform.position - elementsController.transform.position);
-            elementsController.rb.velocity = direction.normalized * forceSpectralLiane;
+            elementsController.rb.velocity = direction.normalized * forceSpectralLiane * Time.fixedDeltaTime;
             yield return null;
         }
 
@@ -793,7 +854,7 @@ public class BossBehavior : Ennemy_Controller
                 Physics2D.IgnoreCollision(collider2Ds[i], elementsController.collider2Ds[x], true);
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
 
         for (int i = 0; i < collider2Ds.Count; i++)
         {
@@ -842,6 +903,8 @@ public class BossBehavior : Ennemy_Controller
                 currentEnnemy.transform.position = (Vector2)spawnPoints[Random.Range(0, spawnPoints.Count)].transform.position + new Vector2(Random.Range(-0.5f, +0.5f), Random.Range(-0.5f, +0.5f));
 
                 currentEnnemy.playerDetected = true;
+
+                currentEnnemy.spawned = true;
             }
 
             yield return new WaitForSeconds(0.3f);
@@ -861,7 +924,7 @@ public class BossBehavior : Ennemy_Controller
         yield break;
     }
 
-    IEnumerator NextPhase()
+    IEnumerator NextPhase(int[] shadowClonePhase)
     {
         StartCoroutine(ResetPattern());
 
@@ -871,7 +934,12 @@ public class BossBehavior : Ennemy_Controller
 
         telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
 
-        for (float x = 0.5f; x > 0; x -= Time.deltaTime)
+        for (int i = 0; i < bossesSpawned.Count; i++)
+        {
+            bossesSpawned[i].stuned = true;
+        }
+
+        for (float x = 1f; x > 0; x -= Time.deltaTime)
         {
             yield return null;
         }
@@ -904,6 +972,12 @@ public class BossBehavior : Ennemy_Controller
         for (float x = 1f; x > 0; x -= Time.deltaTime)
         {
             yield return null;
+        }
+
+        for (int i = 0; i < bossesSpawned.Count; i++)
+        {
+            bossesSpawned[i].stuned = false;
+            bossesSpawned[i].phase = shadowClonePhase[i];
         }
 
         stuned = false;

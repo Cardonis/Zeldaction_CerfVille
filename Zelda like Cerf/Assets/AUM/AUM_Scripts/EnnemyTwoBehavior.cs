@@ -97,7 +97,7 @@ public class
                 launched = false;
                 currentPierre = null;
 
-                StartCoroutine(ReactivateCollisionWithAfter(physicCollider, 0.5f));
+                StartCoroutine(ReactivateCollisionWithAfter(currentPierreCol, 0.5f));
                 attackCooldownTimer = 0;
             }
         }

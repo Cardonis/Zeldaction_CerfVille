@@ -86,6 +86,15 @@ public abstract class Ennemy_Controller : Elements_Controller
 
     IEnumerator TakeDamage(float damageTaken, float damageDirectionAngle)
     {
+        if (player.cameraShake.shaking == false)
+            player.cameraShake.lastCameraShake = player.cameraShake.StartCoroutine(player.cameraShake.CameraShakeFor(0.1f, 0.1f, damageTaken));
+
+        BossBehavior bb = GetComponent<BossBehavior>();
+
+        if (bb != null)
+            if(bb.spawned == true)
+            yield break;
+
         StartCoroutine(InvicibilityFrame());
         for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
         {
@@ -132,9 +141,6 @@ public abstract class Ennemy_Controller : Elements_Controller
         }
 
         damageParticleSystem.Play();
-
-        if (player.cameraShake.shaking == false)
-            player.cameraShake.lastCameraShake = player.cameraShake.StartCoroutine(player.cameraShake.CameraShakeFor(0.1f, 0.1f,damageTaken));
 
         GetComponentInChildren<SpriteRenderer>().color = new Color(1, 0, 0);
 
