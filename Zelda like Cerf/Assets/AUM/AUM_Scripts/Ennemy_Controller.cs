@@ -93,8 +93,12 @@ public abstract class Ennemy_Controller : Elements_Controller
 
         if (bb != null)
             if(bb.spawned == true)
-            yield break;
+            {
+                StartCoroutine(StunedForSeconds(2f));
 
+                yield break;
+            }
+            
         StartCoroutine(InvicibilityFrame());
         for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
         {
@@ -112,31 +116,31 @@ public abstract class Ennemy_Controller : Elements_Controller
             case 0.5f:
                 damageParticleSystem.startColor = player.ennemyColorDamages[0];
                 damageParticleSystem.startSpeed = 5;
-                damageParticleSystem.startSize = 0.05f;
+                damageParticleSystem.startSize = 0.3f;
                 break;
 
             case 1:
                 damageParticleSystem.startColor = player.ennemyColorDamages[1];
                 damageParticleSystem.startSpeed = 10;
-                damageParticleSystem.startSize = 0.1f;
+                damageParticleSystem.startSize = 0.6f;
                 break;
 
             case 2:
                 damageParticleSystem.startColor = player.ennemyColorDamages[2];
                 damageParticleSystem.startSpeed = 20;
-                damageParticleSystem.startSize = 0.2f;
+                damageParticleSystem.startSize = 1.2f;
                 break;
 
             case 4:
                 damageParticleSystem.startColor = player.ennemyColorDamages[3];
                 damageParticleSystem.startSpeed = 30;
-                damageParticleSystem.startSize = 0.3f;
+                damageParticleSystem.startSize = 1.8f;
                 break;
 
             case 8:
                 damageParticleSystem.startColor = player.ennemyColorDamages[4];
                 damageParticleSystem.startSpeed = 40;
-                damageParticleSystem.startSize = 0.4f;
+                damageParticleSystem.startSize = 2.4f;
                 break;
         }
 
