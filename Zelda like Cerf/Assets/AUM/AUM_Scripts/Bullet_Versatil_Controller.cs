@@ -21,6 +21,7 @@ public class Bullet_Versatil_Controller : MonoBehaviour
 
     AudioManager audiomanager;
 
+    [HideInInspector] public Vector2 arrowDirection;
 
     void Start()
     {
@@ -142,7 +143,7 @@ public class Bullet_Versatil_Controller : MonoBehaviour
                     ec.trailParticleSystem.Play();
                 }
 
-                ec.StartTakeForce(player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack, levelProjecting + bonusLevelProjecting);
+                ec.StartTakeForce(player.GetComponent<Player_Main_Controller>().forceValueVersatilAttack, levelProjecting + bonusLevelProjecting, arrowDirection);
             }
             
         }

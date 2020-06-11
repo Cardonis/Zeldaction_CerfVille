@@ -61,9 +61,9 @@ public class Elements_Controller : MonoBehaviour
 
     }
 
-    public void StartTakeForce(float forceValue, float levelMultiplicator)
+    public void StartTakeForce(float forceValue, float levelMultiplicator, Vector2 arrowDirection)
     {
-         lastTakeForce = StartCoroutine(TakeForce(forceValue, levelMultiplicator));
+         lastTakeForce = StartCoroutine(TakeForce(forceValue, levelMultiplicator, arrowDirection));
     }
 
     public void StopTakeForce()
@@ -79,7 +79,7 @@ public class Elements_Controller : MonoBehaviour
         StopCoroutine(lastTakeForce);
     }
 
-    public IEnumerator TakeForce(float forceValue, float levelMultiplicator)
+    public IEnumerator TakeForce(float forceValue, float levelMultiplicator, Vector2 arrowDirection)
     {
         projected = true;
         audiomanager.Play("Capa_Liane");
@@ -129,7 +129,7 @@ public class Elements_Controller : MonoBehaviour
 
         rb.velocity = new Vector2(0, 0);
 
-        rb.AddForce(direction.normalized * forceValue * levelProjected, ForceMode2D.Impulse);
+        rb.AddForce(arrowDirection.normalized * forceValue * levelProjected, ForceMode2D.Impulse);
 
         player.timerCooldownVersatilAttack = 0;
         player.lastAttackVersatilTimer = 0;

@@ -41,7 +41,7 @@ public class Ronces : Elements_Controller
     {
         isDestroy = true;
         ronceRb.bodyType = RigidbodyType2D.Dynamic;
-        StartTakeForce(15, 1);
+        StartTakeForce(15, 1, -player.directionAim.normalized);
         yield return new WaitForSeconds(ronceDestructionClip.length);
         Destroy(gameObject);
     }

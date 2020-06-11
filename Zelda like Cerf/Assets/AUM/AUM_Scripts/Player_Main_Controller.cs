@@ -139,6 +139,13 @@ public class Player_Main_Controller : MonoBehaviour
 
     [HideInInspector] public bool canTakeStone=true;
 
+    //Input
+    bool inputDX = false;
+    bool inputDRB = false;
+
+    bool inputUX = false;
+    bool inputURB = false;
+
     void Start()
     {
 
@@ -185,6 +192,14 @@ public class Player_Main_Controller : MonoBehaviour
         damageParticleSystem.gameObject.SetActive(false);
     }
 
+    private void Update()
+    {
+        inputDX = Input.GetButtonDown("X");
+        inputDRB = Input.GetButtonDown("RB");
+
+        inputUX = Input.GetButtonUp("X");
+        inputURB = Input.GetButtonUp("RB");
+    }
 
     void FixedUpdate()
     {
@@ -406,11 +421,10 @@ public class Player_Main_Controller : MonoBehaviour
                     //barCharge.gameObject.SetActive(true);
                 }
 
-                if((Input.GetButtonUp("RB") || Input.GetButtonUp("X")) && charging)
+                if ((inputURB || inputUX) && charging)
                 {
                     animator.SetBool("IsChargingCV", false);
                     audiomanager.Stop("Capa_charge");
-
 
                     if (multipleAttack == false)
                     {
@@ -563,14 +577,14 @@ public class Player_Main_Controller : MonoBehaviour
                 {
                     nearestPierre.outlineController.outLining = true;
 
-                    if (Input.GetButtonDown("X") && canTrack == true && canTakeStone == true)
+                    if (inputDX && canTrack == true && canTakeStone == true)
                     {
                         currentPierre = nearestPierre;
                     }
                 }
                 else if (currentPierre != null)
                 {
-                    if (Input.GetButtonDown("X") && canTrack == true)
+                    if (inputDX && canTrack == true)
                     {
                         Physics2D.IgnoreCollision(physicCollider, currentPierre.collider2Ds[0], false);
                         currentPierre = null;
@@ -768,6 +782,8 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         bullet.maxDistance = (rangeMaxVersatilAttack / 4f) + (rangeMaxVersatilAttack * 3f / 4f) / levelProjecting;
         bullet.levelProjecting = levelProjecting;
 
+        bullet.arrowDirection = -directionAim.normalized;
+
         if (autoAimIsActive == true)
         {
             currentAutoAimAngle = autoAimAugmentedAngle;
@@ -852,6 +868,8 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
         bullet.player = this;
         bullet.maxDistance = 20;
         bullet.levelProjecting = levelProjecting;
+
+        bullet.arrowDirection = -directionAim.normalized;
 
         if(levelProjecting == 1)
         {
