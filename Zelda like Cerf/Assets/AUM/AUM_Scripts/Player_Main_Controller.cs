@@ -194,11 +194,15 @@ public class Player_Main_Controller : MonoBehaviour
 
     private void Update()
     {
-        inputDX = Input.GetButtonDown("X");
-        inputDRB = Input.GetButtonDown("RB");
+        if(!inputDX)
+            inputDX = Input.GetButtonDown("X");
+        if(!inputDRB)
+            inputDRB = Input.GetButtonDown("RB");
 
-        inputUX = Input.GetButtonUp("X");
-        inputURB = Input.GetButtonUp("RB");
+        if (!inputUX)
+            inputUX = Input.GetButtonUp("X");
+        if (!inputURB)
+            inputURB = Input.GetButtonUp("RB");
     }
 
     void FixedUpdate()
@@ -588,8 +592,8 @@ public class Player_Main_Controller : MonoBehaviour
                     {
                         Physics2D.IgnoreCollision(physicCollider, currentPierre.collider2Ds[0], false);
                         currentPierre = null;
-                        canTakeStone = false;
-                        StartCoroutine(StoneCooldown());
+                        //canTakeStone = false;
+                        //StartCoroutine(StoneCooldown());
                     }
                 }
             }
@@ -656,6 +660,24 @@ public class Player_Main_Controller : MonoBehaviour
 
 
         #endregion Animator
+
+        if(inputDRB)
+        {
+            inputDRB = false;
+        }
+        if (inputDX)
+        {
+            inputDX = false;
+        }
+        if (inputURB)
+        {
+            inputURB = false;
+        }
+        if (inputUX)
+        {
+            inputUX = false;
+        }
+
     }
 
     IEnumerator BaseAttack()
@@ -679,7 +701,7 @@ public class Player_Main_Controller : MonoBehaviour
         //Activation de l'hitbox du sweetspot
         baseAttackColliders[0].enabled = true;
 
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSecondsRealtime(0.05f);
 
         //Activation de toutes les hitboxs
         for (int i = 0; i < baseAttackColliders.Length; i++)
@@ -688,11 +710,11 @@ public class Player_Main_Controller : MonoBehaviour
         }
 
         //Attack duration + knock back
-        for(float i = durationBaseAttack; i > 0; i -= Time.deltaTime)
+        for(float i = durationBaseAttack; i > 0; i -= Time.fixedDeltaTime)
         {
-            rb.velocity = -directionAim.normalized * speedKnockBackBaseAttack * Time.deltaTime;
+            rb.velocity = -directionAim.normalized * speedKnockBackBaseAttack * Time.fixedDeltaTime;
 
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
 
         timerCooldownBaseAttack = cooldownBaseAttack;
@@ -825,6 +847,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         bullet.rb.velocity = autoAimDirection.normalized * speedBulletVersatil / Mathf.Min(3f, levelProjecting) * Time.fixedDeltaTime;
 
+        bullet.transform.position = transform.position + (Vector3)autoAimDirection.normalized;
 
         if (lastAttackVersatilTimer <= 0.5f)
         {
@@ -909,11 +932,7 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
     public IEnumerator StunnedFor(float time)
     {
         stunned = true;
-        while (time > 0)
-        {
-            time -= Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitForSecondsRealtime(time);
         stunned = false;
     }
 
@@ -1096,12 +1115,6 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         for (int i = 0; i < data.roomsCleared.Count; i++)
         {
-            GameObject go = GameObject.Find(data.biomeNames[i]);
-
-            Transform go2 = go.transform.Find(data.roomNames[i]);
-
-            RoomController rc2 = go2.GetComponent<RoomController>();
-
             RoomController rc = GameObject.Find(data.biomeNames[i]).transform.Find(data.roomNames[i]).GetComponent<RoomController>();
 
             rc.clear = data.roomsCleared[i];

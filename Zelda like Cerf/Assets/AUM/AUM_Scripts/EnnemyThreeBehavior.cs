@@ -165,7 +165,7 @@ public class EnnemyThreeBehavior : Ennemy_Controller
             Physics2D.IgnoreCollision(ennemyColliders[i], bullet.GetComponentInChildren<Collider2D>(), true);
         }
 
-        bullet.transform.position = transform.position;
+        bullet.transform.position = transform.position + (player.transform.position - transform.position).normalized;
 
         //projected = true;
         //rb.velocity = new Vector2(0, 0);
