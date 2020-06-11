@@ -421,7 +421,7 @@ public class Player_Main_Controller : MonoBehaviour
                     //barCharge.gameObject.SetActive(true);
                 }
 
-                if ((inputURB || inputUX) && charging)
+                if (!(Input.GetButton("RB") || Input.GetButton("X")) && charging)
                 {
                     animator.SetBool("IsChargingCV", false);
                     audiomanager.Stop("Capa_charge");

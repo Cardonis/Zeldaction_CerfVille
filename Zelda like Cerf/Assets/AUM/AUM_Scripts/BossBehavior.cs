@@ -660,6 +660,29 @@ public class BossBehavior : Ennemy_Controller
                 Physics2D.IgnoreCollision(currentElement.collider2Ds[x], col, true);
             }
 
+            for (float x = 0.5f; x > 0; x -= Time.deltaTime * 1f)
+            {
+                if (currentElement == null)
+                {
+                    attacking = false;
+
+                    direction = Vector2.zero;
+
+                    canMove = true;
+
+                    timerCooldownPattern = 0;
+
+                    StopCoroutine(lastAttack);
+
+                    yield break;
+                }
+
+                currentElement.transform.position = (Vector2)transform.position + ((Vector2)(player.transform.position) - (Vector2)transform.position).normalized;
+                yield return null;
+            }
+
+            Vector2 directionAttack = ((Vector2)(player.transform.position) - (Vector2)transform.position);
+
             telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
 
             for (float x = 1.2f; x > 0.7; x -= Time.deltaTime * 1f)
@@ -679,14 +702,14 @@ public class BossBehavior : Ennemy_Controller
                     yield break;
                 }
 
-                currentElement.transform.position = (Vector2)transform.position + ((Vector2)(player.transform.position) - (Vector2)transform.position).normalized * x;
+                currentElement.transform.position = (Vector2)transform.position + directionAttack.normalized * x;
                 yield return null;
             }
 
             launched = true;
             StartCoroutine(audiomanager.PlayOne("Enemy2_Attack", gameObject));
             currentElement.projected = true;
-            currentElement.rb.AddForce(((Vector2)(player.transform.position) - (Vector2)transform.position).normalized * (forceValue + (forceValue * currentElement.mass)), ForceMode2D.Impulse);
+            currentElement.rb.AddForce(directionAttack.normalized * (forceValue + (forceValue * currentElement.mass)), ForceMode2D.Impulse);
 
             currentElement.levelProjected = 2f;
 
