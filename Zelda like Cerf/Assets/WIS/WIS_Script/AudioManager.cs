@@ -69,7 +69,7 @@ public class AudioManager : MonoBehaviour
         if (input.magnitude > 0 && inventoryBook.iventoryIsOpen == false)
         {
             if (DeplacementPlaying == false && MusicManager.PlayerCurrentPos != MusicManager.PlayerPos.Donjon01) { StartCoroutine(PlayOneOf("D1", "D2", "D3")); }
-            else if (DeplacementPlaying == false) { StartCoroutine(PlayOneOf("D4", "D5", "D6")); }
+            else if (DeplacementPlaying == false && MusicManager.PlayerCurrentPos == MusicManager.PlayerPos.Donjon01) { StartCoroutine(PlayOneOf("D4", "D5", "D6")); }
         }
 
 
@@ -190,7 +190,7 @@ public class AudioManager : MonoBehaviour
     public IEnumerator PlayOneOf(string name1, string name2, string name3)
     {
 
-            int temp = UnityEngine.Random.Range(0,2);
+            int temp = UnityEngine.Random.Range(0,3);
 
             string musicName = "";
 
@@ -201,6 +201,9 @@ public class AudioManager : MonoBehaviour
                     break;
                 case 1:
                     musicName = name2;
+                    break;
+                case 2:
+                    musicName = name3;
                     break;
                 default:
                     break;
