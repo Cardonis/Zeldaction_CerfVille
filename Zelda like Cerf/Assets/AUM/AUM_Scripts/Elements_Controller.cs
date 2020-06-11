@@ -129,7 +129,7 @@ public class Elements_Controller : MonoBehaviour
 
         rb.velocity = new Vector2(0, 0);
 
-        rb.AddForce(arrowDirection.normalized * forceValue * levelProjected, ForceMode2D.Impulse);
+        rb.AddForce((arrowDirection.normalized + (direction.normalized * 1.25f)) * forceValue * levelProjected, ForceMode2D.Impulse);
 
         player.timerCooldownVersatilAttack = 0;
         player.lastAttackVersatilTimer = 0;
