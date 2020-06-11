@@ -67,6 +67,7 @@ public class BossSoundManager : MonoBehaviour
         {
 
             IsEnd = true;
+            StopMusic();
 
         }
 
@@ -74,14 +75,18 @@ public class BossSoundManager : MonoBehaviour
         {
 
             PlayMusic();
+            
 
         }
+
 
 
         if (bossBehavior.pv == 0 && IsInBattle == true)
         {
             InBattle.SetActive(true);
+
         }
+
 
 
     }
