@@ -411,7 +411,6 @@ public class Player_Main_Controller : MonoBehaviour
                     animator.SetBool("IsChargingCV", false);
                     audiomanager.Stop("Capa_charge");
 
-                    Debug.Log("Oui");
 
                     if (multipleAttack == false)
                     {
