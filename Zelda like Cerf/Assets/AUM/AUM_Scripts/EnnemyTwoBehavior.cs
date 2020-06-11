@@ -363,7 +363,7 @@ public class
                 player.stunned = true;
 
                 movingToAttack = false;
-
+                StartCoroutine(audiomanager.PlayOne("Enemy2_Attack", gameObject));
                 for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
                 {
                     outlineController.outLinesAnimator[i].SetTrigger("Attacks");
@@ -412,7 +412,7 @@ public class
 
         player.projected = true;
         player.rb.AddForce(directionAttack.normalized * forcePlayerLaunch, ForceMode2D.Impulse);
-
+        StartCoroutine(audiomanager.PlayOne("Capa_Lance", gameObject));
         StartCoroutine(DontCollideWithPlayerFor(0.2f));
 
         yield return new WaitForSeconds(0.3f);
@@ -468,7 +468,7 @@ public class
 
         attacking = true;
 
-        audiomanager.PlayHere("Enemy2_Rock", gameObject);
+        StartCoroutine(audiomanager.PlayOne("Enemy2_Rock", gameObject));
 
         for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
         {
@@ -504,7 +504,7 @@ public class
             yield break;
         }
 
-        audiomanager.PlayHere("Enemy2_Attack", gameObject);
+        StartCoroutine(audiomanager.PlayOne("Enemy2_Attack", gameObject));
 
         for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
         {
