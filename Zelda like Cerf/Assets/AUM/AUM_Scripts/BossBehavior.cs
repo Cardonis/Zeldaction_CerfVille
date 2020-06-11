@@ -17,7 +17,7 @@ public class BossBehavior : Ennemy_Controller
     public Transform centerTeleport;
     float missingLife;
 
-    float[] cooldownsPatterns = { 1f, 0.5f, 0.5f, 0.5f, 0.5f };
+    float[] cooldownsPatterns = { 1f, 0.5f, 1.5f, 1.5f, 0.5f, 1.5f };
 
     [Header("Dash Attack")]
     [Header("Patterns")]
@@ -37,8 +37,8 @@ public class BossBehavior : Ennemy_Controller
     [Header("Spectral Liane")]
 
     public GameObject bulletAttack1;
-    float forceSpectralLiane = 100f;
-    float forceSpectralLianePlayer = 100f;
+    float forceSpectralLiane = 1000f;
+    float forceSpectralLianePlayer = 1000f;
 
     [Header("Minions")]
 
@@ -88,7 +88,7 @@ public class BossBehavior : Ennemy_Controller
 
         missingLife = pv / initialLife;
 
-        if (missingLife <= 0f / 4f /*&& endGameInitiator.ending == false*/)
+        if (missingLife <= 0f / 5f /*&& endGameInitiator.ending == false*/)
         {
             //endGameInitiator.StartCoroutine(endGameInitiator.EndGame());
             endCinematic.SetActive(true);
@@ -107,29 +107,39 @@ public class BossBehavior : Ennemy_Controller
             
         if(spawned == false)
         {
-            if (missingLife < 1f / 4f)
+            if (missingLife < 1f / 5f)
+            {
+                if (phase != 5)
+                {
+                    DestroyShadowClones();
+                    int[] shadowClonePhase = { };
+                    StartCoroutine(NextPhase(shadowClonePhase));
+                }
+
+                phase = 5;
+            }
+            else if (missingLife < 2f / 5f)
             {
                 if (phase != 4)
                 {
-                    CreateShadowClone();
-                    int[] shadowClonePhase = { 5, 3 };
+                    int[] shadowClonePhase = { 6 };
                     StartCoroutine(NextPhase(shadowClonePhase));
                 }
 
                 phase = 4;
             }
-            else if (missingLife < 2f / 4f)
+            else if (missingLife < 3f / 5f)
             {
                 if (phase != 3)
                 {
                     CreateShadowClone();
-                    int[] shadowClonePhase = { 5 };
+                    int[] shadowClonePhase = { 6 };
                     StartCoroutine(NextPhase(shadowClonePhase));
                 }
 
                 phase = 3;
             }
-            else if (missingLife < 3f / 4f)
+            else if (missingLife <= 4f / 5f)
             {
                 if (phase != 2)
                 {
@@ -139,7 +149,7 @@ public class BossBehavior : Ennemy_Controller
 
                 phase = 2;
             }
-            else if (missingLife <= 4f / 4f)
+            else if (missingLife <= 5f / 5f)
                 phase = 1;
         }
         
@@ -288,7 +298,7 @@ public class BossBehavior : Ennemy_Controller
                                 break;*/
 
                             case 1:
-                                lastAttack = StartCoroutine(SpectralLiane(2, 700f, 10f, 1200f));
+                                lastAttack = StartCoroutine(SpectralLiane(2, 500f, 10f, 1200f));
                                 break;
 
                             /*case 2:
@@ -304,18 +314,14 @@ public class BossBehavior : Ennemy_Controller
                         break;
 
                     case 4:
-                        int rand4 = Random.Range(1, 4);
+                        int rand4 = Random.Range(1, 3);
                         switch (rand4)
                         {
                             case 1:
-                                lastAttack = StartCoroutine(DashAttack(1, 700f, 8f, 50f));
+                                lastAttack = StartCoroutine(SpectralLiane(1, 500f, 10f, 1200f));
                                 break;
 
                             case 2:
-                                lastAttack = StartCoroutine(SpectralLiane(1, 700f, 10f, 1200f));
-                                break;
-
-                            case 3:
                                 if (ennemiesNumber < ennemiesNumberLimit[phase - 1])
                                     lastAttack = StartCoroutine(Minions(1, 2, 1f, 1));
                                 else
@@ -328,11 +334,39 @@ public class BossBehavior : Ennemy_Controller
                         break;
 
                     case 5:
-                        int rand5 = Random.Range(1, 2);
+                        int rand5 = Random.Range(1, 4);
                         switch (rand5)
                         {
                             case 1:
-                                lastAttack = StartCoroutine(DashAttack(2, 700f, 4f, 50f));
+                                lastAttack = StartCoroutine(DashAttack(1, 1000f, 4f, 50f));
+                                break;
+
+                                case 2:
+                                rand = Random.Range(1, 4);
+                                lastAttack = StartCoroutine(RockThrow(1, 1000f, 2f, 50f, rand));
+                                break;
+
+                                case 3:
+                                    lastAttack = StartCoroutine(SpectralLiane(1, 1000f, 10f, 1600f));
+                                    break;
+
+                                /*case 4:
+                                    if (ennemiesNumber < ennemiesNumberLimit[phase - 1])
+                                        lastAttack = StartCoroutine(Minions(2, 1, 1f, 1));
+                                    else
+                                    {
+                                        attacking = false;
+                                    }
+                                    break;*/
+                        }
+                        break;
+
+                    case 6:
+                        int rand6 = Random.Range(1, 2);
+                        switch (rand6)
+                        {
+                            case 1:
+                                lastAttack = StartCoroutine(DashAttack(2, 500f, 4f, 50f));
                                 break;
 
                                 /*case 2:
@@ -390,6 +424,16 @@ public class BossBehavior : Ennemy_Controller
         currentEnnemy.spawned = true;
 
         bossesSpawned.Add(currentEnnemy);
+    }
+
+    void DestroyShadowClones()
+    {
+        for(int i = 0; i < bossesSpawned.Count; i++)
+        {
+            bossesSpawned[i].gameObject.SetActive(false);
+        }
+
+        bossesSpawned.Clear();
     }
 
     IEnumerator ResetPattern()
@@ -805,7 +849,7 @@ public class BossBehavior : Ennemy_Controller
 
         player.rb.velocity = new Vector2(0, 0);
 
-        player.rb.AddForce(direction.normalized * forceSpectralLianePlayer, ForceMode2D.Impulse);
+        player.rb.AddForce(direction.normalized * forceSpectralLianePlayer / 3f, ForceMode2D.Impulse);
 
         player.physicCollider.gameObject.layer = originalPlayerLayer;
 
@@ -839,7 +883,7 @@ public class BossBehavior : Ennemy_Controller
 
         elementsController.rb.velocity = new Vector2(0, 0);
 
-        elementsController.rb.AddForce(direction.normalized * forceSpectralLiane * 3, ForceMode2D.Impulse);
+        elementsController.rb.AddForce(direction.normalized * forceSpectralLiane / 10f, ForceMode2D.Impulse);
 
         elementsController.levelProjected = 2;
 
@@ -939,7 +983,7 @@ public class BossBehavior : Ennemy_Controller
             bossesSpawned[i].stuned = true;
         }
 
-        for (float x = 1f; x > 0; x -= Time.deltaTime)
+        for (float x = 0.5f; x > 0; x -= Time.deltaTime)
         {
             yield return null;
         }

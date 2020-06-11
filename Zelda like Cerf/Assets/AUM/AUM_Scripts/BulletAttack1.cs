@@ -10,6 +10,9 @@ public class BulletAttack1 : MonoBehaviour
     [HideInInspector] public float maxDistance;
 
     [HideInInspector] public float levelProjecting;
+    public BoxCollider2D col;
+
+    float directionAngle;
 
     Transform touchedTarget;
     AudioManager audiomanager;
@@ -22,6 +25,15 @@ public class BulletAttack1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        directionAngle = Vector2.Angle(-rb.velocity, transform.right);
+
+        if (-rb.velocity.y < 0)
+        {
+            directionAngle = -directionAngle;
+        }
+
+        col.transform.rotation = Quaternion.Euler(0, 0, directionAngle);
+
         lr.SetPosition(0, ennemyController.position);
         lr.SetPosition(1, transform.position);
 

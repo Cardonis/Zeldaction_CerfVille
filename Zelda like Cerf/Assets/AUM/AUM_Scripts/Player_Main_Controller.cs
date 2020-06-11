@@ -1077,6 +1077,12 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
 
         for (int i = 0; i < data.roomsCleared.Count; i++)
         {
+            GameObject go = GameObject.Find(data.biomeNames[i]);
+
+            Transform go2 = go.transform.Find(data.roomNames[i]);
+
+            RoomController rc2 = go2.GetComponent<RoomController>();
+
             RoomController rc = GameObject.Find(data.biomeNames[i]).transform.Find(data.roomNames[i]).GetComponent<RoomController>();
 
             rc.clear = data.roomsCleared[i];

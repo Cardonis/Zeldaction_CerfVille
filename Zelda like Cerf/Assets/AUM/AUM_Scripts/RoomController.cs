@@ -15,9 +15,9 @@ public class RoomController : MonoBehaviour
 
     public List<HealthFlower> healthFlowers;
 
-    [HideInInspector] public string biomeName;
+    public string biomeName;
 
-    [HideInInspector] public string roomName;
+    public string roomName;
 
     [HideInInspector] public TiersDecoeur tiersDecoeur;
 
