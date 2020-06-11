@@ -270,7 +270,7 @@ public class Player_Main_Controller : MonoBehaviour
 
         if (timerCooldownBaseAttack < 0)
         {
-            if ( Input.GetButtonDown("LB") && ((!projected && !stunned) || canSpringAttack) )
+            if ( Input.GetButton("LB") && ((!projected && !stunned) || canSpringAttack) )
             {
                 lastBaseAttack = StartCoroutine(BaseAttack());
                 audiomanager.Play("Coup_de_vent");
@@ -278,12 +278,12 @@ public class Player_Main_Controller : MonoBehaviour
         }
         else
         {
-            timerCooldownBaseAttack -= Time.deltaTime;
+            timerCooldownBaseAttack -= Time.fixedDeltaTime;
         }
 
         if(lastAttackVersatilTimer < 0.5f)
         {
-            lastAttackVersatilTimer += Time.deltaTime;
+            lastAttackVersatilTimer += Time.fixedDeltaTime;
         }
 
         if (timerCooldownVersatilAttack < 0 && part >= 2)
@@ -296,7 +296,7 @@ public class Player_Main_Controller : MonoBehaviour
             if (!projected && !stunned)
             {
 
-                if(Input.GetButtonDown("RB") || Input.GetButtonDown("X"))
+                if((Input.GetButton("RB") || Input.GetButton("X")) && charging == false)
                 {
                     if(part == 3)
                     {
@@ -311,7 +311,7 @@ public class Player_Main_Controller : MonoBehaviour
 
                     //barCharge.gameObject.SetActive(true);
 
-                    if (Input.GetButtonDown("RB") && part > 1)
+                    if (Input.GetButton("RB") && part > 1)
                     {
                         multipleAttack = false;
 
@@ -322,7 +322,7 @@ public class Player_Main_Controller : MonoBehaviour
 
                         audiomanager.Play("Capa_charge");
                     }
-                    else if(marquageManager.marquageControllers.Count != 0 && Input.GetButtonDown("X") && part > 1)
+                    else if(marquageManager.marquageControllers.Count != 0 && Input.GetButton("X") && part > 1)
                     {
                         multipleAttack = true;
 
@@ -343,7 +343,7 @@ public class Player_Main_Controller : MonoBehaviour
                     }
                 }
 
-                if (charging)
+                if ((Input.GetButton("RB") || Input.GetButton("X")) && charging)
                 {
                     animator.SetBool("IsChargingCV", true);
 
@@ -351,7 +351,7 @@ public class Player_Main_Controller : MonoBehaviour
                     {
                         if (chargeTimer < chargeTime)
                         {
-                            chargeTimer += Time.deltaTime;
+                            chargeTimer += Time.fixedDeltaTime;
                         }
                     }
                     else if (multipleAttack == true)
@@ -360,7 +360,7 @@ public class Player_Main_Controller : MonoBehaviour
 
                         if (chargeTimer < chargeTime)
                         {
-                            chargeTimer += Time.deltaTime;
+                            chargeTimer += Time.fixedDeltaTime;
                         }
                     }
 
@@ -410,6 +410,8 @@ public class Player_Main_Controller : MonoBehaviour
                 {
                     animator.SetBool("IsChargingCV", false);
                     audiomanager.Stop("Capa_charge");
+
+                    Debug.Log("Oui");
 
                     if (multipleAttack == false)
                     {
@@ -504,7 +506,7 @@ public class Player_Main_Controller : MonoBehaviour
         }
         else
         {
-            timerCooldownVersatilAttack -= Time.deltaTime;
+            timerCooldownVersatilAttack -= Time.fixedDeltaTime;
         }
 
         if (confiner.activeRoom != null)

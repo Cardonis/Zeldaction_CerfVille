@@ -19,6 +19,9 @@ public class BossBehavior : Ennemy_Controller
 
     float[] cooldownsPatterns = { 1f, 0.5f, 1.5f, 1.5f, 0.5f, 1.5f };
 
+    public GameObject[] phasesGlobalLightChangers;
+    GameObject currentGlobalLightChanger;
+
     [Header("Dash Attack")]
     [Header("Patterns")]
     
@@ -974,7 +977,7 @@ public class BossBehavior : Ennemy_Controller
 
         stuned = true;
 
-        player.speed /= 8f;
+        player.speed /= 6f;
 
         telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
 
@@ -987,6 +990,15 @@ public class BossBehavior : Ennemy_Controller
         {
             yield return null;
         }
+
+        if(currentGlobalLightChanger != null)
+        {
+            Destroy(currentGlobalLightChanger);
+        }
+
+        currentGlobalLightChanger = Instantiate(phasesGlobalLightChangers[phase - 1]);
+
+        currentGlobalLightChanger.transform.position = transform.parent.position;
 
         for (int i = 0; i < parentEnnemies.childCount; i++)
         {
@@ -1011,7 +1023,7 @@ public class BossBehavior : Ennemy_Controller
 
         player.TakeForce((player.transform.position - transform.position).normalized, 200f);
 
-        player.speed *= 8f;
+        player.speed *= 6f;
 
         for (float x = 1f; x > 0; x -= Time.deltaTime)
         {
