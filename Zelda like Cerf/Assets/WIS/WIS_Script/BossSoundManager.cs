@@ -54,6 +54,11 @@ public class BossSoundManager : MonoBehaviour
     void Update()
     {
 
+        if (MusicManager.PlayerCurrentPos != MusicManager.PlayerPos.Boss)
+        {
+            InBattle.SetActive(true);
+        }
+
         phaseBoss = bossBehavior.phase;
 
         if (!InBattle.activeSelf)
@@ -86,6 +91,7 @@ public class BossSoundManager : MonoBehaviour
             InBattle.SetActive(true);
 
         }
+
 
 
 

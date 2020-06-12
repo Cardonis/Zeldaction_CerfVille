@@ -72,24 +72,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &5375516303494645141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3937373794969724609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f1bd75c51ea454c847c9a20896babf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outLining: 0
-  outlineColor: {r: 1, g: 0.1764706, b: 0.3137255, a: 0.39215687}
-  baseGraph: {fileID: 3937373793299255161}
-  outLines: []
-  outLinesAnimator: []
-  thiccness: 0.08
 --- !u!50 &4195397890229359075
 Rigidbody2D:
   serializedVersion: 4
@@ -111,6 +93,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5375516303494645141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3937373794969724609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f1bd75c51ea454c847c9a20896babf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outLining: 0
+  outlineColor: {r: 1, g: 0.1764706, b: 0.3137255, a: 0.39215687}
+  baseGraph: {fileID: 3937373793299255161}
+  outLines: []
+  outLinesAnimator: []
+  thiccness: 0.08
 --- !u!1001 &771230624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -283,6 +283,11 @@ PrefabInstance:
       propertyPath: lightt
       value: 
       objectReference: {fileID: 2825700763815704724}
+    - target: {fileID: 8301138123808555734, guid: 93ec01d59703b8c46ac4e5f7f6b0aecc,
+        type: 3}
+      propertyPath: col
+      value: 
+      objectReference: {fileID: 3937373794969724611}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93ec01d59703b8c46ac4e5f7f6b0aecc, type: 3}
 --- !u!1 &3937373794969724609 stripped
@@ -294,6 +299,12 @@ GameObject:
 --- !u!4 &3937373794969724636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8301138123808555720, guid: 93ec01d59703b8c46ac4e5f7f6b0aecc,
+    type: 3}
+  m_PrefabInstance: {fileID: 5014702928445170708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &3937373794969724611 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8301138123808555735, guid: 93ec01d59703b8c46ac4e5f7f6b0aecc,
     type: 3}
   m_PrefabInstance: {fileID: 5014702928445170708}
   m_PrefabAsset: {fileID: 0}

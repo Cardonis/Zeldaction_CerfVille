@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class InventoryBook : MonoBehaviour
 {
-    [HideInInspector] public int currentNumberOfHearthThird;
+    [HideInInspector] public int currentNumberOfHearthThird = 0;
 
     public Player_Main_Controller player;
 
@@ -18,7 +18,6 @@ public class InventoryBook : MonoBehaviour
     public bool tipsMenu; 
     void Start()
     {
-      currentNumberOfHearthThird = 0;
       iventoryIsOpen = false;
     }
 

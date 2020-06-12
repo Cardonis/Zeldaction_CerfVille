@@ -1086,9 +1086,9 @@ IEnumerator MultiplesVersatilAttack(float levelProjecting)
     {
         PlayerData data = SaveSystem.LoadPlayer();
 
+        inventoryBook.currentNumberOfHearthThird = data.healthThirdNumber;
         part = data.part;
         maxLife = data.maxHealth;
-        inventoryBook.currentNumberOfHearthThird = data.healthThirdNumber;
 
         Vector2 position;
         position.x = data.position[0];
