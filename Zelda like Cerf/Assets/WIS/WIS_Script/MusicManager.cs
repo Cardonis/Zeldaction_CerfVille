@@ -136,11 +136,11 @@ public class MusicManager : MonoBehaviour
         if (IsChangingMusic == false)
         {
 
-            if (!InBattle)
+            if (!InBattle && EnemyInBattle <= 0)
             {
                 PlayMusic();
             }
-            else
+            else if (InBattle && EnemyInBattle > 0)
             {
                 PlayBattleMusic();
             }

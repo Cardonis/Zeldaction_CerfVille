@@ -18,7 +18,7 @@ public class EndGameInitiator : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(3);
     }
     public void OnEnable()
     {
