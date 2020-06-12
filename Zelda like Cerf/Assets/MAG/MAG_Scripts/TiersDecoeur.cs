@@ -9,6 +9,7 @@ public class TiersDecoeur : MonoBehaviour
     public ParticleSystem healthParticleSystem;
 
     public SpriteRenderer sR;
+    public Collider2D col;
 
     public GameObject lightt;
 
@@ -65,7 +66,15 @@ public class TiersDecoeur : MonoBehaviour
     {
         if (collected == true && desactivating == false) 
         {
-            gameObject.SetActive(false);
+            sR.enabled = false;
+            col.enabled = false;
+            lightt.SetActive(false);
+        }
+        else if (collected == false)
+        {
+            sR.enabled = true;
+            col.enabled = true;
+            lightt.SetActive(true);
         }
 
         if(playerIsNear == true && Input.GetButtonDown("X") && collected == false)
@@ -79,7 +88,7 @@ public class TiersDecoeur : MonoBehaviour
 
             healthParticleSystem.Play();
 
-            StartCoroutine(DesactivationAfter(2f));
+            //StartCoroutine(DesactivationAfter(2f));
 
             pressX.SetActive(false);
 
