@@ -21,10 +21,13 @@ public class DialogueManager : MonoBehaviour
 
     public bool skip = false;
     [HideInInspector] public bool inSentence=false;
+
+    [HideInInspector] public bool inDialogue;
     void Start()
     {
         sentenceFullyDisplay = true;
         sentences = new Queue<string>();
+        inDialogue = false;
     }
 
     void Update()
@@ -45,7 +48,8 @@ public class DialogueManager : MonoBehaviour
                     DisplayNextSentence();
                 }
             }
-          
+            if (inDialogue)
+                playerscript.stunned =true;
         }
     }
     public void StartDialogue (Dialogue dialogue)
@@ -55,6 +59,7 @@ public class DialogueManager : MonoBehaviour
         sentences.Clear();
         dialogueStarted = true;
         animator.SetBool("IsOpen", true);
+        inDialogue = true;
         
 
         foreach (string sentence in dialogue.sentences)
@@ -76,10 +81,12 @@ public class DialogueManager : MonoBehaviour
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
+        inDialogue = true;
     }
 
     public IEnumerator EndDialogue()
     {
+        inDialogue = false;
         yield return new WaitForSeconds(0.1f);
 
         playerscript.stunned = false;
