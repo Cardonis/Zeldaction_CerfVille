@@ -67,7 +67,7 @@ public class AllTimelineController : MonoBehaviour
         }
     }
 
-    private void LaunchTimeline(Player_Main_Controller player)
+    public void LaunchTimeline(Player_Main_Controller player)
     {
         player.StartCoroutine(player.StunnedFor(playerCantMoveFor));
         StartCoroutine(WasPlayedAfter(cineTime));

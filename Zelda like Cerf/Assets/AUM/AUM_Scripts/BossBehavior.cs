@@ -54,11 +54,13 @@ public class BossBehavior : Ennemy_Controller
 
     [HideInInspector] public Animator animator;
 
-    [HideInInspector] public List<BossBehavior> bossesSpawned;
+    public BossBehavior bossBehavior;
 
     Vector2 lookDir;
 
     public BossSoundManager bossSoundManager;
+
+    public AllTimelineController shadowCloneCinematic;
 
 
     // Start is called before the first frame update
@@ -115,8 +117,7 @@ public class BossBehavior : Ennemy_Controller
                 if (phase != 5)
                 {
                     DestroyShadowClones();
-                    int[] shadowClonePhase = { };
-                    StartCoroutine(NextPhase(shadowClonePhase));
+                    StartCoroutine(NextPhase(0, false));
                 }
 
                 phase = 5;
@@ -125,8 +126,7 @@ public class BossBehavior : Ennemy_Controller
             {
                 if (phase != 4)
                 {
-                    int[] shadowClonePhase = { 6 };
-                    StartCoroutine(NextPhase(shadowClonePhase));
+                    StartCoroutine(NextPhase(6, false));
                 }
 
                 phase = 4;
@@ -135,9 +135,8 @@ public class BossBehavior : Ennemy_Controller
             {
                 if (phase != 3)
                 {
-                    CreateShadowClone();
-                    int[] shadowClonePhase = { 6 };
-                    StartCoroutine(NextPhase(shadowClonePhase));
+                    //CreateShadowClone();
+                    StartCoroutine(NextPhase(6, true));
                 }
 
                 phase = 3;
@@ -146,8 +145,7 @@ public class BossBehavior : Ennemy_Controller
             {
                 if (phase != 2)
                 {
-                    int[] shadowClonePhase = { };
-                    StartCoroutine(NextPhase(shadowClonePhase));
+                    StartCoroutine(NextPhase(0, false));
                 }
 
                 phase = 2;
@@ -414,29 +412,12 @@ public class BossBehavior : Ennemy_Controller
 
     }
 
-    void CreateShadowClone()
-    {
-        BossBehavior currentEnnemy = Instantiate(gameObject, parentEnnemies).GetComponent<BossBehavior>();
-        StartCoroutine(audiomanager.PlayOne("Invocation", gameObject));
-        player.confiner.activeRoom.objectsToDestroy.Add(currentEnnemy);
 
-        currentEnnemy.transform.position = (Vector2)centerTeleport.position + new Vector2(Random.Range(-0.5f, +0.5f), Random.Range(-0.5f, +0.5f));
-
-        currentEnnemy.playerDetected = true;
-
-        currentEnnemy.spawned = true;
-
-        bossesSpawned.Add(currentEnnemy);
-    }
 
     void DestroyShadowClones()
     {
-        for(int i = 0; i < bossesSpawned.Count; i++)
-        {
-            bossesSpawned[i].gameObject.SetActive(false);
-        }
-
-        bossesSpawned.Clear();
+        
+        bossBehavior.gameObject.SetActive(false);
     }
 
     IEnumerator ResetPattern()
@@ -994,7 +975,7 @@ public class BossBehavior : Ennemy_Controller
         yield break;
     }
 
-    IEnumerator NextPhase(int[] shadowClonePhase)
+    IEnumerator NextPhase(int shadowClonePhase, bool createShadowClone)
     {
         StartCoroutine(ResetPattern());
 
@@ -1004,10 +985,7 @@ public class BossBehavior : Ennemy_Controller
 
         telegraphAttack.StartCoroutine(telegraphAttack.FlashLight(50f));
 
-        for (int i = 0; i < bossesSpawned.Count; i++)
-        {
-            bossesSpawned[i].stuned = true;
-        }
+        bossBehavior.stuned = true;
 
         for (float x = 0.5f; x > 0; x -= Time.deltaTime)
         {
@@ -1053,13 +1031,25 @@ public class BossBehavior : Ennemy_Controller
             yield return null;
         }
 
-        for (int i = 0; i < bossesSpawned.Count; i++)
-        {
-            bossesSpawned[i].stuned = false;
-            bossesSpawned[i].phase = shadowClonePhase[i];
-        }
+        bossBehavior.stuned = false;
+        bossBehavior.phase = shadowClonePhase;
 
         stuned = false;
+
+        if(createShadowClone)
+        {
+            shadowCloneCinematic.gameObject.SetActive(true);
+            shadowCloneCinematic.alreadyPlayed = false;
+            shadowCloneCinematic.wasPlayed = false;
+
+            shadowCloneCinematic.LaunchTimeline(player);
+
+            StartCoroutine(StunedForSeconds(shadowCloneCinematic.cineTime));
+
+            StartCoroutine(player.StunnedFor(shadowCloneCinematic.cineTime));
+
+            bossBehavior.phase = shadowClonePhase;
+        }
     }
 
     public override IEnumerator Attack1()
