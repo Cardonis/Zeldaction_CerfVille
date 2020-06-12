@@ -1507,7 +1507,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Le Renvoie
+  m_Text: Le Renvoi
 --- !u!222 &111228448
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2688,9 +2688,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Si tu touche un ennemi avec la zone lumineuse du coup de vent pendant
-    que tu l'attires , tu peux le renvoyer d'o\xF9 il vient !\n\nPlus la liane spectrale
-    est charg\xE9e au d\xE9part, plus l'ennemi sera renvoyer fort !"
+  m_Text: "Si tu touches un ennemi avec la zone lumineuse du coup de vent pendant
+    que tu l'attires, tu peux le renvoyer d'o\xF9 il vient !\n\nPlus la liane spectrale
+    est charg\xE9e au d\xE9part, plus l'ennemi sera renvoy\xE9 fort !"
 --- !u!222 &171859057
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6715,11 +6715,23 @@ PrefabInstance:
       propertyPath: dialogueManager
       value: 
       objectReference: {fileID: 76606144}
+    - target: {fileID: 5331805046860248901, guid: 41d570af953ceeb4693ecd1752576443,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[5]
+      value: "N'oublie pas que si tu es perdu, tu peux consulter ta Carte ! Appuie
+        sur Y pour la consulter \xE0 tout moment."
+      objectReference: {fileID: 0}
     - target: {fileID: 5687291184589758990, guid: 41d570af953ceeb4693ecd1752576443,
         type: 3}
       propertyPath: dialogueManager
       value: 
       objectReference: {fileID: 76606144}
+    - target: {fileID: 5687291184589758990, guid: 41d570af953ceeb4693ecd1752576443,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[2]
+      value: "Et cette fois, c\u2019est \xE0 notre foyer que reviendra le bonheur
+        de s\u2019en occuper ! "
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41d570af953ceeb4693ecd1752576443, type: 3}
 --- !u!4 &408004633 stripped
@@ -10702,7 +10714,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Le YoYo
+  m_Text: Le Yoyo
 --- !u!222 &597289828
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22694,8 +22706,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Lorsque tu touche un ennemi avec la zone lumineuse du coup de vent, ce
-    dernier est marqu\xE9 par la liane spectrale qui viendra l'attrapper automatiquement."
+  m_Text: "Lorsque tu touches un ennemi avec la zone lumineuse du coup de vent, ce
+    dernier est marqu\xE9 par la liane spectrale qui viendra l'attraper automatiquement."
 --- !u!222 &1174616080
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32409,6 +32421,12 @@ PrefabInstance:
       propertyPath: outlineController
       value: 
       objectReference: {fileID: 1589443752}
+    - target: {fileID: 6278632171812672886, guid: 93ed2cc8b8936e6499494ca3428ac3e7,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: "\xC0 pr\xE9sent accompagn\xE9,\r\nAith couvrait les bois, le c\u0153ur
+        bien plus l\xE9ger.\r"
+      objectReference: {fileID: 0}
     - target: {fileID: 6767471088137066333, guid: 93ed2cc8b8936e6499494ca3428ac3e7,
         type: 3}
       propertyPath: m_Name
@@ -33954,6 +33972,11 @@ PrefabInstance:
       propertyPath: dialogueManager
       value: 
       objectReference: {fileID: 76606144}
+    - target: {fileID: 2327928660451994644, guid: 517d84c48c81686418772294db894060,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[0]
+      value: Les anciens habitants de ces halls semblaient bien fiers de leur fondateur...
+      objectReference: {fileID: 0}
     - target: {fileID: 2953000989046527440, guid: 517d84c48c81686418772294db894060,
         type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[0].Array.size
@@ -52963,6 +52986,12 @@ PrefabInstance:
       propertyPath: dialogueManager
       value: 
       objectReference: {fileID: 76606144}
+    - target: {fileID: 6813720289476371029, guid: 0a104f16cb347c6439dbb8341ec4ce96,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[2]
+      value: "On dit que la liane est si puissante que tout ce qu'elle atteint est
+        projet\xE9 \xE0 l'oppos\xE9 du lanceur."
+      objectReference: {fileID: 0}
     - target: {fileID: 6933932455395156820, guid: 0a104f16cb347c6439dbb8341ec4ce96,
         type: 3}
       propertyPath: m_Name
@@ -54820,9 +54849,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Tout de suite apr\xE8s avoir projetter ton ennemi inverse la position
-    du joystick droit et vise dans la direction de l'objet. \n\nLorsque tu rappuis
-    \xE0 nouveau sur RB la port\xE9 de la liane ainsi que sa puissance augmente."
+  m_Text: "Tout de suite apr\xE8s avoir projet\xE9 ton ennemi inverse la position
+    du joystick droit et vise dans la direction de l'objet. \n\nLorsque tu rappuies
+    \xE0 nouveau sur RB la port\xE9e de la liane ainsi que sa puissance augmente."
 --- !u!222 &1900523269
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -62163,6 +62192,19 @@ PrefabInstance:
       propertyPath: dialogueManager
       value: 
       objectReference: {fileID: 76606144}
+    - target: {fileID: 2263188886819937524, guid: 781ab4dc97d6b1d469713d95cb238d74,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: "Anathar voulait de ses enfants qu\u2019ils soient ses \xE9gaux\r,\nEt
+        dans un dernier sacrifice, brisa les derniers morceaux de sa couronne\r."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263188886819937524, guid: 781ab4dc97d6b1d469713d95cb238d74,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[3]
+      value: "D\xE9poss\xE9d\xE9 \xE0 jamais, il regarderait vivre ses h\xE9ritiers
+        dans un monde \xE9clair\xE9 par sa bienveillance et sa majest\xE9. \nCelles
+        d\u2019un roi muet, Prisonnier, et de son peuple passionn\xE9\r.\n\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 5866385742850572369, guid: 781ab4dc97d6b1d469713d95cb238d74,
         type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[1].Array.size
@@ -62348,6 +62390,13 @@ PrefabInstance:
       propertyPath: dialogueManager
       value: 
       objectReference: {fileID: 76606144}
+    - target: {fileID: 3567560991600210214, guid: 01761b7334890ca4a99866e9882b8da0,
+        type: 3}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: 'Il y eut Aith, le Gardien,
+
+        Qu''en ces bois l''on nomma Anathar.'
+      objectReference: {fileID: 0}
     - target: {fileID: 8518137413405595220, guid: 01761b7334890ca4a99866e9882b8da0,
         type: 3}
       propertyPath: m_LocalPosition.x
