@@ -383,12 +383,11 @@ public class
         }
 
         canMove = false;
+        rb.velocity = Vector2.zero;
 
         //StartCoroutine(CollisionIgnoreWithElement(1.5f));
 
-
         Physics2D.IgnoreCollision(player.physicCollider, col, true);
-
 
         Vector2 directionAttack = (player.transform.position - transform.position).normalized;
 
@@ -408,6 +407,8 @@ public class
 
                 yield break;
             }
+
+            rb.velocity = Vector2.zero;
 
             player.transform.position = (Vector2)transform.position + directionAttack.normalized * x;
             yield return null;
@@ -470,6 +471,7 @@ public class
         }
 
         canMove = false;
+        rb.velocity = Vector2.zero;
 
         attacking = true;
 
@@ -494,6 +496,8 @@ public class
                 StopCoroutine(lastAttack);
                 yield break;
             }
+
+            rb.velocity = Vector2.zero;
 
             currentPierre.transform.position = (Vector2)transform.position + (Vector2)(player.transform.position - transform.position).normalized * i;
             yield return null;

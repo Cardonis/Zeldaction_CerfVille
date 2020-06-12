@@ -660,7 +660,7 @@ public class BossBehavior : Ennemy_Controller
                 Physics2D.IgnoreCollision(currentElement.collider2Ds[x], col, true);
             }
 
-            for (float x = 0.5f; x > 0; x -= Time.deltaTime * 1f)
+            for (float x = 0.25f; x > 0; x -= Time.deltaTime * 1f)
             {
                 if (currentElement == null)
                 {

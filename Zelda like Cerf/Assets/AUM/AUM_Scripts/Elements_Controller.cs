@@ -26,7 +26,7 @@ public class Elements_Controller : MonoBehaviour
 
     [HideInInspector] public Vector2 initialPosition;
 
-    [HideInInspector] public bool spawned = false;
+    public bool spawned = false;
 
     [HideInInspector] public AudioManager audiomanager;
 
