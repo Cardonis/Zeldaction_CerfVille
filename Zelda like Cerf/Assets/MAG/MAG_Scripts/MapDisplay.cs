@@ -8,10 +8,13 @@ public class MapDisplay : MonoBehaviour
     public Vector2 roomsize;
     public Vector2 firstRoom;
     public Transform player;
-    
+    public GameObject playerFace;
+    private RectTransform playerFaceTransform;
+    private Vector2 initialFacePos;
     void Start()
     {
-        
+        playerFaceTransform = playerFace.GetComponent<RectTransform>();
+        initialFacePos = playerFaceTransform.anchoredPosition;
     }
 
     // Update is called once per frame
@@ -44,7 +47,8 @@ public class MapDisplay : MonoBehaviour
         {
             fullClouds[playerRoomPosition.x].cloudCollumn[playerRoomPosition.y].SetActive(false);
         }
-        
+        //playerFaceTransform.anchoredPosition = fullClouds[playerRoomPosition.x].cloudCollumn[playerRoomPosition.y].GetComponent<RectTransform>().anchoredPosition;
+        playerFaceTransform.anchoredPosition = new Vector2(initialFacePos.x + 68 * playerRoomPosition.x, initialFacePos.y + 46f * playerRoomPosition.y);
     }
 
     [System.Serializable]
