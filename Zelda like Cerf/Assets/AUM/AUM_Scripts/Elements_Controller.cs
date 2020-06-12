@@ -113,6 +113,8 @@ public class Elements_Controller : MonoBehaviour
         rb.velocity = direction.normalized * (forceValue * Mathf.Sqrt(levelProjected) / 2);
         yield return null;
 
+        Vector2 oldPlayerPos = player.transform.position;
+
         while (direction.magnitude > 1.5f)
         {
             direction = (player.transform.position - transform.position );
@@ -129,7 +131,7 @@ public class Elements_Controller : MonoBehaviour
 
         rb.velocity = new Vector2(0, 0);
 
-        rb.AddForce((arrowDirection.normalized + (direction.normalized * 1.25f)) * forceValue * levelProjected * 0.75f, ForceMode2D.Impulse);
+        rb.AddForce((arrowDirection.normalized + (direction.normalized * (Vector2.Distance(oldPlayerPos, player.transform.position) * 6f))).normalized * forceValue * levelProjected, ForceMode2D.Impulse);
 
         player.timerCooldownVersatilAttack = 0;
         player.lastAttackVersatilTimer = 0;

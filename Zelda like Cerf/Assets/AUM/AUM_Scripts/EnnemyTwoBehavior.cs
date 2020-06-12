@@ -134,6 +134,11 @@ public class
                 {
                     directionForAttack = transform.position - player.transform.position;
 
+                    if (attackCooldownTimer < attackCooldown)
+                    {
+                        attackCooldownTimer += Time.deltaTime;
+                    }
+
                     for (int i = 0; i < outlineController.outLinesAnimator.Count; i++)
                     {
                         outlineController.outLinesAnimator[i].SetBool("IsFallingBack", true);
