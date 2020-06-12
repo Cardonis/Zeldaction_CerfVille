@@ -38,7 +38,6 @@ Transform:
   - {fileID: 7534199019700178186}
   - {fileID: 6040543483642875038}
   - {fileID: 7515841749005384249}
-  - {fileID: 5769658613336194990}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -177,122 +176,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   animator: {fileID: 0}
-  bossesSpawned: []
+  bossBehavior: {fileID: 0}
   bossSoundManager: {fileID: 0}
---- !u!1 &1918860823410432777
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5769658613336194990}
-  - component: {fileID: 6877191564972993571}
-  m_Layer: 0
-  m_Name: BossSoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5769658613336194990
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918860823410432777}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 5165400056458651357}
-  - {fileID: 251258184667615970}
-  m_Father: {fileID: 9028832115754721408}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6877191564972993571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918860823410432777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ca8b313ca27c6c4083e08896f55ad1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds: []
-  Musics:
-  - name: Boss_Intro
-    Clip: {fileID: 8300000, guid: e1b92dd7a6fcbf844b6f35ecd29447d3, type: 3}
-    volume: 0.3
-    loop: 1
-    IsPlaying: 0
-    source: {fileID: 0}
-  - name: Boss_Part1
-    Clip: {fileID: 8300000, guid: 81f6b1576bb7a8f478dbf0701a9d6458, type: 3}
-    volume: 0.3
-    loop: 1
-    IsPlaying: 0
-    source: {fileID: 0}
-  - name: Boss_Part2
-    Clip: {fileID: 8300000, guid: 939db2e69cfe61b44aeab5fdf1d01f86, type: 3}
-    volume: 0.3
-    loop: 1
-    IsPlaying: 0
-    source: {fileID: 0}
-  - name: Boss_Fin
-    Clip: {fileID: 8300000, guid: c075d5c03c49d6c4d9b659ac134ec20d, type: 3}
-    volume: 0.3
-    loop: 0
-    IsPlaying: 0
-    source: {fileID: 0}
-  bossBehavior: {fileID: 4667683906378034122}
-  CurrentMusic:
-    name: 
-    Clip: {fileID: 0}
-    volume: 0
-    loop: 0
-    IsPlaying: 0
-    source: {fileID: 0}
-  phaseBoss: 0
-  IsInBattle: 0
-  IsEnd: 0
-  InBattle: {fileID: 2241345281995152523}
-  End: {fileID: 7666220250879458814}
---- !u!1 &2241345281995152523
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5165400056458651357}
-  m_Layer: 0
-  m_Name: InBattle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5165400056458651357
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2241345281995152523}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5769658613336194990}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  shadowCloneCinematic: {fileID: 0}
 --- !u!1 &3307275897465516016
 GameObject:
   m_ObjectHideFlags: 0
@@ -5499,36 +5385,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &7666220250879458814
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 251258184667615970}
-  m_Layer: 0
-  m_Name: End
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &251258184667615970
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7666220250879458814}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5769658613336194990}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2080664115893201341
 PrefabInstance:
   m_ObjectHideFlags: 0
