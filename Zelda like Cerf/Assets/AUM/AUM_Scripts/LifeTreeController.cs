@@ -14,13 +14,17 @@ public class LifeTreeController : MonoBehaviour
 
     public ParticleSystem healthParticleSystem;
 
+    private AudioManager audiomanager;
+
     private void Start()
     {
         playerIsNear = false;
 
         GameObject[] rs = GameObject.FindGameObjectsWithTag("Room");
 
-        foreach(GameObject r in rs)
+        audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
+        foreach (GameObject r in rs)
         {
             rooms.Add(r.GetComponent<RoomController>());
         }
@@ -53,8 +57,8 @@ public class LifeTreeController : MonoBehaviour
         if (Input.GetButtonDown("X") && playerIsNear == true)
         {
 
-            CurrentSoundEffectVolume = AudioManager.SoundEffectsVolume;
-            AudioManager.SoundEffectsVolume = 0;
+            audiomanager.Play("UI_Save");
+            
 
             player.pressX.SetActive(false);
             outlineController.outLining = false;
@@ -69,7 +73,7 @@ public class LifeTreeController : MonoBehaviour
             }
 
             player.SavePlayer();
-            AudioManager.SoundEffectsVolume = CurrentSoundEffectVolume;
+            
         }
     }
 }
