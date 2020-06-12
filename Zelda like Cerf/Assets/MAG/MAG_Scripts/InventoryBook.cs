@@ -64,8 +64,8 @@ public class InventoryBook : MonoBehaviour
             }
             if (Input.GetButtonDown("Y"))
             {
-                playerAndTipsUi.SetActive(true);
-                OpenPlayerAndTipsMenu();
+                mapUi.SetActive(true);
+                OpenMapMenu();
             }
         }
     }
