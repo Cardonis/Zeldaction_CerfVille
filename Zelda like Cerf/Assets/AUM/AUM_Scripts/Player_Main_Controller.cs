@@ -274,6 +274,12 @@ public class Player_Main_Controller : MonoBehaviour
             if (currentPierre.projected == true || projected == true || stunned == true)
             {
                 Physics2D.IgnoreCollision(physicCollider, currentPierre.collider2Ds[0], false);
+
+                if(currentPierre.playerProjected == true)
+                {
+                    currentPierre.StartCoroutine(currentPierre.DontCollideWithPlayerFor(1f));
+                }
+
                 currentPierre = null;
             }
         }
