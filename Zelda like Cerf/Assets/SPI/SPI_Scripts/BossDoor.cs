@@ -9,19 +9,39 @@ public class BossDoor : MonoBehaviour
     bool isOpen;
     public Door theDoor;
     public bool isInTheRoom;
+    public float timerClose;
+    public bool hasExitRoom;
 
     void Start()
     {
         isOpen = true;
         animator.SetBool("isOpen", isOpen);
         isInTheRoom = false;
+        hasExitRoom = false;
+        timerClose = 0f;
     }
 
+    private void Update()
+    {
+        if (hasExitRoom)
+        {
+            timerClose += Time.deltaTime;
+            if (timerClose > 3f)
+            {
+                isOpen = true;
+                col.enabled = false;
+                animator.SetBool("isOpen", isOpen);
+                isInTheRoom = false;
+            }
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Player_Main_Controller player = collision.transform.parent.parent.GetComponent<Player_Main_Controller>();
         if (player != null && isInTheRoom == false)
         {
+            timerClose = 0f;
+            hasExitRoom = false;
             StartCoroutine(DoorClose());
         }
     }
@@ -30,10 +50,7 @@ public class BossDoor : MonoBehaviour
         Player_Main_Controller player = collision.transform.parent.parent.GetComponent<Player_Main_Controller>();
         if (player != null && isInTheRoom)
         {
-            isOpen = true;
-            col.enabled = false;
-            animator.SetBool("isOpen", isOpen);
-            isInTheRoom = false;
+            hasExitRoom = true;
         }
     }
 

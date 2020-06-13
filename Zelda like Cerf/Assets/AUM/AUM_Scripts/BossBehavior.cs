@@ -977,6 +977,10 @@ public class BossBehavior : Ennemy_Controller
 
     IEnumerator NextPhase(int shadowClonePhase, bool createShadowClone)
     {
+        for (int z = 0; z < outlineController.outLinesAnimator.Count; z++)
+        {
+            outlineController.outLinesAnimator[z].SetTrigger("Transitionne");
+        }
         StartCoroutine(ResetPattern());
 
         stuned = true;
