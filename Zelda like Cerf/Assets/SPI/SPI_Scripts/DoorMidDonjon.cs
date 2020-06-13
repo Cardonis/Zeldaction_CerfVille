@@ -18,13 +18,13 @@ public class DoorMidDonjon : MonoBehaviour
     }
     private void Update()
     {
-        if(cineEntreBoss.alreadyPlayed == true && toClose == false)
+        if(cineEntreBoss.wasPlayed == true && toClose == false)
         {
             isOpen = true;
             col.enabled = false;
             animator.SetBool("isOpen", isOpen);
         }
-        if (cineEntreBoss.alreadyPlayed == true && toClose== true)
+        if (cineEntreBoss.wasPlayed == true && toClose== true)
         {
             theDoor.enabled = false;
             isOpen = false;
