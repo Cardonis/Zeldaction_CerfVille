@@ -36,8 +36,10 @@ public class TelegraphAttack : MonoBehaviour
         lightt.intensity = 0;
     }
 
-    public IEnumerator LitLight(float speed, float intensityToGo)
+    public IEnumerator LitLight(float speed, float intensityFrom, float intensityToGo)
     {
+        lightt.intensity = intensityFrom;
+
         while (lightt.intensity <= intensityToGo)
         {
             lightt.intensity = lightt.intensity + speed * Time.deltaTime;

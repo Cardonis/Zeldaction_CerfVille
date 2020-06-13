@@ -842,6 +842,10 @@ public class BossBehavior : Ennemy_Controller
 
         //StartCoroutine(DontCollideWithPlayerFor(1f));
 
+        direction = (transform.position - player.transform.position);
+        player.rb.velocity = direction.normalized * forceSpectralLiane * Time.fixedDeltaTime;
+        yield return null;
+
         while (direction.magnitude > 1.5f)
         {
             direction = (transform.position - player.transform.position);
@@ -875,6 +879,10 @@ public class BossBehavior : Ennemy_Controller
         {
             elementsController.collider2Ds[i].gameObject.layer = 15;
         }
+
+        direction = (transform.position - elementsController.transform.position);
+        elementsController.rb.velocity = direction.normalized * forceSpectralLiane * Time.fixedDeltaTime;
+        yield return null;
 
         while (direction.magnitude > 1.5f)
         {
