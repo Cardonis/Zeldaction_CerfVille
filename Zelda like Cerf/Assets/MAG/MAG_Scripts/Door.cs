@@ -27,6 +27,7 @@ public class Door : MonoBehaviour
         audiomanager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         animator = GetComponentInChildren<Animator>();
         isPlaying = false;
+        StartCoroutine(PlayOneOne());
     }
 
     void Update()
