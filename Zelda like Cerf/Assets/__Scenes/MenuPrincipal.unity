@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3840,7 +3840,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
           m_FloatArgument: 0
-          m_StringArgument: dungeon2
+          m_StringArgument: boss
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 2119195793}
@@ -6086,8 +6086,6 @@ MonoBehaviour:
     loop: 1
     IsPlaying: 0
     source: {fileID: 0}
-  volumeM: 0
-  volumeS: 0
   CurrentMusic:
     name: 
     Clip: {fileID: 0}
