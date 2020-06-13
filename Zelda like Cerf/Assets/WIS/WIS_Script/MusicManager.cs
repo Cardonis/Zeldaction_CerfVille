@@ -54,29 +54,34 @@ public class MusicManager : MonoBehaviour
         if (instance == null) instance = this;
         else { Destroy(gameObject); return; }
 
-        foreach (Music s in Musics)
+        if (Musics.Length > 0)
         {
+
+            foreach (Music s in Musics)
+            {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.Clip;
 
             s.source.volume = s.volume * MusicVolume;
 
             s.source.loop = s.loop;
-        }
+            }
 
-        foreach (Music s in Ambiances)
-        {
+            foreach (Music s in Ambiances)
+            {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.Clip;
 
             s.source.volume = s.volume * MusicVolume;
 
             s.source.loop = s.loop;
-        }
+            }
 
-        VolumeChange = 0;
+            VolumeChange = 0;
 
-        PlayerCurrentPos = DefaultPosition;
+            PlayerCurrentPos = DefaultPosition;
+
+
 
             switch (DefaultPosition)
             {
@@ -108,6 +113,7 @@ public class MusicManager : MonoBehaviour
                     break;
             }
 
+        }
         IsChangingMusic = false;
         MusicPause = false;
     }
@@ -116,75 +122,78 @@ public class MusicManager : MonoBehaviour
     void Update()
     {
         //CinematicVolume();
-
-        InBattleP = InBattle;
-        EnemyInBattleP = EnemyInBattle;
-
-        playerCurrentPosP = PlayerCurrentPos;
-
-        if (MusicVolume != VolumeChange)
+        if (Musics.Length > 0)
         {
-            foreach (Music s in Musics)
+
+
+            InBattleP = InBattle;
+            EnemyInBattleP = EnemyInBattle;
+
+            playerCurrentPosP = PlayerCurrentPos;
+
+            if (MusicVolume != VolumeChange)
             {
-                s.source.volume = s.volume * MusicVolume;
+                foreach (Music s in Musics)
+                {
+                    s.source.volume = s.volume * MusicVolume;
+                }
+
+
+                VolumeChange = MusicVolume;
+
+            }
+            if (IsChangingMusic == false)
+            {
+
+                if (!InBattle && EnemyInBattle <= 0)
+                {
+                    PlayMusic();
+                }
+                else if (InBattle && EnemyInBattle > 0)
+                {
+                    PlayBattleMusic();
+                }
+
+                if (MusicManager.EnemyInBattle <= 0)
+                {
+                    MusicManager.EnemyInBattle = 0;
+                    MusicManager.InBattle = false;
+                }
+
             }
 
-
-            VolumeChange = MusicVolume;
-
-        }
-        if (IsChangingMusic == false)
-        {
-
-            if (!InBattle && EnemyInBattle <= 0)
+            if (PlayingMusic.activeSelf == false && MusicPause == false && IsChangingMusic == false)
             {
+                StartCoroutine(PausePlayingMusic());
+
+                MusicPause = true;
+            }
+
+            if (EncounterMusic.activeSelf == false && MusicPause == false && IsChangingMusic == false)
+            {
+
+                PlayerCurrentPos = PlayerPos.Encounter;
+                Encounter = true;
+
+            }
+
+            if (PlayForest02.activeSelf == false && MusicPause == false && IsChangingMusic == false)
+            {
+
+                PlayerCurrentPos = PlayerPos.Forest02;
+                Encounter = false;
+
+            }
+
+            if (!InBattle && EnemyInBattle <= 0 && IsChangingMusic == false && CurrentMusic.name != "Battle01" && CurrentMusic.name != "Battle02")
+            {
+
                 PlayMusic();
-            }
-            else if (InBattle && EnemyInBattle > 0)
-            {
-                PlayBattleMusic();
-            }
 
-            if (MusicManager.EnemyInBattle <= 0)
-            {
-                MusicManager.EnemyInBattle = 0;
-                MusicManager.InBattle = false;
+
             }
 
         }
-
-        if (PlayingMusic.activeSelf == false && MusicPause == false && IsChangingMusic == false)
-        {
-            StartCoroutine(PausePlayingMusic());
-
-            MusicPause = true;
-        }
-
-        if (EncounterMusic.activeSelf == false && MusicPause == false && IsChangingMusic == false)
-        {
-
-            PlayerCurrentPos = PlayerPos.Encounter;
-            Encounter = true;
-
-        }
-
-        if (PlayForest02.activeSelf == false && MusicPause == false && IsChangingMusic == false)
-        {
-
-            PlayerCurrentPos = PlayerPos.Forest02;
-            Encounter = false;
-
-        }
-
-        if (!InBattle && EnemyInBattle <= 0 && IsChangingMusic == false && CurrentMusic.name != "Battle01" && CurrentMusic.name != "Battle02")
-        {
-
-            PlayMusic();
-
-
-        }
-
-
     }
 
     public IEnumerator FadeOut (AudioSource audioSource, float FadeTime)
