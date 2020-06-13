@@ -106,6 +106,13 @@ public class BulletAttack1 : MonoBehaviour
                 {
                     if (enC.attacking == true)
                     {
+                        if(enC.GetComponent<BossBehavior>() != null)
+                        {
+                            ennemyController.GetComponent<Ennemy_Controller>().stuned = false;
+                            Destroy(gameObject);
+                            return;
+                        }
+
                         enC.StopCoroutine(enC.lastAttack);
                         enC.attacking = false;
 

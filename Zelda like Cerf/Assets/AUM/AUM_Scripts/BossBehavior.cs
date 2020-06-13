@@ -1042,7 +1042,7 @@ public class BossBehavior : Ennemy_Controller
 
         if(createShadowClone)
         {
-            shadowCloneCinematic.gameObject.SetActive(true);
+            shadowCloneCinematic.gameObject.transform.parent.gameObject.SetActive(true);
             shadowCloneCinematic.alreadyPlayed = false;
             shadowCloneCinematic.wasPlayed = false;
 

@@ -2899,6 +2899,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: b1763b4eb11702d4f84e5d79206a2a5e,
         type: 3}
+    - target: {fileID: 684009590, guid: 1f98dbb70227afc4988ec0cb6ade2816, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1353325398, guid: 1f98dbb70227afc4988ec0cb6ade2816, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2933,7 +2937,7 @@ PrefabInstance:
       objectReference: {fileID: 289095213}
     - target: {fileID: 1451022857, guid: 1f98dbb70227afc4988ec0cb6ade2816, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1687694131, guid: 1f98dbb70227afc4988ec0cb6ade2816, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].value
@@ -3011,6 +3015,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 3163732615733075245, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6067750802295958434, guid: 1f98dbb70227afc4988ec0cb6ade2816,
         type: 3}
       propertyPath: mainPlayer
@@ -3046,6 +3055,51 @@ PrefabInstance:
       propertyPath: phasesGlobalLightChangers.Array.data[4]
       value: 
       objectReference: {fileID: 465297413}
+    - target: {fileID: 9016782177277734800, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+        type: 3}
+      propertyPath: spawned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016782177277734800, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+        type: 3}
+      propertyPath: physicCollider
+      value: 
+      objectReference: {fileID: 1985027307}
+    - target: {fileID: 9016782177277734800, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+        type: 3}
+      propertyPath: dashAttackCollider
+      value: 
+      objectReference: {fileID: 944856153}
+    - target: {fileID: 9016782177277734800, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+        type: 3}
+      propertyPath: col
+      value: 
+      objectReference: {fileID: 1985027307}
+    - target: {fileID: 9016782177277734800, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+        type: 3}
+      propertyPath: collider2Ds.Array.data[0]
+      value: 
+      objectReference: {fileID: 1985027307}
+    - target: {fileID: 9016782177277734800, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+        type: 3}
+      propertyPath: collider2Ds.Array.data[1]
+      value: 
+      objectReference: {fileID: 944856153}
+    - target: {fileID: 9016782177277734800, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+        type: 3}
+      propertyPath: outlineController
+      value: 
+      objectReference: {fileID: 1644546166}
+    - target: {fileID: 9016782177277734800, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+        type: 3}
+      propertyPath: damageParticleSystem
+      value: 
+      objectReference: {fileID: 1910569758}
+    - target: {fileID: 9016782177277734800, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+        type: 3}
+      propertyPath: trailParticleSystem
+      value: 
+      objectReference: {fileID: 333768646}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f98dbb70227afc4988ec0cb6ade2816, type: 3}
 --- !u!1001 &226001353
@@ -5327,6 +5381,12 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 3
   m_ColliderType: 1
+--- !u!198 &333768646 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6154767305954642259, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+    type: 3}
+  m_PrefabInstance: {fileID: 205630743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!213 &333831570
 Sprite:
   m_ObjectHideFlags: 0
@@ -16531,6 +16591,12 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 3
   m_ColliderType: 1
+--- !u!58 &944856153 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7919403024372665476, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+    type: 3}
+  m_PrefabInstance: {fileID: 205630743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!213 &950275182
 Sprite:
   m_ObjectHideFlags: 0
@@ -22714,7 +22780,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Lorsque tu touche un ennemi avec la zone lumineuse du coup de vent, ce
+  m_Text: "Lorsque tu touches un ennemi avec la zone lumineuse du coup de vent, ce
     dernier est marqu\xE9 par la liane spectrale. \n\nTu peux appuyer sur X pour
     charger la liane Spectrale qui viendra attraper l'objet marqu\xE9 automatiquement."
 --- !u!222 &1174616080
@@ -49947,6 +50013,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1639626373}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1644546166 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 374771283729183752, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+    type: 3}
+  m_PrefabInstance: {fileID: 205630743}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f1bd75c51ea454c847c9a20896babf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1645403401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55097,6 +55175,12 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 3
   m_ColliderType: 1
+--- !u!198 &1910569758 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1020436833504956799, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+    type: 3}
+  m_PrefabInstance: {fileID: 205630743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1911607119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56306,6 +56390,12 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 3
   m_ColliderType: 1
+--- !u!61 &1985027307 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1042184600060454402, guid: 1f98dbb70227afc4988ec0cb6ade2816,
+    type: 3}
+  m_PrefabInstance: {fileID: 205630743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1994092629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62796,12 +62886,12 @@ PrefabInstance:
     - target: {fileID: 9088433855240632498, guid: 4272ce514120c5c4ab01f579b346d45a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.5000076
       objectReference: {fileID: 0}
     - target: {fileID: 9088433855240632498, guid: 4272ce514120c5c4ab01f579b346d45a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6666718
+      value: 1.6666718
       objectReference: {fileID: 0}
     - target: {fileID: 9088433855240632499, guid: 4272ce514120c5c4ab01f579b346d45a,
         type: 3}

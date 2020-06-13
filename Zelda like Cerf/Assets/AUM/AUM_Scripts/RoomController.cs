@@ -289,6 +289,14 @@ public class RoomController : MonoBehaviour
                     eob.hasAttacked = false;
                 }
 
+                BossBehavior bb = ennemies[i].GetComponent<BossBehavior>();
+
+                if(bb != null)
+                {
+                    bb.bossBehavior.transform.position = bb.teleportPoints[3].position;
+                    bb.bossBehavior.gameObject.SetActive(false);
+                }
+
                 ennemies[i].pv = ennemies[i].initialLife;
                 ennemies[i].transform.position = ennemies[i].initialPosition;
                 ennemies[i].rb.velocity = Vector2.zero;

@@ -117,6 +117,11 @@ public class Elements_Controller : MonoBehaviour
 
         while (direction.magnitude > 1.5f)
         {
+            if (gameObject.activeInHierarchy == false)
+            {
+                StopTakeForce();
+            }
+
             direction = (player.transform.position - transform.position );
             rb.velocity = direction.normalized * (forceValue * Mathf.Sqrt(levelProjected) / 2);
             yield return null;
