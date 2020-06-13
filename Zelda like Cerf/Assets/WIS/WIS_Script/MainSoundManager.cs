@@ -13,8 +13,12 @@ public class MainSoundManager : MonoBehaviour
     public static MainSoundManager instance;
     private AudioSource[] Audiosources;
 
+    private float VolumeChange;
 
     public Music CurrentMusic;
+
+    //public static float MusicVolume;
+    //public static float SoundEffectsVolume;
 
     void Awake()
     {
@@ -44,6 +48,9 @@ public class MainSoundManager : MonoBehaviour
             s.source.loop = s.loop;
         }
 
+        VolumeChange = 0;
+
+
 
     }
 
@@ -52,6 +59,27 @@ public class MainSoundManager : MonoBehaviour
     void Start()
     {
         PlayMusic();
+
+
+
+
+    }
+
+    private void Update()
+    {
+        if (MusicManager.MusicVolume != VolumeChange)
+        {
+            foreach (Music s in Musics)
+            {
+                s.source.volume = s.volume * MusicManager.MusicVolume;
+            }
+
+
+            VolumeChange = MusicManager.MusicVolume;
+
+        }
+
+
     }
 
 
@@ -119,4 +147,6 @@ public class MainSoundManager : MonoBehaviour
         }
 
     }
+
+
 }
