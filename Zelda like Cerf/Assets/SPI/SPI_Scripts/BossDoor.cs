@@ -8,58 +8,61 @@ public class BossDoor : MonoBehaviour
     public Collider2D col;
     bool isOpen;
     public Door theDoor;
-    public bool isInTheRoom;
-    public float timerClose;
-    public bool hasExitRoom;
+    public Collider2D detectInRoom;
+    public Collider2D detectOut;
+    public bool inBossRoom;
 
     void Start()
     {
         isOpen = true;
         animator.SetBool("isOpen", isOpen);
-        isInTheRoom = false;
-        hasExitRoom = false;
-        timerClose = 0f;
+        inBossRoom = false;
     }
 
     private void Update()
     {
-        if (hasExitRoom)
+        if (inBossRoom == true)
         {
-            timerClose += Time.deltaTime;
-            if (timerClose > 3f)
-            {
-                isOpen = true;
-                col.enabled = false;
-                animator.SetBool("isOpen", isOpen);
-                isInTheRoom = false;
-            }
+            detectOut.enabled = true;
+            detectInRoom.enabled = false;
         }
+
+        if (inBossRoom == false)
+        {
+            detectOut.enabled = false;
+            detectInRoom.enabled = true;
+        }
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Player_Main_Controller player = collision.transform.parent.parent.GetComponent<Player_Main_Controller>();
-        if (player != null && isInTheRoom == false)
+        
+        if (player != null && inBossRoom == false)
         {
-            timerClose = 0f;
-            hasExitRoom = false;
             StartCoroutine(DoorClose());
         }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Player_Main_Controller player = collision.transform.parent.parent.GetComponent<Player_Main_Controller>();
-        if (player != null && isInTheRoom)
+        if (player != null && inBossRoom == true)
         {
-            hasExitRoom = true;
+            StartCoroutine(DoorOpen());
         }
+
     }
 
     IEnumerator DoorClose()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         isOpen = false;
         col.enabled = true;
         animator.SetBool("isOpen", isOpen);
-        isInTheRoom = true;
+        inBossRoom = true;
+    }
+    IEnumerator DoorOpen()
+    {
+        yield return null;
+        isOpen = true;
+        col.enabled = false;
+        animator.SetBool("isOpen", isOpen);
+        inBossRoom = false;
     }
 }
