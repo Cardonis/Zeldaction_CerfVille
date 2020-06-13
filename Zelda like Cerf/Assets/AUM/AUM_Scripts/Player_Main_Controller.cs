@@ -293,6 +293,7 @@ public class Player_Main_Controller : MonoBehaviour
             Physics2D.IgnoreCollision(physicCollider, currentPierre.collider2Ds[0], true);
         }
 
+        if((!projected && !stunned))
         if (timerCooldownBaseAttack < 0)
         {
             if ( Input.GetButton("LB") && ((!projected && !stunned) || canSpringAttack) )
@@ -662,7 +663,7 @@ public class Player_Main_Controller : MonoBehaviour
         animator.SetFloat("HorizontalAim", directionAim.x);
         animator.SetFloat("VerticalAim", directionAim.y);
 
-        AnimatorAttaqueB();
+        //AnimatorAttaqueB();
 
 
         #endregion Animator
@@ -689,11 +690,14 @@ public class Player_Main_Controller : MonoBehaviour
     IEnumerator BaseAttack()
     {
         baseAttacking = true;
-        
+
+        animator.SetTrigger("IsBaseAttacking");
+
+        Debug.Log("Oui");
 
         if (lastStunnedFor != null)
             StopCoroutine(lastStunnedFor);
-        lastStunnedFor = StartCoroutine(StunnedFor(durationBaseAttack + 0.05f));
+        lastStunnedFor = StartCoroutine(StunnedFor(durationBaseAttack + 0.1f));
 
         baseAttackCollidersParent.rotation = Quaternion.Euler(0, 0, directionAimAngle);
 
