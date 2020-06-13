@@ -693,8 +693,6 @@ public class Player_Main_Controller : MonoBehaviour
 
         animator.SetTrigger("IsBaseAttacking");
 
-        Debug.Log("Oui");
-
         if (lastStunnedFor != null)
             StopCoroutine(lastStunnedFor);
         lastStunnedFor = StartCoroutine(StunnedFor(durationBaseAttack + 0.1f));

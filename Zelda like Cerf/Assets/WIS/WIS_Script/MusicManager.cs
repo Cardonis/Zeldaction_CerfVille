@@ -78,35 +78,35 @@ public class MusicManager : MonoBehaviour
 
         PlayerCurrentPos = DefaultPosition;
 
-        switch (DefaultPosition)
-        {
-            case PlayerPos.Village:
-                CurrentMusic = Array.Find(Musics, s => s.name == "Village");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
-                break;
-            case PlayerPos.Graveyard:
-                CurrentMusic = Array.Find(Musics, s => s.name == "Graveyard");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
-                break;
-            case PlayerPos.Donjon01:
-                CurrentMusic = Array.Find(Musics, s => s.name == "Donjon01");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
-                break;
-            case PlayerPos.Forest01:
-                CurrentMusic = Array.Find(Musics, s => s.name == "Forest01");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
-                break;
-            case PlayerPos.Forest02:
-                CurrentMusic = Array.Find(Musics, s => s.name == "Forest02");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
-                break;
-            case PlayerPos.Boss:
-                CurrentMusic = Array.Find(Musics, s => s.name == "Boss");
-                StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
-                break;
-            default:
-                break;
-        }
+            switch (DefaultPosition)
+            {
+                case PlayerPos.Village:
+                    CurrentMusic = Array.Find(Musics, s => s.name == "Village");
+                    StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
+                    break;
+                case PlayerPos.Graveyard:
+                    CurrentMusic = Array.Find(Musics, s => s.name == "Graveyard");
+                    StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
+                    break;
+                case PlayerPos.Donjon01:
+                    CurrentMusic = Array.Find(Musics, s => s.name == "Donjon01");
+                    StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
+                    break;
+                case PlayerPos.Forest01:
+                    CurrentMusic = Array.Find(Musics, s => s.name == "Forest01");
+                    StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
+                    break;
+                case PlayerPos.Forest02:
+                    CurrentMusic = Array.Find(Musics, s => s.name == "Forest02");
+                    StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
+                    break;
+                case PlayerPos.Boss:
+                    CurrentMusic = Array.Find(Musics, s => s.name == "Boss");
+                    StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
+                    break;
+                default:
+                    break;
+            }
 
         IsChangingMusic = false;
         MusicPause = false;
