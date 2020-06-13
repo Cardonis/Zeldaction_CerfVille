@@ -388,14 +388,14 @@ public class Player_Main_Controller : MonoBehaviour
                         if (chargeTimer >= chargeTime)
                         {
                             if (telegraphedLevel == 2)
-                                telegraphAttack.lastLight = StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity * 2f));
+                                telegraphAttack.lastLight = StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity / 10f, telegraphAttack.baseIntensity * 2f));
 
                             telegraphedLevel = 3;
                         }
                         else if (chargeTimer >= (chargeTime * (1f / 3f)))
                         {
                             if (telegraphedLevel == 1)
-                                telegraphAttack.lastLight = StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity / 10f));
+                                telegraphAttack.lastLight = StartCoroutine(telegraphAttack.LitLight(50f, 0f,telegraphAttack.baseIntensity / 10f));
 
                             telegraphedLevel = 2;
                         }
@@ -405,7 +405,7 @@ public class Player_Main_Controller : MonoBehaviour
                         if (chargeTimer >= chargeTime)
                         {
                             if (telegraphedLevel == 1)
-                                telegraphAttack.lastLight = StartCoroutine(telegraphAttack.LitLight(50f, telegraphAttack.baseIntensity));
+                                telegraphAttack.lastLight = StartCoroutine(telegraphAttack.LitLight(50f, 0f,telegraphAttack.baseIntensity));
 
                             telegraphedLevel = 2;
                         }

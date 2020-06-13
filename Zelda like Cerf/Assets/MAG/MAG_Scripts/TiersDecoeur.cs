@@ -88,6 +88,7 @@ public class TiersDecoeur : MonoBehaviour
 
             healthParticleSystem.Play();
 
+            audioManager.Play("Item_Coeur");
             //StartCoroutine(DesactivationAfter(2f));
 
             pressX.SetActive(false);

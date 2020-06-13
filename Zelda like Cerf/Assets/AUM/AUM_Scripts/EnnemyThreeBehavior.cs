@@ -194,13 +194,28 @@ public class EnnemyThreeBehavior : Ennemy_Controller
 
         //StartCoroutine(DontCollideWithPlayerFor(1f));
 
-        while (direction.magnitude > 0.7f)
+        direction = (transform.position - player.transform.position);
+        player.rb.velocity = direction.normalized * attackForcePlayer;
+        yield return null;
+
+        while (direction.magnitude > 2f)
         {
+            if (gameObject.activeInHierarchy == false)
+            {
+                if (player.GetComponentInChildren<BulletAttack1>() != null)
+                    Destroy(player.GetComponentInChildren<BulletAttack1>().gameObject);
+
+                stuned = false;
+
+                StopCoroutine(lastAttack);
+
+                yield break;
+            }
 
             direction = (transform.position - player.transform.position);
             player.rb.velocity = direction.normalized * attackForcePlayer;
 
-            if(direction.magnitude < 1.5f)
+            if(direction.magnitude < 2f)
             {
                 for (int i = 0; i < collider2Ds.Count; i++)
                 {
@@ -241,12 +256,28 @@ public class EnnemyThreeBehavior : Ennemy_Controller
             elementsController.collider2Ds[i].gameObject.layer = 15;
         }
 
-        while (direction.magnitude > 0.7f)
+        direction = (transform.position - player.transform.position);
+        player.rb.velocity = direction.normalized * attackForcePlayer;
+        yield return null;
+
+        while (direction.magnitude > 2f)
         {
+            if(gameObject.activeInHierarchy == false)
+            {
+                if (elementsController.GetComponentInChildren<BulletAttack1>() != null)
+                    Destroy(elementsController.GetComponentInChildren<BulletAttack1>().gameObject);
+
+                stuned = false;
+
+                StopCoroutine(lastAttack);
+
+                yield break;
+            }
+
             direction = (transform.position - elementsController.transform.position);
             elementsController.rb.velocity = direction.normalized * attackForce;
 
-            if (direction.magnitude < 1.5f)
+            if (direction.magnitude < 2f)
             {
                 for (int i = 0; i < collider2Ds.Count; i++)
                 {
