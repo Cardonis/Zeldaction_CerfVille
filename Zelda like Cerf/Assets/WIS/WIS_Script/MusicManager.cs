@@ -176,6 +176,14 @@ public class MusicManager : MonoBehaviour
 
         }
 
+        if (!InBattle && EnemyInBattle <= 0 && IsChangingMusic == false && CurrentMusic.name != "Battle01" && CurrentMusic.name != "Battle02")
+        {
+
+            PlayMusic();
+
+
+        }
+
 
     }
 
@@ -212,7 +220,8 @@ public class MusicManager : MonoBehaviour
 
         
         audioSource.volume = FinalVolume;
-        //IsChangingMusic = false;
+
+        IsChangingMusic = false;
     }
 
     void PlayMusic()
@@ -222,30 +231,35 @@ public class MusicManager : MonoBehaviour
         {
             case PlayerPos.Village:
                 if (CurrentMusic.name == "Village") {break;}
+                IsChangingMusic = true;
                 StartCoroutine(FadeOut(CurrentMusic.source, 2));
                 CurrentMusic = Array.Find(Musics, s => s.name == "Village");
-                StartCoroutine(FadeIn(CurrentMusic.source, 2, CurrentMusic.volume));
+                StartCoroutine(FadeIn(CurrentMusic.source, 2, CurrentMusic.volume));                
                 break;
             case PlayerPos.Graveyard:
                 if (CurrentMusic.name == "Graveyard") { break; }
+                IsChangingMusic = true;
                 StartCoroutine(FadeOut(CurrentMusic.source, 2));
                 CurrentMusic = Array.Find(Musics, s => s.name == "Graveyard");
                 StartCoroutine(FadeIn(CurrentMusic.source, 2, CurrentMusic.volume));
                 break;
             case PlayerPos.Donjon01:
                 if (CurrentMusic.name == "Donjon01") { break; }
+                IsChangingMusic = true;
                 StartCoroutine(FadeOut(CurrentMusic.source, 2));
                 CurrentMusic = Array.Find(Musics, s => s.name == "Donjon01");
                 StartCoroutine(FadeIn(CurrentMusic.source, 2, CurrentMusic.volume));
                 break;
             case PlayerPos.Forest01:
                 if (CurrentMusic.name == "Forest01") { break; }
+                IsChangingMusic = true;
                 StartCoroutine(FadeOut(CurrentMusic.source, 2));
                 CurrentMusic = Array.Find(Musics, s => s.name == "Forest01");
                 StartCoroutine(FadeIn(CurrentMusic.source, 2, CurrentMusic.volume));
                 break;
             case PlayerPos.Forest02:
                 if (CurrentMusic.name == "Forest02") { break; }
+                IsChangingMusic = true;
                 StartCoroutine(FadeOut(CurrentMusic.source, 2));
                 CurrentMusic = Array.Find(Musics, s => s.name == "Forest02");
                 StartCoroutine(FadeIn(CurrentMusic.source, 2, CurrentMusic.volume));
@@ -257,6 +271,7 @@ public class MusicManager : MonoBehaviour
                 break;
             case PlayerPos.Encounter:
                 if (CurrentMusic.name == "Encounter") { break; }
+                IsChangingMusic = true;
                 StartCoroutine(FadeOut(CurrentMusic.source, 2));
                 CurrentMusic = Array.Find(Musics, s => s.name == "Encounter");
                 StartCoroutine(FadeIn(CurrentMusic.source, 2, CurrentMusic.volume));
@@ -279,6 +294,7 @@ public class MusicManager : MonoBehaviour
 
                 if (CurrentMusic.name != "Battle01" && CurrentMusic.name != "Battle02" && EnemyInBattle > 0 && EnemyInBattle < 4)
                 {
+                    IsChangingMusic = true;
                     StartCoroutine(FadeOut(CurrentMusic.source, 3));
                     CurrentMusic = Array.Find(Musics, s => s.name == "Battle01");
                     StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
@@ -286,6 +302,7 @@ public class MusicManager : MonoBehaviour
     
                 if (CurrentMusic.name != "Battle02" && EnemyInBattle > 3)
                 {
+                    IsChangingMusic = true;
                     StartCoroutine(FadeOut(CurrentMusic.source, 3));
                     CurrentMusic = Array.Find(Musics, s => s.name == "Battle02");
                     StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
@@ -293,6 +310,7 @@ public class MusicManager : MonoBehaviour
         
                 if (CurrentMusic.name != "Boss" && PlayerCurrentPos == PlayerPos.Boss)
                 {
+                    IsChangingMusic = true;
                     StartCoroutine(FadeOut(CurrentMusic.source, 3));
                     CurrentMusic = Array.Find(Musics, s => s.name == "Boss");
                     StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
@@ -301,6 +319,7 @@ public class MusicManager : MonoBehaviour
             }
             else if (PlayerCurrentPos == PlayerPos.Encounter && EnemyInBattle > 0 && CurrentMusic.name != "Encounter_Battle")
             {
+            IsChangingMusic = true;
             StartCoroutine(FadeOut(CurrentMusic.source, 3));
             CurrentMusic = Array.Find(Musics, s => s.name == "Encounter_Battle");
             StartCoroutine(FadeIn(CurrentMusic.source, 3, CurrentMusic.volume));
